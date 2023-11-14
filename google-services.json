@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "642376879468",
+    "project_id": "studygarage-ba333",
+    "storage_bucket": "studygarage-ba333.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:642376879468:android:970c28c464f68bd7e3f749",
+        "android_client_info": {
+          "package_name": "siddiqkolimidev.tenth_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "642376879468-157qsug0537tq8s3nh82dt0j65r1nhgq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "siddiqkolimidev.tenth_app",
+            "certificate_hash": "06712456919daa2895a93a1435ebc8378d7ab295"
+          }
+        },
+        {
+          "client_id": "642376879468-436e2utsj4tnkc1lglubjackgd2573nv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhqBvomZaWrel5etnrJOabyFUIPN33Hp4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "642376879468-436e2utsj4tnkc1lglubjackgd2573nv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

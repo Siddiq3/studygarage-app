@@ -1,0 +1,49 @@
+{
+  "expo": {
+    "name": "StudyGarage",
+    "slug": "10th_class",
+    "version": "2.5.8",
+    "orientation": "portrait",
+    "icon": "./assets/icon1.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash2.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "fallbackToCacheTimeout": 0,
+      "url": "https://u.expo.dev/f83019ec-3317-4507-b84f-afa2a768ccac"
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "package": "siddiqkolimidev.tenth_app",
+      "versionCode": 158,
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon1.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f83019ec-3317-4507-b84f-afa2a768ccac"
+      }
+    },
+    "runtimeVersion": {
+      "policy": "sdkVersion"
+    },
+    "scheme": "10th_class"
+  },
+  "react-native-google-mobile-ads": {
+    "android_app_id": "ca-app-pub-2818388282601075~9557742191"
+  }
+}

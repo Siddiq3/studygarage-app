@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "812504120011",
+    "project_id": "ap10thclass-5b0e8",
+    "storage_bucket": "ap10thclass-5b0e8.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:812504120011:android:34bc8528306970e8b8394e",
+        "android_client_info": {
+          "package_name": "siddiqkolimidev.tenth_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "812504120011-kn32vuf00se7vnq5fa1270c8slu6m64g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBy-EmuN-M1wCUwq6lf658S4fwGYSlAa5Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "812504120011-kn32vuf00se7vnq5fa1270c8slu6m64g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
