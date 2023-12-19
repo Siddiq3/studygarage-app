@@ -9,7 +9,7 @@ import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { MainStackNavigator1, ContactStackNavigator, MainStackNavigator2, } from "./StackNavigation";
-
+import { QuizProvider } from "./QuizContext";
 
 const homeName = "10th class";
 
@@ -58,7 +58,16 @@ function MyTabs() {
                     style: { padding: 10, height: 70, backgroundColor: '#ADA2FF' }
                 }}>
 
-                <Tab.Screen name={homeName} component={MainStackNavigator1} options={{ headerShown: false }} />
+
+                <Tab.Screen
+                    name={homeName}
+                    component={() => (
+                        <QuizProvider>
+                            <MainStackNavigator1 />
+                        </QuizProvider>
+                    )}
+                    options={{ headerShown: false }}
+                />
 
                 <Tab.Screen name={videos} component={ContactStackNavigator} options={{ headerShown: false }} />
                 <Tab.Screen name={share} component={MainStackNavigator2} options={{ headerShown: false }} />
@@ -72,21 +81,21 @@ function MyTabs() {
 const ToabNavigation = () => {
 
 
-    
-
-        return (
-            <SafeAreaProvider style={{ flex: 1 }}>
-                <NavigationContainer independent={true}>
-                    <MyTabs />
-
-                </NavigationContainer>
 
 
+    return (
+        <SafeAreaProvider style={{ flex: 1 }}>
+            <NavigationContainer independent={true}>
+                <MyTabs />
 
-            </SafeAreaProvider>
+            </NavigationContainer>
 
 
-        );
-     
+
+        </SafeAreaProvider>
+
+
+    );
+
 }
 export default ToabNavigation;

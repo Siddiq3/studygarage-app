@@ -78,15 +78,6 @@ const class7 = ({ navigation }) => {
             <ScrollView>
 
 
-                <TouchableOpacity activeOpacity={1} style={{ marginLeft: 12, color: '#772262', backgroundColor: '#457b9d', borderRadius: 20, height: responsiveHeight(21.5), width: responsiveWidth(90), marginTop: 25 }} onPress={() =>
-                    navigation.navigate('Question7')}>
-
-                    {isLoading ? <Text style={{ fontSize: responsiveFontSize(2.5), fontWeight: '500', color: '#ffffff', textAlign: 'center' }}>Loading...</Text> : questions && (<Text style={{ fontSize: responsiveFontSize(3), textAlign: 'center', fontWeight: 'bold', color: '#000000' }} >Q. {decodeURIComponent(questions.t7)}</Text>)}
-                    {isLoading ? <Text style={{ fontSize: responsiveFontSize(3), fontWeight: '500', color: '#ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: responsiveFontSize(2.5), textAlignVertical: 'center', color: '#ffffff' }} >Q. {decodeURIComponent(questions.q7)}?</Text>)}
-
-                    <Text style={{ fontSize: responsiveFontSize(1.5), fontWeight: '400', color: '#ffffff', textAlign: 'center' }}>click here for answer</Text>
-
-                </TouchableOpacity>
 
 
                 <Card style={{ padding: 10, margin: 15 }}>

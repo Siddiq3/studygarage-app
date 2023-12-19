@@ -118,8 +118,8 @@ android {
         applicationId 'siddiqkolimidev.tenth_app'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 181
-        versionName "2.8.1"
+        versionCode 226
+        versionName "2.8.46"
     }
 
     splits {
@@ -190,6 +190,7 @@ android {
 }
 
 dependencies {
+    implementation "com.google.android.gms:play-services-ads:21.3.0"
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 

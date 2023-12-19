@@ -1,14 +1,12 @@
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
 
-
 import OneSignal from 'react-native-onesignal';
 import { useEffect, useState } from 'react';
 
-
-
 import { NavigationContainer } from '@react-navigation/native';
-import TabNavigation from './TabNavigation';
+import ToabNavigation from './TabNavigation';
+//import TabNavigation from './TabNavigation';
 
 
 
@@ -16,17 +14,6 @@ import TabNavigation from './TabNavigation';
 
 
 export default function App() {
-
-
-
-
-
-
-
-
-
-
-
   useEffect(() => {
     // OneSignal Initialization
     OneSignal.setAppId("a03d2003-281c-41cd-875c-2cb5d8cd3907"); //  095d99d3-5a72-47e3-a8f2-f1a4d51671d6
@@ -37,20 +24,13 @@ export default function App() {
     });
   }, [])
 
-
-
-
-
-
-
-
-
   return (
 
 
     <NavigationContainer style={styles.container}>
 
-      <TabNavigation />
+
+      <ToabNavigation />
     </NavigationContainer>
 
   );

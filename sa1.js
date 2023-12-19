@@ -54,7 +54,7 @@ const Sa1 = ({ navigation }) => {
         <View style={styles.container} horizontal={false}>
             <ScrollView>
 
-                <Text style={{ fontSize: 25, textAlign: 'center', color: '#D82148' }}>        SA1 PAPERS 2023 & KEY
+                <Text style={{ fontSize: 25, textAlign: 'center', color: '#D82148' }}>        SA1 PAPERS 2024 & KEY
 
 
                 </Text>

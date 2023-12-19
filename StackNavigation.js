@@ -137,7 +137,7 @@ import Phytt from './Textbooks/Phytt';
 import Societ from './Textbooks/Societ';
 import Socitt from './Textbooks/Socitt';
 
-import Home from "./Home";
+
 
 
 
@@ -153,17 +153,7 @@ import Socep from "./Papers/Socep";
 import Nsep from "./Papers/Nsep";
 import Nstp from "./Papers/Nstp";
 
-import Tpop from './pqp/Tpqp';
-import Epop from './pqp/Epqp';
-import Mepqp from './pqp/Mepqp';
-import Mtpop from './pqp/Mtpop';
-import Ntpop from './pqp/Ntpqp';
-import Nepop from './pqp/Nepqp';
-import Sepop from './pqp/Sepqp';
-import Stpop from './pqp/Stpqp';
-import Pepop from './pqp/Pepqp';
-import Ptpop from './pqp/Ptpqp';
-import Hpqp from './pqp/Hpqp';
+
 
 import Telp1 from './I2023/Telp';
 import Engp1 from './I2023/Engp';
@@ -1653,6 +1643,19 @@ import Test6 from "./Nmms/Test/T6";
 
 
 
+import Equiz from "./Equiz";
+import Subjectq from "./Subjectq";
+import ChapterDetails from "./Chapterq";
+import Quizques from "./Quizdq";
+import QuizResults from "./Quizres";
+import TotalScorePage from "./TotalScorePage";
+import WithdrawalHistoryPage from "./Whistory";
+import WithdrawalFormPage from "./Withdraw";
+import Blueprintdata from "./tenth/blueprintdata";
+import Blueprintpdf from "./tenth/blueprintpdf";
+import Prevpapersdata from "./tenth/prevpdata";
+import Prevpaperpdf from "./tenth/prevppdf";
+
 
 
 
@@ -1672,7 +1675,19 @@ const MainStackNavigator1 = () => {
     return (
 
         <Stack.Navigator  >
+
             <Stack.Screen name='10th class' component={ApTs} options={{ headerShown: false }} />
+
+            <Stack.Screen name='equiz' component={Equiz} options={{ headerShown: false }} />
+            <Stack.Screen name='ClassDetails' component={Subjectq} options={{ headerShown: false }} />
+            <Stack.Screen name='ChapterDetails' component={ChapterDetails} options={{ headerShown: false }} />
+            <Stack.Screen name='Quiz' component={Quizques} options={{ headerShown: false }} />
+            <Stack.Screen name='Quiz Results' component={QuizResults} options={{ headerShown: false }} />
+
+            <Stack.Screen name='TotalScorePage' component={TotalScorePage} options={{ headerShown: false }} />
+            <Stack.Screen name="WithdrawalHistoryPage" component={WithdrawalHistoryPage} />
+            <Stack.Screen name='WithdrawalFormPage' component={WithdrawalFormPage} options={{ headerShown: false }} />
+
             <Stack.Screen name='apssc' component={Menu} options={{ headerShown: false }} />
             <Stack.Screen name='tsssc' component={Ts} options={{ headerShown: false }} />
 
@@ -2719,6 +2734,7 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name="socialtm exam9" component={Soct9exam} options={{ headerShown: false }} />
 
             <Stack.Screen name='Question' component={TodayQues} options={{ headerShown: false }} />
+            <Stack.Screen name='Weekly Questions' component={WeekQues} options={{ headerShown: false }} />
             <Stack.Screen name='Question6' component={Quiz6} options={{ headerShown: false }} />
             <Stack.Screen name='Question7' component={Quiz7} options={{ headerShown: false }} />
             <Stack.Screen name='Question8' component={Quiz8} options={{ headerShown: false }} />
@@ -2748,7 +2764,7 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name='11thToday Answer' component={qans11} options={{ headerShown: false }} />
             <Stack.Screen name='12thToday Answer' component={qans12} options={{ headerShown: false }} />
 
-            <Stack.Screen name='Weekly Questions' component={WeekQues} options={{ headerShown: false }} />
+
             <Stack.Screen name='Weekly Result' component={WeekResult} options={{ headerShown: false }} />
             <Stack.Screen name='Weekly Answer' component={Weekans} options={{ headerShown: false }} />
 
@@ -3217,20 +3233,7 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name="Pe11" component={Pe11} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='Prev Papers'
-                component={Home} options={{ headerShown: false }} />
 
-            <Stack.Screen name="telugu" component={Tpop} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi" component={Hpqp} options={{ headerShown: false }} />
-            <Stack.Screen name="english" component={Epop} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em" component={Mepqp} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm" component={Mtpop} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em" component={Pepop} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm" component={Ptpop} options={{ headerShown: false }} />
-            <Stack.Screen name="biology em" component={Nepop} options={{ headerShown: false }} />
-            <Stack.Screen name="biology tm" component={Ntpop} options={{ headerShown: false }} />
-            <Stack.Screen name="social em" component={Sepop} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm" component={Stpop} options={{ headerShown: false }} />
 
 
 
@@ -3352,6 +3355,18 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name="SocialTm 2022" component={Soctp} options={{ headerShown: false }} />
             <Stack.Screen name="PhysicsEm 2022" component={Phyep} options={{ headerShown: false }} />
             <Stack.Screen name="PhysicsTm 2022" component={Phytp} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name='apblueprint1'
+                component={Blueprintdata} options={{ headerShown: false }} />
+            <Stack.Screen name='UrlPage'
+                component={Blueprintpdf} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name='Prev Papers1'
+                component={Prevpapersdata} options={{ headerShown: false }} />
+            <Stack.Screen name='prevpaerspdf'
+                component={Prevpaperpdf} options={{ headerShown: false }} />
         </Stack.Navigator>
 
 

@@ -62,13 +62,14 @@ const WeekResult = ({ navigation, route }) => {
 
         };
     }, [])
-    const { score } = route.params
+    const { score, } = route.params
 
     const resultBanner = score >= 60 ? "https://cdni.iconscout.com/illustration/premium/thumb/men-celebrating-victory-4587301-3856211.png" : "https://cdni.iconscout.com/illustration/free/thumb/concept-about-business-failure-1862195-1580189.png"
     return (
         <View style={styles.container}>
             <Title titleText='RESULTS' />
             <Text style={styles.scoreValue}>{score}</Text>
+
             <View style={styles.bannerContainer}>
                 <Image
                     source={{
@@ -78,12 +79,12 @@ const WeekResult = ({ navigation, route }) => {
                     resizeMode="contain"
                 />
             </View>
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('Ap10th class')} style={styles.button}
+            <TouchableWithoutFeedback onPress={() => navigation.navigate('10th class')} style={styles.button}
                 onPressOut={() => {
                     if (interstitialLoaded) {
 
                         interstitial.show();
-                    } else { navigation.navigate('Ap10th class') }
+                    } else { navigation.navigate('10th class') }
                 }}
             >
                 <Text style={styles.buttonText}>GO TO HOME</Text>

@@ -1,10 +1,14 @@
-import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 
 
 
-import { InterstitialAd, TestIds, AdEventType, } from 'react-native-google-mobile-ads';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
+import { useQuizContext } from './QuizContext'
+
+import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/7472911313';
 
 const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/2407646303';
 
@@ -12,28 +16,20 @@ const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true
 });
 
+const TodayQues = ({ navigation, route }) => {
+    const [totalQuestions, setTotalQuestions] = useState();
+    const [questions, setQuestions] = useState();
+    const [ques, setQues] = useState(0);
+    const [options, setOptions] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [timeLeft, setTimeLeft] = useState(15);
+    const [correctQuestions, setCorrectQuestions] = useState(0);
+    const [incorrectQuestions, setIncorrectQuestions] = useState(0);
+    const [score, setscore] = useState(0);
+    const { totalScore, updateTotalScore } = useQuizContext();
 
-const TodayQues = ({ navigation }) => {
-    const [loaded, setLoaded] = useState(false);
-
-    useEffect(() => {
-        const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
-            setLoaded(true);
-        });
-
-        // Start loading the interstitial straight away
-        interstitial.load();
-
-        // Unsubscribe from events on unmount
-        return unsubscribe;
-    }, []);
-
-    // No advert ready to show yet
-    if (!loaded) {
-        console.log('hi');
-    }
     const [interstitialLoaded, setInterstitialLoaded] = useState(false);
-
+    const [interstitialTimer, setInterstitialTimer] = useState(0);
 
     const loadInterstitial = () => {
         const unsubscribeLoaded = interstitial.addAdEventListener(
@@ -59,188 +55,345 @@ const TodayQues = ({ navigation }) => {
         }
     }
     useEffect(() => {
+        const timerInterval = 25000; // 20 seconds
+
+        const timer = setInterval(() => {
+            setInterstitialTimer((prevTimer) => prevTimer + 1000);
+
+            // Show interstitial ad every 40 seconds
+            if (interstitialTimer >= timerInterval) {
+                setInterstitialTimer(0);
+                showInterstitialAd();
+            }
+        }, 1000);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [interstitialTimer]);
+
+    // Function to load and show interstitial ad
+    const showInterstitialAd = async () => {
+        try {
+            if (interstitialLoaded) {
+                await interstitial.show();
+                interstitial.load();
+            } else {
+                // If the interstitial ad is not loaded, try loading it
+                interstitial.load();
+            }
+        } catch (e) {
+            console.error('Failed to show interstitial ad:', e);
+        }
+    };
+
+
+
+
+
+    useEffect(() => {
         const unsubscribeInterstitialEvents = loadInterstitial();
+
+        // Load the interstitial ad when the component mounts
+        interstitial.load();
 
         return () => {
             unsubscribeInterstitialEvents();
-
         };
-    }, [])
+    }, []);
 
-    const shuffleArray = (array) => {
-        for (let i = array.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [array[i], array[j]] = [array[j], array[i]];
-        }
-    }
-    const [questions, setQuestions] = useState();
-    const [ques, setQues] = useState(0);
-    const [options, setOptions] = useState([])
-    const [score, setScore] = useState(0)
-    const [isLoading, setIsLoading] = useState(false)
-
-    const getQuiz = async () => {
-        setIsLoading(true)
-        const url = 'https://siddiq3.github.io/Api/Quizapi.json';
-        const res = await fetch(url);
-        const data = await res.json();
-
-        setQuestions(data.results);
-
-        setOptions(generateOptionsAndShuffle(data.results[0]))
-        setIsLoading(false)
-    };
 
     useEffect(() => {
         getQuiz();
     }, []);
 
-    const handleNextPress = () => {
-        setQues(ques + 1)
-        setOptions(generateOptionsAndShuffle(questions[ques + 1]))
-    }
+
+    useEffect(() => {
+        const timer = setInterval(() => {
+            setTimeLeft(prevTime => (prevTime > 0 ? prevTime - 1 : 0));
+
+            if (timeLeft === 0) {
+                handleNextPress();
+            }
+
+            if (ques === totalQuestions - 1 && timeLeft === 1) {
+                handleShowResult();
+                clearInterval(timer);
+            }
+        }, 1000);
+
+        return () => {
+            clearInterval(timer);
+        };
+    }, [ques, totalQuestions, timeLeft]);
+
+    useEffect(() => {
+        if (ques < totalQuestions) {
+            setOptions((prevOptions) =>
+                generateOptionsAndShuffle(
+                    questions[ques].incorrect_answers.concat(questions[ques].correct_answer)
+                )
+            );
+            setTimeLeft(20);
+        }
+    }, [ques, totalQuestions]);
+    const shuffleArray = (array) => {
+        for (let i = array.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [array[i], array[j]] = [array[j], array[i]];
+        }
+    };
 
     const generateOptionsAndShuffle = (_question) => {
-        const options = [..._question.incorrect_answers]
-        options.push(_question.correct_answer)
+        const options = [..._question];
+        shuffleArray(options);
+        return options;
+    };
 
-        shuffleArray(options)
+    const handleNextPress = () => {
+        if (ques < totalQuestions - 1) {
+            setQues((prevQues) => prevQues + 1);
+            setOptions((prevOptions) =>
+                generateOptionsAndShuffle(
+                    questions[ques + 1].incorrect_answers.concat(questions[ques + 1].correct_answer)
+                )
+            );
+            setTimeLeft(20);
+        }
 
-        return options
-    }
+        if (ques === totalQuestions - 1) {
+            handleShowResult();
+        }
+    };
 
     const handlSelectedOption = (_option) => {
+        const optionsToShuffle = _option === questions[ques].correct_answer
+            ? questions[ques].incorrect_answers.concat(questions[ques].correct_answer)
+            : questions[ques].incorrect_answers;
+
         if (_option === questions[ques].correct_answer) {
-            setScore(score + 10)
+            setscore((prevScore) => prevScore + 1);
+            setCorrectQuestions((prevCorrect) => prevCorrect + 1);
+        } else {
+            setIncorrectQuestions((prevIncorrect) => prevIncorrect + 1);
+        }
+
+        if (ques < totalQuestions - 1) {
+            setQues((prevQues) => prevQues + 1);
+            setOptions((prevOptions) => generateOptionsAndShuffle(optionsToShuffle));
+            setTimeLeft(15);
+        }
+
+        if (ques === totalQuestions - 1) {
+            handleShowResult();
 
 
-        }
-        if (ques !== 5) {
-            setQues(ques + 1)
-            setOptions(generateOptionsAndShuffle(questions[ques + 1]))
-        }
-        if (ques === 6) {
-            handleShowResult()
-        }
-    }
+            updateTotalScore(score);
 
+        }
+    };
     const handleShowResult = () => {
         navigation.navigate('Daily Result', {
-            score: score
-        })
-    }
+            score,
+            totalQuestions,
+            correctQuestions,
+            incorrectQuestions,
+            totalScore
+        });
+    };
+
+
+    const getQuiz = async () => {
+        setIsLoading(true);
+        const url = 'https://siddiq3.github.io/Api/Quizapi.json';
+
+        try {
+            const res = await fetch(url);
+            const data = await res.json();
+
+            setQuestions(data.results);
+            setTotalQuestions(data.results.length);
+            setOptions(generateOptionsAndShuffle(data.results[0].incorrect_answers.concat(data.results[0].correct_answer)));
+            setIsLoading(false);
+        } catch (error) {
+            console.error('Error fetching quiz:', error);
+            setIsLoading(false);
+        }
+    };
 
     return (
-
         <View style={styles.container}>
-
-
-            {isLoading ? <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
-                <Text style={{ fontSize: 32, fontWeight: '700' }}>LOADING...</Text>
-            </View> : questions && (
-                <View style={styles.parent}>
-                    <View style={styles.top}>
-                        <Text style={styles.question}>Q. {decodeURIComponent(questions[ques].question)}</Text>
-                    </View>
-
-                    <View style={styles.options}>
-
-                        <TouchableOpacity style={styles.optionButtom} onPress={() => handlSelectedOption(options[0])}>
-                            <Text style={styles.option}>{decodeURIComponent(options[0])}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionButtom} onPress={() => handlSelectedOption(options[1])}>
-                            <Text style={styles.option}>{decodeURIComponent(options[1])}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionButtom} onPress={() => handlSelectedOption(options[2])}>
-                            <Text style={styles.option}>{decodeURIComponent(options[2])}</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.optionButtom} onPress={() => handlSelectedOption(options[3])}>
-                            <Text style={styles.option}>{decodeURIComponent(options[3])}</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <View style={styles.bottom}>
-                        {/* <TouchableOpacity style={styles.button}>
-              <Text style={styles.buttonText}>PREV</Text>
-            </TouchableOpacity> */}
-
-                        {ques !== 5 && <TouchableOpacity style={styles.button} onPress={handleNextPress}>
-                            <Text style={styles.buttonText}>SKIP</Text>
-                        </TouchableOpacity>}
-
-
-
-
-                        {ques === 5 && <TouchableWithoutFeedback style={styles.button} onPress={handleShowResult}
-                            onPressOut={() => {
-                                if (interstitialLoaded) {
-
-                                    interstitial.show();
-                                }
-                                else { handleShowResult }
-
-                            }}>
-                            <Text style={styles.buttonText}>SHOW RESULTS</Text>
-                        </TouchableWithoutFeedback>}
-
-
-
-                    </View>
+            {isLoading ? (
+                <View style={styles.loadingContainer}>
+                    <Text style={styles.loadingText}>LOADING...</Text>
                 </View>
+            ) : (
+                questions && questions.length > 0 && ques < totalQuestions ? (
+                    <View style={styles.parent}>
+                        <View style={styles.top}>
+                            <View style={styles.top1}>
+                                <Text style={styles.questionCount}>{ques + 1}/{totalQuestions}</Text>
+                                <View style={styles.top2}>
+                                    <Icon name="clock-o" size={24} color="#3498db" style={styles.timerIcon} />
+                                    <Text style={styles.timer}>{timeLeft}s</Text>
+                                </View>
+                            </View>
+                            <Text style={styles.question}>{decodeURIComponent(questions[ques].question)}</Text>
+                        </View>
+
+                        <View style={styles.options}>
+                            {options.map((option, index) => (
+                                <TouchableOpacity
+                                    key={index}
+                                    style={styles.optionButton}
+                                    onPress={() => handlSelectedOption(option)}
+                                >
+                                    <Text style={styles.optionText}>{decodeURIComponent(option)}</Text>
+                                </TouchableOpacity>
+                            ))}
+
+                            <GAMBannerAd
+                                unitId={adUnitId1}
+                                sizes={[BannerAdSize.LARGE_BANNER]}
+                                requestOptions={{
+                                    requestNonPersonalizedAdsOnly: true,
+                                }}
+                            />
+                        </View>
+
+                        <View style={styles.bottom}>
+                            {ques !== totalQuestions - 1 && (
+                                <TouchableOpacity style={styles.button} onPress={handleNextPress}>
+                                    <Text style={styles.buttonText}>SKIP</Text>
+                                </TouchableOpacity>
+                            )}
+                        </View>
+                    </View>
+                ) : (
+                    <View style={styles.noQuestionsContainer}>
+                        <Text style={styles.noQuestionsText}>No questions available.</Text>
+                    </View>
+                )
             )}
         </View>
-
-    )
-}
+    );
+};
 
 export default TodayQues;
+const themeColor = '#3498db';
 const styles = StyleSheet.create({
     container: {
-        paddingTop: 40,
-        paddingHorizontal: 20,
-        height: '100%',
-    },
-    top: {
-        marginVertical: 16,
-    },
-    options: {
-        marginVertical: 16,
+        padding: 20,
         flex: 1,
+        backgroundColor: '#f0f0f0',
     },
-    bottom: {
-        marginBottom: 12,
-        paddingVertical: 16,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-    },
-    button: {
-        backgroundColor: '#1A759F',
-        padding: 12,
-        paddingHorizontal: 16,
-        borderRadius: 16,
+    loadingContainer: {
+        flex: 1,
+        justifyContent: 'center',
         alignItems: 'center',
-        marginBottom: 30,
+        padding: 20,
     },
-    buttonText: {
-        fontSize: responsiveFontSize(2.2),
-        fontWeight: 'bold',
-        color: '#ED4264',
-    },
-    question: {
-        fontSize: responsiveFontSize(2.2),
-    },
-    option: {
-        fontSize: responsiveFontSize(1.7),
-        fontWeight: '500',
-        color: 'white',
-    },
-    optionButtom: {
-        paddingVertical: 12,
-        marginVertical: 6,
-        backgroundColor: '#34A0A4',
-        paddingHorizontal: 12,
-        borderRadius: 12,
+    loadingText: {
+        fontSize: responsiveFontSize(3),
+        fontWeight: '700',
+        color: themeColor,
     },
     parent: {
-        height: '100%',
+        flex: 1,
+    },
+    top: {
+        flexDirection: 'column',
+        justifyContent: "flex-start",
+        alignItems: 'center',
+        marginTop: 15,
+        backgroundColor: '#f0f0f0',
+    },
+    top1: {
+        flexDirection: 'row',
+        justifyContent: "flex-start",
+        alignItems: 'center',
+        marginTop: 15,
+        paddingHorizontal: 10,
+
+        width: '100%'
+    },
+    top2: {
+        flexDirection: 'row',
+        justifyContent: "flex-end",
+        alignItems: 'center',
+
+        paddingHorizontal: 30,
+        marginRight: 10,
+
+
+        width: '100%'
+    },
+    questionCount: {
+        fontSize: responsiveFontSize(2),
+        fontWeight: '600',
+        color: themeColor,
+
+    },
+    timerIcon: {
+        marginRight: 5,
+
+    },
+    timer: {
+        fontSize: responsiveFontSize(2),
+        fontWeight: '500',
+        color: themeColor,
+    },
+
+    question: {
+        fontSize: responsiveFontSize(2),
+        fontWeight: '700',
+        marginTop: 10,
+
+
+    },
+    options: {
+        flex: 1,
+        padding: 10,
+
+    },
+    optionButton: {
+        paddingVertical: 12,
+        marginVertical: 8,
+        backgroundColor: themeColor,
+        borderRadius: 8,
+        alignItems: 'center',
+    },
+    optionText: {
+        color: 'white',
+        fontSize: responsiveFontSize(2),
+        fontWeight: '500',
+    },
+    bottom: {
+        flexDirection: 'row',
+        justifyContent: 'flex-end',
+        marginTop: 'auto',
+        padding: 10,
+    },
+    button: {
+        backgroundColor: themeColor,
+        paddingVertical: 14,
+        paddingHorizontal: 22,
+        borderRadius: 8,
+    },
+    buttonText: {
+        color: 'white',
+        fontSize: responsiveFontSize(2),
+        fontWeight: '600',
+    },
+    noQuestionsContainer: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        padding: 20,
+    },
+    noQuestionsText: {
+        fontSize: responsiveFontSize(2),
+        fontWeight: '600',
+        color: themeColor,
     },
 });

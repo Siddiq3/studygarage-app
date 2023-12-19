@@ -41,7 +41,16 @@
     "runtimeVersion": {
       "policy": "sdkVersion"
     },
-    "scheme": "10th_class"
+    "scheme": "10th_class",
+    "plugins": [
+      [
+        "react-native-admob-native-ads",
+        {
+          "androidAppId": "ca-app-pub-2818388282601075~9557742191",
+          "facebookMediation": false
+        }
+      ]
+    ]
   },
   "react-native-google-mobile-ads": {
     "android_app_id": "ca-app-pub-2818388282601075~9557742191"

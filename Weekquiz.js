@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet } from 'react-native';
 
-
+import { useQuizContext } from "./QuizContext" // Import the context hook
 
 import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 
@@ -14,6 +14,7 @@ const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
 
 
 const WeekQues = ({ navigation }) => {
+
     const [interstitialLoaded, setInterstitialLoaded] = useState(false);
 
 
@@ -55,6 +56,7 @@ const WeekQues = ({ navigation }) => {
             [array[i], array[j]] = [array[j], array[i]];
         }
     }
+    //const { weeklyScore, updateWeeklyScore, totalScore, updateTotalScore } = useQuizContext();
     const [questions, setQuestions] = useState();
     const [ques, setQues] = useState(0);
     const [options, setOptions] = useState([])
@@ -62,7 +64,8 @@ const WeekQues = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(false)
 
     const getQuiz = async () => {
-        setIsLoading(true)
+        setIsLoading(true);
+
         const url = 'https://siddiq3.github.io/Api/WeekQuizapi.json';
         const res = await fetch(url);
         const data = await res.json();
@@ -94,6 +97,7 @@ const WeekQues = ({ navigation }) => {
     const handlSelectedOption = (_option) => {
         if (_option === questions[ques].correct_answer) {
             setScore(score + 10)
+            //updateWeeklyScore(10)
 
 
         }
@@ -107,10 +111,16 @@ const WeekQues = ({ navigation }) => {
     }
 
     const handleShowResult = () => {
+
+
+        // Navigate to 'Weekly Result'
         navigation.navigate('Weekly Result', {
             score: score
-        })
-    }
+
+
+        });
+    };
+
 
     return (
 
