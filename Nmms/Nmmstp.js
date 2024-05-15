@@ -1,11 +1,11 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, ScrollView, StyleSheet, Linking, TouchableOpacity } from "react-native";
+import { View, Text, Button, ScrollView, StyleSheet, Linking, TouchableOpacity, BackHandler } from "react-native";
 import { Card } from "react-native-shadow-cards";
 
 import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/7122732961';
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/6566463021';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/1754891563';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/7426607370';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true,
@@ -32,6 +32,12 @@ const Nmmstp = ({ navigation }) => {
 
     useEffect(() => {
         getQuiz();
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            navigation.goBack(); // Navigate back when back button is pressed
+            return true; // Prevent default behavior
+        });
+
+        return () => backHandler.remove();
     }, []);
     const [interstitialLoaded, setInterstitialLoaded] = useState(false);
 

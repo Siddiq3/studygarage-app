@@ -7,7 +7,7 @@ import Dst14 from '../QuizData/Sot/St14'
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
 import { GAMBannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 const St14 = ({ navigation }) => {
 
     const allQuestions = Dst14;

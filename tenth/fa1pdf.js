@@ -1,18 +1,10 @@
-
-
-
-
-
-
-
-
 import React, { useState, useEffect } from 'react';
 import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 
 import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5720822270';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/9492220282';
 const Fa1pdf = ({ route }) => {
     const { url } = route.params;
     const [loading, setLoading] = useState(true);

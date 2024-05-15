@@ -8,13 +8,13 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-import { MainStackNavigator1, ContactStackNavigator, MainStackNavigator2, } from "./StackNavigation";
+import { MainStackNavigator1, ContactStackNavigator, } from "./StackNavigation";
 import { QuizProvider } from "./QuizContext";
 
 const homeName = "10th class";
 
 const videos = "Videos";
-const share = "Latest Updates";
+
 
 
 const Tab = createBottomTabNavigator();
@@ -35,14 +35,12 @@ function MyTabs() {
                             iconName = focused ? 'home' : 'home-outline';
 
                         }
-                        else if (rn === share) {
-                            iconName = focused ? 'chatbubble-ellipses' : 'chatbubble-ellipses';
-                        }
-
-
                         else if (rn === videos) {
                             iconName = focused ? 'videocam' : 'videocam-outline';
                         }
+
+
+
 
 
 
@@ -70,7 +68,7 @@ function MyTabs() {
                 />
 
                 <Tab.Screen name={videos} component={ContactStackNavigator} options={{ headerShown: false }} />
-                <Tab.Screen name={share} component={MainStackNavigator2} options={{ headerShown: false }} />
+
 
 
             </Tab.Navigator>
@@ -78,7 +76,7 @@ function MyTabs() {
 
     );
 }
-const ToabNavigation = () => {
+const TabNavigation = () => {
 
 
 
@@ -98,4 +96,4 @@ const ToabNavigation = () => {
     );
 
 }
-export default ToabNavigation;
+export default TabNavigation;

@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, ScrollView, StyleSheet, Linking, TouchableWithoutFeedback } from "react-native";
+import { View, Text, Button, ScrollView, StyleSheet, Linking, TouchableWithoutFeedback, BackHandler } from "react-native";
 import { Card } from "react-native-shadow-cards";
 
 import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/7122732961';
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/1382670753';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/3250245563';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/4460111801';
+
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true
@@ -49,6 +50,16 @@ const Teltpts = ({ navigation }) => {
 
         };
     }, [])
+    useEffect(() => {
+
+
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            navigation.goBack(); // Navigate back when back button is pressed
+            return true; // Prevent default behavior
+        });
+
+        return () => backHandler.remove();
+    }, []);
     return (
 
         <View style={styles.container}>

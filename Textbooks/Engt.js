@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 
 import WebView from "react-native-webview";
 import { TestIds, BannerAd, BannerAdSize, InterstitialAd, AdEventType, } from 'react-native-google-mobile-ads';
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/9516275596';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/7426607370';
 const adUnitId1 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2818388282601075/5259157113';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {

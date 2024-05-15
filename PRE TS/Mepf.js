@@ -3,7 +3,7 @@ import { Text, View } from "react-native";
 import WebView from "react-native-webview";
 import { TestIds, BannerAdSize, BannerAd } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2818388282601075/9790068374';
+const adUnitId1 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3251781230941397/3166129864';
 
 const Mepfts = () => {
     const [questions, setQuestions] = useState([]);

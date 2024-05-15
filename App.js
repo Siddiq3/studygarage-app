@@ -1,48 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, ActivityIndicator } from 'react-native';
-
-import OneSignal from 'react-native-onesignal';
-import { useEffect, useState } from 'react';
-
+import React, { useEffect } from 'react';
+import { StyleSheet, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-import ToabNavigation from './TabNavigation';
-//import TabNavigation from './TabNavigation';
+import OneSignal from 'react-native-onesignal';
 
+import { QuizProvider } from "./QuizContext";
 
-
-
-
+import { MainStackNavigator1 } from './StackNavigation';
 
 export default function App() {
   useEffect(() => {
     // OneSignal Initialization
-    OneSignal.setAppId("a03d2003-281c-41cd-875c-2cb5d8cd3907"); //  095d99d3-5a72-47e3-a8f2-f1a4d51671d6
+    OneSignal.setAppId("a03d2003-281c-41cd-875c-2cb5d8cd3907");
 
-    //Method for handling notifications opened
+    // Method for handling notifications opened
     OneSignal.setNotificationOpenedHandler(notification => {
       console.log("OneSignal: notification opened:", notification);
     });
-  }, [])
+  }, []);
 
   return (
 
+    <NavigationContainer>
+      <QuizProvider>
 
-    <NavigationContainer style={styles.container}>
+        <View style={styles.container}>
+          <MainStackNavigator1 />
+        </View>
 
-
-      <ToabNavigation />
+      </QuizProvider>
     </NavigationContainer>
-
   );
-
-
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+
   },
 });

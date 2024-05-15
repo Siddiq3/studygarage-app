@@ -3,7 +3,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View, TouchableWithoutFeedba
 import Title from '../Title';
 import { TestIds, InterstitialAd, AdEventType, } from 'react-native-google-mobile-ads';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/2407646303';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/2465924734';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true

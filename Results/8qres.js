@@ -3,8 +3,9 @@ import { View, Text, StyleSheet, TouchableOpacity, BackHandler, Alert } from 're
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/7472911313';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/2407646303';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/2465924734';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true
@@ -29,7 +30,7 @@ const Qres8 = ({ route, navigation }) => {
             'Are you sure you want to exit?',
             [
                 { text: 'Cancel', style: 'cancel' },
-                { text: 'Exit', onPress: () => BackHandler.exitApp() },
+                { text: 'Exit', onPress: handleHome },
             ],
             { cancelable: false }
         );
@@ -87,29 +88,52 @@ const Qres8 = ({ route, navigation }) => {
         };
     }, [])
 
-    const handleRetry = () => {
-        if (interstitialLoaded) {
 
-            interstitial.show();
-            navigation.navigate('equiz');
+    const handleRetry = async () => {
+        try {
+            // Retrieve stored stateBoard and classValue
+            const storedStateBoard = await AsyncStorage.getItem('stateBoard');
+            const storedClassValue = await AsyncStorage.getItem('classValue');
+
+            if (storedStateBoard && storedClassValue) {
+                // Data found, navigate to ChapterDetailsPage with stored data
+                navigation.navigate('SubjectDataPage', {
+                    stateBoard: storedStateBoard,
+                    classValue: storedClassValue,
+                });
+            } else {
+                // Data not found, show an alert
+                Alert.alert('Data not found', 'Please fill in all required fields in the FirstPage.');
+            }
+        } catch (error) {
+            console.error('Error checking stored data:', error);
         }
-        else {
+    };
 
+    const handleHome = async () => {
+        try {
+            const storedUserName = await AsyncStorage.getItem('userName');
+            const storedAvatar = await AsyncStorage.getItem('avatar');
+            const storedStateBoard = await AsyncStorage.getItem('stateBoard');
+            const storedClassValue = await AsyncStorage.getItem('classValue');
 
-            navigation.navigate('equiz');
+            if (storedUserName && storedAvatar && storedStateBoard && storedClassValue) {
+                // Data found, navigate to SecondPage with stored data
+                navigation.navigate('SecondPage', {
+                    userName: storedUserName,
+                    stateBoard: storedStateBoard,
+                    classValue: storedClassValue,
+                    avatar: storedAvatar,
+                });
+            } else {
+                // Data not found, show an alert
+                Alert.alert('Data not found', 'Please fill in all required fields in the FirstPage.');
+            }
+        } catch (error) {
+            console.error('Error checking stored data:', error);
         }
     };
 
-    const handleHome = () => {
-        if (interstitialLoaded) {
-
-            interstitial.show();
-            navigation.navigate('10th class');
-        }
-        else { // Navigate to the home screen
-            navigation.navigate('10th class');
-        }
-    };
     const handleScore = () => {
         if (interstitialLoaded) {
 

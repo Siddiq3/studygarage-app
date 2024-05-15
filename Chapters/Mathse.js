@@ -3,9 +3,8 @@ import { View, Text, TouchableWithoutFeedback, ScrollView, StyleSheet, Linking }
 import { Card } from "react-native-shadow-cards";
 import { TestIds, GAMBannerAd, BannerAdSize, InterstitialAd, AdEventType } from 'react-native-google-mobile-ads';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/3572356105';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
-const adUnitId2 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/1783193953';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/6792182552';
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true,
 
@@ -206,13 +205,8 @@ const Mathsee = ({ navigation }) => {
                 </Card>
 
             </ScrollView>
-            <GAMBannerAd
-                unitId={adUnitId2}
-                sizes={[BannerAdSize.FULL_BANNER]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
+
+
         </View>
 
     );

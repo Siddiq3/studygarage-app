@@ -1,3 +1,6 @@
+
+
+
 import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -33,64 +36,6 @@ import Qres6 from "./Results/6qres";
 import Menu from './Menu';
 import DailyResult from './Results/DailyRes';
 
-import Sa1 from './sa1';
-import Fa1 from './fa1';
-import Fa2 from './fa2';
-import Fa4 from "./fa4";
-
-import Telfa4 from "./FA4/Telfa3";
-import Hinfa4 from "./FA4/Hinfa3";
-import Engfa4 from "./FA4/Engfa3";
-import Mattfa4 from "./FA4/Mattfa3";
-import Matefa4 from "./FA4/Matefa3";
-import Sciefa4 from "./FA4/Sciefa3";
-import Scitfa4 from "./FA4/Sictfa3";
-import Soctfa4 from "./FA4/Soctfa3";
-import Socefa4 from "./FA4/Socefa3";
-import Sylfa4 from "./FA4/Fa3syl";
-
-import Telfa1 from './FA1/Telfa1';
-import Telfa2 from './FA2/Telfa2';
-import Telsa1 from './SA1/Telsa1';
-import Telfa3 from "./FA3/Telfa3";
-import Hinfa3 from "./FA3/Hinfa3";
-import Hinfa1 from './FA1/Hinfa1';
-import Hinfa2 from './FA2/Hinfa2';
-import Hinsa1 from './SA1/Hinsa1';
-
-import Engfa1 from './FA1/Engfa1';
-import Engfa2 from './FA2/Engfa2';
-import Engsa1 from './SA1/Engsa1';
-import Engfa3 from "./FA3/Engfa3";
-
-import Mattfa1 from './FA1/Mattfa1';
-import Matefa1 from './FA1/Matefa1';
-import Matefa2 from './FA2/Matefa2';
-import Mattfa2 from './FA2/Mattfa2';
-import Mattsa1 from './SA1/Mattsa1';
-import Matesa1 from './SA1/Matesa1';
-import Matefa3 from "./FA3/Matefa3";
-import Mattfa3 from "./FA3/Mattfa3";
-
-import Sciefa1 from './FA1/Sciefa1';
-import Sciefa2 from './FA2/Sciefa2';
-import Scitfa1 from './FA1/Scitfa1';
-import Scitfa2 from './FA2/Sictfa2';
-import Scitsa1 from './SA1/Scitsa1';
-import Sciesa1 from './SA1/Sciesa1';
-import Sciefa3 from "./FA3/Sciefa3";
-import Scitfa3 from "./FA3/Sictfa3";
-
-import Socefa1 from './FA1/Socefa1';
-import Socefa2 from './FA2/Socefa2';
-import Soctfa1 from './FA1/Soctfa1';
-import Soctfa2 from './FA2/Soctfa2';
-import Soctsa1 from './SA1/Soctsa1';
-import Socesa1 from './SA1/Socesa1';
-import Socefa3 from "./FA3/Socefa3";
-
-import Syl from "./SA1/Syl";
-import Sylfa3 from "./FA3/Fa3syl";
 
 import Importe from "./Importe";
 
@@ -100,20 +45,7 @@ import Importe from "./Importe";
 
 
 
-import Eimp from "./IMPQ/Engimp";
-import Himp from "./IMPQ/Hinimp";
 
-import Matei from "./IMPQ/Matheimp";
-import Matti from "./IMPQ/Mathtimp";
-import Phyei from "./IMPQ/Phyeimp";
-import Phyti from "./IMPQ/Phytimp";
-
-import Nsei from "./IMPQ/Nseimp";
-import Nsti from "./IMPQ/Nstimp";
-
-import Socei from "./IMPQ/Soceimp";
-
-import Socti from "./IMPQ/Soctimp";
 
 import Iiit from "./Iiit";
 import Phyiiit from "./IIIIt/Phyiiit";
@@ -178,14 +110,7 @@ import Socep2 from './I2022/Socep';
 import Soctp2 from './I2022/Soctp';
 
 
-import Telp3 from './Blueprin/Telp';
-import Hinp3 from './Blueprin/Hinp';
-import Engp3 from './Blueprin/Engp';
-import Mathep3 from './Blueprin/Mathep';
 
-import Nsep3 from './Blueprin/Nsep';
-
-import Socep3 from './Blueprin/Socep';
 
 
 import Telp4 from './I2019/Telp';
@@ -398,189 +323,23 @@ import Pe9 from './Quiz/Phyeq/Pe9';
 import Pe10 from './Quiz/Phyeq/Pe10';
 import Pe11 from './Quiz/Phyeq/Pe11';
 
-import About from "./About";
-import Fa3 from "./fa3";
+
+
 
 import Testpapers from "./Testpapers";
-import Teli from "./IMPQ/Telimp";
-import Engtp from "./Testpapers/Engtp";
-import Hintp from "./Testpapers/Hinditp";
-import Matetp from "./Testpapers/Mathsetp";
-import Matttp from "./Testpapers/Mathttp";
-import Phyetp from "./Testpapers/Phyetp";
-import Phyttp from "./Testpapers/Phyttp";
-import Socttp from "./Testpapers/Socittp";
-import Socetp from "./Testpapers/Societp";
-import Etp1 from "./TP/etp1";
-import Etp2 from "./TP/etp2";
-import Etp3 from "./TP/etp3";
-import Etp4 from "./TP/etp4";
-import Htp1 from "./TP/htp1";
-import Htp2 from "./TP/htp2";
-import Htp3 from "./TP/htp3";
-import Htp4 from "./TP/htp4";
-import Ttp1 from "./TP/ttp1";
-import Ttp2 from "./TP/ttp2";
-import Ttp3 from "./TP/ttp3";
-import Ttp4 from "./TP/ttp4";
-import Mttp1 from "./TP/mttp1";
-import Mttp2 from "./TP/mttp2";
-import Mttp3 from "./TP/mttp3";
-import Mttp4 from "./TP/mttp4";
-import Metp1 from "./TP/metp1";
-import Metp2 from "./TP/mtep2";
-import Metp3 from "./TP/metp3";
-import Metp4 from "./TP/metp4";
-import Ssetp1 from "./TP/ssetp1";
-import Ssetp2 from "./TP/ssetp2";
-import Ssetp3 from "./TP/ssetp3";
-import Ssetp4 from "./TP/ssetp4";
-import Ssttp1 from "./TP/ssttp1";
-import Ssttp2 from "./TP/ssttp2";
-import Ssttp3 from "./TP/ssttp3";
-import Ssttp4 from "./TP/ssttp4";
-import Setp1 from "./TP/setp1";
-import Setp2 from "./TP/setp2";
-import Setp3 from "./TP/setp3";
-import Setp4 from "./TP/setp4";
-import Sttp1 from "./TP/sttp1";
-import Sttp2 from "./TP/sttp2";
-import Sttp3 from "./TP/sttp3";
-import Sttp4 from "./TP/sttp4";
-import Teltp from "./Testpapers/Telugutp";
 
-import Me1m from "./Imp/Me1m";
-import Me2m from "./Imp/Me2m";
-import Me4m from "./Imp/Me4m";
-import Me8m from "./Imp/Me8m";
-import Mebi from "./Imp/mebi";
-import Mt1m from "./Imp/Mt1m";
-import Mt2m from "./Imp/Mt2m";
-import Mt4m from "./Imp/Mt4m";
-import Mt8m from "./Imp/Mt8m";
-import Mtbi from "./Imp/Mtbi";
-import Telgra from "./Imp/Telgra";
-import Telpo from "./Imp/Telpo";
-import Telimp from "./Imp/Teluguimp";
-import Telmat from "./Imp/Teluma";
-import Phyt1m from "./Imp/Phyt1m";
-import Phyt2m from "./Imp/Phyt2m";
-import Phyt4m from "./Imp/Phyt4m";
-import Phyt8m from "./Imp/Phyt8m";
-import Phytbi from "./Imp/Phytbi";
-import Phye1m from "./Imp/Phye1m";
-import Phye2m from "./Imp/Phye2m";
-import Phye4m from "./Imp/Phye4m";
-import Phye8m from "./Imp/Phye8m";
-import Phyebi from "./Imp/Phyebi";
-import Nst1m from "./Imp/Nst1m";
-import Nst2m from "./Imp/Nst2m";
-import Nst4m from "./Imp/Nst4m";
-import Nst8m from "./Imp/Nst8m";
-import Nstbi from "./Imp/Nstbi";
-import Nse1m from "./Imp/Nse1m";
-import Nse2m from "./Imp/Nse2m";
-import Nse4m from "./Imp/Nse4m";
-import Nse8m from "./Imp/Nse8m";
-import Nsebi from "./Imp/Nsebi";
-import Soct1m from "./Imp/Soct1m";
-import Soct2m from "./Imp/Soct2m";
-import Soct4m from "./Imp/Soct4m";
-import Soct8m from "./Imp/Soct8m";
-import Soctbi from "./Imp/Soctbi";
-import Soce1m from "./Imp/Soce1m";
-import Soce2m from "./Imp/Soce2m";
-import Soce4m from "./Imp/Soce4m";
-import Soce8m from "./Imp/Soce8m";
-import Socebi from "./Imp/Socebi";
-import Mtma from "./Imp/Mtma";
-import Mema from "./Imp/Memt";
-import Nsema from "./Imp/Nsema";
-import Nstma from "./Imp/Nstma";
-import Phytma from "./Imp/Phytma";
-import Phyema from "./Imp/Phyema";
-import Soctma from "./Imp/Soctma";
-import Socema from "./Imp/Socema";
-import Soctfa3 from "./FA3/Soctfa3";
+
+
 import Ssc from "./SSC";
-import Telpre from "./Sscpre/Telpre";
-import Engpre from "./Sscpre/Engpre";
-import Hinpre from "./Sscpre/Hinpre";
-import Mepre from "./Sscpre/Mepre";
-import Mtpre from "./Sscpre/Mtpre";
-import Nepre from "./Sscpre/Nepre";
-import Ntpre from "./Sscpre/Ntpre";
-import Pepre from "./Sscpre/Pepre";
-import Ptpre from "./Sscpre/Ptpre";
-import Sepre from "./Sscpre/Sepre";
-import Stpre from "./Sscpre/Stpre";
+
+
 import rivision from "./RIVISION";
-import Rvtest1 from "./Rvtest1";
-import Rvtest2 from "./Rvtest2";
-import Rvtest4 from "./Rvtest4";
-import Rvtest3 from "./Rvtest3";
-import Tr1 from "./Rvtests/Tr1";
-import Tr2 from "./Rvtests/Tr2";
-import Tr3 from "./Rvtests/Tr3";
-import Tr4 from "./Rvtests/Tr4";
-import Hr1 from "./Rvtests/Hr1";
-import Hr2 from "./Rvtests/Hr2";
-import Hr3 from "./Rvtests/Hr3";
-import Hr4 from "./Rvtests/Hr4";
-import Er1 from "./Rvtests/Er1";
-import Er2 from "./Rvtests/Er2";
-import Er3 from "./Rvtests/Er3";
-import Er4 from "./Rvtests/Er4";
-import Mtr1 from "./Rvtests/Mtr1";
-import Mtr2 from "./Rvtests/Mtr2";
-import Mtr3 from "./Rvtests/Mtr3";
-import Mtr4 from "./Rvtests/Mtr4";
-import Mer1 from "./Rvtests/Mer1";
-import Mer2 from "./Rvtests/Mer2";
-import Mer3 from "./Rvtests/Mer3";
-import Mer4 from "./Rvtests/Mer4";
-import Ser1 from "./Rvtests/Ser1";
-import Ser2 from "./Rvtests/Ser2";
-import Ser3 from "./Rvtests/Ser3";
-import Ser4 from "./Rvtests/Ser4";
-import Str1 from "./Rvtests/Str1";
-import Str2 from "./Rvtests/Str2";
-import Str3 from "./Rvtests/Str3";
-import Str4 from "./Rvtests/Str4";
-import Sstr1 from "./Rvtests/Sstr1";
-import Sstr2 from "./Rvtests/SStr2";
-import Sstr3 from "./Rvtests/SStr3";
-import Sstr4 from "./Rvtests/Sstr4";
-import Sser1 from "./Rvtests/Sser1";
-import Sser2 from "./Rvtests/Sser2";
-import Sser3 from "./Rvtests/Sser3";
-import Sser4 from "./Rvtests/Sser4";
-import Prefinal from "./Prefinal";
-import Tpf from "./PRE/Tpf";
-import Epf from "./PRE/Epf";
-import Hpf from "./PRE/Hpf";
-import Mtpf from "./PRE/Mtpf";
-import Mepf from "./PRE/Mepf";
-import Sepf from "./PRE/Sepf";
-import Stpf from "./PRE/Stpf";
-import Ssepf from "./PRE/Ssepf";
-import Sstpf from "./PRE/Sstpf";
 
-import Tst from "./Slip/Tst";
-import Hst from "./Slip/Hst";
-import Est from "./Slip/Est";
-import Mest from "./Slip/Mest";
-import Mtst from "./Slip/Mtst";
-import Pest from "./Slip/Pest";
-import Ptst from "./Slip/Ptst";
-import Sest from "./Slip/Sest";
-import Stst from "./Slip/Stst";
-import Nest from "./Slip/Nest";
-import Ntst from "./Slip/Ntst";
-import Sliptest from "./sliptest";
 
-import ApTs from "./Ts and Ap";
-import Ts from "./Ts";
+
+
+
+
 import Polycet from "./Polycet";
 
 
@@ -590,7 +349,7 @@ import Tsprev from "./Tsprev";
 import Tsstudy from "./Tsstudy";
 import Tsmodel from "./Tsmodel";
 import Tsblue from "./Tsblueprint";
-import Apblue from "./Apblue";
+
 
 import Etsimp from "./TS IMP/Etsimp";
 import Htsimp from "./TS IMP/Htsimp";
@@ -632,17 +391,7 @@ import Petsb from "./TS BLUEPRINT/Sepf";
 import Sttsb from "./TS BLUEPRINT/Sstpf";
 import Setsb from "./TS BLUEPRINT/Ssepf";
 
-import Eapb from "./AP BLUEPRINT/Epf";
-import Tapb from "./AP BLUEPRINT/Tpf";
-import Hapb from "./AP BLUEPRINT/Hpf";
-import Mtapb from "./AP BLUEPRINT/Mtpf";
-import Meapb from "./AP BLUEPRINT/Mepf";
-import Ptapb from "./AP BLUEPRINT/Stpf";
-import Peapb from "./AP BLUEPRINT/Sepf";
-import Neapb from "./AP BLUEPRINT/Netsb";
-import Ntapb from "./AP BLUEPRINT/Nttsb";
-import Stapb from "./AP BLUEPRINT/Sstpf";
-import Seapb from "./AP BLUEPRINT/Ssepf";
+
 
 import Engtspre from "./Sscpre ts/Engpre";
 import Hintspre from "./Sscpre ts/Hinpre";
@@ -759,723 +508,21 @@ import Nepfts from "./PRE TS/Nepfts";
 import Ntpfts from "./PRE TS/Ntpfts";
 import Ssepfts from "./PRE TS/Ssepf";
 import Sstpfts from "./PRE TS/Sstpf";
-import classes from "./Classes";
-import Class6exam from "./class6exam";
-import Class6imp from "./class6imp";
-import Class6study from "./class6study";
-import Class7imp from "./class7imp";
-import Class7exam from "./class7exam";
-import Class7study from "./class7study";
-import Class8exam from "./class8exam";
-import Class8study from "./class8study";
-import Class8imp from "./class8imp";
-import Class9study from "./class9imp";
-import Class9imp from "./class9imp";
-import Class9exam from "./class9exam";
 
-import Eng6exam from "./6thclass/exam/Engfa3";
-import Eng7exam from "./7thclass/exam/Engfa3";
-import Eng8exam from "./8thclass/exam/Engfa3";
-import Eng9exam from "./9thclass/exam/Engfa3";
 
-import Eng6imp from "./6thclass/imp/Engfa1";
-import Eng7imp from "./7thclass/imp/Engfa1";
-import Eng8imp from "./8thclass/imp/Engfa1";
-import Eng9imp from "./9thclass/imp/Engfa1";
 
-import Eng6study from "./6thclass/materilas/Engfa2";
-import Eng7study from "./7thclass/materilas/Engfa2";
-import Eng8study from "./8thclass/materilas/Engfa2";
-import Eng9study from "./9thclass/materilas/Engfa2";
 
 
-import Tel6exam from "./6thclass/exam/Telfa3";
-import Tel7exam from "./7thclass/exam/Telfa3";
-import Tel8exam from "./8thclass/exam/Telfa3";
 
-import Tel8imp from "./8thclass/imp/Telfa1";
-import Tel9imp from "./9thclass/imp/Telfa1";
-import Tel6imp from "./6thclass/imp/Telfa1";
-import Tel7imp from "./7thclass/imp/Telfa1";
-import Tel9exam from "./9thclass/exam/Telfa3";
 
-import Tel6study from "./6thclass/materilas/Telfa2";
-import Tel7study from "./7thclass/materilas/Telfa2";
-import Tel8study from "./8thclass/materilas/Telfa2";
-import Tel9study from "./9thclass/materilas/Telfa2";
 
-import Hin6exam from "./6thclass/exam/Hinfa3";
-import Hin7exam from "./7thclass/exam/Hinfa3";
-import Hin8exam from "./8thclass/exam/Hinfa3";
-import Hin9exam from "./9thclass/exam/Hinfa3";
 
-import Hin6imp from "./6thclass/imp/Hinfa1";
-import Hin7imp from "./7thclass/imp/Hinfa1";
-import Hin8imp from "./8thclass/imp/Hinfa1";
-import Hin9imp from "./9thclass/imp/Hinfa1";
 
-import Hin6study from "./6thclass/materilas/Hinfa2";
-import Hin7study from "./7thclass/materilas/Hinfa2";
-import Hin9study from "./9thclass/materilas/Hinfa2";
-import Hin8study from "./8thclass/materilas/Hinfa2";
 
-import Mt6imp from "./6thclass/imp/Mattfa1";
-import Mt7imp from "./7thclass/imp/Mattfa1";
-import Mt8imp from "./8thclass/imp/Mattfa1";
-import Mt9imp from "./9thclass/imp/Mattfa1";
 
-import Mt6study from "./6thclass/materilas/Mattfa2";
-import Mt7study from "./7thclass/materilas/Mattfa2";
-import Mt9study from "./9thclass/materilas/Mattfa2";
-import Mt8study from "./8thclass/materilas/Mattfa2";
 
-import Mt6exam from "./6thclass/exam/Mattfa3";
-import Mt7exam from "./7thclass/exam/Mattfa3";
-import Mt8exam from "./8thclass/exam/Mattfa3";
-import Mt9exam from "./9thclass/exam/Mattfa3";
 
-import Me6imp from "./6thclass/imp/Matefa1";
-import Me7imp from "./7thclass/imp/Matefa1";
-import Me8imp from "./8thclass/imp/Matefa1";
-import Me9imp from "./9thclass/imp/Matefa1";
 
-import Me6study from "./6thclass/materilas/Matefa2";
-import Me7study from "./7thclass/materilas/Matefa2";
-import Me8study from "./8thclass/materilas/Matefa2";
-import Me9study from "./9thclass/materilas/Matefa2";
-
-import Me6exam from "./6thclass/exam/Matefa3";
-import Me7exam from "./7thclass/exam/Matefa3";
-import Me8exam from "./8thclass/exam/Matefa3";
-import Me9exam from "./9thclass/exam/Matefa3";
-
-import Nse6imp from "./6thclass/imp/Sciefa1";
-import Nse7imp from "./7thclass/imp/Sciefa1";
-import Nse8imp from "./8thclass/imp/Sciefa1";
-import Nse9imp from "./9thclass/imp/Sciefa1";
-
-import Nse6study from "./6thclass/materilas/Sciefa2";
-import Nse7study from "./7thclass/materilas/Sciefa2";
-import Nse8study from "./8thclass/materilas/Sciefa2";
-import Nse9study from "./9thclass/materilas/Sciefa2";
-
-import NSe6exam from "./6thclass/exam/Sciefa3";
-import NSe7exam from "./7thclass/exam/Sciefa3";
-import NSe8exam from "./8thclass/exam/Sciefa3";
-import NSe9exam from "./9thclass/exam/Sciefa3";
-
-import Nst6imp from "./6thclass/imp/Scitfa1";
-import Nst7imp from "./7thclass/imp/Scitfa1";
-import Nst8imp from "./8thclass/imp/Scitfa1";
-import Nst9imp from "./9thclass/imp/Scitfa1";
-
-import Nst6study from "./6thclass/materilas/Sictfa2";
-import Nst7study from "./7thclass/materilas/Sictfa2";
-import Nst8study from "./8thclass/materilas/Sictfa2";
-import Nst9study from "./9thclass/materilas/Sictfa2";
-
-import NSt6exam from "./6thclass/exam/Sictfa3";
-import NSt7exam from "./7thclass/exam/Sictfa3";
-import NSt8exam from "./8thclass/exam/Sictfa3";
-import NSt9exam from "./9thclass/exam/Sictfa3";
-
-
-import Soce6exam from "./6thclass/exam/Socefa3";
-import Soce7exam from "./7thclass/exam/Socefa3";
-import Soce8exam from "./8thclass/exam/Socefa3";
-import Soce9exam from "./9thclass/exam/Socefa3";
-
-import Soce6imp from "./6thclass/imp/Socefa1";
-import Soce7imp from "./7thclass/imp/Socefa1";
-import Soce8imp from "./8thclass/imp/Socefa1";
-import Soce9imp from "./9thclass/imp/Socefa1";
-
-import Soce6study from "./6thclass/materilas/Socefa2";
-import Soce7study from "./7thclass/materilas/Socefa2";
-import Soce8study from "./8thclass/materilas/Socefa2";
-import Soce9study from "./9thclass/materilas/Socefa2";
-
-import Soct6imp from "./6thclass/imp/Soctfa1";
-import Soct8imp from "./8thclass/imp/Soctfa1";
-import Soct9imp from "./9thclass/imp/Soctfa1";
-import Soct7imp from "./7thclass/imp/Soctfa1";
-
-import Soct6study from "./6thclass/materilas/Soctfa2";
-import Soct9study from "./9thclass/materilas/Soctfa2";
-import Soct7study from "./7thclass/materilas/Soctfa2";
-import Soct8study from "./8thclass/materilas/Soctfa2";
-
-import Soct6exam from "./6thclass/exam/Soctfa3";
-import Soct7exam from "./7thclass/exam/Soctfa3";
-import Soct8exam from "./8thclass/exam/Soctfa3";
-import Soct9exam from "./9thclass/exam/Soctfa3";
-
-
-import Impinter from "./inter1styear/impinter";
-import Interprev from "./inter1styear/interprev";
-import Interstudy from "./inter1styear/interstudy";
-import Impinter2 from "./inter2nd/impinter2";
-import Interprev2 from "./inter2nd/interprev2";
-import Interstudy2 from "./inter2nd/interstudy2";
-
-
-import Bio1eip from "./inter imp que/1styear/Bio1e";
-import Bio1tip from "./inter imp que/1styear/Bio1t";
-import Che1eip from "./inter imp que/1styear/Che1e";
-import Che1tip from "./inter imp que/1styear/Che1t";
-import Civ1ip from "./inter imp que/1styear/Civ1";
-import Commer1ip from "./inter imp que/1styear/Comer1";
-import Eng1ip from "./inter imp que/1styear/E1year";
-import Eco1ip from "./inter imp que/1styear/Eco1";
-import Hin1ip from "./inter imp que/1styear/H1year";
-import His1ip from "./inter imp que/1styear/His1";
-import M1aeip from "./inter imp que/1styear/M1ae";
-import M1atip from "./inter imp que/1styear/M1at";
-import M1beip from "./inter imp que/1styear/M1be";
-import M1btip from "./inter imp que/1styear/M1bt";
-import Pht1eip from "./inter imp que/1styear/Phy1e";
-import Pht1tip from "./inter imp que/1styear/Phy1t";
-import Pol1ip from "./inter imp que/1styear/Pol1";
-import San1ip from "./inter imp que/1styear/San1year";
-import Tel1ip from "./inter imp que/1styear/T1year";
-import Zol1eip from "./inter imp que/1styear/Zo1e";
-import Zol1tip from "./inter imp que/1styear/Zo1t";
-
-
-import Bio2eip from "./inter imp que/2ndyear/Bio1e";
-import Bio2tip from "./inter imp que/2ndyear/Bio1t";
-import Che2eip from "./inter imp que/2ndyear/Che1e";
-import Che2tip from "./inter imp que/2ndyear/Che1t";
-import Civ2ip from "./inter imp que/2ndyear/Civ1";
-import Commer2ip from "./inter imp que/2ndyear/Comer1";
-import Eng2ip from "./inter imp que/2ndyear/E1year";
-import Hin2ip from "./inter imp que/2ndyear/H1year";
-import San2ip from "./inter imp que/2ndyear/San1year";
-import Tel2ip from "./inter imp que/2ndyear/T1year";
-import M2aeip from "./inter imp que/2ndyear/M1ae";
-import M2atip from "./inter imp que/2ndyear/M1at";
-import M2beip from "./inter imp que/2ndyear/M1be";
-import M2btip from "./inter imp que/2ndyear/M1bt";
-import Pht2eip from "./inter imp que/2ndyear/Phy1e";
-import Pht2tip from "./inter imp que/2ndyear/Phy1t";
-import Zol2eip from "./inter imp que/2ndyear/Zo1e";
-import Zol2tip from "./inter imp que/2ndyear/Zo1t";
-import Pol2ip from "./inter imp que/2ndyear/Pol1";
-import Eco2ip from "./inter imp que/2ndyear/Eco1";
-import His2ip from "./inter imp que/2ndyear/His1";
-
-
-import Bio1est from "./Study/1styear/Bio1e";
-import Bio1tst from "./Study/1styear/Bio1t";
-import Commer1st from "./Study/1styear/Comer1";
-import Eng1st from "./Study/1styear/E1year";
-import Hin1st from "./Study/1styear/H1year";
-import His1st from "./Study/1styear/His1";
-import Eco1st from "./Study/1styear/Eco1";
-import Civ1st from "./Study/1styear/Civ1";
-import Pol1st from "./Study/1styear/Pol1";
-import San1st from "./Study/1styear/San1year";
-import Tel1st from "./Study/1styear/T1year";
-import Che1est from "./Study/1styear/Che1e";
-import Che1tst from "./Study/1styear/Che1t";
-import M1btst from "./Study/1styear/M1bt";
-import M1best from "./Study/1styear/M1be";
-import M1aest from "./Study/1styear/M1ae";
-import M1atst from "./Study/1styear/M1at";
-import Pht1est from "./Study/1styear/Phy1e";
-import Pht1tst from "./Study/1styear/Phy1t";
-import Zol1est from "./Study/1styear/Zo1e";
-import Zol1tst from "./Study/1styear/Zo1t";
-
-
-import Bio2est from "./Study/2ndyear/Bio1e";
-import Bio2tst from "./Study/2ndyear/Bio1t";
-import Che2est from "./Study/2ndyear/Che1e";
-import Che2tst from "./Study/2ndyear/Che1t";
-import Pht2est from "./Study/2ndyear/Phy1e";
-import Pht2tst from "./Study/2ndyear/Phy1t";
-import Civ2st from "./Study/2ndyear/Civ1";
-import Hin2st from "./Study/2ndyear/H1year";
-import Tel2st from "./Study/2ndyear/T1year";
-import Eng2st from "./Study/2ndyear/E1year";
-import Pol2st from "./Study/2ndyear/Pol1";
-import His2st from "./Study/2ndyear/His1";
-import Zol2est from "./Study/2ndyear/Zo1e";
-import Zol2tst from "./Study/2ndyear/Zo1t";
-import M2aest from "./Study/2ndyear/M1ae";
-import M2atst from "./Study/2ndyear/M1at";
-import M2btst from "./Study/2ndyear/M1bt";
-import M2best from "./Study/2ndyear/M1be";
-import San2st from "./Study/2ndyear/San1year";
-import Commer2st from "./Study/2ndyear/Comer1";
-import Eco2st from "./Study/2ndyear/Eco1";
-
-import Bio1 from "./prev1papers/Bio1e";
-import Bio1t from "./prev1papers/Bio1t";
-import Che1t from "./prev1papers/Che1t";
-import Che1e from "./prev1papers/Che1e";
-import Hin1 from "./prev1papers/H1year";
-import Eng1 from "./prev1papers/E1year";
-import San1 from "./prev1papers/San1year";
-import Tel1 from "./prev1papers/T1year";
-import Phy1t from "./prev1papers/Phy1t";
-import Phy1e from "./prev1papers/Phy1e";
-import Civ1 from "./prev1papers/Civ1";
-import Pol1 from "./prev1papers/Pol1";
-import M1ae from "./prev1papers/M1ae";
-import M1at from "./prev1papers/M1at";
-import M1be from "./prev1papers/M1be";
-import M1bt from "./prev1papers/M1bt";
-import Commer1 from "./prev1papers/Comer1";
-import Eco1 from "./prev1papers/Eco1";
-import His1 from "./prev1papers/His1";
-import Zo1e from "./prev1papers/Zo1e";
-import Zo1t from "./prev1papers/Zo1t";
-
-import Bio1e23 from "./2023/1styear/Bio1e";
-import Bio1t23 from "./2023/1styear/Bio1t";
-import Che1e23 from "./2023/1styear/Che1e";
-import Che1t23 from "./2023/1styear/Che1t";
-import Tel123 from "./2023/1styear/T1year";
-import Hin123 from "./2023/1styear/H1year";
-import Eng123 from "./2023/1styear/E1year";
-import San123 from "./2023/1styear/San1year";
-import Civ123 from "./2023/1styear/Civ1";
-import Commer123 from "./2023/1styear/Comer1";
-import Eco123 from "./2023/1styear/Eco1";
-import Pol123 from "./2023/1styear/Pol1";
-import Zol1e23 from "./2023/1styear/Zo1e";
-import Zol1t23 from "./2023/1styear/Zo1t";
-import M1ae23 from "./2023/1styear/M1ae";
-import M1at23 from "./2023/1styear/M1at";
-import M1be23 from "./2023/1styear/M1be";
-import M1bt23 from "./2023/1styear/M1bt";
-import Pht1e23 from "./2023/1styear/Phy1e";
-import Pht1t23 from "./2023/1styear/Phy1t";
-import His123 from "./2023/1styear/His1";
-
-import Bio1e22 from "./2022/1styear/Bio1e";
-import Che1e22 from "./2022/1styear/Che1e";
-import Che1t22 from "./2022/1styear/Che1t";
-import Tel122 from "./2022/1styear/T1year";
-import Hin122 from "./2022/1styear/H1year";
-import Eng122 from "./2022/1styear/E1year";
-import San122 from "./2022/1styear/San1year";
-import M1ae22 from "./2022/1styear/M1ae";
-import M1at22 from "./2022/1styear/M1at";
-import M1bt22 from "./2022/1styear/M1bt";
-import M1be22 from "./2022/1styear/M1be";
-import Pol122 from "./2022/1styear/Pol1";
-import Eco122 from "./2022/1styear/Eco1";
-import Commer122 from "./2022/1styear/Comer1";
-import Civ122 from "./2022/1styear/Civ1";
-import Zol1e22 from "./2022/1styear/Zo1e";
-import Zol1t22 from "./2022/1styear/Zo1t";
-import Bio1t22 from "./2022/1styear/Bio1t";
-import Pht1e22 from "./2022/1styear/Phy1e";
-import Pht1t22 from "./2022/1styear/Phy1t";
-import His122 from "./2022/1styear/His1";
-
-
-import Bio1e21 from "./2021/1styear/Bio1e";
-import Bio1t21 from "./2021/1styear/Bio1t";
-import Che1e21 from "./2021/1styear/Che1e";
-import Che1t21 from "./2021/1styear/Che1t";
-import Tel121 from "./2021/1styear/T1year";
-import Hin121 from "./2021/1styear/H1year";
-import San121 from "./2021/1styear/San1year";
-import Eng121 from "./2021/1styear/E1year";
-import M1at21 from "./2021/1styear/M1at";
-import M1be21 from "./2021/1styear/M1be";
-import M1ae121 from "./2021/1styear/M1ae";
-import M1bt21 from "./2021/1styear/M1bt";
-import Pht1t21 from "./2021/1styear/Phy1t";
-import Pht1e21 from "./2021/1styear/Phy1e";
-import Commer121 from "./2021/1styear/Comer1";
-import Civ121 from "./2021/1styear/Civ1";
-import His121 from "./2021/1styear/His1";
-import Pol121 from "./2021/1styear/Pol1";
-import Zol1e21 from "./2021/1styear/Zo1e";
-import Zol1t21 from "./2021/1styear/Zo1t";
-import Eco121 from "./2021/1styear/Eco1";
-
-import Bio1e20 from "./2020/1styear/Bio1e";
-import Bio1t20 from "./2020/1styear/Bio1t";
-import Che1e20 from "./2020/1styear/Che1e";
-import Che1t20 from "./2020/1styear/Che1t";
-import Tel120 from "./2020/1styear/T1year";
-import Hin120 from "./2020/1styear/H1year";
-import San120 from "./2020/1styear/San1year";
-import Eng120 from "./2020/1styear/E1year";
-import Civ120 from "./2020/1styear/Civ1";
-import Commer120 from "./2020/1styear/Comer1";
-import Eco120 from "./2020/1styear/Eco1";
-import Pol120 from "./2020/1styear/Pol1";
-import M1bt20 from "./2020/1styear/M1bt";
-import M1be20 from "./2020/1styear/M1be";
-import M1ae20 from "./2020/1styear/M1ae";
-import M1at20 from "./2020/1styear/M1at";
-import Pht1e20 from "./2020/1styear/Phy1e";
-import Pht1t20 from "./2020/1styear/Phy1t";
-import Zol1e20 from "./2020/1styear/Zo1e";
-import Zol1t20 from "./2020/1styear/Zo1t";
-import His120 from "./2020/1styear/His1";
-
-import Bio1e19 from "./2019/1styear/Bio1e";
-import Bio1t19 from "./2019/1styear/Bio1t";
-import Che1e19 from "./2019/1styear/Che1e";
-import Che1t19 from "./2019/1styear/Che1t";
-import Tel119 from "./2019/1styear/T1year";
-import Hin119 from "./2019/1styear/H1year";
-import Eng119 from "./2019/1styear/E1year";
-import San119 from "./2019/1styear/San1year";
-import M1at19 from "./2019/1styear/M1at";
-import M1ae19 from "./2019/1styear/M1ae";
-import M1be19 from "./2019/1styear/M1be";
-import M1bt19 from "./2019/1styear/M1bt";
-import Zol1e19 from "./2019/1styear/Zo1e";
-import Zol1t19 from "./2019/1styear/Zo1t";
-import Commer119 from "./2019/1styear/Comer1";
-import Civ119 from "./2019/1styear/Civ1";
-import Eco119 from "./2019/1styear/Eco1";
-import Pht1e19 from "./2019/1styear/Phy1e";
-import Pht1t19 from "./2019/1styear/Phy1t";
-import His119 from "./2019/1styear/His1";
-import Pol119 from "./2019/1styear/Pol1";
-
-import Bio1e18 from "./2018/1styear/Bio1e";
-import Bio1t18 from "./2018/1styear/Bio1t";
-import Che1e18 from "./2018/1styear/Che1e";
-import Che1t18 from "./2018/1styear/Che1t";
-import Pht1e18 from "./2018/1styear/Phy1e";
-import Pht1t18 from "./2018/1styear/Phy1t";
-import Hin118 from "./2018/1styear/H1year";
-import Tel118 from "./2018/1styear/T1year";
-import San118 from "./2018/1styear/San1year";
-import Eng118 from "./2018/1styear/E1year";
-import M1at18 from "./2018/1styear/M1at";
-import M1ae18 from "./2018/1styear/M1ae";
-import M1bt18 from "./2018/1styear/M1bt";
-import M1be18 from "./2018/1styear/M1be";
-import Zol1e18 from "./2018/1styear/Zo1e";
-import Zol1t18 from "./2018/1styear/Zo1t";
-import Civ118 from "./2018/1styear/Civ1";
-import Commer118 from "./2018/1styear/Comer1";
-import Eco118 from "./2018/1styear/Eco1";
-import Pol18 from "./2018/1styear/Pol1";
-import His118 from "./2018/1styear/His1";
-
-import Bio117 from "./2017/1styear/Bio1e";
-import Bio1t17 from "./2017/1styear/Bio1t";
-import Che1e17 from "./2017/1styear/Che1e";
-import Che1t17 from "./2017/1styear/Che1t";
-import M1at17 from "./2017/1styear/M1at";
-import M1ae17 from "./2017/1styear/M1ae";
-import M1be17 from "./2017/1styear/M1be";
-import M1bt17 from "./2017/1styear/M1bt";
-import Pht1e17 from "./2017/1styear/Phy1e";
-import Pht1t17 from "./2017/1styear/Phy1t";
-import Tel117 from "./2017/1styear/T1year";
-import Hin117 from "./2017/1styear/H1year";
-import Eng117 from "./2017/1styear/E1year";
-import San117 from "./2017/1styear/San1year";
-import Commer117 from "./2017/1styear/Comer1";
-import Civ117 from "./2017/1styear/Civ1";
-import Eco117 from "./2017/1styear/Eco1";
-import Pol117 from "./2017/1styear/Pol1";
-import Zol1e17 from "./2017/1styear/Zo1e";
-import Zol1t17 from "./2017/1styear/Zo1t";
-import His117 from "./2017/1styear/His1";
-
-import Bio1e16 from "./2016/1styear/Bio1e";
-import Bio1t16 from "./2016/1styear/Bio1t";
-import Che1e16 from "./2016/1styear/Che1e";
-import Che1t16 from "./2016/1styear/Che1t";
-import Pht1e16 from "./2016/1styear/Phy1e";
-import Pht1t16 from "./2016/1styear/Phy1t";
-import M1ae16 from "./2016/1styear/M1ae";
-import M1at16 from "./2016/1styear/M1at";
-import M1be16 from "./2016/1styear/M1be";
-import M1bt16 from "./2016/1styear/M1bt";
-import Zol1e16 from "./2016/1styear/Zo1e";
-import Zol1t16 from "./2016/1styear/Zo1t";
-import Commer116 from "./2016/1styear/Comer1";
-import Civ116 from "./2016/1styear/Civ1";
-import Eco116 from "./2016/1styear/Eco1";
-import Hin116 from "./2016/1styear/H1year";
-import Tel116 from "./2016/1styear/T1year";
-import His116 from "./2016/1styear/His1";
-import Eng116 from "./2016/1styear/E1year";
-import Pol116 from "./2016/1styear/Pol1";
-import San116 from "./2016/1styear/San1year";
-
-import Bio1e15 from "./2015/1styear/Bio1e";
-import Bio1t15 from "./2015/1styear/Bio1t";
-import Che1e15 from "./2015/1styear/Che1e";
-import Che1t15 from "./2015/1styear/Che1t";
-import Pht1e15 from "./2015/1styear/Phy1e";
-import Pht1t15 from "./2015/1styear/Phy1t";
-import M1at15 from "./2015/1styear/M1at";
-import M1ae15 from "./2015/1styear/M1ae";
-import M1be15 from "./2015/1styear/M1be";
-import M1bt15 from "./2015/1styear/M1bt";
-import Zol1e15 from "./2015/1styear/Zo1e";
-import Zol1t15 from "./2015/1styear/Zo1t";
-import Commer115 from "./2015/1styear/Comer1";
-import Civ115 from "./2015/1styear/Civ1";
-import Eco115 from "./2015/1styear/Eco1";
-import Tel115 from "./2015/1styear/T1year";
-import Hin115 from "./2015/1styear/H1year";
-import Eng115 from "./2015/1styear/E1year";
-import His115 from "./2015/1styear/His1";
-import San115 from "./2015/1styear/San1year";
-import Pol115 from "./2015/1styear/Pol1";
-
-
-
-
-import M2ae23 from "./2023/2ndyear/M1ae";
-import Bio2e23 from "./2023/2ndyear/Bio1e";
-import Bio2t23 from "./2023/2ndyear/Bio1t";
-import M2at23 from "./2023/2ndyear/M1at";
-import M2bt23 from "./2023/2ndyear/M1bt";
-import M2be23 from "./2023/2ndyear/M1be";
-import Tel223 from "./2023/2ndyear/T1year";
-import Hin223 from "./2023/2ndyear/H1year";
-import Eng223 from "./2023/2ndyear/E1year";
-import San223 from "./2023/2ndyear/San1year";
-import Civ223 from "./2023/2ndyear/Civ1";
-import Commer223 from "./2023/2ndyear/Comer1";
-import Pol223 from "./2023/2ndyear/Pol1";
-import Zol2e23 from "./2023/2ndyear/Zo1e";
-import Zol2t23 from "./2023/2ndyear/Zo1t";
-import Eco223 from "./2023/2ndyear/Eco1";
-import Pht2e23 from "./2023/2ndyear/Phy1e";
-import Pht2t23 from "./2023/2ndyear/Phy1t";
-import Che2e23 from "./2023/2ndyear/Che1e";
-import Che2t23 from "./2023/2ndyear/Che1t";
-import His223 from "./2023/2ndyear/His1";
-
-
-import Bio2e22 from "./2022/2ndyear/Bio1e";
-import Bio2t22 from "./2022/2ndyear/Bio1t";
-import Che2e22 from "./2022/2ndyear/Che1e";
-import Che2t22 from "./2022/2ndyear/Che1t";
-import Hin222 from "./2022/2ndyear/H1year";
-import Tel222 from "./2022/2ndyear/T1year";
-import His222 from "./2022/2ndyear/His1";
-import San222 from "./2022/2ndyear/San1year";
-import Pol222 from "./2022/2ndyear/Pol1";
-import Civ222 from "./2022/2ndyear/Civ1";
-import Commer222 from "./2022/2ndyear/Comer1";
-import Zol2e22 from "./2022/2ndyear/Zo1e";
-import Zol2t22 from "./2022/2ndyear/Zo1t";
-import M2ae22 from "./2022/2ndyear/M1ae";
-import M2at22 from "./2022/2ndyear/M1at";
-import M2bt22 from "./2022/2ndyear/M1bt";
-import M2be22 from "./2022/2ndyear/M1be";
-import Pht2e22 from "./2022/2ndyear/Phy1e";
-import Pht2t22 from "./2022/2ndyear/Phy1t";
-import Eng222 from "./2022/2ndyear/E1year";
-import Eco222 from "./2022/2ndyear/Eco1";
-
-import Bio2e21 from "./2021/2ndyear/Bio1e";
-import Bio2t21 from "./2021/2ndyear/Bio1t";
-import Che2e21 from "./2021/2ndyear/Che1e";
-import Che2t21 from "./2021/2ndyear/Che1t";
-import Zol2e21 from "./2021/2ndyear/Zo1e";
-import Zol2t21 from "./2021/2ndyear/Zo1t";
-import Commer221 from "./2021/2ndyear/Comer1";
-import Civ221 from "./2021/2ndyear/Civ1";
-import Eco221 from "./2021/2ndyear/Eco1";
-import His221 from "./2021/2ndyear/His1";
-import Hin221 from "./2021/2ndyear/H1year";
-import Tel221 from "./2021/2ndyear/T1year";
-import San221 from "./2021/2ndyear/San1year";
-import Pht2e21 from "./2021/2ndyear/Phy1e";
-import Pht2t21 from "./2021/2ndyear/Phy1t";
-import M2ae21 from "./2021/2ndyear/M1ae";
-import M2at21 from "./2021/2ndyear/M1at";
-import M2be21 from "./2021/2ndyear/M1be";
-import M2bt21 from "./2021/2ndyear/M1bt";
-import Pol221 from "./2021/2ndyear/Pol1";
-import Eng221 from "./2021/2ndyear/E1year";
-
-import Eng220 from "./2020/2ndyear/E1year";
-import Tel220 from "./2020/2ndyear/T1year";
-import San220 from "./2020/2ndyear/San1year";
-import Hin220 from "./2020/2ndyear/H1year";
-import His220 from "./2020/2ndyear/His1";
-
-import Civ220 from "./2020/2ndyear/Civ1";
-import Commer220 from "./2020/2ndyear/Comer1";
-import Eco220 from "./2020/2ndyear/Eco1";
-import Bio2e20 from "./2020/2ndyear/Bio1e";
-import Bio2t20 from "./2020/2ndyear/Bio1t";
-import Che2e20 from "./2020/2ndyear/Che1e";
-import Che2t20 from "./2020/2ndyear/Che1t";
-import M2ae20 from "./2020/2ndyear/M1ae";
-import M2at20 from "./2020/2ndyear/M1at";
-import M2be20 from "./2020/2ndyear/M1be";
-import M2bt20 from "./2020/2ndyear/M1bt";
-import Pol220 from "./2020/2ndyear/Pol1";
-import Zol2e20 from "./2020/2ndyear/Zo1e";
-import Zol2t20 from "./2020/2ndyear/Zo1t";
-import Pht2e20 from "./2020/2ndyear/Phy1e";
-import Pht2t20 from "./2020/2ndyear/Phy1t";
-
-
-import Pht2e19 from "./2019/2ndyear/Phy1e";
-import Pht2t19 from "./2019/2ndyear/Phy1t";
-import Tel219 from "./2019/2ndyear/T1year";
-import Hin219 from "./2019/2ndyear/H1year";
-import Eng219 from "./2019/2ndyear/E1year";
-import San219 from "./2019/2ndyear/San1year";
-import Civ219 from "./2019/2ndyear/Civ1";
-import Commer219 from "./2019/2ndyear/Comer1";
-import Eco219 from "./2019/2ndyear/Eco1";
-import Bio2e19 from "./2019/2ndyear/Bio1e";
-import Bio2t19 from "./2019/2ndyear/Bio1t";
-import Zol2e19 from "./2019/2ndyear/Zo1e";
-import Zol2t19 from "./2019/2ndyear/Zo1t";
-import M2ae19 from "./2019/2ndyear/M1ae";
-import M2at19 from "./2019/2ndyear/M1at";
-import M2be19 from "./2019/2ndyear/M1be";
-import M2bt19 from "./2019/2ndyear/M1bt";
-import Pol219 from "./2019/2ndyear/Pol1";
-import Che2e19 from "./2019/2ndyear/Che1e";
-import Che2t19 from "./2019/2ndyear/Che1t";
-import His219 from "./2019/2ndyear/His1";
-
-import Che2e18 from "./2018/2ndyear/Che1e";
-import Che2t18 from "./2018/2ndyear/Che1t";
-import Eco218 from "./2018/2ndyear/Eco1";
-import Hin218 from "./2018/2ndyear/H1year";
-import Tel218 from "./2018/2ndyear/T1year";
-import Eng218 from "./2018/2ndyear/E1year";
-import San218 from "./2018/2ndyear/San1year";
-import Civ218 from "./2018/2ndyear/Civ1";
-import Commer218 from "./2018/2ndyear/Comer1";
-import Bio2t18 from "./2018/2ndyear/Bio1t";
-import M2ae18 from "./2018/2ndyear/M1ae";
-import M2at18 from "./2018/2ndyear/M1at";
-import M2be18 from "./2018/2ndyear/M1be";
-import M2bt18 from "./2018/2ndyear/M1bt";
-import Zol2e18 from "./2018/2ndyear/Zo1e";
-import Zol2t18 from "./2018/2ndyear/Zo1t";
-import Bio2e18 from "./2018/2ndyear/Bio1e";
-import Pol218 from "./2018/2ndyear/Pol1";
-import Pht2e18 from "./2018/2ndyear/Phy1e";
-import Pht2t18 from "./2018/2ndyear/Phy1t";
-import His218 from "./2018/2ndyear/His1";
-
-
-import Bio2e17 from "./2017/2ndyear/Bio1e";
-import Bio2t17 from "./2017/2ndyear/Bio1t";
-import Che2e17 from "./2017/2ndyear/Che1e";
-import Che2t17 from "./2017/2ndyear/Che1t";
-import Zol2e17 from "./2017/2ndyear/Zo1e";
-import Zol2t17 from "./2017/2ndyear/Zo1t";
-import Pht2e17 from "./2017/2ndyear/Phy1e";
-import Pht2t17 from "./2017/2ndyear/Phy1t";
-import Tel217 from "./2017/2ndyear/T1year";
-import Hin217 from "./2017/2ndyear/H1year";
-import Eng217 from "./2017/2ndyear/E1year";
-import San217 from "./2017/2ndyear/San1year";
-import Pol217 from "./2017/2ndyear/Pol1";
-import Commer217 from "./2017/2ndyear/Comer1";
-import His217 from "./2017/2ndyear/His1";
-import M2ae17 from "./2017/2ndyear/M1ae";
-import M2at17 from "./2017/2ndyear/M1at";
-import M2be17 from "./2017/2ndyear/M1be";
-import M2bt17 from "./2017/2ndyear/M1bt";
-import Civ217 from "./2017/2ndyear/Civ1";
-import Eco217 from "./2017/2ndyear/Eco1";
-
-
-import Bio2e16 from "./2016/2ndyear/Bio1e";
-import Bio2t16 from "./2016/2ndyear/Bio1t";
-import Zol2e16 from "./2016/2ndyear/Zo1e";
-import Zol2t16 from "./2016/2ndyear/Zo1t";
-import Che2e16 from "./2016/2ndyear/Che1e";
-import Tel216 from "./2016/2ndyear/T1year";
-import Hin216 from "./2016/2ndyear/H1year";
-import His216 from "./2016/2ndyear/His1";
-import San216 from "./2016/2ndyear/San1year";
-import Civ216 from "./2016/2ndyear/Civ1";
-import Pol216 from "./2016/2ndyear/Pol1";
-import Che2t16 from "./2016/2ndyear/Che1t";
-import M2ae16 from "./2016/2ndyear/M1ae";
-import M2at16 from "./2016/2ndyear/M1at";
-import M2be16 from "./2016/2ndyear/M1be";
-import M2bt16 from "./2016/2ndyear/M1bt";
-import Eco216 from "./2016/2ndyear/Eco1";
-import Commer216 from "./2016/2ndyear/Comer1";
-import Eng216 from "./2016/2ndyear/E1year";
-import Pht2e16 from "./2016/2ndyear/Phy1e";
-import Pht2t16 from "./2016/2ndyear/Phy1t";
-
-
-import Bio2e15 from "./2015/2ndyear/Bio1e";
-import Bio2t15 from "./2015/2ndyear/Bio1t";
-import Che2e15 from "./2015/2ndyear/Che1e";
-import Che2t15 from "./2015/2ndyear/Che1t";
-import Zol2e15 from "./2015/2ndyear/Zo1e";
-import Zol2t15 from "./2015/2ndyear/Zo1t";
-import Tel215 from "./2015/2ndyear/T1year";
-import Hin215 from "./2015/2ndyear/H1year";
-import His215 from "./2015/2ndyear/His1";
-import Eng215 from "./2015/2ndyear/E1year";
-import San215 from "./2015/2ndyear/San1year";
-import Civ215 from "./2015/2ndyear/Civ1";
-import Commer215 from "./2015/2ndyear/Comer1";
-import Eco215 from "./2015/2ndyear/Eco1";
-import Pht2e15 from "./2015/2ndyear/Phy1e";
-import Pht2t15 from "./2015/2ndyear/Phy1t";
-import M2ae15 from "./2015/2ndyear/M1ae";
-import M2at15 from "./2015/2ndyear/M1at";
-import M2be15 from "./2015/2ndyear/M1be";
-import M2bt15 from "./2015/2ndyear/M1bt";
-import Pol215 from "./2015/2ndyear/Pol1";
-
-
-import class6 from "./Cls6to9/Class6";
-import class7 from "./Cls6to9/Class7";
-import class8 from "./Cls6to9/Class8";
-import class9 from "./Cls6to9/Class9";
-
-import qans9 from "./Answers/qans9";
-import News from "./News";
-
-import Tel2 from "./prev2papers/T1year";
-import Bio2e from "./prev2papers/Bio1e";
-import Bio2t from "./prev2papers/Bio1t";
-import Che2t from "./prev2papers/Che1t";
-import Che2e from "./prev2papers/Che1e";
-import Civ2 from "./prev2papers/Civ1";
-import Commer2 from "./prev2papers/Comer1";
-import Eng2 from "./prev2papers/E1year";
-import Eco2 from "./prev2papers/Eco1";
-import Hin2 from "./prev2papers/H1year";
-import M2at from "./prev2papers/M1at";
-import M2ae from "./prev2papers/M1ae";
-import M2bt from "./prev2papers/M1bt";
-import M2be from "./prev2papers/M1be";
-import Phy2e from "./prev2papers/Phy1e";
-import Phy2t from "./prev2papers/Phy1t";
-import Pol2 from "./prev2papers/Pol1";
-import San2 from "./prev2papers/San1year";
-import Zo2e from "./prev2papers/Zo1e";
-import Zo2t from "./prev2papers/Zo1t";
-import His2 from "./prev2papers/His1";
-import Emcet11 from "./emcet11";
-import Emcet12 from "./emcet12";
-import Sylfa1 from "./FA1/Fa3syl";
-import Sylfa2 from "./FA2/Fa3syl";
-import Syl6 from "./6thclass/materilas/Sylexam";
-import Syl7 from "./7thclass/materilas/Sylexam";
-import Syl8 from "./8thclass/materilas/Sylexam";
-import Syl9 from "./9thclass/materilas/Sylexam";
 import Class6tb from "./class6tb";
 import Class7tb from "./class7tb";
 import Class8tb from "./class8tb";
@@ -1643,9 +690,9 @@ import Test6 from "./Nmms/Test/T6";
 
 
 
-import Equiz from "./Equiz";
-import Subjectq from "./Subjectq";
-import ChapterDetails from "./Chapterq";
+
+
+
 import Quizques from "./Quizdq";
 import QuizResults from "./Quizres";
 import TotalScorePage from "./TotalScorePage";
@@ -1653,13 +700,283 @@ import WithdrawalHistoryPage from "./Whistory";
 import WithdrawalFormPage from "./Withdraw";
 import Blueprintdata from "./tenth/blueprintdata";
 import Blueprintpdf from "./tenth/blueprintpdf";
-import Prevpapersdata from "./tenth/prevpdata";
-import Prevpaperpdf from "./tenth/prevppdf";
+
+
+import Fa16data from "./6thclass/fa1data";
+import Fa16pdf from "./6thclass/fa1pdf";
+import Fa26data from "./6thclass/fa2data";
+import Fa36data from "./6thclass/fa3data";
+import Fa46data from "./6thclass/fa4data";
+import Sa16data from "./6thclass/sa1data";
+import Sa26data from "./6thclass/sa2data";
+import Fa26pdf from "./6thclass/fa2pdf";
+import Fa36pdf from "./6thclass/fa3pdf";
+import Fa46pdf from "./6thclass/fa4pdf";
+import Sa16pdf from "./6thclass/sa1pdf";
+import Sa26pdf from "./6thclass/sa2pdf";
+import Fa17data from "./7thclass/fa1data";
+import Fa27data from "./7thclass/fa2data";
+import Fa37data from "./7thclass/fa3data";
+import Fa47data from "./7thclass/fa4data";
+import Sa17data from "./7thclass/sa1data";
+import Sa27data from "./7thclass/sa2data";
+import Fa17pdf from "./7thclass/fa1pdf";
+import Fa27pdf from "./7thclass/fa2pdf";
+import Fa37pdf from "./7thclass/fa3pdf";
+import Fa47pdf from "./7thclass/fa4pdf";
+import Sa17pdf from "./7thclass/sa1pdf";
+import Sa27pdf from "./7thclass/sa2pdf";
+import Fa18data from "./8thclass/fa1data";
+import Fa28data from "./8thclass/fa2data";
+import Fa38data from "./8thclass/fa3data";
+import Fa48data from "./8thclass/fa4data";
+import Sa18data from "./8thclass/sa1data";
+import Sa28data from "./8thclass/sa2data";
+import Fa18pdf from "./8thclass/fa1pdf";
+import Fa28pdf from "./8thclass/fa2pdf";
+import Fa38pdf from "./8thclass/fa3pdf";
+import Fa48pdf from "./8thclass/fa4pdf";
+import Sa18pdf from "./8thclass/sa1pdf";
+import Sa28pdf from "./8thclass/sa2pdf";
+import Fa19data from "./9thclass/fa1data";
+import Fa29data from "./9thclass/fa2data";
+import Fa39data from "./9thclass/fa3data";
+import Fa49data from "./9thclass/fa4data";
+import Sa19data from "./9thclass/sa1data";
+import Sa29data from "./9thclass/sa2data";
+import Fa19pdf from "./9thclass/fa1pdf";
+import Fa29pdf from "./9thclass/fa2pdf";
+import Fa39pdf from "./9thclass/fa3pdf";
+import Fa49pdf from "./9thclass/fa4pdf";
+import Sa19pdf from "./9thclass/sa1pdf";
+import Sa29pdf from "./9thclass/sa2pdf";
+import Imp6data from "./6thclass/impdata";
+import Imp7data from "./7thclass/impdata";
+import Imp8data from "./8thclass/impdata";
+import Imp9data from "./9thclass/impdata";
+import Imp6pdf from "./6thclass/imppdf";
+import Imp7pdf from "./7thclass/imppdf";
+import Imp8pdf from "./8thclass/imppdf";
+import Imp9pdf from "./9thclass/imppdf";
+import Prefinaldata from "./tenth/prefinaldata";
+import Prefinalpdf from "./tenth/prefinalpdf";
+import Fa1data from "./tenth/fa1data";
+import Fa1pdf from "./tenth/fa1pdf";
+import Fa2data from "./tenth/fa2data";
+import Fa2pdf from "./tenth/fa2pdf";
+import Fa3data from "./tenth/fa3data";
+import Fa3pdf from "./tenth/fa3pdf";
+import Fa4data from "./tenth/fa4data";
+import Fa4pdf from "./tenth/fa4pdf";
+import Sa1pdf from "./tenth/sa1pdf";
+import Sa1data from "./tenth/sa1data";
+import Rv1data from "./tenth/rv1data";
+import Rv2data from "./tenth/rv2data";
+import Rv3data from "./tenth/rv3data";
+import Rv4data from "./tenth/rv4data";
+import Rv1pdf from "./tenth/rv1pdf";
+import Minidata from "./tenth/minidata";
+import Minipdf from "./tenth/minipdf";
+import Weeklytestdata from "./tenth/weeklytestdata";
+import Weeklytestpdf from "./tenth/weeklytestpdf";
+import Dailytestdata from "./tenth/dailytestdata";
+import Dailytestpdf from "./tenth/dailytestpdf";
+import Grandtestdata from "./tenth/grandtestdata";
+import Grandtestpdf from "./tenth/grandtestpdf";
+import Public2023data from "./tenth/pub2023data";
+import Pub2023pdf from "./tenth/pub2023pdf";
+import Modelpaperdata from "./tenth/modelpdata";
+import Modelpaperpdf from "./tenth/modepppdf";
+
+import Inter1stimpdata from "./INTER/inter1stimpdata";
+import Inter1stpqpdata from "./INTER/inter1stpqpdata";
+import Inter2ndimpdata from "./INTER/inter2ndimpdata";
+import Inter2ndpqpdata from "./INTER/inter2ndpqpdata";
+import Inter1stimppdf from "./INTER/inter1stimppdf";
+import Inter1stpqppdf from "./INTER/inter1stpqppdf";
+import Inter2ndimppdf from "./INTER/inter2ndimppdf";
+import Inter2ndpqppdf from "./INTER/inter2ndpqppdf";
+
+import Inter1stmdata from "./INTER/inter1stmdata";
+
+import Inter1stmpdf from "./INTER/inter1stmpdf";
+import Inter2ndmpdf from "./INTER/inter2ndmpdf";
+import Inter2ndmdata from "./INTER/inter2ndmdata";
+
+
+import Mcasem1Pdf from "./MCA/sem1pdf";
+import Mcasem2Pdf from "./MCA/sem2pdf";
+import Mcasem3Pdf from "./MCA/sem3pdf";
+import Mcasem4Pdf from "./MCA/sem4pdf";
+
+import Mbasem1Pdf from "./MBA/sem1pdf";
+import Mbasem2Pdf from "./MBA/sem2pdf";
+import Mbasem3Pdf from "./MBA/sem3pdf";
+import Mbasem4Pdf from "./MBA/sem4pdf";
+import Impteldata from "./tenth/Impteld";
+import Imphindata from "./tenth/Imphindata";
+import Impengdata from "./tenth/Impengdata";
+import Impmtdata from "./tenth/Impmtdata";
+import Impmedata from "./tenth/Impmedata";
+import Impntdata from "./tenth/Impntdata";
+import Impptdata from "./tenth/Impptdata";
+import Impnedata from "./tenth/Impnedata";
+import Imppedata from "./tenth/Imppedata";
+import Impsedata from "./tenth/Impsedata";
+import Impstdata from "./tenth/Impstdata";
+import Imptelpdf from "./tenth/Imptelpdf";
+import Imphinpdf from "./tenth/Imphinpdf";
+import Impengpdf from "./tenth/Impengpdf";
+import Impmtpdf from "./tenth/Impmtpdf";
+import Impmepdf from "./tenth/Impmepdf";
+import Impntpdf from "./tenth/Impntpddf";
+import Impnepdf from "./tenth/impnepdf";
+import Imppepdf from "./tenth/Imppepdf";
+import Impptpdf from "./tenth/Impptpdf";
+import Impsepdf from "./tenth/Impsepdf";
+import Impstpdf from "./tenth/Impstpdf";
+
+import Mapdata from "./tenth/Mapdata";
+import Mappdf from "./tenth/mappdf";
+
+import Home from "./Home";
+import Tpop from "./pqp/Tpqp";
+import Hpqp from "./pqp/Hpqp";
+import Epop from "./pqp/Epqp";
+import Mepqp from "./pqp/Mepqp";
+import Mtpop from "./pqp/Mtpop";
+import Pepop from "./pqp/Pepqp";
+import Ptpop from "./pqp/Ptpqp";
+import Nepop from "./pqp/Nepqp";
+import Ntpop from "./pqp/Ntpqp";
+import Sepop from "./pqp/Sepqp";
+import Stpop from "./pqp/Stpqp";
+
+
+import Fa1pdfka from "./KASSC/fa1pdf";
+
+import Fa3dataka from "./KASSC/fa3data";
+import Fa3pdfka from "./KASSC/fa3pdf";
+import Fa4dataka from "./KASSC/fa4data";
+import Fa4pdfka from "./KASSC/fa4pdf";
+import Sa1dataka from "./KASSC/sa1data";
+import Sa1pdfka from "./KASSC/sa1pdf";
+
+import Prefinaldataka from "./KASSC/prefinaldata";
+import Prefinalpdfka from "./KASSC/prefinalpdf";
+import Public2023dataka from "./KASSC/pub2023data";
+import Pub2023pdfka from "./KASSC/pub2023pdf";
+import Blueprintdataka from "./KASSC/blueprintdata";
+import Blueprintpdfka from "./KASSC/blueprintpdf";
+import Modelpaperpdfka from "./KASSC/modepppdf";
+import Modelpaperdataka from "./KASSC/modelpdata";
+
+import Solutiondataka from "./KASSC/solutinsdata";
+import Solutionpdfka from "./KASSC/solutionspdf";
+import Sscka from "./10thka";
+import Fa1dataka from "./KASSC/fa1data";
+
+import Kapqp from "./KApqp";
+import Kanadapqpdataka from "./KASSC/kanadapqpdata";
+import Hinpqpdataka from "./KASSC/hinpqpdata";
+import Engpqpdataka from "./KASSC/Engpqpdata";
+import Matpqpdataka from "./KASSC/Matpqpdata";
+import Scipqpdataka from "./KASSC/sciencepqpdata";
+import Socpqpdataka from "./KASSC/socialpqpdata";
+import Kanpqppdfka from "./KASSC/kanadapqppdf";
+import Hinpqppdfka from "./KASSC/hinpqppdf";
+import Enfpqppdfka from "./KASSC/Engpqppdf";
+import Matpqppdfka from "./KASSC/Matpqppdf";
+import Scipqppdfka from "./KASSC/sciencepqppdf";
+import Socpqppdfka from "./KASSC/socialpqppdf";
+import Fa2dataka from "./KASSC/fa2data";
+import Fa2pdfka from "./KASSC/fa2pdf";
+import Textbookka from "./KASSC/textbook";
+import Textbookpdfka from "./KASSC/textbookpdf";
+import Impquestiondataka from "./KASSC/impquestionsdata";
+import Impquestionspdfka from "./KASSC/impquestionspdf";
 
 
 
 
-
+import FirstPage from './firstpage';
+import SecondPage from './secondpage';
+import class6ka from "./KA CLASS 6TO9/Class6";
+import class7ka from "./KA CLASS 6TO9/Class7";
+import class8ka from "./KA CLASS 6TO9/Class8";
+import class9ka from "./KA CLASS 6TO9/Class9";
+import Fa16dataka from "./KA6THCLASS/fa1data";
+import Fa26dataka from "./KA6THCLASS/fa2data";
+import Fa36dataka from "./KA6THCLASS/fa3data";
+import Fa46dataka from "./KA6THCLASS/fa4data";
+import Sa16dataka from "./KA6THCLASS/sa1data";
+import Sa26dataka from "./KA6THCLASS/sa2data";
+import Imp6dataka from "./KA6THCLASS/impdata";
+import Fa16pdfka from "./KA6THCLASS/fa1pdf";
+import Fa26pdfka from "./KA6THCLASS/fa2pdf";
+import Fa36pdfka from "./KA6THCLASS/fa3pdf";
+import Fa46pdfka from "./KA6THCLASS/fa4pdf";
+import Sa16pdfka from "./KA6THCLASS/sa1pdf";
+import Sa26pdfka from "./KA6THCLASS/sa2pdf";
+import Imp6pdfka from "./KA6THCLASS/imppdf";
+import Fa17dataka from "./7thclass/fa1data";
+import Sa27dataka from "./KA7THCLASS/sa2data";
+import Sa27pdfka from "./KA7THCLASS/sa2pdf";
+import Fa18dataka from "./KA8THCLASS/fa1data";
+import Fa28dataka from "./KA8THCLASS/fa2data";
+import Fa38dataka from "./KA8THCLASS/fa3data";
+import Fa48dataka from "./KA8THCLASS/fa4data";
+import Sa18dataka from "./KA8THCLASS/sa1data";
+import Sa28dataka from "./KA8THCLASS/sa2data";
+import Imp8dataka from "./KA8THCLASS/impdata";
+import Fa18pdfka from "./KA8THCLASS/fa1pdf";
+import Fa28pdfka from "./KA8THCLASS/fa2pdf";
+import Fa38pdfka from "./KA8THCLASS/fa3pdf";
+import Fa48pdfka from "./KA8THCLASS/fa4pdf";
+import Sa18pdfka from "./KA8THCLASS/sa1pdf";
+import Sa28pdfka from "./KA8THCLASS/sa2pdf";
+import Imp8pdfka from "./KA8THCLASS/imppdf";
+import Fa19dataka from "./KA9THCLASS/fa1data";
+import Fa29dataka from "./KA9THCLASS/fa2data";
+import Fa39dataka from "./KA9THCLASS/fa3data";
+import Fa49dataka from "./KA9THCLASS/fa4data";
+import Sa19dataka from "./KA9THCLASS/sa1data";
+import Sa29dataka from "./KA9THCLASS/sa2data";
+import Imp9dataka from "./KA9THCLASS/impdata";
+import Fa19pdfka from "./KA9THCLASS/fa1pdf";
+import Fa29pdfka from "./KA9THCLASS/fa2pdf";
+import Fa39pdfka from "./KA9THCLASS/fa3pdf";
+import Fa49pdfka from "./KA9THCLASS/fa4pdf";
+import Sa19pdfka from "./KA9THCLASS/sa1pdf";
+import Sa29pdfka from "./KA9THCLASS/sa2pdf";
+import Imp9pdfka from "./KA9THCLASS/imppdf";
+import Quiz6ka from "./Dailyquiz/Quiz6ka";
+import Quiz7ka from "./Dailyquiz/Quiz7ka";
+import Quiz8ka from "./Dailyquiz/Quiz8ka";
+import Quiz9ka from "./Dailyquiz/Quiz9ka";
+import Quiz10ka from "./Dailyquiz/Quiz10ka";
+import Qres6ka from "./Results/6kaqres";
+import Qres7ka from "./Results/7kaqres";
+import Qres8ka from "./Results/8kaqres";
+import Qres9ka from "./Results/9kaqres";
+import Qres10ka from "./Results/10kares";
+import ChapterDetails from "./Chapter";
+import { useEffect, useState } from 'react';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import Fa27dataka from "./KA7THCLASS/fa2data";
+import Fa37dataka from "./KA7THCLASS/fa3data";
+import Fa47dataka from "./KA7THCLASS/fa4data";
+import Sa17dataka from "./KA7THCLASS/sa1data";
+import Imp7dataka from "./KA7THCLASS/impdata";
+import Fa17pdfka from "./KA7THCLASS/fa1pdf";
+import Fa27pdfka from "./KA7THCLASS/fa2pdf";
+import Fa37pdfka from "./KA7THCLASS/fa3pdf";
+import Fa47pdfka from "./KA7THCLASS/fa4pdf";
+import Sa17pdfka from "./KA7THCLASS/sa1pdf";
+import Imp7pdfka from "./KA7THCLASS/imppdf";
+import Quiz10ts from "./Dailyquiz/Quiz10ts";
+import Qres10ts from "./Results/10tsqres";
+import SubjectData from "./Subjectdetails";
 
 
 const Stack = createNativeStackNavigator();
@@ -1667,34 +984,47 @@ const Stack = createNativeStackNavigator();
 const MainStackNavigator1 = () => {
 
 
+    const [userDataExists, setUserDataExists] = useState(false);
 
 
+    useEffect(() => {
+        checkUserData();
+    }, []);
 
+    const checkUserData = async () => {
+        try {
+            const userName = await AsyncStorage.getItem('userName');
+            if (userName) {
+                setUserDataExists(true);
+            }
+        } catch (error) {
+            console.error('Error checking user data:', error);
+        }
+
+    };
 
 
     return (
 
-        <Stack.Navigator  >
 
-            <Stack.Screen name='10th class' component={ApTs} options={{ headerShown: false }} />
+        <Stack.Navigator initialRouteName={userDataExists ? 'SecondPage' : 'FirstPage'} headerMode="none" >
+            <Stack.Screen name="FirstPage" component={FirstPage} options={{ headerShown: false }} />
+            <Stack.Screen name="SecondPage" component={SecondPage} options={{ headerShown: false }} />
 
-            <Stack.Screen name='equiz' component={Equiz} options={{ headerShown: false }} />
-            <Stack.Screen name='ClassDetails' component={Subjectq} options={{ headerShown: false }} />
+
+
             <Stack.Screen name='ChapterDetails' component={ChapterDetails} options={{ headerShown: false }} />
             <Stack.Screen name='Quiz' component={Quizques} options={{ headerShown: false }} />
             <Stack.Screen name='Quiz Results' component={QuizResults} options={{ headerShown: false }} />
-
+            <Stack.Screen name='SubjectDataPage' component={SubjectData} options={{ headerShown: false }} />
             <Stack.Screen name='TotalScorePage' component={TotalScorePage} options={{ headerShown: false }} />
             <Stack.Screen name="WithdrawalHistoryPage" component={WithdrawalHistoryPage} />
             <Stack.Screen name='WithdrawalFormPage' component={WithdrawalFormPage} options={{ headerShown: false }} />
 
             <Stack.Screen name='apssc' component={Menu} options={{ headerShown: false }} />
-            <Stack.Screen name='tsssc' component={Ts} options={{ headerShown: false }} />
 
-            <Stack.Screen name='Class6' component={class6} options={{ headerShown: false }} />
-            <Stack.Screen name='Class7' component={class7} options={{ headerShown: false }} />
-            <Stack.Screen name='Class8' component={class8} options={{ headerShown: false }} />
-            <Stack.Screen name='Class9' component={class9} options={{ headerShown: false }} />
+
+
 
 
             <Stack.Screen name='nmms' component={Nmms} options={{ headerShown: false }} />
@@ -1832,593 +1162,22 @@ const MainStackNavigator1 = () => {
 
 
 
-            <Stack.Screen name='interimp1' component={Impinter} options={{ headerShown: false }} />
-            <Stack.Screen name='interprev1' component={Interprev} options={{ headerShown: false }} />
-            <Stack.Screen name='interstudy1' component={Interstudy} options={{ headerShown: false }} />
+            <Stack.Screen name='interimp1' component={Inter1stimpdata} options={{ headerShown: false }} />
+            <Stack.Screen name='Inter1stimpPage' component={Inter1stimppdf} options={{ headerShown: false }} />
+            <Stack.Screen name='interprev1' component={Inter1stpqpdata} options={{ headerShown: false }} />
+            <Stack.Screen name='Inter1stpqpPage' component={Inter1stpqppdf} options={{ headerShown: false }} />
+            <Stack.Screen name='year1m' component={Inter1stmdata} options={{ headerShown: false }} />
+            <Stack.Screen name='Inter1stmPage' component={Inter1stmpdf} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='t1iapimp' component={Tel1ip} options={{ headerShown: false }} />
-            <Stack.Screen name='h1iapimp' component={Hin1ip} options={{ headerShown: false }} />
-            <Stack.Screen name='e1iapimp' component={Eng1ip} options={{ headerShown: false }} />
-            <Stack.Screen name='s1iapimp' component={San1ip} options={{ headerShown: false }} />
-            <Stack.Screen name='me1aiapimp' component={M1aeip} options={{ headerShown: false }} />
-            <Stack.Screen name='mt1aiapimp' component={M1atip} options={{ headerShown: false }} />
-            <Stack.Screen name='me1biapimp' component={M1beip} options={{ headerShown: false }} />
-            <Stack.Screen name='mt1biapimp' component={M1btip} options={{ headerShown: false }} />
-            <Stack.Screen name='pt1iapimp' component={Pht1tip} options={{ headerShown: false }} />
-            <Stack.Screen name='pe1iapimp' component={Pht1eip} options={{ headerShown: false }} />
-            <Stack.Screen name='be1iapimp' component={Bio1eip} options={{ headerShown: false }} />
-            <Stack.Screen name='bt1iapimp' component={Bio1tip} options={{ headerShown: false }} />
-            <Stack.Screen name='ce1iapimp' component={Che1eip} options={{ headerShown: false }} />
-            <Stack.Screen name='ct1iapimp' component={Che1tip} options={{ headerShown: false }} />
-            <Stack.Screen name='ze1iapimp' component={Zol1eip} options={{ headerShown: false }} />
-            <Stack.Screen name='zt1iapimp' component={Zol1tip} options={{ headerShown: false }} />
-            <Stack.Screen name='c1iapimp' component={Civ1ip} options={{ headerShown: false }} />
-            <Stack.Screen name='eco1iapimp' component={Eco1ip} options={{ headerShown: false }} />
-            <Stack.Screen name='cm1iapimp' component={Commer1ip} options={{ headerShown: false }} />
-            <Stack.Screen name='hy1iapimp' component={His1ip} options={{ headerShown: false }} />
-            <Stack.Screen name='ps1iapimp' component={Pol1ip} options={{ headerShown: false }} />
 
 
-
-
-            <Stack.Screen name='t1iapst' component={Tel1st} options={{ headerShown: false }} />
-            <Stack.Screen name='h1iapst' component={Hin1st} options={{ headerShown: false }} />
-            <Stack.Screen name='e1iapst' component={Eng1st} options={{ headerShown: false }} />
-            <Stack.Screen name='s1iapst' component={San1st} options={{ headerShown: false }} />
-            <Stack.Screen name='me1aiapst' component={M1aest} options={{ headerShown: false }} />
-            <Stack.Screen name='mt1aiapst' component={M1atst} options={{ headerShown: false }} />
-            <Stack.Screen name='me1biapst' component={M1best} options={{ headerShown: false }} />
-            <Stack.Screen name='mt1biapst' component={M1btst} options={{ headerShown: false }} />
-            <Stack.Screen name='pt1iapst' component={Pht1tst} options={{ headerShown: false }} />
-            <Stack.Screen name='pe1iapst' component={Pht1est} options={{ headerShown: false }} />
-            <Stack.Screen name='be1iapst' component={Bio1est} options={{ headerShown: false }} />
-            <Stack.Screen name='bt1iapst' component={Bio1tst} options={{ headerShown: false }} />
-            <Stack.Screen name='ce1iapst' component={Che1est} options={{ headerShown: false }} />
-            <Stack.Screen name='ct1iapst' component={Che1tst} options={{ headerShown: false }} />
-            <Stack.Screen name='ze1iapst' component={Zol1est} options={{ headerShown: false }} />
-            <Stack.Screen name='zt1iapst' component={Zol1tst} options={{ headerShown: false }} />
-            <Stack.Screen name='c1iapst' component={Civ1st} options={{ headerShown: false }} />
-            <Stack.Screen name='eco1iapst' component={Eco1st} options={{ headerShown: false }} />
-            <Stack.Screen name='cm1iapst' component={Commer1st} options={{ headerShown: false }} />
-            <Stack.Screen name='hy1iapst' component={His1st} options={{ headerShown: false }} />
-
-            <Stack.Screen name='ps1iapst' component={Pol1st} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='t1iapprev' component={Tel1} options={{ headerShown: false }} />
-            <Stack.Screen name='h1iapprev' component={Hin1} options={{ headerShown: false }} />
-            <Stack.Screen name='e1iapprev' component={Eng1} options={{ headerShown: false }} />
-            <Stack.Screen name='s1iapprev' component={San1} options={{ headerShown: false }} />
-            <Stack.Screen name='me1aiapprev' component={M1ae} options={{ headerShown: false }} />
-            <Stack.Screen name='mt1aiapprev' component={M1at} options={{ headerShown: false }} />
-            <Stack.Screen name='me1biapprev' component={M1be} options={{ headerShown: false }} />
-            <Stack.Screen name='mt1biapprev' component={M1bt} options={{ headerShown: false }} />
-            <Stack.Screen name='pt1iapprev' component={Phy1t} options={{ headerShown: false }} />
-            <Stack.Screen name='pe1iapprev' component={Phy1e} options={{ headerShown: false }} />
-            <Stack.Screen name='be1iapprev' component={Bio1} options={{ headerShown: false }} />
-            <Stack.Screen name='bt1iapprev' component={Bio1t} options={{ headerShown: false }} />
-            <Stack.Screen name='ce1iapprev' component={Che1e} options={{ headerShown: false }} />
-            <Stack.Screen name='ct1iapprev' component={Che1t} options={{ headerShown: false }} />
-            <Stack.Screen name='ze1iapprev' component={Zo1e} options={{ headerShown: false }} />
-            <Stack.Screen name='zt1iapprev' component={Zo1t} options={{ headerShown: false }} />
-            <Stack.Screen name='c1iapprev' component={Civ1} options={{ headerShown: false }} />
-            <Stack.Screen name='eco1iapprev' component={Eco1} options={{ headerShown: false }} />
-            <Stack.Screen name='cm1iapprev' component={Commer1} options={{ headerShown: false }} />
-            <Stack.Screen name='hy1iapprev' component={His1} options={{ headerShown: false }} />
-
-            <Stack.Screen name='ps1iapprev' component={Pol1} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2023Tel1' component={Tel123} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Hin1' component={Hin123} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Eng1' component={Eng123} options={{ headerShown: false }} />
-            <Stack.Screen name='2023San1' component={San123} options={{ headerShown: false }} />
-            <Stack.Screen name='2023M1ae' component={M1ae23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023M1at' component={M1at23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023M1be' component={M1be23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023M1bt' component={M1bt23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Phy1t' component={Pht1t23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Phy1e' component={Pht1e23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Be1' component={Bio1e23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Bt1' component={Bio1t23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Che1e' component={Che1e23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Che1t' component={Che1t23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Zole1' component={Zol1e23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Zolt1' component={Zol1t23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Civ1' component={Civ123} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Eco1' component={Eco123} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Commer1' component={Commer123} options={{ headerShown: false }} />
-            <Stack.Screen name='2023His1' component={His123} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Pol1' component={Pol123} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2022Tel1' component={Tel122} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Hin1' component={Hin122} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Eng1' component={Eng122} options={{ headerShown: false }} />
-            <Stack.Screen name='2022San1' component={San122} options={{ headerShown: false }} />
-            <Stack.Screen name='2022M1ae' component={M1ae22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022M1at' component={M1at22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022M1be' component={M1be22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022M1bt' component={M1bt22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Phy1t' component={Pht1t22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Phy1e' component={Pht1e22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Be1' component={Bio1e22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Bt1' component={Bio1t22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Che1e' component={Che1e22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Che1t' component={Che1t22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Zole1' component={Zol1e22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Zolt1' component={Zol1t22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Civ1' component={Civ122} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Eco1' component={Eco122} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Commer1' component={Commer122} options={{ headerShown: false }} />
-            <Stack.Screen name='2022His1' component={His122} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Pol1' component={Pol122} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2021Tel1' component={Tel121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Hin1' component={Hin121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Eng1' component={Eng121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021San1' component={San121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021M1ae' component={M1ae121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021M1at' component={M1at21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021M1be' component={M1be21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021M1bt' component={M1bt21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Phy1t' component={Pht1t21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Phy1e' component={Pht1e21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Be1' component={Bio1e21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Bt1' component={Bio1t21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Che1e' component={Che1e21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Che1t' component={Che1t21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Zole1' component={Zol1e21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Zolt1' component={Zol1t21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Civ1' component={Civ121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Eco1' component={Eco121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Commer1' component={Commer121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021His1' component={His121} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Pol1' component={Pol121} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2020Tel1' component={Tel120} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Hin1' component={Hin120} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Eng1' component={Eng120} options={{ headerShown: false }} />
-            <Stack.Screen name='2020San1' component={San120} options={{ headerShown: false }} />
-            <Stack.Screen name='2020M1ae' component={M1ae20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020M1at' component={M1at20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020M1be' component={M1be20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020M1bt' component={M1bt20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Phy1t' component={Pht1t20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Phy1e' component={Pht1e20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Be1' component={Bio1e20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Bt1' component={Bio1t20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Che1e' component={Che1e20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Che1t' component={Che1t20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Zole1' component={Zol1e20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Zolt1' component={Zol1t20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Civ1' component={Civ120} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Eco1' component={Eco120} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Commer1' component={Commer120} options={{ headerShown: false }} />
-            <Stack.Screen name='2020His1' component={His120} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Pol1' component={Pol120} options={{ headerShown: false }} />
-
-
-
-            <Stack.Screen name='2019Tel1' component={Tel119} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Hin1' component={Hin119} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Eng1' component={Eng119} options={{ headerShown: false }} />
-            <Stack.Screen name='2019San1' component={San119} options={{ headerShown: false }} />
-            <Stack.Screen name='2019M1ae' component={M1ae19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019M1at' component={M1at19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019M1be' component={M1be19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019M1bt' component={M1bt19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Phy1t' component={Pht1t19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Phy1e' component={Pht1e19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Be1' component={Bio1e19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Bt1' component={Bio1t19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Che1e' component={Che1e19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Che1t' component={Che1t19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Zole1' component={Zol1e19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Zolt1' component={Zol1t19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Civ1' component={Civ119} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Eco1' component={Eco119} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Commer1' component={Commer119} options={{ headerShown: false }} />
-            <Stack.Screen name='2019His1' component={His119} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Pol1' component={Pol119} options={{ headerShown: false }} />
-
-
-
-            <Stack.Screen name='2018Tel1' component={Tel118} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Hin1' component={Hin118} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Eng1' component={Eng118} options={{ headerShown: false }} />
-            <Stack.Screen name='2018San1' component={San118} options={{ headerShown: false }} />
-            <Stack.Screen name='2018M1ae' component={M1ae18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018M1at' component={M1at18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018M1be' component={M1be18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018M1bt' component={M1bt18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Phy1t' component={Pht1t18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Phy1e' component={Pht1e18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Be1' component={Bio1e18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Bt1' component={Bio1t18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Che1e' component={Che1e18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Che1t' component={Che1t18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Zole1' component={Zol1e18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Zolt1' component={Zol1t18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Civ1' component={Civ118} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Eco1' component={Eco118} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Commer1' component={Commer118} options={{ headerShown: false }} />
-            <Stack.Screen name='2018His1' component={His118} options={{ headerShown: false }} />
-
-            <Stack.Screen name='2018Pol1' component={Pol18} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2017Tel1' component={Tel117} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Hin1' component={Hin117} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Eng1' component={Eng117} options={{ headerShown: false }} />
-            <Stack.Screen name='2017San1' component={San117} options={{ headerShown: false }} />
-            <Stack.Screen name='2017M1ae' component={M1ae17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017M1at' component={M1at17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017M1be' component={M1be17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017M1bt' component={M1bt17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Phy1t' component={Pht1t17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Phy1e' component={Pht1e17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Be1' component={Bio117} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Bt1' component={Bio1t17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Che1e' component={Che1e17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Che1t' component={Che1t17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Zole1' component={Zol1e17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Zolt1' component={Zol1t17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Civ1' component={Civ117} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Eco1' component={Eco117} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Commer1' component={Commer117} options={{ headerShown: false }} />
-            <Stack.Screen name='2017His1' component={His117} options={{ headerShown: false }} />
-
-            <Stack.Screen name='2017Pol1' component={Pol117} options={{ headerShown: false }} />
-
-
-
-            <Stack.Screen name='2016Tel1' component={Tel116} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Hin1' component={Hin116} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Eng1' component={Eng116} options={{ headerShown: false }} />
-            <Stack.Screen name='2016San1' component={San116} options={{ headerShown: false }} />
-            <Stack.Screen name='2016M1ae' component={M1ae16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016M1at' component={M1at16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016M1be' component={M1be16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016M1bt' component={M1bt16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Phy1t' component={Pht1t16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Phy1e' component={Pht1e16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Be1' component={Bio1e16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Bt1' component={Bio1t16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Che1e' component={Che1e16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Che1t' component={Che1t16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Zole1' component={Zol1e16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Zolt1' component={Zol1t16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Civ1' component={Civ116} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Eco1' component={Eco116} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Commer1' component={Commer116} options={{ headerShown: false }} />
-            <Stack.Screen name='2016His1' component={His116} options={{ headerShown: false }} />
-
-            <Stack.Screen name='2016Pol1' component={Pol116} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2015Tel1' component={Tel115} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Hin1' component={Hin115} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Eng1' component={Eng115} options={{ headerShown: false }} />
-            <Stack.Screen name='2015San1' component={San115} options={{ headerShown: false }} />
-            <Stack.Screen name='2015M1ae' component={M1ae15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015M1at' component={M1at15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015M1be' component={M1be15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015M1bt' component={M1bt15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Phy1t' component={Pht1t15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Phy1e' component={Pht1e15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Be1' component={Bio1e15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Bt1' component={Bio1t15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Che1e' component={Che1e15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Che1t' component={Che1t15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Zole1' component={Zol1e15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Zolt1' component={Zol1t15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Civ1' component={Civ115} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Eco1' component={Eco115} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Commer1' component={Commer115} options={{ headerShown: false }} />
-            <Stack.Screen name='2015His1' component={His115} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Pol1' component={Pol115} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='interimp2' component={Impinter2} options={{ headerShown: false }} />
-            <Stack.Screen name='interprev2' component={Interprev2} options={{ headerShown: false }} />
-            <Stack.Screen name='interstudy2' component={Interstudy2} options={{ headerShown: false }} />
-
-            <Stack.Screen name='t2iapprev' component={Tel2} options={{ headerShown: false }} />
-            <Stack.Screen name='h2iapprev' component={Hin2} options={{ headerShown: false }} />
-            <Stack.Screen name='e2iapprev' component={Eng2} options={{ headerShown: false }} />
-            <Stack.Screen name='s2iapprev' component={San2} options={{ headerShown: false }} />
-            <Stack.Screen name='me2aiapprev' component={M2ae} options={{ headerShown: false }} />
-            <Stack.Screen name='mt2aiapprev' component={M2at} options={{ headerShown: false }} />
-            <Stack.Screen name='me2biapprev' component={M2be} options={{ headerShown: false }} />
-            <Stack.Screen name='mt2biapprev' component={M2bt} options={{ headerShown: false }} />
-            <Stack.Screen name='pt2iapprev' component={Phy2t} options={{ headerShown: false }} />
-            <Stack.Screen name='pe2iapprev' component={Phy2e} options={{ headerShown: false }} />
-            <Stack.Screen name='be2iapprev' component={Bio2e} options={{ headerShown: false }} />
-            <Stack.Screen name='bt2iapprev' component={Bio2t} options={{ headerShown: false }} />
-            <Stack.Screen name='ce2iapprev' component={Che2e} options={{ headerShown: false }} />
-            <Stack.Screen name='ct2iapprev' component={Che2t} options={{ headerShown: false }} />
-            <Stack.Screen name='ze2iapprev' component={Zo2e} options={{ headerShown: false }} />
-            <Stack.Screen name='zt2iapprev' component={Zo2t} options={{ headerShown: false }} />
-            <Stack.Screen name='c2iapprev' component={Civ2} options={{ headerShown: false }} />
-            <Stack.Screen name='eco2iapprev' component={Eco2} options={{ headerShown: false }} />
-            <Stack.Screen name='cm2iapprev' component={Commer2} options={{ headerShown: false }} />
-            <Stack.Screen name='hy2iapprev' component={His2} options={{ headerShown: false }} />
-
-            <Stack.Screen name='ps2iapprev' component={Pol2} options={{ headerShown: false }} />
-
-
-
-
-
-            <Stack.Screen name='2023Tel2' component={Tel223} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Hin2' component={Hin223} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Eng2' component={Eng223} options={{ headerShown: false }} />
-            <Stack.Screen name='2023San2' component={San223} options={{ headerShown: false }} />
-            <Stack.Screen name='2023M2ae' component={M2ae23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023M2at' component={M2at23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023M2be' component={M2be23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023M2bt' component={M2bt23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Phy2t' component={Pht2t23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Phy2e' component={Pht2e23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Be2' component={Bio2e23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Bt2' component={Bio2t23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Che2e' component={Che2e23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Che2t' component={Che2t23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Zole2' component={Zol2e23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Zolt2' component={Zol2t23} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Civ2' component={Civ223} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Eco2' component={Eco223} options={{ headerShown: false }} />
-            <Stack.Screen name='2023Commer2' component={Commer223} options={{ headerShown: false }} />
-            <Stack.Screen name='2023His2' component={His223} options={{ headerShown: false }} />
-
-            <Stack.Screen name='2023Pol2' component={Pol223} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2022Tel2' component={Tel222} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Hin2' component={Hin222} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Eng2' component={Eng222} options={{ headerShown: false }} />
-            <Stack.Screen name='2022San2' component={San222} options={{ headerShown: false }} />
-            <Stack.Screen name='2022M2ae' component={M2ae22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022M2at' component={M2at22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022M2be' component={M2be22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022M2bt' component={M2bt22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Phy2t' component={Pht2t22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Phy2e' component={Pht2e22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Be2' component={Bio2e22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Bt2' component={Bio2t22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Che2e' component={Che2e22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Che2t' component={Che2t22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Zole2' component={Zol2e22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Zolt2' component={Zol2t22} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Civ2' component={Civ222} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Eco2' component={Eco222} options={{ headerShown: false }} />
-            <Stack.Screen name='2022Commer2' component={Commer222} options={{ headerShown: false }} />
-            <Stack.Screen name='2022His2' component={His222} options={{ headerShown: false }} />
-
-            <Stack.Screen name='2022Pol2' component={Pol222} options={{ headerShown: false }} />
-
-
-
-            <Stack.Screen name='2021Tel2' component={Tel221} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Hin2' component={Hin221} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Eng2' component={Eng221} options={{ headerShown: false }} />
-            <Stack.Screen name='2021San2' component={San221} options={{ headerShown: false }} />
-            <Stack.Screen name='2021M2ae' component={M2ae21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021M2at' component={M2at21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021M2be' component={M2be21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021M2bt' component={M2bt21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Phy2t' component={Pht2t21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Phy2e' component={Pht2e21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Be2' component={Bio2e21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Bt2' component={Bio2t21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Che2e' component={Che2e21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Che2t' component={Che2t21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Zole2' component={Zol2e21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Zolt2' component={Zol2t21} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Civ2' component={Civ221} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Eco2' component={Eco221} options={{ headerShown: false }} />
-            <Stack.Screen name='2021Commer2' component={Commer221} options={{ headerShown: false }} />
-            <Stack.Screen name='2021His2' component={His221} options={{ headerShown: false }} />
-
-            <Stack.Screen name='2021Pol2' component={Pol221} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2020Tel2' component={Tel220} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Hin2' component={Hin220} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Eng2' component={Eng220} options={{ headerShown: false }} />
-            <Stack.Screen name='2020San2' component={San220} options={{ headerShown: false }} />
-            <Stack.Screen name='2020M2ae' component={M2ae20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020M2at' component={M2at20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020M2be' component={M2be20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020M2bt' component={M2bt20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Phy2t' component={Pht2t20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Phy2e' component={Pht2e20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Be2' component={Bio2e20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Bt2' component={Bio2t20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Che2e' component={Che2e20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Che2t' component={Che2t20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Zole2' component={Zol2e20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Zolt2' component={Zol2t20} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Civ2' component={Civ220} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Commer2' component={Commer220} options={{ headerShown: false }} />
-            <Stack.Screen name='2020His2' component={His220} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Pol2' component={Pol220} options={{ headerShown: false }} />
-            <Stack.Screen name='2020Eco2' component={Eco220} options={{ headerShown: false }} />
-
-            <Stack.Screen name='2019Tel2' component={Tel219} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Hin2' component={Hin219} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Eng2' component={Eng219} options={{ headerShown: false }} />
-            <Stack.Screen name='2019San2' component={San219} options={{ headerShown: false }} />
-            <Stack.Screen name='2019M2ae' component={M2ae19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019M2at' component={M2at19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019M2be' component={M2be19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019M2bt' component={M2bt19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Phy2t' component={Pht2t19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Phy2e' component={Pht2e19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Be2' component={Bio2e19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Bt2' component={Bio2t19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Che2e' component={Che2e19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Che2t' component={Che2t19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Zole2' component={Zol2e19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Zolt2' component={Zol2t19} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Civ2' component={Civ219} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Eco2' component={Eco219} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Commer2' component={Commer219} options={{ headerShown: false }} />
-            <Stack.Screen name='2019His2' component={His219} options={{ headerShown: false }} />
-            <Stack.Screen name='2019Pol2' component={Pol219} options={{ headerShown: false }} />
-
-
-
-
-
-
-
-
-            <Stack.Screen name='2018Tel2' component={Tel218} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Hin2' component={Hin218} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Eng2' component={Eng218} options={{ headerShown: false }} />
-            <Stack.Screen name='2018San2' component={San218} options={{ headerShown: false }} />
-            <Stack.Screen name='2018M2ae' component={M2ae18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018M2at' component={M2at18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018M2be' component={M2be18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018M2bt' component={M2bt18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Phy2t' component={Pht2t18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Phy2e' component={Pht2e18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Be2' component={Bio2e18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Bt2' component={Bio2t18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Che2e' component={Che2e18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Che2t' component={Che2t18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Zole2' component={Zol2e18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Zolt2' component={Zol2t18} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Civ2' component={Civ218} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Eco2' component={Eco218} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Commer2' component={Commer218} options={{ headerShown: false }} />
-            <Stack.Screen name='2018His2' component={His218} options={{ headerShown: false }} />
-            <Stack.Screen name='2018Pol2' component={Pol218} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='2017Tel2' component={Tel217} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Hin2' component={Hin217} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Eng2' component={Eng217} options={{ headerShown: false }} />
-            <Stack.Screen name='2017San2' component={San217} options={{ headerShown: false }} />
-            <Stack.Screen name='2017M2ae' component={M2ae17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017M2at' component={M2at17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017M2be' component={M2be17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017M2bt' component={M2bt17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Phy2t' component={Pht2t17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Phy2e' component={Pht2e17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Be2' component={Bio2e17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Bt2' component={Bio2t17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Che2e' component={Che2e17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Che2t' component={Che2t17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Zole2' component={Zol2e17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Zolt2' component={Zol2t17} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Civ2' component={Civ217} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Eco2' component={Eco217} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Commer2' component={Commer217} options={{ headerShown: false }} />
-            <Stack.Screen name='2017His2' component={His217} options={{ headerShown: false }} />
-            <Stack.Screen name='2017Pol2' component={Pol217} options={{ headerShown: false }} />
-
-
-
-            <Stack.Screen name='2016Tel2' component={Tel216} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Hin2' component={Hin216} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Eng2' component={Eng216} options={{ headerShown: false }} />
-            <Stack.Screen name='2016San2' component={San216} options={{ headerShown: false }} />
-            <Stack.Screen name='2016M2ae' component={M2ae16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016M2at' component={M2at16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016M2be' component={M2be16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016M2bt' component={M2bt16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Phy2t' component={Pht2t16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Phy2e' component={Pht2e16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Be2' component={Bio2e16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Bt2' component={Bio2t16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Che2e' component={Che2e16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Che2t' component={Che2t16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Zole2' component={Zol2e16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Zolt2' component={Zol2t16} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Civ2' component={Civ216} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Eco2' component={Eco216} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Commer2' component={Commer216} options={{ headerShown: false }} />
-            <Stack.Screen name='2016His2' component={His216} options={{ headerShown: false }} />
-            <Stack.Screen name='2016Pol2' component={Pol216} options={{ headerShown: false }} />
-
-
-
-            <Stack.Screen name='2015Tel2' component={Tel215} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Hin2' component={Hin215} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Eng2' component={Eng215} options={{ headerShown: false }} />
-            <Stack.Screen name='2015San2' component={San215} options={{ headerShown: false }} />
-            <Stack.Screen name='2015M2ae' component={M2ae15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015M2at' component={M2at15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015M2be' component={M2be15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015M2bt' component={M2bt15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Phy2t' component={Pht2t15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Phy2e' component={Pht2e15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Be2' component={Bio2e15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Bt2' component={Bio2t15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Che2e' component={Che2e15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Che2t' component={Che2t15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Zole2' component={Zol2e15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Zolt2' component={Zol2t15} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Civ2' component={Civ215} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Eco2' component={Eco215} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Commer2' component={Commer215} options={{ headerShown: false }} />
-            <Stack.Screen name='2015His2' component={His215} options={{ headerShown: false }} />
-            <Stack.Screen name='2015Pol2' component={Pol215} options={{ headerShown: false }} />
-
-
-
-            <Stack.Screen name='t2iapimp' component={Tel2ip} options={{ headerShown: false }} />
-            <Stack.Screen name='h2iapimp' component={Hin2ip} options={{ headerShown: false }} />
-            <Stack.Screen name='e2iapimp' component={Eng2ip} options={{ headerShown: false }} />
-            <Stack.Screen name='s2iapimp' component={San2ip} options={{ headerShown: false }} />
-            <Stack.Screen name='me2aiapimp' component={M2aeip} options={{ headerShown: false }} />
-            <Stack.Screen name='mt2aiapimp' component={M2atip} options={{ headerShown: false }} />
-            <Stack.Screen name='me2biapimp' component={M2beip} options={{ headerShown: false }} />
-            <Stack.Screen name='mt2biapimp' component={M2btip} options={{ headerShown: false }} />
-            <Stack.Screen name='pt2iapimp' component={Pht2tip} options={{ headerShown: false }} />
-            <Stack.Screen name='pe2iapimp' component={Pht2eip} options={{ headerShown: false }} />
-            <Stack.Screen name='be2iapimp' component={Bio2eip} options={{ headerShown: false }} />
-            <Stack.Screen name='bt2iapimp' component={Bio2tip} options={{ headerShown: false }} />
-            <Stack.Screen name='ce2iapimp' component={Che2eip} options={{ headerShown: false }} />
-            <Stack.Screen name='ct2iapimp' component={Che2tip} options={{ headerShown: false }} />
-            <Stack.Screen name='ze2iapimp' component={Zol2eip} options={{ headerShown: false }} />
-            <Stack.Screen name='zt2iapimp' component={Zol2tip} options={{ headerShown: false }} />
-            <Stack.Screen name='c2iapimp' component={Civ2ip} options={{ headerShown: false }} />
-            <Stack.Screen name='eco2iapimp' component={Eco2ip} options={{ headerShown: false }} />
-            <Stack.Screen name='cm2iapimp' component={Commer2ip} options={{ headerShown: false }} />
-            <Stack.Screen name='hy2iapimp' component={His2ip} options={{ headerShown: false }} />
-
-            <Stack.Screen name='ps2iapimp' component={Pol2ip} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='t2iapst' component={Tel2st} options={{ headerShown: false }} />
-            <Stack.Screen name='h2iapst' component={Hin2st} options={{ headerShown: false }} />
-            <Stack.Screen name='e2iapst' component={Eng2st} options={{ headerShown: false }} />
-            <Stack.Screen name='s2iapst' component={San2st} options={{ headerShown: false }} />
-            <Stack.Screen name='me2aiapst' component={M2aest} options={{ headerShown: false }} />
-            <Stack.Screen name='mt2aiapst' component={M2atst} options={{ headerShown: false }} />
-            <Stack.Screen name='me2biapst' component={M2best} options={{ headerShown: false }} />
-            <Stack.Screen name='mt2biapst' component={M2btst} options={{ headerShown: false }} />
-            <Stack.Screen name='pt2iapst' component={Pht2tst} options={{ headerShown: false }} />
-            <Stack.Screen name='pe2iapst' component={Pht2est} options={{ headerShown: false }} />
-            <Stack.Screen name='be2iapst' component={Bio2est} options={{ headerShown: false }} />
-            <Stack.Screen name='bt2iapst' component={Bio2tst} options={{ headerShown: false }} />
-            <Stack.Screen name='ce2iapst' component={Che2est} options={{ headerShown: false }} />
-            <Stack.Screen name='ct2iapst' component={Che2tst} options={{ headerShown: false }} />
-            <Stack.Screen name='ze2iapst' component={Zol2est} options={{ headerShown: false }} />
-            <Stack.Screen name='zt2iapst' component={Zol2tst} options={{ headerShown: false }} />
-            <Stack.Screen name='c2iapst' component={Civ2st} options={{ headerShown: false }} />
-            <Stack.Screen name='eco2iapst' component={Eco2st} options={{ headerShown: false }} />
-            <Stack.Screen name='cm2iapst' component={Commer2st} options={{ headerShown: false }} />
-            <Stack.Screen name='hy2iapst' component={His2st} options={{ headerShown: false }} />
-
-            <Stack.Screen name='ps2iapst' component={Pol2st} options={{ headerShown: false }} />
+            <Stack.Screen name='interimp2' component={Inter2ndimpdata} options={{ headerShown: false }} />
+            <Stack.Screen name='Inter2ndimpPage' component={Inter2ndimppdf} options={{ headerShown: false }} />
+            <Stack.Screen name='interprev2' component={Inter2ndpqpdata} options={{ headerShown: false }} />
+            <Stack.Screen name='Inter2ndpqpPage' component={Inter2ndpqppdf} options={{ headerShown: false }} />
+            <Stack.Screen name='year2m' component={Inter2ndmdata} options={{ headerShown: false }} />
+            <Stack.Screen name='Inter2ndmPage' component={Inter2ndmpdf} options={{ headerShown: false }} />
 
 
 
@@ -2454,7 +1213,7 @@ const MainStackNavigator1 = () => {
 
             <Stack.Screen name='tssm' component={Tsstudy} options={{ headerShown: false }} />
             <Stack.Screen name='tsbp' component={Tsblue} options={{ headerShown: false }} />
-            <Stack.Screen name='apblueprint' component={Apblue} options={{ headerShown: false }} />
+
             <Stack.Screen name='tstp' component={Tsmodel} options={{ headerShown: false }} />
 
             <Stack.Screen name='telugu ts' component={Tpfts} options={{ headerShown: false }} />
@@ -2494,17 +1253,7 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name='social em tsb' component={Setsb} options={{ headerShown: false }} />
             <Stack.Screen name='social tm tsb' component={Sttsb} options={{ headerShown: false }} />
 
-            <Stack.Screen name='telugu apb' component={Tapb} options={{ headerShown: false }} />
-            <Stack.Screen name='hindi apb' component={Hapb} options={{ headerShown: false }} />
-            <Stack.Screen name='english apb' component={Eapb} options={{ headerShown: false }} />
-            <Stack.Screen name='maths tm apb' component={Mtapb} options={{ headerShown: false }} />
-            <Stack.Screen name='maths em apb' component={Meapb} options={{ headerShown: false }} />
-            <Stack.Screen name='physics tm apb' component={Ptapb} options={{ headerShown: false }} />
-            <Stack.Screen name='physics em apb' component={Peapb} options={{ headerShown: false }} />
-            <Stack.Screen name='biology tm apb' component={Ntapb} options={{ headerShown: false }} />
-            <Stack.Screen name='biology em apb' component={Neapb} options={{ headerShown: false }} />
-            <Stack.Screen name='social em apb' component={Seapb} options={{ headerShown: false }} />
-            <Stack.Screen name='social tm apb' component={Stapb} options={{ headerShown: false }} />
+
 
 
             <Stack.Screen name='telugu tsm' component={Ttssm} options={{ headerShown: false }} />
@@ -2532,38 +1281,23 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name='social tm tsp' component={Sttspre} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='class6to9' component={classes} options={{ headerShown: false }} />
 
-            <Stack.Screen name='6thclass imp' component={Class6imp} options={{ headerShown: false }} />
             <Stack.Screen name='6thclass tb' component={Class6tb} options={{ headerShown: false }} />
-            <Stack.Screen name='6thclass exam' component={Class6exam} options={{ headerShown: false }} />
-            <Stack.Screen name='6thclass study' component={Class6study} options={{ headerShown: false }} />
 
-            <Stack.Screen name='7thclass imp' component={Class7imp} options={{ headerShown: false }} />
+
+
             <Stack.Screen name='7thclass tb' component={Class7tb} options={{ headerShown: false }} />
-            <Stack.Screen name='7thclass exam' component={Class7exam} options={{ headerShown: false }} />
-            <Stack.Screen name='7thclass study' component={Class7study} options={{ headerShown: false }} />
 
-            <Stack.Screen name='8thclass imp' component={Class8imp} options={{ headerShown: false }} />
+
+
             <Stack.Screen name='8thclass tb' component={Class8tb} options={{ headerShown: false }} />
-            <Stack.Screen name='8thclass exam' component={Class8exam} options={{ headerShown: false }} />
-            <Stack.Screen name='8thclass study' component={Class8study} options={{ headerShown: false }} />
 
-            <Stack.Screen name='9thclass imp' component={Class9imp} options={{ headerShown: false }} />
+
             <Stack.Screen name='9thclass tb' component={Class9tb} options={{ headerShown: false }} />
-            <Stack.Screen name='9thclass exam' component={Class9exam} options={{ headerShown: false }} />
-            <Stack.Screen name='9thclass study' component={Class9study} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='telugu imp6' component={Tel6imp} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi imp6" component={Hin6imp} options={{ headerShown: false }} />
-            <Stack.Screen name="english imp6" component={Eng6imp} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm imp6" component={Mt6imp} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem imp6" component={Me6imp} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem imp6" component={Nse6imp} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm imp6" component={Nst6imp} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem imp6" component={Soce6imp} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm imp6" component={Soct6imp} options={{ headerShown: false }} />
+
+
 
             <Stack.Screen name='telugu tb6' component={Tel6tb} options={{ headerShown: false }} />
             <Stack.Screen name="hindi tb6" component={Hin6tb} options={{ headerShown: false }} />
@@ -2615,123 +1349,11 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name="socialtm tb9" component={Soc29tb} options={{ headerShown: false }} />
             <Stack.Screen name="social3m tb9" component={Soc39tb} options={{ headerShown: false }} />
 
-            <Stack.Screen name='telugu imp7' component={Tel7imp} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi imp7" component={Hin7imp} options={{ headerShown: false }} />
-            <Stack.Screen name="english imp7" component={Eng7imp} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm imp7" component={Mt7imp} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem imp7" component={Me7imp} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem imp7" component={Nse7imp} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm imp7" component={Nst7imp} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem imp7" component={Soce7imp} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm imp7" component={Soct7imp} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu imp8' component={Tel8imp} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi imp8" component={Hin8imp} options={{ headerShown: false }} />
-            <Stack.Screen name="english imp8" component={Eng8imp} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm imp8" component={Mt8imp} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem imp8" component={Me8imp} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem imp8" component={Nse8imp} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm imp8" component={Nst8imp} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem imp8" component={Soce8imp} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm imp8" component={Soct8imp} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu imp9' component={Tel9imp} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi imp9" component={Hin9imp} options={{ headerShown: false }} />
-            <Stack.Screen name="english imp9" component={Eng9imp} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm imp9" component={Mt9imp} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem imp9" component={Me9imp} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem imp9" component={Nse9imp} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm imp9" component={Nst9imp} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem imp9" component={Soce9imp} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm imp9" component={Soct9imp} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu syl6' component={Syl6} options={{ headerShown: false }} />
-            <Stack.Screen name='telugu syl7' component={Syl7} options={{ headerShown: false }} />
-            <Stack.Screen name='telugu syl8' component={Syl8} options={{ headerShown: false }} />
-            <Stack.Screen name='telugu syl9' component={Syl9} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='telugu study6' component={Tel6study} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi study6" component={Hin6study} options={{ headerShown: false }} />
-            <Stack.Screen name="english study6" component={Eng6study} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm study6" component={Mt6study} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem study6" component={Me6study} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem study6" component={Nse6study} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm study6" component={Nst6study} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem study6" component={Soce6study} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm study6" component={Soct6study} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu study7' component={Tel7study} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi study7" component={Hin7study} options={{ headerShown: false }} />
-            <Stack.Screen name="english study7" component={Eng7study} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm study7" component={Mt7study} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem study7" component={Me7study} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem study7" component={Nse7study} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm study7" component={Nst7study} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem study7" component={Soce7study} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm study7" component={Soct7study} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='telugu study8' component={Tel8study} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi study8" component={Hin8study} options={{ headerShown: false }} />
-            <Stack.Screen name="english study8" component={Eng8study} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm study8" component={Mt8study} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem study8" component={Me8study} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem study8" component={Nse8study} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm study8" component={Nst8study} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem study8" component={Soce8study} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm study8" component={Soct8study} options={{ headerShown: false }} />
 
-            <Stack.Screen name='telugu study9' component={Tel9study} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi study9" component={Hin9study} options={{ headerShown: false }} />
-            <Stack.Screen name="english study9" component={Eng9study} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm study9" component={Mt9study} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem study9" component={Me9study} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem study9" component={Nse9study} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm study9" component={Nst9study} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem study9" component={Soce9study} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm study9" component={Soct9study} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='telugu exam6' component={Tel6exam} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi exam6" component={Hin6exam} options={{ headerShown: false }} />
-            <Stack.Screen name="english exam6" component={Eng6exam} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm exam6" component={Mt6exam} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem exam6" component={Me6exam} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem exam6" component={NSe6exam} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm exam6" component={NSt6exam} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem exam6" component={Soce6exam} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm exam6" component={Soct6exam} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu exam7' component={Tel7exam} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi exam7" component={Hin7exam} options={{ headerShown: false }} />
-            <Stack.Screen name="english exam7" component={Eng7exam} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm exam7" component={Mt7exam} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem exam7" component={Me7exam} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem exam7" component={NSe7exam} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm exam7" component={NSt7exam} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem exam7" component={Soce7exam} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm exam7" component={Soct7exam} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu exam8' component={Tel8exam} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi exam8" component={Hin8exam} options={{ headerShown: false }} />
-            <Stack.Screen name="english exam8" component={Eng8exam} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm exam8" component={Mt8exam} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem exam8" component={Me8exam} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem exam8" component={NSe8exam} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm exam8" component={NSt8exam} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem exam8" component={Soce8exam} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm exam8" component={Soct8exam} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu exam9' component={Tel9exam} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi exam9" component={Hin9exam} options={{ headerShown: false }} />
-            <Stack.Screen name="english exam9" component={Eng9exam} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm exam9" component={Mt9exam} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem exam9" component={Me9exam} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem exam9" component={NSe9exam} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm exam9" component={NSt9exam} options={{ headerShown: false }} />
-            <Stack.Screen name="socialem exam9" component={Soce9exam} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm exam9" component={Soct9exam} options={{ headerShown: false }} />
 
             <Stack.Screen name='Question' component={TodayQues} options={{ headerShown: false }} />
             <Stack.Screen name='Weekly Questions' component={WeekQues} options={{ headerShown: false }} />
@@ -2742,9 +1364,13 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name='Question11' component={Quiz11} options={{ headerShown: false }} />
             <Stack.Screen name='Question12' component={Quiz12} options={{ headerShown: false }} />
 
+            <Stack.Screen name='Question6ka' component={Quiz6ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Question7ka' component={Quiz7ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Question8ka' component={Quiz8ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Question9ka' component={Quiz9ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Question10ka' component={Quiz10ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Question10ts' component={Quiz10ts} options={{ headerShown: false }} />
 
-            <Stack.Screen name='emcet11' component={Emcet11} options={{ headerShown: false }} />
-            <Stack.Screen name='emcet12' component={Emcet12} options={{ headerShown: false }} />
 
 
             <Stack.Screen name='Daily Result' component={DailyResult} options={{ headerShown: false }} />
@@ -2755,12 +1381,21 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name='Result11' component={Qres11} options={{ headerShown: false }} />
             <Stack.Screen name='Result12' component={Qres12} options={{ headerShown: false }} />
 
+
+            <Stack.Screen name='Result6ka' component={Qres6ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Result7ka' component={Qres7ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Result8ka' component={Qres8ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Result9ka' component={Qres9ka} options={{ headerShown: false }} />
+            <Stack.Screen name='Result10ka' component={Qres10ka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Result10ts' component={Qres10ts} options={{ headerShown: false }} />
+
             <Stack.Screen name='Today Answer' component={Todayans} options={{ headerShown: false }} />
 
             <Stack.Screen name='6thToday Answer' component={qans6} options={{ headerShown: false }} />
             <Stack.Screen name='7thToday Answer' component={qans7} options={{ headerShown: false }} />
             <Stack.Screen name='8thToday Answer' component={qans8} options={{ headerShown: false }} />
-            <Stack.Screen name='9thToday Answer' component={qans9} options={{ headerShown: false }} />
+
             <Stack.Screen name='11thToday Answer' component={qans11} options={{ headerShown: false }} />
             <Stack.Screen name='12thToday Answer' component={qans12} options={{ headerShown: false }} />
 
@@ -2768,79 +1403,9 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name='Weekly Result' component={WeekResult} options={{ headerShown: false }} />
             <Stack.Screen name='Weekly Answer' component={Weekans} options={{ headerShown: false }} />
 
-            <Stack.Screen name='FA1' component={Fa1} options={{ headerShown: false }} />
-            <Stack.Screen name='FA2' component={Fa2} options={{ headerShown: false }} />
-            <Stack.Screen name='FA3' component={Fa3} options={{ headerShown: false }} />
-            <Stack.Screen name='FA4' component={Fa4} options={{ headerShown: false }} />
-            <Stack.Screen name='SA1' component={Sa1} options={{ headerShown: false }} />
-            <Stack.Screen name='sylabus SA1' component={Syl} options={{ headerShown: false }} />
-            <Stack.Screen name='sylabus FA3' component={Sylfa3} options={{ headerShown: false }} />
-            <Stack.Screen name='sylabus FA1' component={Sylfa1} options={{ headerShown: false }} />
-            <Stack.Screen name='sylabus FA2' component={Sylfa2} options={{ headerShown: false }} />
-            <Stack.Screen name='sylabus FA4' component={Sylfa4} options={{ headerShown: false }} />
+
             <Stack.Screen name='ssc' component={Ssc} options={{ headerShown: false }} />
 
-            <Stack.Screen name='telugu FA1' component={Telfa1} options={{ headerShown: false }} />
-
-            <Stack.Screen name="hindi FA1" component={Hinfa1} options={{ headerShown: false }} />
-            <Stack.Screen name="english FA1" component={Engfa1} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em FA1" component={Matefa1} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm FA1" component={Mattfa1} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em FA1" component={Sciefa1} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm FA1" component={Scitfa1} options={{ headerShown: false }} />
-
-            <Stack.Screen name="social em FA1" component={Socefa1} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm FA1" component={Soctfa1} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='telugu FA3' component={Telfa3} options={{ headerShown: false }} />
-
-            <Stack.Screen name="hindi FA3" component={Hinfa3} options={{ headerShown: false }} />
-            <Stack.Screen name="english FA3" component={Engfa3} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em FA3" component={Matefa3} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm FA3" component={Mattfa3} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em FA3" component={Sciefa3} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm FA3" component={Scitfa3} options={{ headerShown: false }} />
-
-            <Stack.Screen name="social em FA3" component={Socefa3} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm FA3" component={Soctfa3} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu FA4' component={Telfa4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="hindi FA4" component={Hinfa4} options={{ headerShown: false }} />
-            <Stack.Screen name="english FA4" component={Engfa4} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em FA4" component={Matefa4} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm FA4" component={Mattfa4} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em FA4" component={Sciefa4} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm FA4" component={Scitfa4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="social em FA4" component={Socefa4} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm FA4" component={Soctfa4} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name='telugu FA2' component={Telfa2} options={{ headerShown: false }} />
-
-            <Stack.Screen name="hindi FA2" component={Hinfa2} options={{ headerShown: false }} />
-            <Stack.Screen name="english FA2" component={Engfa2} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em FA2" component={Matefa2} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm FA2" component={Mattfa2} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em FA2" component={Sciefa2} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm FA2" component={Scitfa2} options={{ headerShown: false }} />
-
-            <Stack.Screen name="social em FA2" component={Socefa2} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm FA2" component={Soctfa2} options={{ headerShown: false }} />
-
-            <Stack.Screen name='telugu SA1' component={Telsa1} options={{ headerShown: false }} />
-
-            <Stack.Screen name="hindi SA1" component={Hinsa1} options={{ headerShown: false }} />
-            <Stack.Screen name="english SA1" component={Engsa1} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em SA1" component={Matesa1} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm SA1" component={Mattsa1} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em SA1" component={Sciesa1} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm SA1" component={Scitsa1} options={{ headerShown: false }} />
-
-            <Stack.Screen name="social em SA1" component={Socesa1} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm SA1" component={Soctsa1} options={{ headerShown: false }} />
 
             <Stack.Screen name="Textbook" component={Textbook} options={{ headerShown: false }} />
 
@@ -2856,98 +1421,10 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name="social em textbook" component={Societ} options={{ headerShown: false }} />
             <Stack.Screen name="social tm textbook" component={Socitt} options={{ headerShown: false }} />
 
-            <Stack.Screen name="telugu ssc2023" component={Telpre} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi ssc2023" component={Hinpre} options={{ headerShown: false }} />
-            <Stack.Screen name="english ssc2023" component={Engpre} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em ssc2023" component={Mepre} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm ssc2023" component={Mtpre} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em ssc2023" component={Pepre} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm ssc2023" component={Ptpre} options={{ headerShown: false }} />
-            <Stack.Screen name="biology em ssc2023" component={Nepre} options={{ headerShown: false }} />
-            <Stack.Screen name="biology tm ssc2023" component={Ntpre} options={{ headerShown: false }} />
-            <Stack.Screen name="social em ssc2023" component={Sepre} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm ssc2023" component={Stpre} options={{ headerShown: false }} />
-
-            <Stack.Screen name='Importent'
-                component={Importe} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name="Telugu Imp" component={Teli} options={{ headerShown: false }} />
-            <Stack.Screen name="Hindi Imp" component={Himp} options={{ headerShown: false }} />
-            <Stack.Screen name="English Imp" component={Eimp} options={{ headerShown: false }} />
-            <Stack.Screen name="Mathstm Imp" component={Matti} options={{ headerShown: false }} />
-            <Stack.Screen name="Mathsem Imp" component={Matei} options={{ headerShown: false }} />
-            <Stack.Screen name="Biologytm Imp" component={Nsti} options={{ headerShown: false }} />
-            <Stack.Screen name="Physicstm Imp" component={Phyti} options={{ headerShown: false }} />
-            <Stack.Screen name="Biologyem Imp" component={Nsei} options={{ headerShown: false }} />
-            <Stack.Screen name="Physicsem Imp" component={Phyei} options={{ headerShown: false }} />
-            <Stack.Screen name="Socialem Imp" component={Socei} options={{ headerShown: false }} />
-            <Stack.Screen name="Socialtm Imp" component={Socti} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name="telugu grammer" component={Telgra} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu imp" component={Telimp} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu poems" component={Telpo} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu material" component={Telmat} options={{ headerShown: false }} />
-
-            <Stack.Screen name="mathsem material" component={Mema} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem 1m" component={Me1m} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem 2m" component={Me2m} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem 4m" component={Me4m} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem 8m" component={Me8m} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem bits" component={Mebi} options={{ headerShown: false }} />
-
-            <Stack.Screen name="mathstm 1m" component={Mt1m} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm 2m" component={Mt2m} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm 4m" component={Mt4m} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm 8m" component={Mt8m} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm bits" component={Mtbi} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm material" component={Mtma} options={{ headerShown: false }} />
-
-            <Stack.Screen name="phytm 1m" component={Phyt1m} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm 2m" component={Phyt2m} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm 4m" component={Phyt4m} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm 8m" component={Phyt8m} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm bits" component={Phytbi} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm material" component={Phytma} options={{ headerShown: false }} />
 
 
 
-            <Stack.Screen name="phyem 1m" component={Phye1m} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem 2m" component={Phye2m} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem 4m" component={Phye4m} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem 8m" component={Phye8m} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem bits" component={Phyebi} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem material" component={Phyema} options={{ headerShown: false }} />
 
-            <Stack.Screen name="nsem 1m" component={Nse1m} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem 2m" component={Nse2m} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem 4m" component={Nse4m} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem 8m" component={Nse8m} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem bits" component={Nsebi} options={{ headerShown: false }} />
-            <Stack.Screen name="nsem material" component={Nsema} options={{ headerShown: false }} />
-
-
-            <Stack.Screen name="nstm 1m" component={Nst1m} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm 2m" component={Nst2m} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm 4m" component={Nst4m} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm 8m" component={Nst8m} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm bits" component={Nstbi} options={{ headerShown: false }} />
-            <Stack.Screen name="nstm material" component={Nstma} options={{ headerShown: false }} />
-
-            <Stack.Screen name="soctm 1m" component={Soct1m} options={{ headerShown: false }} />
-            <Stack.Screen name="soctm 2m" component={Soct2m} options={{ headerShown: false }} />
-            <Stack.Screen name="soctm 4m" component={Soct4m} options={{ headerShown: false }} />
-            <Stack.Screen name="soctm 8m" component={Soct8m} options={{ headerShown: false }} />
-            <Stack.Screen name="soctm bits" component={Soctbi} options={{ headerShown: false }} />
-            <Stack.Screen name="soctm material" component={Soctma} options={{ headerShown: false }} />
-
-            <Stack.Screen name="socem 1m" component={Soce1m} options={{ headerShown: false }} />
-            <Stack.Screen name="socem 2m" component={Soce2m} options={{ headerShown: false }} />
-            <Stack.Screen name="socem 4m" component={Soce4m} options={{ headerShown: false }} />
-            <Stack.Screen name="socem 8m" component={Soce8m} options={{ headerShown: false }} />
-            <Stack.Screen name="socem bits" component={Socebi} options={{ headerShown: false }} />
-            <Stack.Screen name="socem material" component={Socema} options={{ headerShown: false }} />
 
             <Stack.Screen name="IIItp" component={Iiit} options={{ headerShown: false }} />
             <Stack.Screen name="im" component={Mathsiiit} options={{ headerShown: false }} />
@@ -2959,58 +1436,9 @@ const MainStackNavigator1 = () => {
 
             <Stack.Screen name='testpapers'
                 component={Testpapers} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu testpapers" component={Teltp} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi testpapers" component={Hintp} options={{ headerShown: false }} />
-            <Stack.Screen name="english testpapers" component={Engtp} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em testpapers" component={Matetp} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm testpapers" component={Matttp} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em testpapers" component={Phyetp} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm testpapers" component={Phyttp} options={{ headerShown: false }} />
-            <Stack.Screen name="social em testpapers" component={Socetp} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm testpapers" component={Socttp} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name="telugu tp1" component={Ttp1} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu tp2" component={Ttp2} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu tp3" component={Ttp3} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu tp4" component={Ttp4} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi tp1" component={Htp1} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi tp2" component={Htp2} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi tp3" component={Htp3} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi tp4" component={Htp4} options={{ headerShown: false }} />
-            <Stack.Screen name="english tp1" component={Etp1} options={{ headerShown: false }} />
-            <Stack.Screen name="english tp2" component={Etp2} options={{ headerShown: false }} />
-            <Stack.Screen name="english tp3" component={Etp3} options={{ headerShown: false }} />
-            <Stack.Screen name="english tp4" component={Etp4} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem tp1" component={Metp1} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem tp2" component={Metp2} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem tp3" component={Metp3} options={{ headerShown: false }} />
-            <Stack.Screen name="mathsem tp4" component={Metp4} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm tp1" component={Mttp1} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm tp2" component={Mttp2} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm tp3" component={Mttp3} options={{ headerShown: false }} />
-            <Stack.Screen name="mathstm tp4" component={Mttp4} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm tp1" component={Sttp1} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm tp2" component={Sttp2} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm tp3" component={Sttp3} options={{ headerShown: false }} />
-            <Stack.Screen name="phytm tp4" component={Sttp4} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem tp1" component={Setp1} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem tp2" component={Setp2} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem tp3" component={Setp3} options={{ headerShown: false }} />
-            <Stack.Screen name="phyem tp4" component={Setp4} options={{ headerShown: false }} />
 
-            <Stack.Screen name="socialem tp1" component={Ssetp1} options={{ headerShown: false }} />
-
-            <Stack.Screen name="socialem tp2" component={Ssetp2} options={{ headerShown: false }} />
-
-            <Stack.Screen name="socialem tp3" component={Ssetp3} options={{ headerShown: false }} />
-
-            <Stack.Screen name="socialem tp4" component={Ssetp4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="socialtm tp1" component={Ssttp1} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm tp2" component={Ssttp2} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm tp3" component={Ssttp3} options={{ headerShown: false }} />
-            <Stack.Screen name="socialtm tp4" component={Ssttp4} options={{ headerShown: false }} />
 
 
 
@@ -3081,89 +1509,16 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name="socialtm ts tp4" component={Ssttpts4} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='prefinal'
-                component={Prefinal} options={{ headerShown: false }} />
-
-            <Stack.Screen name="telugu prefinal" component={Tpf} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi prefinal" component={Hpf} options={{ headerShown: false }} />
-            <Stack.Screen name="english prefinal" component={Epf} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em prefinal" component={Mepf} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm prefinal" component={Mtpf} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em prefinal" component={Sepf} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm prefinal" component={Stpf} options={{ headerShown: false }} />
-
-            <Stack.Screen name="social em prefinal" component={Ssepf} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm prefinal" component={Sstpf} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='rivision'
-                component={rivision} options={{ headerShown: false }} />
-            <Stack.Screen name="rivisiontest1" component={Rvtest1} options={{ headerShown: false }} />
-            <Stack.Screen name="rivisiontest2" component={Rvtest2} options={{ headerShown: false }} />
-            <Stack.Screen name="rivisiontest3" component={Rvtest3} options={{ headerShown: false }} />
-            <Stack.Screen name="rivisiontest4" component={Rvtest4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="telugu rvtest1" component={Tr1} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu rvtest2" component={Tr2} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu rvtest3" component={Tr3} options={{ headerShown: false }} />
-            <Stack.Screen name="telugu rvtest4" component={Tr4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="hindi rvtest1" component={Hr1} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi rvtest2" component={Hr2} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi rvtest3" component={Hr3} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi rvtest4" component={Hr4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="english rvtest1" component={Er1} options={{ headerShown: false }} />
-            <Stack.Screen name="english rvtest2" component={Er2} options={{ headerShown: false }} />
-            <Stack.Screen name="english rvtest3" component={Er3} options={{ headerShown: false }} />
-            <Stack.Screen name="english rvtest4" component={Er4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="maths em rvtest1" component={Mer1} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em rvtest2" component={Mer2} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em rvtest3" component={Mer3} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em rvtest4" component={Mer4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="maths tm rvtest1" component={Mtr1} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm rvtest2" component={Mtr2} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm rvtest3" component={Mtr3} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm rvtest4" component={Mtr4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="physics em rvtest1" component={Ser1} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em rvtest2" component={Ser2} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em rvtest3" component={Ser3} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em rvtest4" component={Ser4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="physics tm rvtest1" component={Str1} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm rvtest2" component={Str2} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm rvtest3" component={Str3} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm rvtest4" component={Str4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="social tm rvtest1" component={Sstr1} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm rvtest2" component={Sstr2} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm rvtest3" component={Sstr3} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm rvtest4" component={Sstr4} options={{ headerShown: false }} />
-
-            <Stack.Screen name="social em rvtest1" component={Sser1} options={{ headerShown: false }} />
-            <Stack.Screen name="social em rvtest2" component={Sser2} options={{ headerShown: false }} />
-            <Stack.Screen name="social em rvtest3" component={Sser3} options={{ headerShown: false }} />
-            <Stack.Screen name="social em rvtest4" component={Sser4} options={{ headerShown: false }} />
 
 
-            <Stack.Screen name='sliptest'
-                component={Sliptest} options={{ headerShown: false }} />
 
-            <Stack.Screen name="telugu sliptest" component={Tst} options={{ headerShown: false }} />
-            <Stack.Screen name="hindi sliptest" component={Hst} options={{ headerShown: false }} />
-            <Stack.Screen name="english sliptest" component={Est} options={{ headerShown: false }} />
-            <Stack.Screen name="maths em sliptest" component={Mest} options={{ headerShown: false }} />
-            <Stack.Screen name="maths tm sliptest" component={Mtst} options={{ headerShown: false }} />
-            <Stack.Screen name="physics em sliptest" component={Pest} options={{ headerShown: false }} />
-            <Stack.Screen name="physics tm sliptest" component={Ptst} options={{ headerShown: false }} />
-            <Stack.Screen name="ns em sliptest" component={Nest} options={{ headerShown: false }} />
-            <Stack.Screen name="ns tm sliptest" component={Ntst} options={{ headerShown: false }} />
 
-            <Stack.Screen name="social em sliptest" component={Sest} options={{ headerShown: false }} />
-            <Stack.Screen name="social tm sliptest" component={Stst} options={{ headerShown: false }} />
+
+
+
+
 
 
             <Stack.Screen name='quiz'
@@ -3261,17 +1616,7 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name="PhysicsEm 2022p" component={Phyep2} options={{ headerShown: false }} />
             <Stack.Screen name="PhysicsTm 2022p" component={Phytp2} options={{ headerShown: false }} />
 
-            <Stack.Screen name="Telugu Blueprint" component={Telp3} options={{ headerShown: false }} />
-            <Stack.Screen name="Hindi Blueprint" component={Hinp3} options={{ headerShown: false }} />
-            <Stack.Screen name="English Blueprint" component={Engp3} options={{ headerShown: false }} />
-            <Stack.Screen name="MathsEm Blueprint" component={Mathep3} options={{ headerShown: false }} />
-            <Stack.Screen name="MathsTm Blueprint" component={Mathep3} options={{ headerShown: false }} />
-            <Stack.Screen name="ScienceEM1 Blueprint" component={Nsep3} options={{ headerShown: false }} />
-            <Stack.Screen name="ScienceTM1 Blueprint" component={Nsep3} options={{ headerShown: false }} />
-            <Stack.Screen name="ScienceEM2 Blueprint" component={Nsep3} options={{ headerShown: false }} />
-            <Stack.Screen name="ScienceTM Blueprint" component={Nsep3} options={{ headerShown: false }} />
-            <Stack.Screen name="SocialEm Blueprint" component={Socep3} options={{ headerShown: false }} />
-            <Stack.Screen name="SocialTm Blueprint" component={Socep3} options={{ headerShown: false }} />
+
 
 
 
@@ -3362,31 +1707,291 @@ const MainStackNavigator1 = () => {
             <Stack.Screen name='UrlPage'
                 component={Blueprintpdf} options={{ headerShown: false }} />
 
-
-            <Stack.Screen name='Prev Papers1'
-                component={Prevpapersdata} options={{ headerShown: false }} />
-            <Stack.Screen name='prevpaerspdf'
-                component={Prevpaperpdf} options={{ headerShown: false }} />
-        </Stack.Navigator>
+            <Stack.Screen name='Importent'
+                component={Importe} options={{ headerShown: false }} />
 
 
-    );
+            <Stack.Screen name='Prev Papers'
+                component={Home} options={{ headerShown: false }} />
+
+            <Stack.Screen name="telugu" component={Tpop} options={{ headerShown: false }} />
+            <Stack.Screen name="hindi" component={Hpqp} options={{ headerShown: false }} />
+            <Stack.Screen name="english" component={Epop} options={{ headerShown: false }} />
+            <Stack.Screen name="maths em" component={Mepqp} options={{ headerShown: false }} />
+            <Stack.Screen name="maths tm" component={Mtpop} options={{ headerShown: false }} />
+            <Stack.Screen name="physics em" component={Pepop} options={{ headerShown: false }} />
+            <Stack.Screen name="physics tm" component={Ptpop} options={{ headerShown: false }} />
+            <Stack.Screen name="biology em" component={Nepop} options={{ headerShown: false }} />
+            <Stack.Screen name="biology tm" component={Ntpop} options={{ headerShown: false }} />
+            <Stack.Screen name="social em" component={Sepop} options={{ headerShown: false }} />
+            <Stack.Screen name="social tm" component={Stpop} options={{ headerShown: false }} />
+
+            <Stack.Screen name="Telugu Imp" component={Impteldata} options={{ headerShown: false }} />
+            <Stack.Screen name="Hindi Imp" component={Imphindata} options={{ headerShown: false }} />
+            <Stack.Screen name="English Imp" component={Impengdata} options={{ headerShown: false }} />
+            <Stack.Screen name="Mathstm Imp" component={Impmtdata} options={{ headerShown: false }} />
+            <Stack.Screen name="Mathsem Imp" component={Impmedata} options={{ headerShown: false }} />
+            <Stack.Screen name="Biologytm Imp" component={Impntdata} options={{ headerShown: false }} />
+            <Stack.Screen name="Physicstm Imp" component={Impptdata} options={{ headerShown: false }} />
+            <Stack.Screen name="Biologyem Imp" component={Impnedata} options={{ headerShown: false }} />
+            <Stack.Screen name="Physicsem Imp" component={Imppedata} options={{ headerShown: false }} />
+            <Stack.Screen name="Socialem Imp" component={Impsedata} options={{ headerShown: false }} />
+            <Stack.Screen name="Socialtm Imp" component={Impstdata} options={{ headerShown: false }} />
+
+            <Stack.Screen name="ImptelPage" component={Imptelpdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImphinPage" component={Imphinpdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImpengPage" component={Impengpdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImpmtPage" component={Impmtpdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImpmePage" component={Impmepdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImpntPage" component={Impntpdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImpnePage" component={Impnepdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImppePage" component={Imppepdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImpptPage" component={Impptpdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImpsePage" component={Impsepdf} options={{ headerShown: false }} />
+            <Stack.Screen name="ImpstPage" component={Impstpdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name='modelpapers' component={Modelpaperdata} options={{ headerShown: false }} />
+            <Stack.Screen name='ModelpaperPage' component={Modelpaperpdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name='prefinal1' component={Prefinaldata} options={{ headerShown: false }} />
+            <Stack.Screen name='PrefinalPage' component={Prefinalpdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name='ssc2023' component={Public2023data} options={{ headerShown: false }} />
+            <Stack.Screen name='Public2023Page' component={Pub2023pdf} options={{ headerShown: false }} />
+            <Stack.Screen name='map' component={Mapdata} options={{ headerShown: false }} />
+            <Stack.Screen name='MapPage' component={Mappdf} options={{ headerShown: false }} />
 
 
 
 
 
-};
+
+            <Stack.Screen name='FA11'
+                component={Fa1data} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Fa1Page'
+                component={Fa1pdf} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name='FA21'
+                component={Fa2data} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Fa2Page'
+                component={Fa2pdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name='FA31'
+                component={Fa3data} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Fa3Page'
+                component={Fa3pdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name='FA41'
+                component={Fa4data} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Fa4Page'
+                component={Fa4pdf} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name='SA11'
+                component={Sa1data} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Sa1Page' component={Sa1pdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name="rivision" component={rivision} options={{ headerShown: false }} />
+            <Stack.Screen name="rivisiontest11" component={Rv1data} options={{ headerShown: false }} />
+            <Stack.Screen name="rivisiontest21" component={Rv2data} options={{ headerShown: false }} />
+            <Stack.Screen name="rivisiontest31" component={Rv3data} options={{ headerShown: false }} />
+            <Stack.Screen name="rivisiontest41" component={Rv4data} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name='Rv1Page' component={Rv1pdf} options={{ headerShown: false }} />
+            <Stack.Screen name='Rv2Page' component={Rv1pdf} options={{ headerShown: false }} />
+            <Stack.Screen name='Rv3Page' component={Rv1pdf} options={{ headerShown: false }} />
+            <Stack.Screen name='Rv4Page' component={Rv1pdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name='mini1' component={Minidata} options={{ headerShown: false }} />
+            <Stack.Screen name='MiniPage' component={Minipdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name="weeklytest1" component={Weeklytestdata} options={{ headerShown: false }} />
+            <Stack.Screen name='WeeklytestPage' component={Weeklytestpdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name="dailytest" component={Dailytestdata} options={{ headerShown: false }} />
+            <Stack.Screen name='DailytestPage' component={Dailytestpdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name="grandtest" component={Grandtestdata} options={{ headerShown: false }} />
+            <Stack.Screen name='GrandtestPage' component={Grandtestpdf} options={{ headerShown: false }} />
 
 
 
-const ContactStackNavigator = () => {
+            <Stack.Screen name="6thclass fa1" component={Fa16data} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass fa2" component={Fa26data} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass fa3" component={Fa36data} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass fa4" component={Fa46data} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass sa1" component={Sa16data} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass sa2" component={Sa26data} options={{ headerShown: false }} />
+
+            <Stack.Screen name="6thclass imp" component={Imp6data} options={{ headerShown: false }} />
+
+            <Stack.Screen name="Fa16Page" component={Fa16pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa26Page" component={Fa26pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa36Page" component={Fa36pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa46Page" component={Fa46pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa16Page" component={Sa16pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa26Page" component={Sa26pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Imp6Page" component={Imp6pdf} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name="7thclass fa1" component={Fa17data} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass fa2" component={Fa27data} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass fa3" component={Fa37data} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass fa4" component={Fa47data} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass sa1" component={Sa17data} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass sa2" component={Sa27data} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass imp" component={Imp7data} options={{ headerShown: false }} />
+
+            <Stack.Screen name="Fa17Page" component={Fa17pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa27Page" component={Fa27pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa37Page" component={Fa37pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa47Page" component={Fa47pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa17Page" component={Sa17pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa27Page" component={Sa27pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Imp7Page" component={Imp7pdf} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name="8thclass fa1" component={Fa18data} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass fa2" component={Fa28data} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass fa3" component={Fa38data} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass fa4" component={Fa48data} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass sa1" component={Sa18data} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass sa2" component={Sa28data} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass imp" component={Imp8data} options={{ headerShown: false }} />
+
+            <Stack.Screen name="Fa18Page" component={Fa18pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa28Page" component={Fa28pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa38Page" component={Fa38pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa48Page" component={Fa48pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa18Page" component={Sa18pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa28Page" component={Sa28pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Imp8Page" component={Imp8pdf} options={{ headerShown: false }} />
+
+            <Stack.Screen name="9thclass fa1" component={Fa19data} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass fa2" component={Fa29data} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass fa3" component={Fa39data} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass fa4" component={Fa49data} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass sa1" component={Sa19data} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass sa2" component={Sa29data} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass imp" component={Imp9data} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name="Fa19Page" component={Fa19pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa29Page" component={Fa29pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa39Page" component={Fa39pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa49Page" component={Fa49pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa19Page" component={Sa19pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa29Page" component={Sa29pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Imp9Page" component={Imp9pdf} options={{ headerShown: false }} />
 
 
 
-    return (
+            <Stack.Screen name="Mcasem1dataPage" component={Mcasem1Pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Mcasem2dataPage" component={Mcasem2Pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Mcasem3dataPage" component={Mcasem3Pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Mcasem4dataPage" component={Mcasem4Pdf} options={{ headerShown: false }} />
 
-        <Stack.Navigator>
+
+
+
+
+            <Stack.Screen name="Mbasem1dataPage" component={Mbasem1Pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Mbasem2dataPage" component={Mbasem2Pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Mbasem3dataPage" component={Mbasem3Pdf} options={{ headerShown: false }} />
+            <Stack.Screen name="Mbasem4dataPage" component={Mbasem4Pdf} options={{ headerShown: false }} />
+
+
+
+            <Stack.Screen name='FA1ka'
+                component={Fa1dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Fa1Pageka'
+                component={Fa1pdfka} options={{ headerShown: false }} />
+
+
+
+
+            <Stack.Screen name='FA3ka'
+                component={Fa3dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Fa3Pageka'
+                component={Fa3pdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='FA4ka'
+                component={Fa4dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Fa4Pageka'
+                component={Fa4pdfka} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name='SA1ka'
+                component={Sa1dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Sa1Pageka' component={Sa1pdfka} options={{ headerShown: false }} />
+
+
+
+            <Stack.Screen name='modelpaperska' component={Modelpaperdataka} options={{ headerShown: false }} />
+            <Stack.Screen name='ModelpaperPageka' component={Modelpaperpdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='prefinalka' component={Prefinaldataka} options={{ headerShown: false }} />
+            <Stack.Screen name='PrefinalPageka' component={Prefinalpdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='ssc2023ka' component={Public2023dataka} options={{ headerShown: false }} />
+            <Stack.Screen name='Public2023Pageka' component={Pub2023pdfka} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name='kablueprint1'
+                component={Blueprintdataka} options={{ headerShown: false }} />
+            <Stack.Screen name='blueprintka'
+                component={Blueprintpdfka} options={{ headerShown: false }} />
+
+
+
+            <Stack.Screen name='solutionka' component={Solutiondataka} options={{ headerShown: false }} />
+            <Stack.Screen name='solutionPageka' component={Solutionpdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Importentka' component={Impquestiondataka} options={{ headerShown: false }} />
+            <Stack.Screen name='imppqpPageka' component={Impquestionspdfka} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name='textbookska' component={Textbookka} options={{ headerShown: false }} />
+            <Stack.Screen name='textbooksPageka' component={Textbookpdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Prev Paperska' component={Kapqp} options={{ headerShown: false }} />
+
+            <Stack.Screen name='kanada ka' component={Kanadapqpdataka} options={{ headerShown: false }} />
+            <Stack.Screen name='KanPqpPageka' component={Kanpqppdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='hindi ka' component={Hinpqpdataka} options={{ headerShown: false }} />
+            <Stack.Screen name='HinPqpPageka' component={Hinpqppdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='english ka' component={Engpqpdataka} options={{ headerShown: false }} />
+            <Stack.Screen name='EngPqpPageka' component={Enfpqppdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='maths ka' component={Matpqpdataka} options={{ headerShown: false }} />
+            <Stack.Screen name='MatPqpPageka' component={Matpqppdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='biology ka' component={Scipqpdataka} options={{ headerShown: false }} />
+            <Stack.Screen name='SciPqpPageka' component={Scipqppdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='social ka' component={Socpqpdataka} options={{ headerShown: false }} />
+            <Stack.Screen name='SocPqpPageka' component={Socpqppdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='FA2ka'
+                component={Fa2dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name='Fa2Pageka'
+                component={Fa2pdfka} options={{ headerShown: false }} />
+
+
 
 
             <Stack.Screen name='Videos'
@@ -3457,31 +2062,109 @@ const ContactStackNavigator = () => {
             <Stack.Screen name="6th" component={Param} options={{ headerShown: false }} />
             <Stack.Screen name="3rd" component={Plane} options={{ headerShown: false }} />
 
+
+
+
+
+
+
+
+
+
+
+            <Stack.Screen name="class6ka" component={class6ka} options={{ headerShown: false }} />
+            <Stack.Screen name="class7ka" component={class7ka} options={{ headerShown: false }} />
+            <Stack.Screen name="class8ka" component={class8ka} options={{ headerShown: false }} />
+            <Stack.Screen name="class9ka" component={class9ka} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name="6thclass fa1ka" component={Fa16dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass fa2ka" component={Fa26dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass fa3ka" component={Fa36dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass fa4ka" component={Fa46dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass sa1ka" component={Sa16dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="6thclass sa2ka" component={Sa26dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name="6thclass impka" component={Imp6dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name="Fa16Pageka" component={Fa16pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa26Pageka" component={Fa26pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa36Pageka" component={Fa36pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa46Pageka" component={Fa46pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa16Pageka" component={Sa16pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa26Pageka" component={Sa26pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Imp6Pageka" component={Imp6pdfka} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name="7thclass fa1ka" component={Fa17dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass fa2ka" component={Fa27dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass fa3ka" component={Fa37dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass fa4ka" component={Fa47dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass sa1ka" component={Sa17dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass sa2ka" component={Sa27dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="7thclass impka" component={Imp7dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name="Fa17Pageka" component={Fa17pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa27Pageka" component={Fa27pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa37Pageka" component={Fa37pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa47Pageka" component={Fa47pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa17Pageka" component={Sa17pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa27Pageka" component={Sa27pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Imp7Pageka" component={Imp7pdfka} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name="8thclass fa1ka" component={Fa18dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass fa2ka" component={Fa28dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass fa3ka" component={Fa38dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass fa4ka" component={Fa48dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass sa1ka" component={Sa18dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass sa2ka" component={Sa28dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="8thclass impka" component={Imp8dataka} options={{ headerShown: false }} />
+
+            <Stack.Screen name="Fa18Pageka" component={Fa18pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa28Pageka" component={Fa28pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa38Pageka" component={Fa38pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa48Pageka" component={Fa48pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa18Pageka" component={Sa18pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa28Pageka" component={Sa28pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Imp8Pageka" component={Imp8pdfka} options={{ headerShown: false }} />
+
+            <Stack.Screen name="9thclass fa1ka" component={Fa19dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass fa2ka" component={Fa29dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass fa3ka" component={Fa39dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass fa4ka" component={Fa49dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass sa1ka" component={Sa19dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass sa2ka" component={Sa29dataka} options={{ headerShown: false }} />
+            <Stack.Screen name="9thclass impka" component={Imp9dataka} options={{ headerShown: false }} />
+
+
+            <Stack.Screen name="Fa19Pageka" component={Fa19pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa29Pageka" component={Fa29pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa39Pageka" component={Fa39pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Fa49Pageka" component={Fa49pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa19Pageka" component={Sa19pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Sa29Pageka" component={Sa29pdfka} options={{ headerShown: false }} />
+            <Stack.Screen name="Imp9Pageka" component={Imp9pdfka} options={{ headerShown: false }} />
+
         </Stack.Navigator>
 
+
+
+
+
+
     );
+
 
 
 
 
 };
 
-const MainStackNavigator2 = () => {
-
-
-
-
-    return (
-
-        <Stack.Screen name="Latest Updates" component={News} options={{ headerShown: false }} />
-
-    );
 
 
 
 
 
 
-}
-
-export { MainStackNavigator1, ContactStackNavigator, MainStackNavigator2, };
+export { MainStackNavigator1, };

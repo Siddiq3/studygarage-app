@@ -3,10 +3,12 @@ import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet } fr
 
 
 
-import { InterstitialAd, TestIds, AdEventType, } from 'react-native-google-mobile-ads';
+import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/2407646303';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
+
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/6792182552';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true
@@ -156,6 +158,14 @@ const Quiz12 = ({ navigation }) => {
                         <TouchableOpacity style={styles.optionButtom} onPress={() => handlSelectedOption(options[3])}>
                             <Text style={styles.option}>{decodeURIComponent(options[3])}</Text>
                         </TouchableOpacity>
+
+                        <GAMBannerAd
+                            unitId={adUnitId1}
+                            sizes={[BannerAdSize.LARGE_BANNER]}
+                            requestOptions={{
+                                requestNonPersonalizedAdsOnly: true,
+                            }}
+                        />
                     </View>
                     <View style={styles.bottom}>
                         {/* <TouchableOpacity style={styles.button}>

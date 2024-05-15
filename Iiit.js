@@ -1,5 +1,5 @@
-import React from "react";
-import { View, Button, ScrollView, TouchableOpacity, Text } from "react-native";
+import React, { useEffect } from "react";
+import { View, Button, ScrollView, TouchableOpacity, Text, BackHandler } from "react-native";
 import { Card } from "react-native-shadow-cards";
 
 
@@ -7,10 +7,7 @@ import { Card } from "react-native-shadow-cards";
 
 import { BannerAdSize, TestIds, BannerAd, } from 'react-native-google-mobile-ads';
 
-
-const adUnitId1 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2818388282601075/5259157113';
-
-
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 
 
 
@@ -19,7 +16,16 @@ const adUnitId1 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2818388282601075/525915
 
 const Iiit = ({ navigation }) => {
 
+    useEffect(() => {
 
+
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            navigation.goBack(); // Navigate back when back button is pressed
+            return true; // Prevent default behavior
+        });
+
+        return () => backHandler.remove();
+    }, []);
 
     return (
 

@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 
-import { View, Text, Button, ScrollView, StyleSheet, Linking, TouchableOpacity } from "react-native";
+import { View, Text, Button, ScrollView, StyleSheet, Linking, TouchableOpacity, BackHandler } from "react-native";
 import { Card } from "react-native-shadow-cards";
 
 import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/6792182552';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/4315657757';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true
@@ -52,7 +52,16 @@ const rivision = ({ navigation }) => {
 
         };
     }, [])
+    useEffect(() => {
 
+
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            navigation.goBack(); // Navigate back when back button is pressed
+            return true; // Prevent default behavior
+        });
+
+        return () => backHandler.remove();
+    }, []);
 
     return (
 
@@ -69,11 +78,11 @@ const rivision = ({ navigation }) => {
 
                 <Card style={{ padding: 30, margin: 20 }}>
                     <TouchableOpacity onPress={() =>
-                        navigation.navigate('rivisiontest1')} onPressOut={() => {
+                        navigation.navigate('rivisiontest11')} onPressOut={() => {
                             if (interstitialLoaded) {
 
                                 interstitial.show();
-                            } else { navigation.navigate('rivisiontest1') }
+                            } else { navigation.navigate('rivisiontest11') }
                         }}
                     >
                         <Text style={{ fontSize: 20 }}> RIVISION TEST-1</Text>
@@ -81,11 +90,11 @@ const rivision = ({ navigation }) => {
                 </Card>
                 <Card style={{ padding: 30, margin: 20 }}>
                     <TouchableOpacity onPress={() =>
-                        navigation.navigate('rivisiontest2')} onPressOut={() => {
+                        navigation.navigate('rivisiontest21')} onPressOut={() => {
                             if (interstitialLoaded) {
 
                                 interstitial.show();
-                            } else { navigation.navigate('rivisiontest2') }
+                            } else { navigation.navigate('rivisiontest21') }
                         }}
                     >
                         <Text style={{ fontSize: 20 }}> RIVISION TEST-2</Text>
@@ -93,11 +102,11 @@ const rivision = ({ navigation }) => {
                 </Card>
                 <Card style={{ padding: 30, margin: 20 }}>
                     <TouchableOpacity onPress={() =>
-                        navigation.navigate('rivisiontest3')} onPressOut={() => {
+                        navigation.navigate('rivisiontest31')} onPressOut={() => {
                             if (interstitialLoaded) {
 
                                 interstitial.show();
-                            } else { navigation.navigate('rivisiontest3') }
+                            } else { navigation.navigate('rivisiontest31') }
                         }}
                     >
                         <Text style={{ fontSize: 20 }}> RIVISION TEST-3</Text>
@@ -105,11 +114,11 @@ const rivision = ({ navigation }) => {
                 </Card>
                 <Card style={{ padding: 30, margin: 20 }}>
                     <TouchableOpacity onPress={() =>
-                        navigation.navigate('rivisiontest4')} onPressOut={() => {
+                        navigation.navigate('rivisiontest41')} onPressOut={() => {
                             if (interstitialLoaded) {
 
                                 interstitial.show();
-                            } else { navigation.navigate('rivisiontest4') }
+                            } else { navigation.navigate('rivisiontest41') }
                         }}
                     >
                         <Text style={{ fontSize: 20 }}> RIVISION TEST-4</Text>

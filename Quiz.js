@@ -1,18 +1,27 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, TouchableOpacity, ScrollView, StyleSheet } from "react-native";
+import { View, Text, TouchableOpacity, ScrollView, StyleSheet, BackHandler } from "react-native";
 import { Card } from "react-native-shadow-cards";
 
 import { InterstitialAd, AdEventType, TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
 
 
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 
 
 
 
 const Quiz = ({ navigation }) => {
+    useEffect(() => {
 
+
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            navigation.goBack(); // Navigate back when back button is pressed
+            return true; // Prevent default behavior
+        });
+
+        return () => backHandler.remove();
+    }, []);
     return (
 
 

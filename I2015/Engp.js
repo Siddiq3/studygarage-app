@@ -3,15 +3,15 @@ import { Text, View } from "react-native";
 import WebView from "react-native-webview";
 import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/9492220282';
 
-const Engp13 = () => {
+const Engp11 = () => {
 
     return (
         <View style={{ flex: 1 }}>
             <WebView
                 source={{
-                    uri: `https://drive.google.com/file/d/1NyL9hyaYKrjCPj-E_VZrCOP0ie7o8Wm9/view?usp=share_link`,
+                    uri: `https://drive.google.com/file/d/1peNplugndm46N90A4tT8Hjm22XQGtMwn/view?usp=share_link`,
                 }}
             />
             <GAMBannerAd
@@ -24,4 +24,4 @@ const Engp13 = () => {
         </View>
     );
 }
-export default Engp13;
+export default Engp11;

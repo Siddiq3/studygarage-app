@@ -3,8 +3,8 @@ import { Text, View, Linking, ScrollView, Button, TouchableWithoutFeedback } fro
 import { Card } from "react-native-shadow-cards";
 import { TestIds, GAMBannerAd, BannerAdSize, InterstitialAd, AdEventType } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
-const adUnitId2 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/1783193953';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/9492220282';
+//const adUnitId2 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/1783193953';
 
 const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/3572356105';
 
@@ -50,13 +50,7 @@ const Phyiiit = ({ navigation }) => {
     return (
         <View style={{ flex: 1, backgroundColor: '#3DAEC5' }}>
             <ScrollView>
-                <GAMBannerAd
-                    unitId={adUnitId2}
-                    sizes={[BannerAdSize.FULL_BANNER]}
-                    requestOptions={{
-                        requestNonPersonalizedAdsOnly: true,
-                    }}
-                />
+
                 <Card style={{ padding: 30, margin: 20, backgroundColor: '#9FC8D1' }}>
                     <TouchableWithoutFeedback color='#5F939A' title='Phyics Material' onPress={() =>
                         navigation.navigate('phyics material')} onPressOut={() => {

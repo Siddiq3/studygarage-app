@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, Button, ScrollView, StyleSheet, TouchableOpacity, BackHandler } from "react-native";
 import { Card } from "react-native-shadow-cards";
 import { InterstitialAd, AdEventType, TestIds, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import WebView from "react-native-webview";
@@ -11,8 +11,8 @@ import {
     responsiveFontSize
 } from "react-native-responsive-dimensions";
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/2189111659';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/7426607370';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/1754891563';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true,
@@ -58,6 +58,18 @@ const Dtest = ({ navigation }) => {
 
         };
     }, [])
+
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            navigation.goBack(); // Navigate back when back button is pressed
+            return true; // Prevent default behavior
+        });
+
+        return () => backHandler.remove();
+    }, [])
+
+
+
     return (
 
         <View style={{ flex: 1 }}>

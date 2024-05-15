@@ -5,7 +5,8 @@ import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet } fr
 
 import { InterstitialAd, TestIds, AdEventType, } from 'react-native-google-mobile-ads';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/7169975598';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/6792182552';
+
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true

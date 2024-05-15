@@ -2,15 +2,16 @@
 
 
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet, BackHandler, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useQuizContext } from './QuizContext';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/7472911313';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7830179472';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/3943023557';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/4792952596';
+
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true
@@ -29,7 +30,7 @@ const Quizques = ({ navigation, route }) => {
     const [options, setOptions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [timeLeft, setTimeLeft] = useState(15);
-    const { class1, subject, chapter } = route.params;
+    const { stateBoard, classValue, subject, chapter } = route.params;
     const { totalScore, updateTotalScore } = useQuizContext();
 
     const [interstitialLoaded, setInterstitialLoaded] = useState(false);
@@ -207,7 +208,7 @@ const Quizques = ({ navigation, route }) => {
 
     const getQuiz = async () => {
         setIsLoading(true);
-        const url = `https://api.way2employee.com/quiz/${class1}/${subject}/${chapter}`;
+        const url = `https://api.way2employee.com/quizdata/${stateBoard}/${classValue}/${subject}/${chapter}`;
         const res = await fetch(url);
         const data = await res.json();
 
@@ -217,7 +218,52 @@ const Quizques = ({ navigation, route }) => {
         setIsLoading(false);
     };
 
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
 
+        return () => {
+            backHandler.remove();
+        };
+    }, []);
+
+    const handleContinue = async () => {
+        try {
+            const storedUserName = await AsyncStorage.getItem('userName');
+            const storedAvatar = await AsyncStorage.getItem('avatar');
+            const storedStateBoard = await AsyncStorage.getItem('stateBoard');
+            const storedClassValue = await AsyncStorage.getItem('classValue');
+
+            if (storedUserName && storedAvatar && storedStateBoard && storedClassValue) {
+                // Data found, navigate to SecondPage with stored data
+                navigation.navigate('SecondPage', {
+                    userName: storedUserName,
+                    stateBoard: storedStateBoard,
+                    classValue: storedClassValue,
+                    avatar: storedAvatar,
+                });
+            } else {
+                // Data not found, show an alert
+                Alert.alert('Data not found', 'Please fill in all required fields in the FirstPage.');
+            }
+        } catch (error) {
+            console.error('Error checking stored data:', error);
+        }
+    };
+    const handleBackPress = () => {
+        // Show an alert with options for "Cancel" and "Back"
+        Alert.alert(
+            'Exit',
+            'Are you sure you want to go back?',
+            [
+                { text: 'Cancel', style: 'cancel' },
+                { text: 'Back', onPress: handleContinue }
+            ],
+            { cancelable: false }
+        );
+
+        // Return true to prevent the default back button behavior
+        return true;
+    };
 
     return (
         <View style={styles.container}>

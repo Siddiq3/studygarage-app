@@ -1,13 +1,15 @@
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { useState, useEffect } from 'react'
-import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, TouchableWithoutFeedback, StyleSheet, BackHandler, Alert } from 'react-native';
 
 
 
-import { InterstitialAd, TestIds, AdEventType,  } from 'react-native-google-mobile-ads';
+import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/2407646303';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/6792182552';
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true
 });
@@ -130,10 +132,56 @@ const Quiz6 = ({ navigation }) => {
         })
     }
 
+    useEffect(() => {
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+
+        return () => {
+            backHandler.remove();
+        };
+    }, []);
+
+    const handleContinue = async () => {
+        try {
+            const storedUserName = await AsyncStorage.getItem('userName');
+            const storedAvatar = await AsyncStorage.getItem('avatar');
+            const storedStateBoard = await AsyncStorage.getItem('stateBoard');
+            const storedClassValue = await AsyncStorage.getItem('classValue');
+
+            if (storedUserName && storedAvatar && storedStateBoard && storedClassValue) {
+                // Data found, navigate to SecondPage with stored data
+                navigation.navigate('SecondPage', {
+                    userName: storedUserName,
+                    stateBoard: storedStateBoard,
+                    classValue: storedClassValue,
+                    avatar: storedAvatar,
+                });
+            } else {
+                // Data not found, show an alert
+                Alert.alert('Data not found', 'Please fill in all required fields in the FirstPage.');
+            }
+        } catch (error) {
+            console.error('Error checking stored data:', error);
+        }
+    };
+    const handleBackPress = () => {
+        // Show an alert with options for "Cancel" and "Back"
+        Alert.alert(
+            'Exit',
+            'Are you sure you want to go back?',
+            [
+                { text: 'Cancel', style: 'cancel' },
+                { text: 'Back', onPress: handleContinue }
+            ],
+            { cancelable: false }
+        );
+
+        // Return true to prevent the default back button behavior
+        return true;
+    };
     return (
 
         <View style={styles.container}>
-           
+
             {isLoading ? <View style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100%' }}>
                 <Text style={{ fontSize: 32, fontWeight: '700' }}>LOADING...</Text>
             </View> : questions && (
@@ -156,6 +204,13 @@ const Quiz6 = ({ navigation }) => {
                         <TouchableOpacity style={styles.optionButtom} onPress={() => handlSelectedOption(options[3])}>
                             <Text style={styles.option}>{decodeURIComponent(options[3])}</Text>
                         </TouchableOpacity>
+                        <GAMBannerAd
+                            unitId={adUnitId1}
+                            sizes={[BannerAdSize.LARGE_BANNER]}
+                            requestOptions={{
+                                requestNonPersonalizedAdsOnly: true,
+                            }}
+                        />
                     </View>
                     <View style={styles.bottom}>
                         {/* <TouchableOpacity style={styles.button}>

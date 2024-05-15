@@ -11,9 +11,8 @@ import {
     responsiveFontSize
 } from "react-native-responsive-dimensions";
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/2189111659';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
-
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-6705313336055612/2757267457';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/2465924734';
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true,
 

@@ -3,21 +3,13 @@ import { View, Text, Button, ScrollView, StyleSheet, Linking } from "react-nativ
 import { Card } from "react-native-shadow-cards";
 
 import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
-
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/5259157113';
-const adUnitId2 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/1783193953';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 const Socialte = ({ navigation }) => {
 
     return (
 
         <View style={styles.container}>
-            <GAMBannerAd
-                unitId={adUnitId2}
-                sizes={[BannerAdSize.FULL_BANNER]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
+
             <ScrollView>
                 <Text style={{ fontSize: 30, textAlign: 'center' }}>     Chapter Wise Video Explanation</Text>
 

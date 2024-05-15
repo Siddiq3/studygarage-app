@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator } from 'react-native';
+import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator, BackHandler } from 'react-native';
 
 //import NativeAdComponent from './'; // Import your native ad component
 import { InterstitialAd, TestIds, AdEventType, } from 'react-native-google-mobile-ads';
@@ -7,7 +7,7 @@ import { InterstitialAd, TestIds, AdEventType, } from 'react-native-google-mobil
 import Native from './Nativeads';
 
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/9410155118';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/7426607370';
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true,
@@ -22,7 +22,7 @@ const Fa2data = ({ navigation }) => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('https://siddiq3.github.io/Api/10thblue.json');
+                const response = await fetch('https://siddiq3.github.io/Api/10thfa2.json');
                 const result = await response.json();
                 setData(result.results);
             } catch (error) {
@@ -33,6 +33,12 @@ const Fa2data = ({ navigation }) => {
         };
 
         fetchData();
+        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+            navigation.goBack(); // Navigate back when back button is pressed
+            return true; // Prevent default behavior
+        });
+
+        return () => backHandler.remove();
     }, []);
 
 
@@ -82,7 +88,7 @@ const Fa2data = ({ navigation }) => {
     };
 
     const renderItem = ({ item, index }) => {
-        if ((index + 1) % 4 === 0) {
+        if ((index + 1) % 7 === 0) {
             // Render Native Ad component here
             return <Native key={`native-${index}`} />;
         }

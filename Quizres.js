@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, BackHandler, Alert, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Alert, ScrollView, BackHandler } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
 import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/7472911313';
+const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7830179472';
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-2818388282601075/3943023557';
+const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/4792952596';
+
 
 const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
     requestNonPersonalizedAdsOnly: true
@@ -69,25 +71,58 @@ const QuizResults = ({ route, navigation }) => {
         return () => backHandler.remove();
     }, []);
 
-    const handleRetry = () => {
-        // Navigate to the quiz screen for retrying
 
-        navigation.navigate('equiz');
+    const handleRetry = async () => {
+        try {
+            // Retrieve stored stateBoard and classValue
+            const storedStateBoard = await AsyncStorage.getItem('stateBoard');
+            const storedClassValue = await AsyncStorage.getItem('classValue');
+
+            if (storedStateBoard && storedClassValue) {
+                // Data found, navigate to ChapterDetailsPage with stored data
+                navigation.navigate('SubjectDataPage', {
+                    stateBoard: storedStateBoard,
+                    classValue: storedClassValue,
+                });
+            } else {
+                // Data not found, show an alert
+                Alert.alert('Data not found', 'Please fill in all required fields in the FirstPage.');
+            }
+        } catch (error) {
+            console.error('Error checking stored data:', error);
+        }
     };
+    const handleContinue = async () => {
+        try {
+            const storedUserName = await AsyncStorage.getItem('userName');
+            const storedAvatar = await AsyncStorage.getItem('avatar');
+            const storedStateBoard = await AsyncStorage.getItem('stateBoard');
+            const storedClassValue = await AsyncStorage.getItem('classValue');
 
-    const handleHome = () => {
-        // Navigate to the home screen
-        navigation.navigate('10th class');
+            if (storedUserName && storedAvatar && storedStateBoard && storedClassValue) {
+                // Data found, navigate to SecondPage with stored data
+                navigation.navigate('SecondPage', {
+                    userName: storedUserName,
+                    stateBoard: storedStateBoard,
+                    classValue: storedClassValue,
+                    avatar: storedAvatar,
+                });
+            } else {
+                // Data not found, show an alert
+                Alert.alert('Data not found', 'Please fill in all required fields in the FirstPage.');
+            }
+        } catch (error) {
+            console.error('Error checking stored data:', error);
+        }
     };
     const handleBackPress = () => {
-        // Handle the back button press here
-        // For example, show an alert for exit confirmation
+        // Show an alert with options for "Cancel" and "Back"
         Alert.alert(
             'Exit',
-            'Are you sure you want to exit?',
+            'Are you sure you want to go back?',
             [
                 { text: 'Cancel', style: 'cancel' },
-                { text: 'Exit', onPress: () => BackHandler.exitApp() },
+                { text: 'Back', onPress: handleContinue }
             ],
             { cancelable: false }
         );
@@ -95,6 +130,10 @@ const QuizResults = ({ route, navigation }) => {
         // Return true to prevent the default back button behavior
         return true;
     };
+
+
+
+
     return (
         <View style={styles.container}>
             <ScrollView>
@@ -128,11 +167,11 @@ const QuizResults = ({ route, navigation }) => {
                 }}>
                     <Text style={styles.buttonText}>Retry</Text>
                 </TouchableOpacity>
-                <TouchableOpacity style={styles.button} onPressOut={handleHome} onPress={() => {
+                <TouchableOpacity style={styles.button} onPressOut={handleContinue} onPress={() => {
                     if (interstitialLoaded) {
 
                         interstitial.show();
-                    } else { handleHome }
+                    } else { handleContinue }
                 }} >
                     <Text style={styles.buttonText}>Home</Text>
                 </TouchableOpacity>
