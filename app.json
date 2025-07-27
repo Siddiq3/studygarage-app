@@ -2,7 +2,7 @@
   "expo": {
     "name": "StudyGarage",
     "slug": "10th_class",
-    "version": "2.5.8",
+    "version": "2.8.77",
     "orientation": "portrait",
     "icon": "./assets/icon1.png",
     "userInterfaceStyle": "light",
@@ -23,7 +23,7 @@
     },
     "android": {
       "package": "siddiqkolimidev.tenth_app",
-      "versionCode": 227,
+      "versionCode": 257,
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/icon1.png",
@@ -38,9 +38,7 @@
         "projectId": "f83019ec-3317-4507-b84f-afa2a768ccac"
       }
     },
-    "runtimeVersion": {
-      "policy": "sdkVersion"
-    },
+    "runtimeVersion": "2.8.77",
     "scheme": "10th_class",
     "plugins": [
       [
