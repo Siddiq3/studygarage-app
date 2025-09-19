@@ -5,6 +5,8 @@ import {
     responsiveWidth,
     responsiveFontSize,
 } from "react-native-responsive-dimensions";
+import useInterstitialAd from "../InterstitialAdComponent";
+
 const { width, height } = Dimensions.get("window");
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format, addHours, differenceInMilliseconds } from 'date-fns';
@@ -14,6 +16,12 @@ const Class6ka = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [remainingTime, setRemainingTime] = useState(0);
+    const { showAd } = useInterstitialAd();
+    const handleNavigate = (screen) => {
+        showAd(); // Show interstitial before navigation
+        navigation.navigate(screen);
+    };
+
     const getQuiz = async () => {
         setIsLoading(true);
         const url1 = 'https://siddiq3.github.io/Api/Cardapika.json';
@@ -106,7 +114,7 @@ const Class6ka = ({ navigation }) => {
     // Function to handle button click
     const setButton = () => {
         if (!buttonDisabled) {
-            navigation.navigate("Question6ka");
+            handleNavigate("Question6ka");
 
             saveLastButtonClickTime();
             setButtonDisabled(true);
@@ -141,20 +149,20 @@ const Class6ka = ({ navigation }) => {
                 {/* Second row */}
                 <View style={styles.buttonRow}>
                     {/* Add more buttons here */}
-                    {renderButton('TB', () => navigation.navigate('6thclass tbka'), 'tb6ka')}
-                    {renderButton('Imp', () => navigation.navigate('6thclass impka'), 'imp6ka')}
-                    {renderButton('FA1', () => navigation.navigate('6thclass fa1ka'), 'fa16ka')}
+                    {renderButton('TB', () => handleNavigate('6thclass tbka'), 'tb6ka')}
+                    {renderButton('Imp', () => handleNavigate('6thclass impka'), 'imp6ka')}
+                    {renderButton('FA1', () => handleNavigate('6thclass fa1ka'), 'fa16ka')}
                 </View>
                 {/* Third row */}
                 <View style={styles.buttonRow}>
-                    {renderButton('FA2', () => navigation.navigate('6thclass fa2ka'), 'fa26ka')}
-                    {renderButton('SA1', () => navigation.navigate('6thclass sa1ka'), 'sa16ka')}
-                    {renderButton('FA3', () => navigation.navigate('6thclass fa3ka'), 'fa36ka')}
+                    {renderButton('FA2', () => handleNavigate('6thclass fa2ka'), 'fa26ka')}
+                    {renderButton('SA1', () => handleNavigate('6thclass sa1ka'), 'sa16ka')}
+                    {renderButton('FA3', () => handleNavigate('6thclass fa3ka'), 'fa36ka')}
                 </View>
 
                 <View style={styles.buttonRow}>
-                    {renderButton('FA4', () => navigation.navigate('6thclass fa4ka'), 'fa46ka')}
-                    {renderButton('SA2', () => navigation.navigate('6thclass sa2ka'), 'sa26ka')}
+                    {renderButton('FA4', () => handleNavigate('6thclass fa4ka'), 'fa46ka')}
+                    {renderButton('SA2', () => handleNavigate('6thclass sa2ka'), 'sa26ka')}
 
                 </View>
 
@@ -206,7 +214,6 @@ const Class6ka = ({ navigation }) => {
             </TouchableOpacity>
         </View>
 
-
     );
 };
 
@@ -231,7 +238,6 @@ const styles = StyleSheet.create({
         elevation: 5,
         borderRadius: 20
     },
-
 
     loadingContainer: {
         flex: 1,
@@ -319,5 +325,5 @@ const styles = StyleSheet.create({
 
 });
 
-export default Class6ka;
 
+export default Class6ka;

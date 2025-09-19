@@ -179,5 +179,4 @@ export default Dst12 = [
         correct_option: "C) పీడనానికి గురిచేసిన సహజవాయువు"
     },
 
-
 ]

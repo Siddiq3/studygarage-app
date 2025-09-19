@@ -1,19 +1,7 @@
-
-
-
-
-
-
-
-
+import { ActivityIndicator, StyleSheet, View} from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
-
-
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
-
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/9492220282';
+import MrecAdComponent from "../MrecAdComponent";
 
 
 const Blueprintpdf = ({ route }) => {
@@ -22,6 +10,8 @@ const Blueprintpdf = ({ route }) => {
 
     useEffect(() => {
         setLoading(true);
+    
+        return () => backHandler.remove();
     }, [url]);
 
     const renderLoadingIndicator = () => (
@@ -44,15 +34,7 @@ const Blueprintpdf = ({ route }) => {
                     setLoading(false);
                 }}
             />
-
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
-
+             <MrecAdComponent />
         </View>
     );
 };
@@ -65,7 +47,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
+    }
 });
 
 export default Blueprintpdf;

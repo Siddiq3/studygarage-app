@@ -1,6 +1,5 @@
+import { Text, View} from 'react-native';
 import React from "react";
-
-import { View, ScrollView, Text, Linking } from "react-native";
 
 const Hindiv = () => {
     return (
@@ -11,4 +10,5 @@ const Hindiv = () => {
         </View>
     );
 }
+
 export default Hindiv;

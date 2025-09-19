@@ -5,8 +5,6 @@ import { COLORS, SIZES } from '../constants'
 import Dnt4 from '../QuizData/Nst/Nt4';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { GAMBannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 const Nt4 = ({ navigation }) => {
 
     const allQuestions = Dnt4;
@@ -64,8 +62,6 @@ const Nt4 = ({ navigation }) => {
             useNativeDriver: false
         }).start();
     }
-
-
 
     const renderQuestion = () => {
         return (
@@ -179,7 +175,6 @@ const Nt4 = ({ navigation }) => {
         }
     }
 
-
     const [progress, setProgress] = useState(new Animated.Value(0));
     const progressAnim = progress.interpolate({
         inputRange: [0, allQuestions.length],
@@ -207,7 +202,6 @@ const Nt4 = ({ navigation }) => {
             </View>
         )
     }
-
 
     return (
         <SafeAreaView style={{
@@ -313,7 +307,7 @@ const Nt4 = ({ navigation }) => {
                     resizeMode={'contain'}
                 />
 
-            </View>
+</View>
         </SafeAreaView>
     )
 }

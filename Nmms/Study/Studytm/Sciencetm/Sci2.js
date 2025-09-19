@@ -1,9 +1,7 @@
+import { Text, View} from 'react-native';
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
 import WebView from "react-native-webview";
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/1754891563';
 
 const Scit2 = () => {
     const [questions, setQuestions] = useState([]);
@@ -21,6 +19,7 @@ const Scit2 = () => {
 
     useEffect(() => {
         getQuiz();
+    
     }, []);
     return (
         <View style={{ flex: 1 }}>
@@ -30,16 +29,10 @@ const Scit2 = () => {
                         `${questions.Scit2}`
 
                 }}
-            />
+                />
             )}
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
         </View>
     );
 }
+
 export default Scit2;

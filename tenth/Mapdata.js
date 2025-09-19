@@ -1,23 +1,20 @@
+import { 
+    ActivityIndicator, 
+    BackHandler, 
+    FlatList, 
+    StyleSheet, 
+    Text, 
+    TouchableOpacity, 
+    View 
+} from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator, BackHandler } from 'react-native';
-
-//import NativeAdComponent from './'; // Import your native ad component
-import { InterstitialAd, TestIds, AdEventType, } from 'react-native-google-mobile-ads';
-
-import Native from './Nativeads';
-
-
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/7426607370';
-
-const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-    requestNonPersonalizedAdsOnly: true,
-    keywords: ['fashion', 'clothing', 'education', 'games', 'finance'],
-});
+import useInterstitialAd from "../InterstitialAdComponent";
 
 
 const Mapdata = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const { showAd } = useInterstitialAd();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -33,76 +30,30 @@ const Mapdata = ({ navigation }) => {
         };
 
         fetchData();
+
+        // Handle Android hardware back button
         const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
+            navigation.goBack();
+            return true;
         });
 
         return () => backHandler.remove();
-    }, []);
-
-
-    const [interstitialLoaded, setInterstitialLoaded] = useState(false);
-
-
-    const loadInterstitial = () => {
-        const unsubscribeLoaded = interstitial.addAdEventListener(
-            AdEventType.LOADED,
-            () => {
-                setInterstitialLoaded(true);
-            }
-        );
-
-        const unsubscribeClosed = interstitial.addAdEventListener(
-            AdEventType.CLOSED,
-            () => {
-                setInterstitialLoaded(false);
-                interstitial.load();
-            }
-        );
-
-        interstitial.load();
-
-        return () => {
-            unsubscribeClosed();
-            unsubscribeLoaded();
-        }
-    }
-    useEffect(() => {
-        const unsubscribeInterstitialEvents = loadInterstitial();
-
-        return () => {
-            unsubscribeInterstitialEvents();
-
-        };
-    }, [])
-
+    }, [navigation]);
 
     const handleTitlePress = (url) => {
-        if (interstitialLoaded) {
-
-            interstitial.show();
-            // navigation.navigate('UrlPage', { url });
-        }
+        showAd();
         navigation.navigate('MapPage', { url });
     };
 
-    const renderItem = ({ item, index }) => {
-        if ((index + 1) % 7 === 0) {
-            // Render Native Ad component here
-            return <Native key={`native-${index}`} />;
-        }
-
-        return (
-            <TouchableOpacity
-                onPress={() => handleTitlePress(item.url)}
-                style={styles.titleItem}
-                key={`item-${index}`}
-            >
-                <Text style={styles.titleText}>{item.title}</Text>
-            </TouchableOpacity>
-        );
-    };
+    const renderItem = ({ item, index }) => (
+        <TouchableOpacity
+            onPress={() => handleTitlePress(item.url)}
+            style={styles.titleItem}
+            key={`item-${index}`}
+        >
+            <Text style={styles.titleText}>{item.title}</Text>
+        </TouchableOpacity>
+    );
 
     if (loading) {
         return (
@@ -114,11 +65,17 @@ const Mapdata = ({ navigation }) => {
 
     return (
         <View style={styles.container}>
-            <FlatList
-                data={data}
-                keyExtractor={(item, index) => index.toString()}
-                renderItem={renderItem}
-            />
+            {data && data.length > 0 ? (
+                <FlatList
+                    data={data}
+                    keyExtractor={(item, index) => index.toString()}
+                    renderItem={renderItem}
+                />
+            ) : (
+                <View style={styles.loadingContainer}>
+                    <Text>No data available</Text>
+                </View>
+            )}
         </View>
     );
 };
@@ -128,7 +85,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         backgroundColor: '#fff',
-        marginTop: 40
+        marginTop: 40,
     },
     loadingContainer: {
         flex: 1,

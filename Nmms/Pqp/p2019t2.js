@@ -1,9 +1,7 @@
+import { Text, View} from 'react-native';
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
 import WebView from "react-native-webview";
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/1754891563';
 
 const P2019t2 = () => {
     const [questions, setQuestions] = useState([]);
@@ -30,16 +28,10 @@ const P2019t2 = () => {
                         `${questions.P2019t2}`
 
                 }}
-            />
+                />
             )}
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
         </View>
     );
 }
+
 export default P2019t2;

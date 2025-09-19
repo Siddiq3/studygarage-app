@@ -1,47 +1,49 @@
-import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
-import WebView from "react-native-webview";
-import { TestIds, BannerAdSize, BannerAd } from 'react-native-google-mobile-ads';
-
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
-
+import React, { useEffect, useState } from 'react';
+import { Text, View, ActivityIndicator } from 'react-native';
+import { WebView } from 'react-native-webview'; // Make sure this package is installed
 
 const P2016 = () => {
-    const [questions, setQuestions] = useState([]);
-    const [isLoading, setIsLoading] = useState(false)
-    const getQuiz = async () => {
-        setIsLoading(true)
-        const url1 = 'https://siddiq3.github.io/Api/polycet.json';
-        const res = await fetch(url1);
-        const data = await res.json();
+  const [questions, setQuestions] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-        setQuestions(data.results[0]);
-        setIsLoading(false)
+  const getQuiz = async () => {
+    setIsLoading(true);
+    try {
+      const url1 = 'https://siddiq3.github.io/Api/polycet.json';
+      const res = await fetch(url1);
+      const data = await res.json();
+      setQuestions(data.results[0]);
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    };
+  useEffect(() => {
+    getQuiz();
+  }, []);
 
-    useEffect(() => {
-        getQuiz();
-    }, []);
-
+  if (isLoading) {
     return (
-        <View style={{ flex: 1 }}>
-            {isLoading ? <Text style={{ flex: 1, fontSize: 30, fontWeight: '500', }}>Loading...</Text> : questions && (<WebView
-                source={{
-                    uri:
-                        `${questions.P2016}`
-
-                }}
-            />
-            )}
-            <BannerAd
-                unitId={adUnitId1}
-                size={BannerAdSize.MEDIUM_RECTANGLE}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
-        </View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <ActivityIndicator size="large" color="#348AC7" />
+        <Text style={{ fontSize: 20, marginTop: 10 }}>Loading...</Text>
+      </View>
     );
-}
+  }
+
+  return (
+    <View style={{ flex: 1 }}>
+      {questions?.P2016 ? (
+        <WebView source={{ uri: questions.P2016 }} style={{ flex: 1 }} />
+      ) : (
+        <Text style={{ flex: 1, textAlign: 'center', marginTop: 20 }}>
+          No data available
+        </Text>
+      )}
+    </View>
+  );
+};
+
 export default P2016;

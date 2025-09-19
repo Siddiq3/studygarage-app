@@ -74,5 +74,4 @@ export default Dpt4 = [
         correct_option: "B) 10 సెం.మీ."
     },
 
-
 ]

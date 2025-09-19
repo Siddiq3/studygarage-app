@@ -1,19 +1,30 @@
+import { 
+    ActivityIndicator, 
+    BackHandler, 
+    StyleSheet, 
+    Text, 
+    TouchableOpacity, 
+    View, 
+    Dimensions, 
+    Linking 
+} from 'react-native';
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Text, StyleSheet, View, ActivityIndicator, Dimensions, ScrollView, BackHandler } from "react-native";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     responsiveHeight,
     responsiveWidth,
     responsiveFontSize,
 } from "react-native-responsive-dimensions";
+import { differenceInMilliseconds } from 'date-fns';
+
 const { width, height } = Dimensions.get("window");
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { format, addHours, differenceInMilliseconds } from 'date-fns';
-const buttonWidth = (width * 0.3 - 10) / 3; // Calculate the width of each button based on the container width and desired margin
+
 const Sscka = ({ navigation }) => {
-    const [questions, setQuestions] = useState([]);
+    const [questions, setQuestions] = useState({});
     const [isLoading, setIsLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [remainingTime, setRemainingTime] = useState(0);
+
     const getQuiz = async () => {
         setIsLoading(true);
         const url1 = 'https://siddiq3.github.io/Api/Tscard.json';
@@ -32,28 +43,27 @@ const Sscka = ({ navigation }) => {
     useEffect(() => {
         getQuiz();
         checkButtonStatus();
+
         const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
+            navigation.goBack();
+            return true;
         });
 
         return () => backHandler.remove();
-    }, []);
+    }, [navigation]);
 
-    // Effect for updating remaining time and clearing interval
     useEffect(() => {
+        let intervalId;
         if (buttonDisabled) {
-            const intervalId = setInterval(() => {
-                updateRemainingTime();
-            }, 1000);
-
-            return () => clearInterval(intervalId);
+            intervalId = setInterval(updateRemainingTime, 1000);
         }
+        return () => clearInterval(intervalId);
     }, [buttonDisabled]);
+
     const openURL = (url) => {
         Linking.openURL(url).catch((err) => console.error('An error occurred', err));
     };
-    // Function to save the last button click time
+
     const saveLastButtonClickTime = async () => {
         try {
             const currentTime = new Date();
@@ -63,17 +73,16 @@ const Sscka = ({ navigation }) => {
         }
     };
 
-    // Function to check the status of the button based on the last click time
     const checkButtonStatus = async () => {
         try {
-            const lastButtonClickTime10ts = await AsyncStorage.getItem("lastButtonClickTime10ts");
-            if (lastButtonClickTime10ts) {
-                const timeDifference = differenceInMilliseconds(new Date(), new Date(lastButtonClickTime10ts));
-                const fourHoursInMilliseconds = 24 * 60 * 60 * 1000;
+            const lastClick = await AsyncStorage.getItem("lastButtonClickTime10ts");
+            if (lastClick) {
+                const timeDifference = differenceInMilliseconds(new Date(), new Date(lastClick));
+                const oneDayInMilliseconds = 24 * 60 * 60 * 1000;
 
-                if (timeDifference < fourHoursInMilliseconds) {
+                if (timeDifference < oneDayInMilliseconds) {
                     setButtonDisabled(true);
-                    setRemainingTime(fourHoursInMilliseconds - timeDifference);
+                    setRemainingTime(oneDayInMilliseconds - timeDifference);
                 } else {
                     setButtonDisabled(false);
                 }
@@ -83,9 +92,6 @@ const Sscka = ({ navigation }) => {
         }
     };
 
-
-
-    // Function to update remaining time
     const updateRemainingTime = () => {
         setRemainingTime((prevTime) => {
             if (prevTime > 1000) {
@@ -97,28 +103,26 @@ const Sscka = ({ navigation }) => {
         });
     };
 
-    // Function to format remaining time in HH:MM:SS format
     const formatRemainingTime = (milliseconds) => {
         const seconds = Math.ceil(milliseconds / 1000);
-        return `${Math.floor(seconds / 3600)}:${Math.floor((seconds % 3600) / 60)}:${seconds % 60}`;
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = seconds % 60;
+        return `${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
     };
 
-    // Function to handle button click
     const setButton = () => {
         if (!buttonDisabled) {
             navigation.navigate("Question10ts");
-
             saveLastButtonClickTime();
             setButtonDisabled(true);
             setRemainingTime(24 * 60 * 60 * 1000);
-            checkButtonStatus();
         }
     };
 
-
-    const renderButton = (label, onPress, dataKey) => (
+    const renderButton = (dataKey, onPress) => (
         <TouchableOpacity style={styles.button} onPress={onPress}>
-            <Text style={styles.buttonText1}>{decodeURIComponent(questions[dataKey])}</Text>
+            <Text style={styles.buttonText1}>{decodeURIComponent(questions[dataKey] || '')}</Text>
         </TouchableOpacity>
     );
 
@@ -131,28 +135,27 @@ const Sscka = ({ navigation }) => {
     }
 
     return (
-
         <View style={styles.container}>
-            {/* Main container */}
-
             <View style={styles.innerContainer}>
-                <Text style={styles.textAboveButtons}> Telangana 10thclass</Text>
+                <Text style={styles.textAboveButtons}>Telangana 10thclass</Text>
 
                 <View style={styles.buttonRow}>
-                    {renderButton(questions.tsimp, () => navigation.navigate('tsimp'),)}
-                    {renderButton(questions.tssm, () => navigation.navigate('tssm'),)}
-                    {renderButton(questions.tsbp, () => navigation.navigate('tsbp'),)}
+                    {renderButton('tsimp', () => navigation.navigate('tsimp'))}
+                    {renderButton('tssm', () => navigation.navigate('tssm'))}
+                    {renderButton('tsbp', () => navigation.navigate('tsbp'))}
                 </View>
-                {/* Third row */}
+
                 <View style={styles.buttonRow}>
-                    {renderButton(questions.tsplan, () => navigation.navigate('tsplan'),)}
-                    {renderButton(questions.tsMP, () => navigation.navigate('tstp'),)}
-                    {renderButton(questions.tsprev, () => navigation.navigate('tsprev'),)}
+                    {renderButton('tsplan', () => navigation.navigate('tsplan'))}
+                    {renderButton('tsMP', () => navigation.navigate('tstp'))}
+                    {renderButton('tsprev', () => navigation.navigate('tsprev'))}
                 </View>
             </View>
+
             <View>
-                <Text style={styles.Text}>Today's Quiz  Questions</Text>
+                <Text style={styles.Text}>Today's Quiz Questions</Text>
             </View>
+
             <TouchableOpacity
                 activeOpacity={1}
                 style={[
@@ -167,60 +170,42 @@ const Sscka = ({ navigation }) => {
             >
                 {buttonDisabled ? (
                     <Text style={styles.disabledButtonText}>
-                        Today's Quiz Completed! To Earn More, Click on the "Earn With Quiz" Button.
-                        {"\n"}
-                        Or Try After 24 hours Remaining Time: {formatRemainingTime(remainingTime)}
+                        Today's Quiz Completed! Try again after 24 hours.
+                        {"\n"}Remaining Time: {formatRemainingTime(remainingTime)}
                     </Text>
                 ) : (
                     <>
-                        {isLoading ? (
-                            <Text style={styles.buttonText}>Loading...</Text>
-                        ) : (
-                            <>
-                                <Text style={styles.buttonText}>
-                                    {decodeURIComponent(questions?.t10ts || "")} Quiz
-                                </Text>
-                                <Text style={styles.subButtonText}>
-                                    Q. {decodeURIComponent(questions?.t1ts || "")}?
-                                </Text>
-                            </>
-                        )}
-
-                        <Text style={styles.subButtonText}>
-                            Click here for the answer
+                        <Text style={styles.buttonText}>
+                            {decodeURIComponent(questions?.t10ts || "")} Quiz
                         </Text>
+                        <Text style={styles.subButtonText}>
+                            Q. {decodeURIComponent(questions?.t1ts || "")}?
+                        </Text>
+                        <Text style={styles.subButtonText}>Click here for the answer</Text>
                     </>
                 )}
             </TouchableOpacity>
         </View>
-
-
     );
 };
 
 const styles = StyleSheet.create({
     container: {
-        //flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
         marginLeft: 20,
         marginRight: 20
     },
     innerContainer: {
-        backgroundColor: '#ffffff', // Example background color
-        padding: 10, // Example padding
+        backgroundColor: '#ffffff',
+        padding: 10,
         shadowColor: '#C7C8CC',
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
+        shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.50,
         shadowRadius: 3,
         elevation: 5,
         borderRadius: 20
     },
-
-
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
@@ -233,19 +218,16 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     button: {
-        width: width * 0.25, // Adjust button width as needed
+        width: width * 0.25,
         height: height * 0.13,
         backgroundColor: '#C7C8CC',
         borderRadius: 10,
         justifyContent: 'center',
         alignItems: 'center',
         marginHorizontal: 10,
-        marginVertical: 3,// Add margin between buttons
+        marginVertical: 3,
         shadowColor: '#392467',
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
+        shadowOffset: { width: 2, height: 2 },
         shadowOpacity: 0.50,
         shadowRadius: 3.84,
         elevation: 10,
@@ -255,15 +237,9 @@ const styles = StyleSheet.create({
         color: '#000000',
     },
     textAboveButtons: {
-        marginBottom: 10, // Add spacing between the text and the buttons
-        fontSize: 16, // Example font size
-        fontWeight: 'bold', // Example font weight
-    },
-    quizContainer: {
-        marginTop: 10,
-        backgroundColor: '#f0f0f0',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
+        marginBottom: 10,
+        fontSize: 16,
+        fontWeight: 'bold',
     },
     quizButton: {
         marginLeft: 20,
@@ -298,21 +274,9 @@ const styles = StyleSheet.create({
     Text: {
         fontSize: responsiveFontSize(2.5),
         fontWeight: 'bold',
-        //textAlign: 'center',
         marginTop: 10,
         textAlign: 'left',
-        // marginHorizontal: -10
-
     },
-
 });
 
 export default Sscka;
-
-
-
-
-
-
-
-

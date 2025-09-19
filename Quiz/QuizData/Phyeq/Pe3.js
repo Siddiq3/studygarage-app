@@ -93,7 +93,6 @@ export default Dpe3 = [
         correct_option: "True"
     },
 
-
     {
         question: "14. The process of changing speed when light travels from one medium to another medium is called",
         options: ["Refraction of light",

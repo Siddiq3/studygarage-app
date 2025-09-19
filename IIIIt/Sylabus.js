@@ -1,23 +1,12 @@
+import { Text, View} from 'react-native';
 import React, { useEffect } from 'react';
-import { View, Text, ScrollView } from 'react-native';
-
-import { Card } from 'react-native-shadow-cards';
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
-
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/9492220282';
+import MrecAdComponent from "../MrecAdComponent";
 
 
 const Syllabusi = () => {
 
     return (
         <View>
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.FULL_BANNER]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
             <ScrollView>
 
                 <Text style={{ fontSize: 25, textAlign: 'center', color: '#000000' }}>AP RGUKT CET Mathematics Syllabus</Text>
@@ -49,7 +38,6 @@ const Syllabusi = () => {
                 <Text style={{ fontSize: 18 }}>   Principles of Metallurgy,</Text>
                 <Text style={{ fontSize: 18 }}>   Carbon and its Compounds.</Text>
 
-
                 <Text style={{ fontSize: 25, textAlign: 'center', color: '#000000' }}>  AP RGUKT CET Biological Sciences Syllabus</Text>
                 <Text style={{ fontSize: 18 }}>      Nutrition Food Supplying system,</Text>
                 <Text style={{ fontSize: 18 }}>      Respiration The energy releasing system,</Text>
@@ -60,7 +48,6 @@ const Syllabusi = () => {
                 <Text style={{ fontSize: 18 }}>      Heredity From parent to progeny,</Text>
                 <Text style={{ fontSize: 18 }}>      Our environment Our concern, Natural resources.</Text>
 
-
                 <Text style={{ fontSize: 25, textAlign: 'center', color: '#000000' }}>  AP RGUKT CET Exam Pattern 2022</Text>
                 <Card>
                     <Text style={{ fontSize: 18 }}>   Subject                                 	           Allotted marks</Text>
@@ -70,15 +57,8 @@ const Syllabusi = () => {
                     <Text style={{ fontSize: 18 }}>  Total	                                                     100</Text>
                 </Card>
             </ScrollView>
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.FULL_BANNER]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
-
-        </View>
+            <MrecAdComponent/>
+            </View>
     );
 }
 

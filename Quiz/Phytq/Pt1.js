@@ -1,11 +1,9 @@
 import React, { useState } from 'react'
-import { View, Text, SafeAreaView, StatusBar, Image, TouchableOpacity, Modal, Animated, ScrollView } from 'react-native'
+import { Animated, Image, Modal, SafeAreaView, ScrollView, StatusBar, Text, TouchableOpacity, View} from 'react-native';
 import { COLORS, SIZES } from '../constants'
 import Dpt1 from '../QuizData/Phytq/Pt1';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { GAMBannerAd, BannerAdSize, TestIds } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 const Pt1 = ({ navigation }) => {
 
     const allQuestions = Dpt1;
@@ -64,20 +62,11 @@ const Pt1 = ({ navigation }) => {
         }).start();
     }
 
-
-
     const renderQuestion = () => {
         return (
             <View style={{
                 marginVertical: 33, flex: 1
             }} >
-                <GAMBannerAd
-                    unitId={adUnitId1}
-                    sizes={[BannerAdSize.FULL_BANNER]}
-                    requestOptions={{
-                        requestNonPersonalizedAdsOnly: true,
-                    }}
-                />
                 {/* Question Counter */}
                 <View style={{
                     flexDirection: 'row',
@@ -178,7 +167,6 @@ const Pt1 = ({ navigation }) => {
         }
     }
 
-
     const [progress, setProgress] = useState(new Animated.Value(0));
     const progressAnim = progress.interpolate({
         inputRange: [0, allQuestions.length],
@@ -206,7 +194,6 @@ const Pt1 = ({ navigation }) => {
             </View>
         )
     }
-
 
     return (
         <SafeAreaView style={{
@@ -312,7 +299,7 @@ const Pt1 = ({ navigation }) => {
                     resizeMode={'contain'}
                 />
 
-            </View>
+</View>
         </SafeAreaView>
     )
 }

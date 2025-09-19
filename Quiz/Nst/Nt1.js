@@ -5,8 +5,6 @@ import { COLORS, SIZES } from '../constants'
 import Dnt1 from '../QuizData/Nst/Nt1';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 const Nt1 = ({ navigation }) => {
 
     const allQuestions = Dnt1;
@@ -65,20 +63,13 @@ const Nt1 = ({ navigation }) => {
         }).start();
     }
 
-
-
     const renderQuestion = () => {
         return (
             <View style={{
                 marginVertical: 33, flex: 1
             }} >
-                <GAMBannerAd
-                    unitId={adUnitId1}
-                    sizes={[BannerAdSize.BANNER]}
-                    requestOptions={{
-                        requestNonPersonalizedAdsOnly: true,
-                    }}
-                />
+               
+                
                 {/* Question Counter */}
                 <View style={{
                     flexDirection: 'row',

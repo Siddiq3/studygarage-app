@@ -24,7 +24,6 @@ export default Dpt6 = [
         correct_option: "D) ఏదీ కాదు"
     },
 
-
     {
         question: "4. 3d ఆర్బిటాల్ నిండిన తర్వాత ఎలక్ట్రాన్ ………. లోనికి ప్రవేశించును.",
         options: ["A) 4s",
@@ -42,7 +41,6 @@ export default Dpt6 = [
             "D) అష్టక నియమం"],
         correct_option: "A) ఆఫ్ బౌ నియమం"
     },
-
 
     {
         question: "6. n = 2 అయిన దాని కోణీయ ద్రవ్యవేగ క్వాంటం సంఖ్య l విలువలు = ",

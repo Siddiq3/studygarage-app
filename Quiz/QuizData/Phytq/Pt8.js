@@ -92,7 +92,6 @@ export default Dpt8 = [
         correct_option: "B) వాక్యం 1 మాత్రమే సరియైనది."
     },
 
-
     {
         question: "12. క్రింది వానిలో సరియగు జత",
         options: ["A) BeCl2 – బంధకోణం 120°",

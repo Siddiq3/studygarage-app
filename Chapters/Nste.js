@@ -1,93 +1,55 @@
-import React, { useEffect } from "react";
-import { View, Text, Button, ScrollView, StyleSheet, Linking } from "react-native";
-import { Card } from "react-native-shadow-cards";
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
-
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
+import React from 'react';
+import { StyleSheet, Text, View, ScrollView, Button, Linking } from 'react-native';
+import { Card } from 'react-native-shadow-cards';
 
 const Nste = ({ navigation }) => {
+  const chapters = [
+    { id: 1, title: 'పోషణ – ఆహార సరఫరా వ్యవస్థ', url: 'https://youtu.be/EahhWsJU7uI' },
+    { id: 2, title: 'శ్వాసక్రియ –శక్తి ఉత్పాదక వ్యవస్థ', url: 'https://youtu.be/WNq8teiva98' },
+    { id: 3, title: 'ప్రసరణ –పదార్థ రవాణా వ్యవస్థ', url: 'https://youtu.be/L9RcaInYJxQ' },
+    { id: 4, title: 'విసర్జన –వ్యర్థాల తొలగింపు వ్యవస్థ', screen: 'Chapter4' },
+    { id: 5, title: 'నియంత్రణ –సమన్వయ వ్యవస్థ', screen: 'Chapter5' },
+    { id: 6, title: 'ప్రత్యుత్పత్తి –పునరుత్పాదక వ్యవస్థ', url: 'https://youtu.be/Arrg1wvXWgI' },
+    { id: 7, title: 'జీవక్రియలలో సమన్వయం', screen: 'Chapter7' },
+    { id: 8, title: 'అనువంశికత –తరతరాలలో వైవిధ్యాలు', screen: 'Chapter8' },
+    { id: 9, title: 'మన పర్యావరణం –మన బాధ్యత', screen: 'Chapter9' },
+    { id: 10, title: 'సహజ వనరులు', screen: 'Chapter10' },
+  ];
 
-    return (
-
-        <View style={styles.container}>
-
-            <ScrollView>
-                <Text style={{ fontSize: 30, textAlign: 'center' }}>     Chapter Wise Video Explanation</Text>
-
-
-
-
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='1.పోషణ – ఆహార సరఫరా వ్యవస్థ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/EahhWsJU7uI`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='2. శ్వాసక్రియ –శక్తి ఉత్పాదక వ్యవస్థ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/WNq8teiva98`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='3. ప్రసరణ –పదార్థ రవాణా వ్యవస్థ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/L9RcaInYJxQ`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='4. విసర్జన –వ్యర్థాల తొలగింపు వ్యవస్థ' onPress={() =>
-                        navigation.navigate('Chapter4')}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='5. నియంత్రణ –సమన్వయ వ్యవస్థ' onPress={() =>
-                        navigation.navigate('Chapter5')}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='6. ప్రత్యుత్పత్తి –పునరుత్పాదక వ్యవస్థ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/Arrg1wvXWgI`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='7. జీవక్రియలలో సమన్వయం' onPress={() =>
-                        navigation.navigate('Chapter7')}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='8. అనువంశికత –తరతరాలలో వైవిధ్యాలు' onPress={() =>
-                        navigation.navigate('Chapter8')}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='9. మన పర్యావరణం –మన బాధ్యత' onPress={() =>
-                        navigation.navigate('Chapter9')}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='10. సహజ వనరులు' onPress={() =>
-                        navigation.navigate('Chapter10')}>
-                    </Button>
-                </Card>
-
-            </ScrollView>
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.FULL_BANNER]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
+  return (
+    <View style={styles.container}>
+      <ScrollView>
+        <Text style={styles.header}>Chapter Wise Video Explanation</Text>
+        {chapters.map((chapter) => (
+          <Card key={chapter.id} style={styles.card}>
+            <Button
+              color="#5F939A"
+              title={`${chapter.id}. ${chapter.title}`}
+              onPress={() =>
+                chapter.url ? Linking.openURL(chapter.url) : navigation.navigate(chapter.screen)
+              }
             />
-        </View>
+          </Card>
+        ))}
+      </ScrollView>
+    </View>
+  );
+};
 
-    );
-}
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#F7F3E9',
+  },
+  header: {
+    fontSize: 30,
+    textAlign: 'center',
+    marginVertical: 20,
+  },
+  card: {
+    padding: 30,
+    margin: 20,
+  },
+});
 
 export default Nste;
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F7F3E9',
-    },
-
-});

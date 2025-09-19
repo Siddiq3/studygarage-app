@@ -92,7 +92,6 @@ export default Dst2 = [
         correct_option: "A) U.N.D.P"
     },
 
-
     {
         question: "15. 2018 మానవాభివృద్ధి సూచికలో మెరుగైన స్థానంలోగల దేశం",
         options: ["A) నేపాల్",

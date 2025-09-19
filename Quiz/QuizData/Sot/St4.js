@@ -196,7 +196,6 @@ export default Dst4 = [
         correct_option: "C) (1) మరియు (2)"
     },
 
-
     {
         question: "24. పశ్చిమ విక్షోభాలు దీనికి కారణం",
         options: ["A) అరేబియా సముద్రంలో తుఫాన్లకు",

@@ -1,19 +1,25 @@
+import { ActivityIndicator, BackHandler, StyleSheet, Text, TouchableOpacity,Dimensions, View} from 'react-native';
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Text, StyleSheet, View, ActivityIndicator, Dimensions, BackHandler } from "react-native";
 import {
     responsiveHeight,
     responsiveWidth,
     responsiveFontSize,
 } from "react-native-responsive-dimensions";
+import useInterstitialAd from "../InterstitialAdComponent";
+
 const { width, height } = Dimensions.get("window");
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format, addHours, differenceInMilliseconds } from 'date-fns';
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
 const buttonWidth = (width * 0.3 - 10) / 3; // Calculate the width of each button based on the container width and desired margin
 const Class7 = ({ navigation }) => {
     const [questions, setQuestions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [remainingTime, setRemainingTime] = useState(0);
+      const { showAd } = useInterstitialAd();
+
+
     const getQuiz = async () => {
         setIsLoading(true);
         const url1 = 'https://siddiq3.github.io/Api/Cardapi.json';
@@ -28,6 +34,10 @@ const Class7 = ({ navigation }) => {
             setIsLoading(false);
         }
     };
+     const handleNavigate = (screen) => {
+      showAd(); // Show interstitial before navigation
+      navigation.navigate(screen);
+    };
 
     useEffect(() => {
         getQuiz();
@@ -38,7 +48,7 @@ const Class7 = ({ navigation }) => {
         });
 
         return () => backHandler.remove();
-    }, []);
+    }, [navigation]);
 
     // Effect for updating remaining time and clearing interval
     useEffect(() => {
@@ -83,8 +93,6 @@ const Class7 = ({ navigation }) => {
         }
     };
 
-
-
     // Function to update remaining time
     const updateRemainingTime = () => {
         setRemainingTime((prevTime) => {
@@ -106,7 +114,7 @@ const Class7 = ({ navigation }) => {
     // Function to handle button click
     const setButton = () => {
         if (!buttonDisabled) {
-            navigation.navigate("Question7");
+           handleNavigate("Question7");
 
             saveLastButtonClickTime();
             setButtonDisabled(true);
@@ -114,7 +122,6 @@ const Class7 = ({ navigation }) => {
             checkButtonStatus();
         }
     };
-
 
     const renderButton = (label, onPress, dataKey) => (
         <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -141,20 +148,20 @@ const Class7 = ({ navigation }) => {
                 {/* Second row */}
                 <View style={styles.buttonRow}>
                     {/* Add more buttons here */}
-                    {renderButton('TB', () => navigation.navigate('7thclass tb'), 'tb7')}
-                    {renderButton('Imp', () => navigation.navigate('7thclass imp'), 'imp7')}
-                    {renderButton('FA1', () => navigation.navigate('7thclass fa1'), 'fa17')}
+                    {renderButton('TB', () =>handleNavigate('7thclass tb'), 'tb7')}
+                    {renderButton('Imp', () =>handleNavigate('7thclass imp'), 'imp7')}
+                    {renderButton('FA1', () =>handleNavigate('7thclass fa1'), 'fa17')}
                 </View>
                 {/* Third row */}
                 <View style={styles.buttonRow}>
-                    {renderButton('FA2', () => navigation.navigate('7thclass fa2'), 'fa27')}
-                    {renderButton('SA1', () => navigation.navigate('7thclass sa1'), 'sa17')}
-                    {renderButton('FA3', () => navigation.navigate('7thclass fa3'), 'fa37')}
+                    {renderButton('FA2', () =>handleNavigate('7thclass fa2'), 'fa27')}
+                    {renderButton('SA1', () =>handleNavigate('7thclass sa1'), 'sa17')}
+                    {renderButton('FA3', () =>handleNavigate('7thclass fa3'), 'fa37')}
                 </View>
 
                 <View style={styles.buttonRow}>
-                    {renderButton('FA4', () => navigation.navigate('7thclass fa4'), 'fa47')}
-                    {renderButton('SA2', () => navigation.navigate('7thclass sa2'), 'sa27')}
+                    {renderButton('FA4', () =>handleNavigate('7thclass fa4'), 'fa47')}
+                    {renderButton('SA2', () =>handleNavigate('7thclass sa2'), 'sa27')}
                     {/* Add more buttons as needed */}
                 </View>
 
@@ -206,7 +213,6 @@ const Class7 = ({ navigation }) => {
             </TouchableOpacity>
         </View>
 
-
     );
 };
 
@@ -231,7 +237,6 @@ const styles = StyleSheet.create({
         elevation: 5,
         borderRadius: 20
     },
-
 
     loadingContainer: {
         flex: 1,
@@ -319,5 +324,5 @@ const styles = StyleSheet.create({
 
 });
 
-export default Class7;
 
+export default Class7;

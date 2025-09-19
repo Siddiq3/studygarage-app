@@ -1,112 +1,67 @@
+import { Image, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, TouchableWithoutFeedback } from 'react-native';
 import Title from '../Title';
-import { TestIds, InterstitialAd, AdEventType, } from 'react-native-google-mobile-ads';
+import MrecAdComponent from "../MrecAdComponent";
+import useInterstitialAd from "../InterstitialAdComponent";
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/2465924734';
-
-const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-    requestNonPersonalizedAdsOnly: true
-});
 
 const WeekResult = ({ navigation, route }) => {
     const [loaded, setLoaded] = useState(false);
+    const {showAd}=useInterstitialAd();
+    const handleNavigate = (screen) => {
+    showAd(); // Show interstitial before navigation
+    navigation.navigate(screen);
+  };
 
     useEffect(() => {
-        const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
-            setLoaded(true);
-        });
-
-        // Start loading the interstitial straight away
-        interstitial.load();
-
-        // Unsubscribe from events on unmount
-        return unsubscribe;
+        setLoaded(true);
     }, []);
 
-    // No advert ready to show yet
+    // Access score safely from route.params
+    const { score } = route.params;
+
+    // Choose banner based on score
+    const resultBanner =
+        score >= 60
+            ? "https://cdni.iconscout.com/illustration/premium/thumb/men-celebrating-victory-4587301-3856211.png"
+            : "https://cdni.iconscout.com/illustration/free/thumb/concept-about-business-failure-1862195-1580189.png";
+
     if (!loaded) {
-        console.log('hi');
-    }
-    const [interstitialLoaded, setInterstitialLoaded] = useState(false);
-
-
-    const loadInterstitial = () => {
-        const unsubscribeLoaded = interstitial.addAdEventListener(
-            AdEventType.LOADED,
-            () => {
-                setInterstitialLoaded(true);
-            }
+        return (
+            <View style={styles.container}>
+                <Text>Loading...</Text>
+            </View>
         );
-
-        const unsubscribeClosed = interstitial.addAdEventListener(
-            AdEventType.CLOSED,
-            () => {
-                setInterstitialLoaded(false);
-                interstitial.load();
-            }
-        );
-
-        interstitial.load();
-
-        return () => {
-            unsubscribeClosed();
-            unsubscribeLoaded();
-        }
     }
-    useEffect(() => {
-        const unsubscribeInterstitialEvents = loadInterstitial();
 
-        return () => {
-            unsubscribeInterstitialEvents();
-
-        };
-    }, [])
-    const { score, } = route.params
-
-    const resultBanner = score >= 60 ? "https://cdni.iconscout.com/illustration/premium/thumb/men-celebrating-victory-4587301-3856211.png" : "https://cdni.iconscout.com/illustration/free/thumb/concept-about-business-failure-1862195-1580189.png"
     return (
         <View style={styles.container}>
-            <Title titleText='RESULTS' />
+            <Title titleText="RESULTS" />
             <Text style={styles.scoreValue}>{score}</Text>
 
             <View style={styles.bannerContainer}>
                 <Image
-                    source={{
-                        uri: resultBanner,
-                    }}
+                    source={{ uri: resultBanner }}
                     style={styles.banner}
                     resizeMode="contain"
                 />
             </View>
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('10th class')} style={styles.button}
-                onPressOut={() => {
-                    if (interstitialLoaded) {
 
-                        interstitial.show();
-                    } else { navigation.navigate('10th class') }
-                }}
-            >
-                <Text style={styles.buttonText}>GO TO HOME</Text>
+            <TouchableWithoutFeedback onPress={() => handleNavigate('10th class')}>
+                <View style={styles.button}>
+                    <Text style={styles.buttonText}>GO TO HOME</Text>
+                </View>
             </TouchableWithoutFeedback>
 
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('Weekly Answer')} style={styles.button}
-                onPressOut={() => {
-                    if (interstitialLoaded) {
-
-                        interstitial.show();
-                    } else { navigation.navigate('Weekly Answer') }
-                }}
-            >
-                <Text style={styles.buttonText}>Click Here for Answers</Text>
+            <TouchableWithoutFeedback onPress={() => handleNavigate('Weekly Answer')}>
+                <View style={styles.button}>
+                    <Text style={styles.buttonText}>Click Here for Answers</Text>
+                </View>
             </TouchableWithoutFeedback>
+            <MrecAdComponent/>
         </View>
     );
 };
-
-
-
-export default WeekResult;
 
 const styles = StyleSheet.create({
     banner: {
@@ -135,11 +90,13 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold',
         color: '#ED4264',
-        textAlign: 'center'
+        textAlign: 'center',
     },
     scoreValue: {
         fontSize: 24,
         fontWeight: '800',
-        alignSelf: 'center'
-    }
+        alignSelf: 'center',
+    },
 });
+
+export default WeekResult;

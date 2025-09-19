@@ -1,30 +1,20 @@
+import { ActivityIndicator, BackHandler, FlatList, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, TouchableOpacity, StyleSheet, ActivityIndicator, BackHandler } from 'react-native';
-
-//import NativeAdComponent from './'; // Import your native ad component
-import { InterstitialAd, TestIds, AdEventType, } from 'react-native-google-mobile-ads';
-
-import Native from './Nativeads';
-
-8744784248
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/3166129864';
-
-const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-    requestNonPersonalizedAdsOnly: true,
-    keywords: ['fashion', 'clothing', 'education', 'games', 'finance'],
-});
+import useInterstitialAd from "../InterstitialAdComponent";
 
 
 const Fa16data = ({ navigation }) => {
     const [loading, setLoading] = useState(true);
     const [data, setData] = useState([]);
+    const {showAd}=useInterstitialAd();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const response = await fetch('https://siddiq3.github.io/Api/6thfa1.json');
                 const result = await response.json();
-                setData(result.results);
+                // handle either result.results or result directly
+                setData(result.results || result);
             } catch (error) {
                 console.error('Error fetching data:', error);
             } finally {
@@ -33,66 +23,24 @@ const Fa16data = ({ navigation }) => {
         };
 
         fetchData();
+
         const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
+            navigation.goBack();
+            return true;
         });
 
+        // ✅ fixed cleanup
         return () => backHandler.remove();
     }, []);
 
-
-    const [interstitialLoaded, setInterstitialLoaded] = useState(false);
-
-
-    const loadInterstitial = () => {
-        const unsubscribeLoaded = interstitial.addAdEventListener(
-            AdEventType.LOADED,
-            () => {
-                setInterstitialLoaded(true);
-            }
-        );
-
-        const unsubscribeClosed = interstitial.addAdEventListener(
-            AdEventType.CLOSED,
-            () => {
-                setInterstitialLoaded(false);
-                interstitial.load();
-            }
-        );
-
-        interstitial.load();
-
-        return () => {
-            unsubscribeClosed();
-            unsubscribeLoaded();
-        }
-    }
-    useEffect(() => {
-        const unsubscribeInterstitialEvents = loadInterstitial();
-
-        return () => {
-            unsubscribeInterstitialEvents();
-
-        };
-    }, [])
-
-
+    // ✅ fixed missing closing bracket
     const handleTitlePress = (url) => {
-        if (interstitialLoaded) {
-
-            interstitial.show();
-            // navigation.navigate('UrlPage', { url });
-        }
+        showAd();
         navigation.navigate('Fa16Page', { url });
     };
 
+    // ✅ moved outside handleTitlePress
     const renderItem = ({ item, index }) => {
-        if ((index + 1) % 7 === 0) {
-            // Render Native Ad component here
-            return <Native key={`native-${index}`} />;
-        }
-
         return (
             <TouchableOpacity
                 onPress={() => handleTitlePress(item.url)}
@@ -128,7 +76,7 @@ const styles = StyleSheet.create({
         flex: 1,
         padding: 16,
         backgroundColor: '#fff',
-        marginTop: 40
+        marginTop: 40,
     },
     loadingContainer: {
         flex: 1,

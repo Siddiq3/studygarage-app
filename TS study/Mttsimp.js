@@ -1,9 +1,8 @@
+import { Text, View} from 'react-native';
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
 import WebView from "react-native-webview";
-import { TestIds, BannerAdSize, BannerAd } from 'react-native-google-mobile-ads';
+import MrecAdComponent from "../MrecAdComponent";
 
-const adUnitId1 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-3251781230941397/8642173042';
 
 const Mttssm = () => {
     const [questions, setQuestions] = useState([]);
@@ -21,7 +20,8 @@ const Mttssm = () => {
 
     useEffect(() => {
         getQuiz();
-    }, []);
+    
+   }, []);
 
     return (
         <View style={{ flex: 1 }}>
@@ -31,16 +31,12 @@ const Mttssm = () => {
                         `${questions.Mttssm}`
 
                 }}
-            />
+                />
             )}
-            <BannerAd
-                unitId={adUnitId1}
-                size={BannerAdSize.MEDIUM_RECTANGLE}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
+            <MrecAdComponent/>
+
         </View>
     );
 }
+
 export default Mttssm;

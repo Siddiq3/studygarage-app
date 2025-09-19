@@ -83,7 +83,6 @@ export default Dpe5 = [
         correct_option: "Refraction"
     },
 
-
     {
         question: "11. v = fλ here f is",
         options: ["Wavelength",

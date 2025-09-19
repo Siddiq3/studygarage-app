@@ -1,77 +1,74 @@
 import React from "react";
-import { View, Button, StyleSheet, ScrollView, Linking } from "react-native";
+import { View, ScrollView, Button, Linking, StyleSheet } from "react-native";
 import { Card } from "react-native-shadow-cards";
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 
+const Telv = () => {
+  return (
+    <View style={styles.container}>
+      <ScrollView>
 
-const Telv = ({ navigation }) => {
+        <Card style={styles.card}>
+          <Button
+            color='#5F939A'
+            title='ప్రకృతి వికృతులు'
+            onPress={() => Linking.openURL('https://youtu.be/0lQdldMIpjg')}
+          />
+        </Card>
 
-    return (
+        <Card style={styles.card}>
+          <Button
+            color='#5F939A'
+            title='తెలుగు వ్యాకరణం | సంధులు'
+            onPress={() => Linking.openURL('https://youtu.be/5a0W-tI7Ylg')}
+          />
+        </Card>
 
-        <View style={styles.container}>
+        <Card style={styles.card}>
+          <Button
+            color='#5F939A'
+            title='grammar in Amaravathi lesson'
+            onPress={() => Linking.openURL('https://youtu.be/_nocBp5Pykc')}
+          />
+        </Card>
 
-            <ScrollView>
+        <Card style={styles.card}>
+          <Button
+            color='#5F939A'
+            title='Nanarthalu'
+            onPress={() => Linking.openURL('https://youtu.be/yuf5fLxtbzA')}
+          />
+        </Card>
 
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='ప్రకృతి వికృతులు' onPress={() =>
-                        Linking.openURL(`https://youtu.be/0lQdldMIpjg`)}>
-                    </Button>
-                </Card>
+        <Card style={styles.card}>
+          <Button
+            color='#5F939A'
+            title='అలంకారములు'
+            onPress={() => Linking.openURL('https://youtu.be/7EtMePPAp6o')}
+          />
+        </Card>
 
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='తెలుగు వ్యాకరణం | సంధులు' onPress={() =>
-                        Linking.openURL(`https://youtu.be/5a0W-tI7Ylg`)}>
-                    </Button>
-                </Card>
+        <Card style={styles.card}>
+          <Button
+            color='#5F939A'
+            title='సమాసాలు'
+            onPress={() => Linking.openURL('https://youtu.be/CNbjMD4dtlk')}
+          />
+        </Card>
 
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='grammar in Amaravathi lesson' onPress={() =>
-                        Linking.openURL(`https://youtu.be/_nocBp5Pykc`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='Nanarthalu ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/yuf5fLxtbzA`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='అలంకారములు ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/7EtMePPAp6o`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' సమాసాలు' onPress={() =>
-                        Linking.openURL(`https://youtu.be/CNbjMD4dtlk`)}>
-                    </Button>
-                </Card>
-
-
-            </ScrollView>
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.FULL_BANNER]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
-
-
-
-
-        </View>
-
-    );
+      </ScrollView>
+    </View>
+  );
 }
 
-export default Telv;
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#F7F3E9',
-    },
-
+  container: {
+    flex: 1,
+    backgroundColor: '#F7F3E9',
+  },
+  card: {
+    padding: 30,
+    margin: 20,
+  },
 });
+
+export default Telv;

@@ -1,7 +1,3 @@
-
-
-
-
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 import React, { createContext, useState, useEffect, useContext } from 'react';
@@ -16,6 +12,7 @@ export const QuizProvider = ({ children }) => {
     useEffect(() => {
         // Load the total score from AsyncStorage when the context provider mounts
         loadTotalScore();
+    
     }, []);
 
     const loadTotalScore = async () => {
@@ -28,9 +25,6 @@ export const QuizProvider = ({ children }) => {
             console.error('Error loading total score:', error);
         }
     };
-
-
-
 
     /*const updateTotalScore = async (score) => {
         try {
@@ -103,4 +97,3 @@ export const QuizProvider = ({ children }) => {
 export const useQuizContext = () => {
     return useContext(QuizContext);
 };
-

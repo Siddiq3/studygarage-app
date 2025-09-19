@@ -1,21 +1,9 @@
-
-
-
 import React, { useState, useEffect } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, BackHandler, Alert } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { responsiveFontSize } from 'react-native-responsive-dimensions';
-import { useQuizContext } from './QuizContext'
-
-import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
+import { useQuizContext } from './QuizContext';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/7472911313';
-
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/2465924734';
-
-const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-    requestNonPersonalizedAdsOnly: true
-});
 
 const TodayQues = ({ navigation, route }) => {
     const [totalQuestions, setTotalQuestions] = useState();
@@ -29,85 +17,9 @@ const TodayQues = ({ navigation, route }) => {
     const [score, setscore] = useState(0);
     const { totalScore, updateTotalScore } = useQuizContext();
 
-    const [interstitialLoaded, setInterstitialLoaded] = useState(false);
-    const [interstitialTimer, setInterstitialTimer] = useState(0);
-
-    const loadInterstitial = () => {
-        const unsubscribeLoaded = interstitial.addAdEventListener(
-            AdEventType.LOADED,
-            () => {
-                setInterstitialLoaded(true);
-            }
-        );
-
-        const unsubscribeClosed = interstitial.addAdEventListener(
-            AdEventType.CLOSED,
-            () => {
-                setInterstitialLoaded(false);
-                interstitial.load();
-            }
-        );
-
-        interstitial.load();
-
-        return () => {
-            unsubscribeClosed();
-            unsubscribeLoaded();
-        }
-    }
-    useEffect(() => {
-        const timerInterval = 25000; // 20 seconds
-
-        const timer = setInterval(() => {
-            setInterstitialTimer((prevTimer) => prevTimer + 1000);
-
-            // Show interstitial ad every 40 seconds
-            if (interstitialTimer >= timerInterval) {
-                setInterstitialTimer(0);
-                showInterstitialAd();
-            }
-        }, 1000);
-
-        return () => {
-            clearInterval(timer);
-        };
-    }, [interstitialTimer]);
-
-    // Function to load and show interstitial ad
-    const showInterstitialAd = async () => {
-        try {
-            if (interstitialLoaded) {
-                await interstitial.show();
-                interstitial.load();
-            } else {
-                // If the interstitial ad is not loaded, try loading it
-                interstitial.load();
-            }
-        } catch (e) {
-            console.error('Failed to show interstitial ad:', e);
-        }
-    };
-
-
-
-
-
-    useEffect(() => {
-        const unsubscribeInterstitialEvents = loadInterstitial();
-
-        // Load the interstitial ad when the component mounts
-        interstitial.load();
-
-        return () => {
-            unsubscribeInterstitialEvents();
-        };
-    }, []);
-
-
     useEffect(() => {
         getQuiz();
     }, []);
-
 
     useEffect(() => {
         const timer = setInterval(() => {
@@ -130,7 +42,7 @@ const TodayQues = ({ navigation, route }) => {
 
     useEffect(() => {
         if (ques < totalQuestions) {
-            setOptions((prevOptions) =>
+            setOptions(
                 generateOptionsAndShuffle(
                     questions[ques].incorrect_answers.concat(questions[ques].correct_answer)
                 )
@@ -138,6 +50,7 @@ const TodayQues = ({ navigation, route }) => {
             setTimeLeft(20);
         }
     }, [ques, totalQuestions]);
+
     const shuffleArray = (array) => {
         for (let i = array.length - 1; i > 0; i--) {
             const j = Math.floor(Math.random() * (i + 1));
@@ -153,8 +66,8 @@ const TodayQues = ({ navigation, route }) => {
 
     const handleNextPress = () => {
         if (ques < totalQuestions - 1) {
-            setQues((prevQues) => prevQues + 1);
-            setOptions((prevOptions) =>
+            setQues(prevQues => prevQues + 1);
+            setOptions(
                 generateOptionsAndShuffle(
                     questions[ques + 1].incorrect_answers.concat(questions[ques + 1].correct_answer)
                 )
@@ -173,26 +86,24 @@ const TodayQues = ({ navigation, route }) => {
             : questions[ques].incorrect_answers;
 
         if (_option === questions[ques].correct_answer) {
-            setscore((prevScore) => prevScore + 1);
-            setCorrectQuestions((prevCorrect) => prevCorrect + 1);
+            setscore(prevScore => prevScore + 1);
+            setCorrectQuestions(prevCorrect => prevCorrect + 1);
         } else {
-            setIncorrectQuestions((prevIncorrect) => prevIncorrect + 1);
+            setIncorrectQuestions(prevIncorrect => prevIncorrect + 1);
         }
 
         if (ques < totalQuestions - 1) {
-            setQues((prevQues) => prevQues + 1);
-            setOptions((prevOptions) => generateOptionsAndShuffle(optionsToShuffle));
+            setQues(prevQues => prevQues + 1);
+            setOptions(generateOptionsAndShuffle(optionsToShuffle));
             setTimeLeft(15);
         }
 
         if (ques === totalQuestions - 1) {
             handleShowResult();
-
-
             updateTotalScore(score);
-
         }
     };
+
     const handleShowResult = () => {
         navigation.navigate('Daily Result', {
             score,
@@ -202,7 +113,6 @@ const TodayQues = ({ navigation, route }) => {
             totalScore
         });
     };
-
 
     const getQuiz = async () => {
         setIsLoading(true);
@@ -222,13 +132,9 @@ const TodayQues = ({ navigation, route }) => {
         }
     };
 
-
     useEffect(() => {
         const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-        return () => {
-            backHandler.remove();
-        };
+        return () => backHandler.remove();
     }, []);
 
     const handleContinue = async () => {
@@ -239,7 +145,6 @@ const TodayQues = ({ navigation, route }) => {
             const storedClassValue = await AsyncStorage.getItem('classValue');
 
             if (storedUserName && storedAvatar && storedStateBoard && storedClassValue) {
-                // Data found, navigate to SecondPage with stored data
                 navigation.navigate('SecondPage', {
                     userName: storedUserName,
                     stateBoard: storedStateBoard,
@@ -247,15 +152,14 @@ const TodayQues = ({ navigation, route }) => {
                     avatar: storedAvatar,
                 });
             } else {
-                // Data not found, show an alert
                 Alert.alert('Data not found', 'Please fill in all required fields in the FirstPage.');
             }
         } catch (error) {
             console.error('Error checking stored data:', error);
         }
     };
+
     const handleBackPress = () => {
-        // Show an alert with options for "Cancel" and "Back"
         Alert.alert(
             'Exit',
             'Are you sure you want to go back?',
@@ -265,11 +169,8 @@ const TodayQues = ({ navigation, route }) => {
             ],
             { cancelable: false }
         );
-
-        // Return true to prevent the default back button behavior
         return true;
     };
-
 
     return (
         <View style={styles.container}>
@@ -301,14 +202,6 @@ const TodayQues = ({ navigation, route }) => {
                                     <Text style={styles.optionText}>{decodeURIComponent(option)}</Text>
                                 </TouchableOpacity>
                             ))}
-
-                            <GAMBannerAd
-                                unitId={adUnitId1}
-                                sizes={[BannerAdSize.LARGE_BANNER]}
-                                requestOptions={{
-                                    requestNonPersonalizedAdsOnly: true,
-                                }}
-                            />
                         </View>
 
                         <View style={styles.bottom}>
@@ -330,6 +223,7 @@ const TodayQues = ({ navigation, route }) => {
 };
 
 export default TodayQues;
+
 const themeColor = '#3498db';
 const styles = StyleSheet.create({
     container: {
@@ -364,47 +258,37 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         marginTop: 15,
         paddingHorizontal: 10,
-
         width: '100%'
     },
     top2: {
         flexDirection: 'row',
         justifyContent: "flex-end",
         alignItems: 'center',
-
         paddingHorizontal: 30,
         marginRight: 10,
-
-
         width: '100%'
     },
     questionCount: {
         fontSize: responsiveFontSize(2),
         fontWeight: '600',
         color: themeColor,
-
     },
     timerIcon: {
         marginRight: 5,
-
     },
     timer: {
         fontSize: responsiveFontSize(2),
         fontWeight: '500',
         color: themeColor,
     },
-
     question: {
         fontSize: responsiveFontSize(2),
         fontWeight: '700',
         marginTop: 10,
-
-
     },
     options: {
         flex: 1,
         padding: 10,
-
     },
     optionButton: {
         paddingVertical: 12,

@@ -1,10 +1,10 @@
+import { Text, View} from 'react-native';
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
 
 import WebView from "react-native-webview";
-import { TestIds, BannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
+import MrecAdComponent from "../MrecAdComponent";
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_NATIVE : 'ca-app-pub-2818388282601075/5259157113';
+
 const Nstt = () => {
     const [questions, setQuestions] = useState([]);
     const [isLoading, setIsLoading] = useState(false)
@@ -30,17 +30,12 @@ const Nstt = () => {
                         `${questions.nstt}`
 
                 }}
-            />
+                />
             )}
+            <MrecAdComponent />
 
-            <BannerAd
-                unitId={adUnitId1}
-                size={BannerAdSize.MEDIUM_RECTANGLE}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
         </View>
     );
 }
+
 export default Nstt;

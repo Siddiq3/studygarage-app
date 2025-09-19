@@ -7,14 +7,11 @@ import {
     StyleSheet,
     FlatList,
     Dimensions,
-
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
-import { TestIds, AdEventType, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-2818388282601075/7472911313';
 const colors = {
     white: '#fff',
     textBlack: '#333',
@@ -63,7 +60,6 @@ const Subjectq = ({ route }) => {
 
     return (
         <View style={styles.container}>
-
             <FlatList
                 data={uniqueSubjects}
                 keyExtractor={(item, index) => index.toString()}
@@ -77,22 +73,11 @@ const Subjectq = ({ route }) => {
                             <Text style={styles.subjectText} numberOfLines={1} ellipsizeMode="tail">
                                 {item}
                             </Text>
-
                             <Icon name="chevron-right" size={20} color={colors.textBlack} />
                         </View>
                     </TouchableOpacity>
                 )}
             />
-
-            <View style={styles.bannerContainer}>
-                <GAMBannerAd
-                    unitId={adUnitId1}
-                    sizes={[BannerAdSize.LARGE_BANNER]}
-                    requestOptions={{
-                        requestNonPersonalizedAdsOnly: true,
-                    }}
-                />
-            </View>
         </View>
     );
 };
@@ -110,12 +95,10 @@ const styles = StyleSheet.create({
         alignItems: 'center',
     },
     subjectContainer: {
-
         padding: 20,
         backgroundColor: '#f0f0f0',
         borderRadius: 8,
         marginTop: 20,
-
     },
     itemContent: {
         flexDirection: 'row',
@@ -126,13 +109,6 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         color: colors.textBlack,
-    },
-    bannerContainer: {
-        position: 'absolute',
-        bottom: 0,
-        left: 0,
-        right: 0,
-        alignItems: 'center',
     },
 });
 

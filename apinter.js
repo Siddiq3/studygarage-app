@@ -1,5 +1,5 @@
+import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View,Dimensions} from 'react-native';
 import React, { useState, useEffect } from "react";
-import { TouchableOpacity, Text, StyleSheet, View, ActivityIndicator, Dimensions, ScrollView } from "react-native";
 import {
     responsiveHeight,
     responsiveWidth,
@@ -8,7 +8,6 @@ import {
 const { width, height } = Dimensions.get("window");
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format, addHours, differenceInMilliseconds } from 'date-fns';
-const buttonWidth = (width * 0.3 - 10) / 3; // Calculate the width of each button based on the container width and desired margin
 const Apinter = ({ navigation }) => {
     const [questions, setQuestions] = useState([]);
     const [isLoading, setIsLoading] = useState(false);
@@ -32,6 +31,8 @@ const Apinter = ({ navigation }) => {
     useEffect(() => {
         getQuiz();
         checkButtonStatus();
+    
+        return () => backHandler.remove();
     }, []);
 
     // Effect for updating remaining time and clearing interval
@@ -39,7 +40,9 @@ const Apinter = ({ navigation }) => {
         if (buttonDisabled) {
             const intervalId = setInterval(() => {
                 updateRemainingTime();
-            }, 1000);
+            
+        return () => backHandler.remove();
+    }, 1000);
 
             return () => clearInterval(intervalId);
         }
@@ -77,8 +80,6 @@ const Apinter = ({ navigation }) => {
         }
     };
 
-
-
     // Function to update remaining time
     const updateRemainingTime = () => {
         setRemainingTime((prevTime) => {
@@ -88,9 +89,9 @@ const Apinter = ({ navigation }) => {
                 setButtonDisabled(false);
                 return 0;
             }
-        });
-    };
 
+    });
+};
     // Function to format remaining time in HH:MM:SS format
     const formatRemainingTime = (milliseconds) => {
         const seconds = Math.ceil(milliseconds / 1000);
@@ -108,7 +109,6 @@ const Apinter = ({ navigation }) => {
             checkButtonStatus();
         }
     };
-
 
     const renderButton = (label, onPress, dataKey) => (
         <TouchableOpacity style={styles.button} onPress={onPress}>
@@ -131,7 +131,6 @@ const Apinter = ({ navigation }) => {
 
             <View style={styles.innerContainer}>
                 <Text style={styles.textAboveButtons}>AP INTER</Text>
-
 
                 <View style={styles.buttonRow}>
                     {/* Add more buttons here */}
@@ -194,7 +193,6 @@ const Apinter = ({ navigation }) => {
             </TouchableOpacity>
         </View>
 
-
     );
 };
 
@@ -219,7 +217,6 @@ const styles = StyleSheet.create({
         elevation: 5,
         borderRadius: 20
     },
-
 
     loadingContainer: {
         flex: 1,
@@ -304,8 +301,6 @@ const styles = StyleSheet.create({
         // marginHorizontal: -10
 
     },
-
 });
 
 export default Apinter;
-

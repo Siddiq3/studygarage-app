@@ -9,7 +9,6 @@ export default Dpe8 = [
         correct_option: "Ammeter"
     },
 
-
     {
         question: "4. The SI unit of electric current is",
         options: ["Watt",
@@ -84,7 +83,6 @@ export default Dpe8 = [
             "In series connection , the same current flows through each element"],
         correct_option: "Both are right"
     },
-
 
     {
         question: "17. In a electrolytic cell , the electrode connected to the positive terminal of the battery is called the",

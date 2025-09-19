@@ -92,8 +92,8 @@ android {
         applicationId 'siddiqkolimidev.tenth_app'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 257
-        versionName "2.8.77"
+        versionCode 264
+        versionName "2.8.84"
     }
     signingConfigs {
         debug {
@@ -148,7 +148,6 @@ android {
 }
 
 dependencies {
-    implementation "com.google.android.gms:play-services-ads:21.3.0"
     // The version of react-native is set by the React Native Gradle Plugin
     implementation("com.facebook.react:react-android")
 

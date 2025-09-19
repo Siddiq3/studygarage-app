@@ -5,6 +5,8 @@ import {
     responsiveWidth,
     responsiveFontSize,
 } from "react-native-responsive-dimensions";
+import useInterstitialAd from "../InterstitialAdComponent";
+
 const { width, height } = Dimensions.get("window");
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format, addHours, differenceInMilliseconds } from 'date-fns';
@@ -14,6 +16,8 @@ const Class8 = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [remainingTime, setRemainingTime] = useState(0);
+          const { showAd } = useInterstitialAd();
+
     const getQuiz = async () => {
         setIsLoading(true);
         const url1 = 'https://siddiq3.github.io/Api/Cardapi.json';
@@ -27,6 +31,11 @@ const Class8 = ({ navigation }) => {
         } finally {
             setIsLoading(false);
         }
+    };
+
+     const handleNavigate = (screen) => {
+      showAd(); // Show interstitial before navigation
+      navigation.navigate(screen);
     };
 
     useEffect(() => {
@@ -106,7 +115,7 @@ const Class8 = ({ navigation }) => {
     // Function to handle button click
     const setButton = () => {
         if (!buttonDisabled) {
-            navigation.navigate("Question8");
+            handleNavigate("Question8");
 
             saveLastButtonClickTime();
             setButtonDisabled(true);
@@ -141,21 +150,21 @@ const Class8 = ({ navigation }) => {
                 {/* Second row */}
                 <View style={styles.buttonRow}>
                     {/* Add more buttons here */}
-                    {renderButton('TB', () => navigation.navigate('8thclass tb'), 'tb8')}
-                    {renderButton('Imp', () => navigation.navigate('8thclass imp'), 'imp8')}
-                    {renderButton('FA1', () => navigation.navigate('8thclass fa1'), 'fa18')}
+                    {renderButton('TB', () => handleNavigate('8thclass tb'), 'tb8')}
+                    {renderButton('Imp', () => handleNavigate('8thclass imp'), 'imp8')}
+                    {renderButton('FA1', () => handleNavigate('8thclass fa1'), 'fa18')}
                 </View>
                 {/* Third row */}
                 <View style={styles.buttonRow}>
-                    {renderButton('FA2', () => navigation.navigate('8thclass fa2'), 'fa28')}
-                    {renderButton('SA1', () => navigation.navigate('8thclass sa1'), 'sa18')}
-                    {renderButton('FA3', () => navigation.navigate('8thclass fa3'), 'fa38')}
+                    {renderButton('FA2', () => handleNavigate('8thclass fa2'), 'fa28')}
+                    {renderButton('SA1', () => handleNavigate('8thclass sa1'), 'sa18')}
+                    {renderButton('FA3', () => handleNavigate('8thclass fa3'), 'fa38')}
                 </View>
 
                 <View style={styles.buttonRow}>
-                    {renderButton('FA4', () => navigation.navigate('8thclass fa4'), 'fa48')}
-                    {renderButton('SA2', () => navigation.navigate('8thclass sa2'), 'sa28')}
-                    {renderButton('nmms', () => navigation.navigate('nmms'), 'nmms')}
+                    {renderButton('FA4', () => handleNavigate('8thclass fa4'), 'fa48')}
+                    {renderButton('SA2', () => handleNavigate('8thclass sa2'), 'sa28')}
+                    {renderButton('nmms', () => handleNavigate('nmms'), 'nmms')}
                 </View>
 
 

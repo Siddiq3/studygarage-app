@@ -33,7 +33,6 @@ export default Dpt7 = [
         correct_option: "D) రుబీడియం"
     },
 
-
     {
         question: "5. గ్రూపులో పై నుండి క్రిందికి వెళ్ళే కొలదీ అయనీకరణ శక్తి విలువ ",
         options: ["A) పెరుగుతుంది",
@@ -42,7 +41,6 @@ export default Dpt7 = [
             "D) చెప్పలేము"],
         correct_option: "B) తగ్గుతుంది"
     },
-
 
     {
         question: "6. కింది వానిలో అధిక ధనవిద్యుదాత్మకత విలువ గల మూలకం",
@@ -69,8 +67,6 @@ export default Dpt7 = [
             "D) 18"],
         correct_option: "D) 18"
     },
-
-
 
     {
         question: "9. కింది వాటిలో డాబరీనర్ త్రికం",
@@ -105,6 +101,5 @@ export default Dpt7 = [
             "D) Si"],
         correct_option: "A) Na"
     },
-
 
 ]

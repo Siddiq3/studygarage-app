@@ -77,7 +77,6 @@ export default Dpe4 = [
         correct_option: "A concave lens of focal length 20 cm"
     },
 
-
     {
         question: "14. Light travelling from a denser medium to rarer medium along a normal to the boundary",
         options: ["Is not refracted",
@@ -95,7 +94,6 @@ export default Dpe4 = [
             "3/2"],
         correct_option: "3/2"
     },
-
 
     {
         question: "19. The power of a concave lens is",
@@ -139,6 +137,5 @@ export default Dpe4 = [
             "Mirrors"],
         correct_option: "Lens"
     },
-
 
 ]

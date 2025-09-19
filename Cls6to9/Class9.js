@@ -5,6 +5,8 @@ import {
     responsiveWidth,
     responsiveFontSize,
 } from "react-native-responsive-dimensions";
+import useInterstitialAd from "../InterstitialAdComponent";
+
 const { width, height } = Dimensions.get("window");
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format, addHours, differenceInMilliseconds } from 'date-fns';
@@ -14,6 +16,8 @@ const Class9 = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [remainingTime, setRemainingTime] = useState(0);
+              const { showAd } = useInterstitialAd();
+
     const getQuiz = async () => {
         setIsLoading(true);
         const url1 = 'https://siddiq3.github.io/Api/Cardapi.json';
@@ -40,6 +44,10 @@ const Class9 = ({ navigation }) => {
         return () => backHandler.remove();
     }, []);
 
+      const handleNavigate = (screen) => {
+      showAd(); // Show interstitial before navigation
+      navigation.navigate(screen);
+    };
     // Effect for updating remaining time and clearing interval
     useEffect(() => {
         if (buttonDisabled) {
@@ -106,7 +114,7 @@ const Class9 = ({ navigation }) => {
     // Function to handle button click
     const setButton = () => {
         if (!buttonDisabled) {
-            navigation.navigate("Question9");
+            handleNavigate("Question9");
 
             saveLastButtonClickTime();
             setButtonDisabled(true);
@@ -136,25 +144,25 @@ const Class9 = ({ navigation }) => {
             {/* Main container */}
 
             <View style={styles.innerContainer}>
-                <Text style={styles.textAboveButtons}>10thclass</Text>
+                <Text style={styles.textAboveButtons}>9ththclass</Text>
 
                 {/* Second row */}
                 <View style={styles.buttonRow}>
                     {/* Add more buttons here */}
-                    {renderButton('TB', () => navigation.navigate('9thclass tb'), 'tb9')}
-                    {renderButton('Imp', () => navigation.navigate('9thclass imp'), 'imp9')}
-                    {renderButton('FA1', () => navigation.navigate('9thclass fa1'), 'fa19')}
+                    {renderButton('TB', () => handleNavigate('9thclass tb'), 'tb9')}
+                    {renderButton('Imp', () => handleNavigate('9thclass imp'), 'imp9')}
+                    {renderButton('FA1', () => handleNavigate('9thclass fa1'), 'fa19')}
                 </View>
                 {/* Third row */}
                 <View style={styles.buttonRow}>
-                    {renderButton('FA2', () => navigation.navigate('9thclass fa2'), 'fa29')}
-                    {renderButton('SA1', () => navigation.navigate('9thclass sa1'), 'sa19')}
-                    {renderButton('FA3', () => navigation.navigate('9thclass fa3'), 'fa39')}
+                    {renderButton('FA2', () => handleNavigate('9thclass fa2'), 'fa29')}
+                    {renderButton('SA1', () => handleNavigate('9thclass sa1'), 'sa19')}
+                    {renderButton('FA3', () => handleNavigate('9thclass fa3'), 'fa39')}
                 </View>
 
                 <View style={styles.buttonRow}>
-                    {renderButton('FA4', () => navigation.navigate('9thclass fa4'), 'fa49')}
-                    {renderButton('SA2', () => navigation.navigate('9thclass sa2'), 'sa29')}
+                    {renderButton('FA4', () => handleNavigate('9thclass fa4'), 'fa49')}
+                    {renderButton('SA2', () => handleNavigate('9thclass sa2'), 'sa29')}
                     {/* Add more buttons as needed */}
                 </View>
 

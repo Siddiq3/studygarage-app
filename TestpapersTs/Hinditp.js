@@ -1,149 +1,51 @@
-import React, { useState, useEffect } from "react";
-import { View, Text, Button, ScrollView, StyleSheet, Linking, TouchableWithoutFeedback, BackHandler } from "react-native";
+import { BackHandler, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useEffect } from "react";
 import { Card } from "react-native-shadow-cards";
 
-import { InterstitialAd, TestIds, AdEventType, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
-
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/3250245563';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/4460111801';
-
-
-const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-    requestNonPersonalizedAdsOnly: true
-});
-
-
-
-
 const Hintpts = ({ navigation }) => {
-    const [interstitialLoaded, setInterstitialLoaded] = useState(false);
 
-
-    const loadInterstitial = () => {
-        const unsubscribeLoaded = interstitial.addAdEventListener(
-            AdEventType.LOADED,
-            () => {
-                setInterstitialLoaded(true);
-            }
-        );
-
-        const unsubscribeClosed = interstitial.addAdEventListener(
-            AdEventType.CLOSED,
-            () => {
-                setInterstitialLoaded(false);
-                interstitial.load();
-            }
-        );
-
-        interstitial.load();
-
-        return () => {
-            unsubscribeClosed();
-            unsubscribeLoaded();
-        }
-    }
     useEffect(() => {
-        const unsubscribeInterstitialEvents = loadInterstitial();
-
-        return () => {
-            unsubscribeInterstitialEvents();
-
-        };
-    }, [])
-    useEffect(() => {
-
-
         const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
+            navigation.goBack();
+            return true;
         });
 
         return () => backHandler.remove();
-    }, []);
-    return (
+    }, [navigation]);
 
+    const testPapers = [
+        { id: 1, screen: 'hindi ts tp1' },
+        { id: 2, screen: 'hindi ts tp2' },
+        { id: 3, screen: 'hindi ts tp3' },
+        { id: 4, screen: 'hindi ts tp4' },
+    ];
+
+    return (
         <View style={styles.container}>
             <ScrollView>
-
-
-
-
-
-
-                <Card style={{ padding: 20, margin: 20 }}>
-                    <TouchableWithoutFeedback onPress={() =>
-                        navigation.navigate('hindi ts tp1')} onPressOut={() => {
-                            if (interstitialLoaded) {
-
-                                interstitial.show();
-                            } else { navigation.navigate('hindi ts tp1') }
-                        }}
-                    >
-                        <Text style={{ fontSize: 20 }}> TestPaper-1</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={{ padding: 20, margin: 20 }}>
-                    <TouchableWithoutFeedback onPress={() =>
-                        navigation.navigate('hindi ts tp2')} onPressOut={() => {
-                            if (interstitialLoaded) {
-
-                                interstitial.show();
-                            } else { navigation.navigate('hindi ts tp2') }
-                        }}
-                    >
-                        <Text style={{ fontSize: 20 }}> TestPaper-2</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={{ padding: 20, margin: 20 }}>
-                    <TouchableWithoutFeedback onPress={() =>
-                        navigation.navigate('hindi ts tp3')} onPressOut={() => {
-                            if (interstitialLoaded) {
-
-                                interstitial.show();
-                            } else { navigation.navigate('hindi ts tp3') }
-                        }}
-                    >
-                        <Text style={{ fontSize: 20 }}> TestPaper-3</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={{ padding: 20, margin: 20 }}>
-                    <TouchableWithoutFeedback onPress={() =>
-                        navigation.navigate('hindi ts tp4')} onPressOut={() => {
-                            if (interstitialLoaded) {
-
-                                interstitial.show();
-                            } else { navigation.navigate('hindi ts tp4') }
-                        }}
-                    >
-                        <Text style={{ fontSize: 20 }}> TestPaper-4</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-
-
-
-
+                {testPapers.map((paper) => (
+                    <Card key={paper.id} style={styles.card}>
+                        <TouchableOpacity onPress={() => navigation.navigate(paper.screen)}>
+                            <Text style={styles.cardText}>TestPaper-{paper.id}</Text>
+                        </TouchableOpacity>
+                    </Card>
+                ))}
             </ScrollView>
-
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }} />
         </View>
-
     );
 }
 
-export default Hintpts;
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-
     },
-
+    card: {
+        padding: 20,
+        margin: 20,
+    },
+    cardText: {
+        fontSize: 20,
+    },
 });
+
+export default Hintpts;

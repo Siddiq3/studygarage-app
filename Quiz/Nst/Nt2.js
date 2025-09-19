@@ -5,8 +5,6 @@ import { COLORS, SIZES } from '../constants'
 import Dnt2 from '../QuizData/Nst/Nt2';
 import { FontAwesome } from '@expo/vector-icons';
 import { Ionicons } from '@expo/vector-icons';
-import { GAMBannerAd, BannerAdSize, TestIds, AdMobNativeAd } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7465549093';
 const Nt2 = ({ navigation }) => {
 
     const allQuestions = Dnt2;
@@ -65,20 +63,11 @@ const Nt2 = ({ navigation }) => {
         }).start();
     }
 
-
-
     const renderQuestion = () => {
         return (
             <View style={{
                 marginVertical: 33, flex: 1
             }} >
-                <GAMBannerAd
-                    unitId={adUnitId1}
-                    sizes={[BannerAdSize.FULL_BANNER]}
-                    requestOptions={{
-                        requestNonPersonalizedAdsOnly: true,
-                    }}
-                />
                 {/* Question Counter */}
                 <View style={{
                     flexDirection: 'row',
@@ -179,7 +168,6 @@ const Nt2 = ({ navigation }) => {
         }
     }
 
-
     const [progress, setProgress] = useState(new Animated.Value(0));
     const progressAnim = progress.interpolate({
         inputRange: [0, allQuestions.length],
@@ -207,7 +195,6 @@ const Nt2 = ({ navigation }) => {
             </View>
         )
     }
-
 
     return (
         <SafeAreaView style={{
@@ -313,7 +300,7 @@ const Nt2 = ({ navigation }) => {
                     resizeMode={'contain'}
                 />
 
-            </View>
+</View>
         </SafeAreaView>
     )
 }

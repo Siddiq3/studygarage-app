@@ -1,7 +1,16 @@
-
+import { 
+    ActivityIndicator,
+    BackHandler,
+    Dimensions,
+    FlatList,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View 
+} from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator, FlatList, TouchableOpacity, StyleSheet, Dimensions, BackHandler } from 'react-native';
-import Icon from 'react-native-vector-icons/FontAwesome'; // Assuming you're using FontAwesome
+
+import Icon from 'react-native-vector-icons/FontAwesome';
 import axios from 'axios';
 import { useNavigation } from '@react-navigation/native';
 
@@ -10,10 +19,12 @@ const ChapterDetails = ({ route }) => {
     const [chapterDetails, setChapterDetails] = useState([]);
     const [loading, setLoading] = useState(true);
     const navigation = useNavigation();
+
     console.log('Received params:', stateBoard, classValue, subject);
-    // Modify the URL to include the subject parameter
+
     const apiUrl = `https://api.way2employee.com/quizdata/${stateBoard}/${classValue}/${subject}`;
 
+    // Fetch data
     useEffect(() => {
         const fetchData = async () => {
             try {
@@ -29,16 +40,17 @@ const ChapterDetails = ({ route }) => {
 
         fetchData();
     }, [apiUrl]);
-    useEffect(() => {
 
+    // Handle Android back button
+    useEffect(() => {
         const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
+            navigation.goBack();
+            return true; // prevent default
         });
 
-        return () => backHandler.remove();
+        return () => backHandler.remove(); // ✅ cleanup properly
+    }, [navigation]);
 
-    }, []);
     if (loading) {
         return (
             <View style={styles.loadingContainer}>
@@ -91,9 +103,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         marginTop: 20,
-        // borderBottomWidth: 1,
-        //borderBottomColor: '#ccc',
-
         padding: 20,
         backgroundColor: '#f0f0f0',
         borderRadius: 8,
@@ -104,4 +113,3 @@ const styles = StyleSheet.create({
 });
 
 export default ChapterDetails;
-

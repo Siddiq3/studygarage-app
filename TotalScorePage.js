@@ -1,16 +1,11 @@
+import { BackHandler, FlatList, StyleSheet, Text, TouchableOpacity, View, ScrollView, Alert } from 'react-native';
 import React, { useContext, useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, FlatList, Alert, ScrollView, BackHandler } from 'react-native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useQuizContext } from './QuizContext';
-//import { format, differenceInMilliseconds } from 'date-fns';
-import { InterstitialAd, TestIds, GAMBannerAd, BannerAdSize } from 'react-native-google-mobile-ads';
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/7830179472';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const TotalScorePage = ({ navigation }) => {
-    //const [buttonDisabled, setButtonDisabled] = useState(false);
     const { totalScore, updateTotalScore } = useQuizContext();
     const [withdrawalHistory, setWithdrawalHistory] = useState([]);
-
 
     useEffect(() => {
         loadWithdrawalHistory();
@@ -21,8 +16,6 @@ const TotalScorePage = ({ navigation }) => {
 
         return () => backHandler.remove();
     }, []);
-
-
 
     const saveWithdrawalHistory = async (history) => {
         try {
@@ -43,8 +36,6 @@ const TotalScorePage = ({ navigation }) => {
             console.error('Error loading withdrawal history:', error);
         }
     };
-
-
 
     const handleContinue = async () => {
         try {
@@ -70,10 +61,6 @@ const TotalScorePage = ({ navigation }) => {
         }
     };
 
-
-
-
-
     const handleWithdraw = () => {
         if (totalScore >= 250) {
             updateTotalScore(-250);
@@ -82,7 +69,7 @@ const TotalScorePage = ({ navigation }) => {
             saveWithdrawalHistory([...withdrawalHistory, newWithdrawal]);
             navigation.navigate('WithdrawalFormPage');
         } else {
-            alert('Coins are low');
+            Alert.alert('Coins are low', 'You need at least 250 coins to make a withdrawal.');
         }
     };
 
@@ -94,9 +81,18 @@ const TotalScorePage = ({ navigation }) => {
         }
     };
 
+    const renderWithdrawalItem = ({ item }) => (
+        <View style={styles.withdrawalItem}>
+            <View style={styles.withdrawalItemContent}>
+                <Text style={styles.withdrawalItemAmount}>Amount: {item.amount}</Text>
+                <Text style={styles.withdrawalItemDate}>Date: {item.date.toLocaleDateString()}</Text>
+            </View>
+        </View>
+    );
+
     return (
         <View style={styles.container}>
-            <ScrollView>
+            <ScrollView contentContainerStyle={{ alignItems: 'center' }}>
                 <View style={styles.card}>
                     <Text style={styles.totalScoreText}>Total Coins</Text>
                     <Text style={styles.totalScoreText1}> {totalScore}</Text>
@@ -139,15 +135,6 @@ const TotalScorePage = ({ navigation }) => {
                     />
                 )}
             </ScrollView>
-            <View style={styles.bannerContainer}>
-                <GAMBannerAd
-                    unitId={adUnitId1}
-                    sizes={[BannerAdSize.LARGE_BANNER]}
-                    requestOptions={{
-                        requestNonPersonalizedAdsOnly: true,
-                    }}
-                />
-            </View>
         </View>
     );
 };
@@ -230,7 +217,7 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
     },
     withdrawalItemDate: {
-        fontSize: 20,
+        fontSize: 16,
         color: '#555',
     },
     buttonContainer: {
@@ -264,7 +251,7 @@ const styles = StyleSheet.create({
         marginTop: 10,
         fontWeight: 'bold'
     },
-    bannerContainer: {
+    bottomContainer: {
         position: 'absolute',
         bottom: 0,
         left: 0,

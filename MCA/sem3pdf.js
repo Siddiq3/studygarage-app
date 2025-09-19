@@ -1,7 +1,8 @@
+import { ActivityIndicator, StyleSheet, View} from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
-import Native from './Nativeads';
+import MrecAdComponent from "../MrecAdComponent";
+
 
 
 const Mcasem3Pdf = ({ route }) => {
@@ -10,6 +11,7 @@ const Mcasem3Pdf = ({ route }) => {
 
     useEffect(() => {
         setLoading(true);
+    
     }, [url]);
 
     const renderLoadingIndicator = () => (
@@ -28,14 +30,11 @@ const Mcasem3Pdf = ({ route }) => {
                 startInLoadingState={true}
                 onLoad={() => setLoading(false)}
                 onError={(syntheticEvent) => {
-                    console.error('WebView error:', syntheticEvent.nativeEvent);
                     setLoading(false);
                 }}
-            />
 
-            <Native />
-
-
+        />
+        <MrecAdComponent/>
         </View>
     );
 };
@@ -43,12 +42,15 @@ const Mcasem3Pdf = ({ route }) => {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
-    },
+    
+},
     loadingContainer: {
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
     },
+
 });
+
 
 export default Mcasem3Pdf;

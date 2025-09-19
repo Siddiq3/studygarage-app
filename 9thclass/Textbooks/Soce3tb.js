@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
 import WebView from "react-native-webview";
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
+import MrecAdComponent from "../../MrecAdComponent";
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/1815968297';
 
 const Soc39tb = () => {
     const [questions, setQuestions] = useState([]);
@@ -32,13 +31,7 @@ const Soc39tb = () => {
                 }}
             />
             )}
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
+            <MrecAdComponent/>
         </View>
     );
 }

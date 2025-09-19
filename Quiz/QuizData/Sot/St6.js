@@ -96,7 +96,6 @@ export default Dst6 = [
         correct_option: "C) 0-6 సం||లు"
     },
 
-
     {
         question: "15. క్రింది వాటిలో అత్యధిక జనసాంద్రత గల రాష్ట్రం",
         options: ["A) పశ్చిమ బెంగాల్",

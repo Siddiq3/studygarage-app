@@ -1,9 +1,7 @@
+import { ActivityIndicator, StyleSheet, View} from 'react-native';
 import React, { useState, useEffect } from 'react';
-import { View, ActivityIndicator, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
-
-
-import NativeAd from './ads';
+import MrecAdComponent from "../MrecAdComponent";
 
 
 const Grandtestpdf = ({ route }) => {
@@ -12,6 +10,7 @@ const Grandtestpdf = ({ route }) => {
 
     useEffect(() => {
         setLoading(true);
+    
     }, [url]);
 
     const renderLoadingIndicator = () => (
@@ -34,9 +33,7 @@ const Grandtestpdf = ({ route }) => {
                     setLoading(false);
                 }}
             />
-
-            <NativeAd />
-
+                <MrecAdComponent />
         </View>
     );
 };
@@ -49,7 +46,7 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent: 'center',
         alignItems: 'center',
-    },
+    }
 });
 
 export default Grandtestpdf;

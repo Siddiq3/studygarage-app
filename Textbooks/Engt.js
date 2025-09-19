@@ -1,61 +1,11 @@
+import { Text, View} from 'react-native';
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
+import MrecAdComponent from "../MrecAdComponent";
+
 
 import WebView from "react-native-webview";
-import { TestIds, BannerAd, BannerAdSize, InterstitialAd, AdEventType, } from 'react-native-google-mobile-ads';
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/7426607370';
-const adUnitId1 = __DEV__ ? TestIds.BANNER : 'ca-app-pub-2818388282601075/5259157113';
-
-const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-    requestNonPersonalizedAdsOnly: true
-});
-
 
 const Engt = () => {
-
-    const [interstitialLoaded, setInterstitialLoaded] = useState(false);
-
-
-    const loadInterstitial = () => {
-        const unsubscribeLoaded = interstitial.addAdEventListener(
-            AdEventType.LOADED,
-            () => {
-                setInterstitialLoaded(true);
-
-            }
-        );
-
-        const unsubscribeClosed = interstitial.addAdEventListener(
-            AdEventType.CLOSED,
-            () => {
-                setInterstitialLoaded(false);
-                interstitial.load();
-            }
-        );
-
-        interstitial.load();
-
-        return () => {
-            unsubscribeClosed();
-            unsubscribeLoaded();
-        }
-    }
-    useEffect(() => {
-        const unsubscribeInterstitialEvents = loadInterstitial();
-
-        return () => {
-            unsubscribeInterstitialEvents();
-
-        };
-    }, [])
-
-    useEffect(() => {
-        if (interstitialLoaded) {
-
-            interstitial.show();
-        } else { interstitial.load(); }
-    }, [10000])
-
 
 
     const [questions, setQuestions] = useState([]);
@@ -73,7 +23,7 @@ const Engt = () => {
 
     useEffect(() => {
         getQuiz();
-    }, []);
+        }, []);
     return (
         <View style={{ flex: 1 }}>
             {isLoading ? <Text style={{ flex: 1, fontSize: 30, fontWeight: '500', }}>Loading...</Text> : questions && (<WebView
@@ -82,16 +32,12 @@ const Engt = () => {
                         `${questions.telugut}`
 
                 }}
-            />
+                />
             )}
-            <BannerAd
-                unitId={adUnitId1}
-                size={BannerAdSize.MEDIUM_RECTANGLE}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
+            <MrecAdComponent />
+
         </View>
     );
 }
+
 export default Engt;

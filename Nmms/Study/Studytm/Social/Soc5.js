@@ -1,9 +1,7 @@
+import { Text, View} from 'react-native';
 import React, { useEffect, useState } from "react";
-import { Text, View } from "react-native";
 import WebView from "react-native-webview";
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/1754891563';
 
 const Soct5 = () => {
     const [questions, setQuestions] = useState([]);
@@ -21,6 +19,7 @@ const Soct5 = () => {
 
     useEffect(() => {
         getQuiz();
+    
     }, []);
     return (
         <View style={{ flex: 1 }}>
@@ -30,16 +29,10 @@ const Soct5 = () => {
                         `${questions.Soct5}`
 
                 }}
-            />
+                />
             )}
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
         </View>
     );
 }
+
 export default Soct5;

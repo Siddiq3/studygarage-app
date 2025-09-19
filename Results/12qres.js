@@ -1,145 +1,98 @@
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import React, { useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, TouchableOpacity, View, TouchableWithoutFeedback } from 'react-native';
 import Title from '../Title';
-import { InterstitialAd, TestIds, AdEventType, } from 'react-native-google-mobile-ads';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import MrecAdComponent from "../MrecAdComponent";
+import useInterstitialAd from "../InterstitialAdComponent";
 
-const adUnitId = __DEV__ ? TestIds.INTERSTITIAL : 'ca-app-pub-3251781230941397/2465924734';
 
-const interstitial = InterstitialAd.createForAdRequest(adUnitId, {
-    requestNonPersonalizedAdsOnly: true
-});
 
 const Qres12 = ({ navigation, route }) => {
-    const [loaded, setLoaded] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+  const { score } = route.params;
+  const{showAd} =useInterstitialAd();
+  const handleNavigate = (screen) => {
+    showAd(); // Show interstitial before navigation
+    navigation.navigate(screen);
+  };
 
-    useEffect(() => {
-        const unsubscribe = interstitial.addAdEventListener(AdEventType.LOADED, () => {
-            setLoaded(true);
-        });
+  useEffect(() => {
+    setLoaded(true);
+  }, []);
 
-        // Start loading the interstitial straight away
-        interstitial.load();
+  if (!loaded) {
+    return null; // or a loader if you want
+  }
 
-        // Unsubscribe from events on unmount
-        return unsubscribe;
-    }, []);
+  const resultBanner =
+    score >= 30
+      ? "https://cdni.iconscout.com/illustration/premium/thumb/men-celebrating-victory-4587301-3856211.png"
+      : "https://cdni.iconscout.com/illustration/free/thumb/concept-about-business-failure-1862195-1580189.png";
 
-    // No advert ready to show yet
-    if (!loaded) {
-        console.log('hi');
-    } const [interstitialLoaded, setInterstitialLoaded] = useState(false);
+  return (
+    <View style={styles.container}>
+      <Title titleText="RESULTS" />
+      <Text style={styles.scoreValue}>{score}</Text>
 
+      <View style={styles.bannerContainer}>
+        <Image
+          source={{ uri: resultBanner }}
+          style={styles.banner}
+          resizeMode="contain"
+        />
+      </View>
 
-    const loadInterstitial = () => {
-        const unsubscribeLoaded = interstitial.addAdEventListener(
-            AdEventType.LOADED,
-            () => {
-                setInterstitialLoaded(true);
-            }
-        );
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handleNavigate('10th class')}
+      >
+        <Text style={styles.buttonText}>GO TO HOME</Text>
+      </TouchableOpacity>
 
-        const unsubscribeClosed = interstitial.addAdEventListener(
-            AdEventType.CLOSED,
-            () => {
-                setInterstitialLoaded(false);
-                interstitial.load();
-            }
-        );
-
-        interstitial.load();
-
-        return () => {
-            unsubscribeClosed();
-            unsubscribeLoaded();
-        }
-    }
-    useEffect(() => {
-        const unsubscribeInterstitialEvents = loadInterstitial();
-
-        return () => {
-            unsubscribeInterstitialEvents();
-
-        };
-    }, [])
-    const { score } = route.params
-
-    const resultBanner = score >= 30 ? "https://cdni.iconscout.com/illustration/premium/thumb/men-celebrating-victory-4587301-3856211.png" : "https://cdni.iconscout.com/illustration/free/thumb/concept-about-business-failure-1862195-1580189.png"
-    return (
-        <View style={styles.container}>
-            <Title titleText='RESULTS' />
-            <Text style={styles.scoreValue}>{score}</Text>
-            <View style={styles.bannerContainer}>
-                <Image
-                    source={{
-                        uri: resultBanner,
-                    }}
-                    style={styles.banner}
-                    resizeMode="contain"
-                />
-            </View>
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('10th class')} style={styles.button}
-                onPressOut={() => {
-                    if (interstitialLoaded) {
-
-                        interstitial.show();
-                    } else { navigation.navigate('10th class') }
-                }}
-            >
-                <Text style={styles.buttonText}>GO TO HOME</Text>
-            </TouchableWithoutFeedback>
-
-            <TouchableWithoutFeedback onPress={() => navigation.navigate('11thToday Answer')} style={styles.button}
-                onPressOut={() => {
-                    if (interstitialLoaded) {
-
-                        interstitial.show();
-                    } else { navigation.navigate('11thToday Answer') }
-                }}
-            >
-                <Text style={styles.buttonText}>Click Here for Answers</Text>
-            </TouchableWithoutFeedback>
-        </View>
-    );
+      <TouchableOpacity
+        style={styles.button}
+        onPress={() => handleNavigate('11thToday Answer')}
+      >
+        <Text style={styles.buttonText}>Click Here for Answers</Text>
+      </TouchableOpacity>
+      <MrecAdComponent/>
+    </View>
+  );
 };
 
-
+const styles = StyleSheet.create({
+  banner: {
+    height: 300,
+    width: 300,
+  },
+  bannerContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    flex: 1,
+  },
+  container: {
+    paddingTop: 35,
+    paddingHorizontal: 20,
+    height: '100%',
+  },
+  button: {
+    width: '100%',
+    backgroundColor: '#1A759F',
+    padding: 20,
+    borderRadius: 22,
+    alignItems: 'center',
+    marginBottom: 40,
+  },
+  buttonText: {
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#ED4264',
+    textAlign: 'center',
+  },
+  scoreValue: {
+    fontSize: 24,
+    fontWeight: '800',
+    alignSelf: 'center',
+  },
+});
 
 export default Qres12;
-
-const styles = StyleSheet.create({
-    banner: {
-        height: 300,
-        width: 300,
-    },
-    bannerContainer: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        flex: 1,
-    },
-    container: {
-        paddingTop: 35,
-        paddingHorizontal: 20,
-        height: '100%',
-    },
-    button: {
-        width: '100%',
-        backgroundColor: '#1A759F',
-        padding: 20,
-        borderRadius: 22,
-        alignItems: 'center',
-        marginBottom: 40,
-    },
-    buttonText: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        color: '#ED4264',
-        textAlign: 'center'
-
-    },
-    scoreValue: {
-        fontSize: 24,
-        fontWeight: '800',
-        alignSelf: 'center'
-    }
-});

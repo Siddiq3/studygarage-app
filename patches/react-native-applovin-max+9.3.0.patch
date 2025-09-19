@@ -1,0 +1,13 @@
+diff --git a/node_modules/react-native-applovin-max/android/src/newarch/com/applovin/reactnative/AppLovinMAXNativeAdViewManager.java b/node_modules/react-native-applovin-max/android/src/newarch/com/applovin/reactnative/AppLovinMAXNativeAdViewManager.java
+index b5e3ba5..30811f6 100644
+--- a/node_modules/react-native-applovin-max/android/src/newarch/com/applovin/reactnative/AppLovinMAXNativeAdViewManager.java
++++ b/node_modules/react-native-applovin-max/android/src/newarch/com/applovin/reactnative/AppLovinMAXNativeAdViewManager.java
+@@ -127,4 +127,8 @@ public class AppLovinMAXNativeAdViewManager
+     {
+         AppLovinMAXNativeAdViewManagerImpl.renderNativeAd( view );
+     }
++       @Override
++public void destroyAd(final AppLovinMAXNativeAdView view) {
++    AppLovinMAXNativeAdViewManagerImpl.destroy(view);
++}
+ }

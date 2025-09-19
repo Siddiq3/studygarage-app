@@ -5,6 +5,8 @@ import {
     responsiveWidth,
     responsiveFontSize,
 } from "react-native-responsive-dimensions";
+import useInterstitialAd from "../InterstitialAdComponent";
+
 const { width, height } = Dimensions.get("window");
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { format, addHours, differenceInMilliseconds } from 'date-fns';
@@ -14,6 +16,11 @@ const Class7ka = ({ navigation }) => {
     const [isLoading, setIsLoading] = useState(false);
     const [buttonDisabled, setButtonDisabled] = useState(false);
     const [remainingTime, setRemainingTime] = useState(0);
+    const { showAd } = useInterstitialAd();
+    const handleNavigate = (screen) => {
+        showAd(); // Show interstitial before navigation
+        navigation.navigate(screen);
+    };
     const getQuiz = async () => {
         setIsLoading(true);
         const url1 = 'https://siddiq3.github.io/Api/Cardapika.json';
@@ -106,7 +113,7 @@ const Class7ka = ({ navigation }) => {
     // Function to handle button click
     const setButton = () => {
         if (!buttonDisabled) {
-            navigation.navigate("Question7ka");
+            handleNavigate("Question7ka");
 
             saveLastButtonClickTime();
             setButtonDisabled(true);
@@ -141,20 +148,20 @@ const Class7ka = ({ navigation }) => {
                 {/* Second row */}
                 <View style={styles.buttonRow}>
                     {/* Add more buttons here */}
-                    {renderButton('TB', () => navigation.navigate('7thclass tbka'), 'tb7ka')}
-                    {renderButton('Imp', () => navigation.navigate('7thclass impka'), 'imp7ka')}
-                    {renderButton('FA1', () => navigation.navigate('7thclass fa1ka'), 'fa17ka')}
+                    {renderButton('TB', () => handleNavigate('7thclass tbka'), 'tb7ka')}
+                    {renderButton('Imp', () => handleNavigate('7thclass impka'), 'imp7ka')}
+                    {renderButton('FA1', () => handleNavigate('7thclass fa1ka'), 'fa17ka')}
                 </View>
                 {/* Third row */}
                 <View style={styles.buttonRow}>
-                    {renderButton('FA2', () => navigation.navigate('7thclass fa2ka'), 'fa27ka')}
-                    {renderButton('SA1', () => navigation.navigate('7thclass sa1ka'), 'sa17ka')}
-                    {renderButton('FA3', () => navigation.navigate('7thclass fa3ka'), 'fa37ka')}
+                    {renderButton('FA2', () => handleNavigate('7thclass fa2ka'), 'fa27ka')}
+                    {renderButton('SA1', () => handleNavigate('7thclass sa1ka'), 'sa17ka')}
+                    {renderButton('FA3', () => handleNavigate('7thclass fa3ka'), 'fa37ka')}
                 </View>
 
                 <View style={styles.buttonRow}>
-                    {renderButton('FA4', () => navigation.navigate('7thclass fa4ka'), 'fa47ka')}
-                    {renderButton('SA2', () => navigation.navigate('7thclass sa2ka'), 'sa27ka')}
+                    {renderButton('FA4', () => handleNavigate('7thclass fa4ka'), 'fa47ka')}
+                    {renderButton('SA2', () => handleNavigate('7thclass sa2ka'), 'sa27ka')}
 
                 </View>
 

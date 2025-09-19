@@ -8,7 +8,6 @@ export default Dpt12 = [
         correct_option: "D) 109°28′"
     },
 
-
     {
         question: "2. ఎసిటిక్ ఆమ్లం, ఇథైల్ ఆల్కహాల్ తో చర్య జరుపునపుడు దానికి గాఢ H2SO4 కలుపుతాం. ఈ ప్రక్రియను…. అంటారు.",
         options: ["A) సపోనిఫికేషన్",
@@ -109,6 +108,5 @@ export default Dpt12 = [
             "D) C2H5Cl "],
         correct_option: "C) C2H4Cl2"
     },
-
 
 ]

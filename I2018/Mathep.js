@@ -1,24 +1,20 @@
+import { View} from 'react-native';
 import React from "react";
-import { Text, View } from "react-native";
 import WebView from "react-native-webview";
-import { TestIds, GAMBannerAd, BannerAdSize, } from 'react-native-google-mobile-ads';
+import MrecAdComponent from "../MrecAdComponent";
 
-const adUnitId1 = __DEV__ ? TestIds.GAM_BANNER : 'ca-app-pub-3251781230941397/9492220282';
+
+
 const Mathep6 = () => {
 
     return (
         <View style={{ flex: 1 }}>
             <WebView
                 source={{ uri: `https://drive.google.com/file/d/1Yz9E3o4evxA3REk7Kcof8G2We3j22lMD/view?usp=share_link`, }}
-            />
-            <GAMBannerAd
-                unitId={adUnitId1}
-                sizes={[BannerAdSize.MEDIUM_RECTANGLE]}
-                requestOptions={{
-                    requestNonPersonalizedAdsOnly: true,
-                }}
-            />
+        />
+        <MrecAdComponent/>
         </View>
     );
 }
+
 export default Mathep6;

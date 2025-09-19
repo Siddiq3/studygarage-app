@@ -1,18 +1,15 @@
-// WithdrawalHistoryPage.js
+import { FlatList, StyleSheet, Text, View } from 'react-native';
 import React from 'react';
-import { View, Text, FlatList, StyleSheet } from 'react-native';
 import { format } from 'date-fns';
 
 const WithdrawalHistoryPage = ({ route }) => {
-    const withdrawalHistory = route.params.withdrawalHistory || [];
+    const withdrawalHistory = route.params?.withdrawalHistory || [];
 
-    // Render individual withdrawal item
     const renderWithdrawalItem = ({ item }) => (
         <View style={styles.withdrawalItem}>
             <View style={styles.withdrawalItemContent}>
-
                 <Text style={styles.withdrawalItemDate}>
-                    {format(new Date(item.date), 'MM/dd/yyyy ')}
+                    {format(new Date(item.date), 'MM/dd/yyyy')}
                 </Text>
                 <Text>           </Text>
                 <Text>           </Text>
@@ -54,14 +51,11 @@ const styles = StyleSheet.create({
         marginBottom: 10,
     },
     withdrawalItem: {
-        flex: 1,
         backgroundColor: '#f5f5f5',
         padding: 20,
         borderRadius: 8,
         marginBottom: 10,
         width: "100%",
-
-
     },
     withdrawalItemContent: {
         flexDirection: 'row',
@@ -81,7 +75,7 @@ const styles = StyleSheet.create({
         fontSize: 10,
         fontWeight: 'bold',
         textAlign: 'center'
-    },
+    }
 });
 
 export default WithdrawalHistoryPage;
