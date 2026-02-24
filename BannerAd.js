@@ -1,29 +1,79 @@
-// BannerAdComponent.js
-import React from "react";
-import { StyleSheet } from "react-native";
-import { AdView, AdFormat } from "react-native-applovin-max";
+import React, { useCallback, useEffect, useRef } from 'react';
+import { StyleSheet, View } from 'react-native';
+import { LevelPlayAdSize, LevelPlayBannerAdView } from 'unity-levelplay-mediation';
 
-const BANNER_AD_UNIT_ID = "dcbd43171d24de08";
+const BANNER_AD_UNIT_ID = 'bp8awtxn68kk95bs';
+const BANNER_AD_SIZE = LevelPlayAdSize.BANNER;
+const BANNER_PLACEMENT_NAME = null;
 
 const BannerAdComponent = () => {
+  const bannerRef = useRef(null);
+
+  const listener = {
+    onAdLoaded: (adInfo) => {
+      console.log('✅ Banner ad loaded', adInfo);
+    },
+    onAdLoadFailed: (error) => {
+      console.log('❌ Banner failed to load:', error);
+      if (Number(error?.errorCode) === 626) {
+        console.log(
+          '❌ Banner ad unit ID is invalid for this app key/platform. Verify the Android banner ad unit ID in LevelPlay dashboard.'
+        );
+      }
+    },
+    onAdDisplayed: (adInfo) => {
+      console.log('📺 Banner displayed', adInfo);
+    },
+    onAdDisplayFailed: (adInfo, error) => {
+      console.log('❌ Banner display failed:', adInfo, error);
+    },
+    onAdClicked: (adInfo) => {
+      console.log('🖱️ Banner clicked', adInfo);
+    },
+    onAdExpanded: (adInfo) => {
+      console.log('↕️ Banner expanded', adInfo);
+    },
+    onAdCollapsed: (adInfo) => {
+      console.log('↔️ Banner collapsed', adInfo);
+    },
+    onAdLeftApplication: (adInfo) => {
+      console.log('📤 Banner left application', adInfo);
+    },
+  };
+
+  const loadBanner = useCallback(() => {
+    bannerRef.current?.loadAd();
+  }, []);
+
+  useEffect(() => {
+    return () => {
+      bannerRef.current?.destroy();
+    };
+  }, []);
+
   return (
-    <AdView
-      adUnitId={BANNER_AD_UNIT_ID}
-      adFormat={AdFormat.BANNER}
-      style={styles.banner}
-      placement="main_banner"
-      onAdLoaded={() => console.log("✅ Banner ad loaded")}
-      onAdLoadFailed={(error) => console.log("❌ Banner failed to load:", error)}
-      onAdClicked={() => console.log("🖱️ Banner clicked")}
-    />
+    <View style={styles.container}>
+      <LevelPlayBannerAdView
+        ref={bannerRef}
+        adUnitId={BANNER_AD_UNIT_ID}
+        adSize={BANNER_AD_SIZE}
+        placementName={BANNER_PLACEMENT_NAME}
+        listener={listener}
+        style={styles.banner}
+        onLayout={loadBanner}
+      />
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
+  container: {
+    alignItems: 'center',
+  },
   banner: {
-    width: "100%",
-    height: 50,
-   //backgroundColor: "#f4ebebb6",
+    width: BANNER_AD_SIZE.width,
+    height: BANNER_AD_SIZE.height,
+    alignSelf: 'center',
   },
 });
 
