@@ -54,3 +54,6 @@ yarn-error.*
 *.tsbuildinfo
 
 # @end expo-cli
+.expo/
+.expo-shared/
+.expo-export*/
