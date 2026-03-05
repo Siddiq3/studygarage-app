@@ -1,22 +1,13 @@
-import { View} from 'react-native';
-import React, { useEffect } from "react";
-import WebView from 'react-native-webview';
-import MrecAdComponent from "../MrecAdComponent";
-
-
+import React from 'react';
+import ModernContentWebView from '../components/ModernContentWebView';
 
 const Socep1 = () => {
-
-    return (
-        <View style={{ flex: 1 }}>
-            <WebView
-                source={{
-                    uri: `https://drive.google.com/file/d/12Jt4wLno0Es4iQuv0IT02ihBpDO8fC8M/view?usp=share_link`,
-                }}
-        />
-        <MrecAdComponent/>
-        </View>
-    );
-}
+  return (
+    <ModernContentWebView
+      uri={`https://drive.google.com/file/d/12Jt4wLno0Es4iQuv0IT02ihBpDO8fC8M/view?usp=share_link`}
+      screenName='socep1'
+    />
+  );
+};
 
 export default Socep1;

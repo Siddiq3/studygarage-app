@@ -1,124 +1,42 @@
-import { BackHandler, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React, { useEffect } from 'react';
+import { BackHandler } from 'react-native';
+import SimpleSubjectHub from '../src/features/hubs/SimpleSubjectHub';
 
 const Epop = ({ navigation }) => {
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack();
-            return true;
-        });
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.goBack();
+      return true;
+    });
 
-        return () => backHandler.remove();
-    }, [navigation]);
+    return () => backHandler.remove();
+  }, [navigation]);
 
-    return (
-        <View style={styles.container}>
-            <ScrollView>
+  const items = [
+    { label: '2022 Public paper', route: 'English 2022' },
+    { label: '2022 Prefinal paper', route: 'English 2022p' },
+    { label: 'Model Paper 2023', route: 'English 2023' },
+    { label: 'Blueprint for 100 marks', route: 'English Blueprint' },
+    { label: '2019 Public paper - 1', route: 'English 2019p1' },
+    { label: '2019 Public paper - 2', route: 'English 2019p2' },
+    { label: '2018 Public paper - 1', route: 'English 2018p1' },
+    { label: '2018 Public paper - 2', route: 'English 2018p2' },
+    { label: '2017 Public paper - 1', route: 'English 2017p1' },
+    { label: '2017 Public paper - 2', route: 'English 2017p2' },
+    { label: '2016 Public paper - 1', route: 'English 2016p1' },
+    { label: '2016 Public paper - 2', route: 'English 2016p2' },
+    { label: '2015 Public paper - 1', route: 'English 2015p1' },
+    { label: '2015 Public paper - 2', route: 'English 2015p2' },
+  ];
 
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2022')}>
-                        <Text style={styles.text}>2022 Public paper</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2022p')}>
-                        <Text style={styles.text}>2022-Prefinal paper</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2023')}>
-                        <Text style={styles.text}>Model Paper 2023</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English Blueprint')}>
-                        <Text style={styles.text}>Blue Print for 100 marks</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2019p1')}>
-                        <Text style={styles.text}>2019 Public paper - 1</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2019p2')}>
-                        <Text style={styles.text}>2019 Public paper - 2</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2018p1')}>
-                        <Text style={styles.text}>2018 Public paper - 1</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2018p2')}>
-                        <Text style={styles.text}>2018 Public paper - 2</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2017p1')}>
-                        <Text style={styles.text}>2017 Public paper - 1</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2017p2')}>
-                        <Text style={styles.text}>2017 Public paper - 2</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2016p1')}>
-                        <Text style={styles.text}>2016 Public paper - 1</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2016p2')}>
-                        <Text style={styles.text}>2016 Public paper - 2</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2015p1')}>
-                        <Text style={styles.text}>2015 Public paper - 1</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={styles.card}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('English 2015p2')}>
-                        <Text style={styles.text}>2015 Public paper - 2</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-            </ScrollView>
-        </View>
-    );
+  return (
+    <SimpleSubjectHub
+      navigation={navigation}
+      title="English Previous Papers"
+      subtitle="Public, prefinal, and model papers"
+      items={items}
+    />
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#FFE3E1',
-    },
-    card: {
-        padding: 30,
-        margin: 20,
-        backgroundColor: '#9FC8D1',
-    },
-    text: {
-        fontSize: 20,
-        textAlign: 'center',
-    },
-});
 
 export default Epop;

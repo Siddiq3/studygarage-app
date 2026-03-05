@@ -1,51 +1,36 @@
-import React, { useEffect } from "react";
-import { BackHandler, ScrollView, Text, TouchableOpacity, View } from 'react-native';
-import { responsiveFontSize } from 'react-native-responsive-dimensions'; // Make sure you installed this package
+import React, { useEffect } from 'react';
+import { BackHandler, Text, View } from 'react-native';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import ScreenLayoutContainer from '../src/design-system/components/ScreenLayoutContainer';
+import SGCard from '../src/design-system/components/SGCard';
+import SGButton from '../src/design-system/components/SGButton';
 
 const Dtest = ({ navigation }) => {
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.goBack();
+      return true;
+    });
 
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack();
-            return true;
-        });
+    return () => backHandler.remove();
+  }, [navigation]);
 
-        return () => backHandler.remove();
-    }, [navigation]);
+  return (
+    <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
+      <Animated.View entering={FadeInDown.duration(220)}>
+        <SGCard className="mb-4">
+          <Text className="text-[30px] font-extrabold leading-[34px] text-sg-text dark:text-sgd-text">NMMS Daily Test</Text>
+          <Text className="mt-3 text-[16px] font-medium leading-[24px] text-sg-muted dark:text-sgd-muted">
+            Every day we upload 6 NMMS practice questions. Complete this set regularly for better final-exam confidence.
+          </Text>
 
-    return (
-        <View style={{ flex: 1 }}>
-            <ScrollView contentContainerStyle={{ paddingVertical: 30 }}>
-                <Text style={{ 
-                    fontSize: responsiveFontSize(3.5), 
-                    marginBottom: 60, 
-                    textAlign: 'center' 
-                }}>
-                    🎖️ Everyday We Will UPLOAD 6 Questions from Nmms Syllabus. It Will Be Useful For FINAL NMMS Exams✍
-                    CLICK START BUTTON 👇🏻👇🏻
-                </Text>
-
-                <TouchableOpacity 
-                    style={{ 
-                        padding: 10, 
-                        marginHorizontal: 15, 
-                        borderRadius: 15, 
-                        backgroundColor: '#03045e' 
-                    }} 
-                    onPress={() => navigation.navigate('Question6')}
-                >
-                    <Text style={{ 
-                        fontSize: responsiveFontSize(2.5), 
-                        fontWeight: '500', 
-                        textAlign: 'center', 
-                        color: '#ffffff' 
-                    }}>
-                        START
-                    </Text>
-                </TouchableOpacity>
-            </ScrollView>
-        </View>
-    );
-}
+          <View className="mt-6">
+            <SGButton label="Start" onPress={() => navigation.navigate('Question6')} />
+          </View>
+        </SGCard>
+      </Animated.View>
+    </ScreenLayoutContainer>
+  );
+};
 
 export default Dtest;

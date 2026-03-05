@@ -1,100 +1,39 @@
-import { BackHandler, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React, { useEffect } from 'react';
+import { BackHandler } from 'react-native';
+import SimpleSubjectHub from './src/features/hubs/SimpleSubjectHub';
 
 const Tsstudy = ({ navigation }) => {
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.goBack();
+      return true;
+    });
 
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
-        });
+    return () => backHandler.remove();
+  }, [navigation]);
 
-        return () => backHandler.remove();
-    }, []);
+  const items = [
+    { label: 'TELUGU', route: 'telugu tsm' },
+    { label: 'HINDI', route: 'hindi tsm' },
+    { label: 'ENGLISH', route: 'english tsm' },
+    { label: 'MATHAMATICS-EM', route: 'maths em tsm' },
+    { label: 'MATHAMATICS-TM', route: 'maths tm tsm' },
+    { label: 'BIOLOGY-EM', route: 'biology em tsm' },
+    { label: 'BIOLOGY-TM', route: 'biology tm tsm' },
+    { label: 'PHYSCICAL SCIENCE-EM', route: 'physics em tsm' },
+    { label: 'PHYSCICAL SCIENCE-TM', route: 'physics tm tsm' },
+    { label: 'SOCIAL-TM', route: 'social tm tsm' },
+    { label: 'SOCIAL-EM', route: 'social em tsm' },
+  ];
 
-    return (
-        <View style={styles.container}>
-            <ScrollView>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('telugu tsm')}>
-                        <Text style={{ fontSize: 20 }}>TELUGU</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('hindi tsm')}>
-                        <Text style={{ fontSize: 20 }}>HINDI</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('english tsm')}>
-                        <Text style={{ fontSize: 20 }}>ENGLISH</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('maths em tsm')}>
-                        <Text style={{ fontSize: 20 }}>MATHAMATICS-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('maths tm tsm')}>
-                        <Text style={{ fontSize: 20 }}>MATHAMATICS-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('biology em tsm')}>
-                        <Text style={{ fontSize: 20 }}>BIOLOGY-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('biology tm tsm')}>
-                        <Text style={{ fontSize: 20 }}>BIOLOGY-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('physics em tsm')}>
-                        <Text style={{ fontSize: 20 }}>PHYSCICAL SCIENCE-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('physics tm tsm')}>
-                        <Text style={{ fontSize: 20 }}>PHYSCICAL SCIENCE-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('social tm tsm')}>
-                        <Text style={{ fontSize: 20 }}>SOCIAL-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('social em tsm')}>
-                        <Text style={{ fontSize: 20 }}>SOCIAL-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-            </ScrollView>
-        </View>
-    );
-}
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#ffafbd'
-    },
-});
+  return (
+    <SimpleSubjectHub
+      navigation={navigation}
+      title='Study Material'
+      subtitle='Subject-wise Telangana study resources'
+      items={items}
+    />
+  );
+};
 
 export default Tsstudy;

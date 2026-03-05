@@ -1,50 +1,32 @@
-import { BackHandler, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards"; // Import Card properly
+import React, { useEffect } from 'react';
+import { BackHandler } from 'react-native';
+import SimpleSubjectHub from './src/features/hubs/SimpleSubjectHub';
 
 const Iiit = ({ navigation }) => {
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.goBack();
+      return true;
+    });
 
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
-        });
+    return () => backHandler.remove();
+  }, [navigation]);
 
-        // Cleanup on unmount
-        return () => backHandler.remove();
-    }, [navigation]);
+  const items = [
+    { label: 'IIIT Syllabus', route: 'syllabus' },
+    { label: 'IIIT Mathematics', route: 'im' },
+    { label: 'IIIT Physics', route: 'ip' },
+    { label: 'IIIT Biology', route: 'ib' },
+  ];
 
-    return (
-        <View style={{ flex: 1 }}>
-            <ScrollView>
-
-                <Card style={{ padding: 5, margin: 15 }}>
-                    <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate('syllabus')}>
-                        <Text style={{ textAlign: 'center', fontSize: 20 }}>IIIT SYLLABUS</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 5, margin: 15 }}>
-                    <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate('im')}>
-                        <Text style={{ textAlign: 'center', fontSize: 20 }}>IIIT MATHEMATICS</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 5, margin: 15 }}>
-                    <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate('ip')}>
-                        <Text style={{ textAlign: 'center', fontSize: 20 }}>IIIT PHYSICS</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 5, margin: 15 }}>
-                    <TouchableOpacity activeOpacity={1} onPress={() => navigation.navigate('ib')}>
-                        <Text style={{ textAlign: 'center', fontSize: 20 }}>IIIT BIOLOGY</Text>
-                    </TouchableOpacity>
-                </Card>
-
-            </ScrollView>
-        </View>
-    );
-}
+  return (
+    <SimpleSubjectHub
+      navigation={navigation}
+      title="IIIT Preparation"
+      subtitle="Syllabus and subject material"
+      items={items}
+    />
+  );
+};
 
 export default Iiit;

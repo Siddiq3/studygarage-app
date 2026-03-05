@@ -1,117 +1,63 @@
-import { BackHandler, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
-import BannerAdComponent from "./BannerAd";
-import MrecAdComponent from "./MrecAdComponent";
-import useInterstitialAd from "./InterstitialAdComponent";
+import React, { useEffect } from 'react';
+import { BackHandler, View } from 'react-native';
+import BannerAdComponent from './BannerAd';
+import MrecAdComponent from './MrecAdComponent';
+import useInterstitialAd from './InterstitialAdComponent';
+import SimpleSubjectHub from './src/features/hubs/SimpleSubjectHub';
+import SGCard from './src/design-system/components/SGCard';
 
 const Home = ({ navigation }) => {
   const { showAd } = useInterstitialAd();
 
   useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.goBack();
+      return true;
+    });
 
-
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
-        });
-
-    }, []);
-  
+    return () => backHandler.remove();
+  }, [navigation]);
 
   const handleNavigate = (screen) => {
-    showAd(); // Show interstitial before navigation
+    showAd();
     navigation.navigate(screen);
   };
 
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-        <Text style={{ fontSize: 25, textAlign: "center", color: "#D82148" }}>
-          Previous Year Question Papers
-        </Text>
+  const items = [
+    { id: 'telugu', label: 'TELUGU', onPress: () => handleNavigate('telugu') },
+    { id: 'hindi', label: 'HINDI', onPress: () => handleNavigate('hindi') },
+    { id: 'english', label: 'ENGLISH', onPress: () => handleNavigate('english') },
+    { id: 'maths-em', label: 'MATHEMATICS-EM', onPress: () => handleNavigate('maths em') },
+    { id: 'maths-tm', label: 'MATHEMATICS-TM', onPress: () => handleNavigate('maths tm') },
+    { id: 'bio-em', label: 'BIOLOGY-EM', onPress: () => handleNavigate('biology em') },
+    { id: 'bio-tm', label: 'BIOLOGY-TM', onPress: () => handleNavigate('biology tm') },
+    { id: 'phy-em', label: 'PHYSICAL SCIENCE-EM', onPress: () => handleNavigate('physics em') },
+    { id: 'phy-tm', label: 'PHYSICAL SCIENCE-TM', onPress: () => handleNavigate('physics tm') },
+    { id: 'social-tm', label: 'SOCIAL-TM', onPress: () => handleNavigate('social tm') },
+    { id: 'social-em', label: 'SOCIAL-EM', onPress: () => handleNavigate('social em') },
+  ];
 
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("telugu")}>
-            <Text style={{ fontSize: 20 }}>TELUGU</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("hindi")}>
-            <Text style={{ fontSize: 20 }}>HINDI</Text>
-          </TouchableOpacity>
-        </Card>
-
+  const footer = (
+    <View className="pb-3">
+      <SGCard className="mb-3 items-center">
         <BannerAdComponent />
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("english")}>
-            <Text style={{ fontSize: 20 }}>ENGLISH</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("maths em")}>
-            <Text style={{ fontSize: 20 }}>MATHEMATICS-EM</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("maths tm")}>
-            <Text style={{ fontSize: 20 }}>MATHEMATICS-TM</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("biology em")}>
-            <Text style={{ fontSize: 20 }}>BIOLOGY-EM</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("biology tm")}>
-            <Text style={{ fontSize: 20 }}>BIOLOGY-TM</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("physics em")}>
-            <Text style={{ fontSize: 20 }}>PHYSICAL SCIENCE-EM</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <BannerAdComponent />
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("physics tm")}>
-            <Text style={{ fontSize: 20 }}>PHYSICAL SCIENCE-TM</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("social tm")}>
-            <Text style={{ fontSize: 20 }}>SOCIAL-TM</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity activeOpacity={1} onPress={() => handleNavigate("social em")}>
-            <Text style={{ fontSize: 20 }}>SOCIAL-EM</Text>
-          </TouchableOpacity>
-        </Card>
-
+      </SGCard>
+      <SGCard className="items-center">
         <MrecAdComponent />
-      </ScrollView>
+      </SGCard>
     </View>
   );
-};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#ffafbd",
-  },
-});
+  return (
+    <SimpleSubjectHub
+      navigation={navigation}
+      title="Previous Year Question Papers"
+      subtitle="Open subject-wise AP 10th previous papers"
+      items={items}
+      footer={footer}
+      variant="home"
+    />
+  );
+};
 
 export default Home;

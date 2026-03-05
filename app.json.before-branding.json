@@ -1,0 +1,53 @@
+{
+  "expo": {
+    "name": "StudyGarage",
+    "slug": "10th_class",
+    "version": "2.8.84",
+    "orientation": "portrait",
+    "icon": "./assets/icon1.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/sg.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "updates": {
+      "enabled": false,
+      "fallbackToCacheTimeout": 0
+    },
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "siddiqkolimidev.tenthApp"
+    },
+    "android": {
+      "package": "siddiqkolimidev.tenth_app",
+      "versionCode": 264,
+      "googleServicesFile": "./google-services.json",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon1.png",
+        "backgroundColor": "#FFFFFF"
+      }
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "f83019ec-3317-4507-b84f-afa2a768ccac"
+      }
+    },
+    "runtimeVersion": "2.8.84",
+    "scheme": "10th_class",
+    "plugins": [
+      [
+        "onesignal-expo-plugin",
+        {
+          "mode": "development"
+        }
+      ]
+    ]
+  }
+}

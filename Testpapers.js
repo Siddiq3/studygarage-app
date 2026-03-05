@@ -1,102 +1,27 @@
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React, { useEffect, useState } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import SimpleSubjectHub from './src/features/hubs/SimpleSubjectHub';
 
 const Testpapers = ({ navigation }) => {
+  const items = [
+    { label: 'TELUGU', route: 'telugu testpapers' },
+    { label: 'HINDI', route: 'hindi testpapers' },
+    { label: 'ENGLISH', route: 'english testpapers' },
+    { label: 'MATHEMATICS-EM', route: 'maths em testpapers' },
+    { label: 'MATHEMATICS-TM', route: 'maths tm testpapers' },
+    { label: 'PS & NS-EM', route: 'physics em testpapers' },
+    { label: 'PS & NS-TM', route: 'physics tm testpapers' },
+    { label: 'SOCIAL-TM', route: 'social tm testpapers' },
+    { label: 'SOCIAL-EM', route: 'social em testpapers' },
+  ];
 
-    useEffect(() => {
-    
-        return () => backHandler.remove();
-    }, []);
-
-    return (
-
-        <View style={styles.container}>
-            <ScrollView>
-
-                <Text style={{ fontSize: 25, textAlign: 'center', color: '#D82148' }}>        TEST PAPERS
-
-                </Text>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('telugu testpapers')}
-                    >
-                        <Text style={{ fontSize: 20 }}> TELUGU</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('hindi testpapers')}
-                    >
-                        <Text style={{ fontSize: 20 }}> HINDI</Text>
-                    </TouchableOpacity>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('english testpapers')}
-                    >
-                        <Text style={{ fontSize: 20 }}> ENGLISH</Text>
-                    </TouchableOpacity>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('maths em testpapers')}
-                    >
-                        <Text style={{ fontSize: 20 }}> MATHAMATICS-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('maths tm testpapers')}
-                    >
-                        <Text style={{ fontSize: 20 }}> MATHAMATICS-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('physics em testpapers')}
-                    >
-                        <Text style={{ fontSize: 20 }}> PS &NS-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('physics tm testpapers')}
-                    >
-
-                        <Text style={{ fontSize: 20 }}> PS &NS -TM</Text>
-                    </TouchableOpacity>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('social tm testpapers')}
-                    >
-                        <Text style={{ fontSize: 20 }}> SOCIAL-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() =>
-                        navigation.navigate('social em testpapers')}
-                    >
-                        <Text style={{ fontSize: 20 }}> SOCIAL-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-            </ScrollView>
-
-        </View>
-    );
-}
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-
-    },
-});
+  return (
+    <SimpleSubjectHub
+      navigation={navigation}
+      title="Test Papers"
+      subtitle="Practice timed subject tests"
+      items={items}
+    />
+  );
+};
 
 export default Testpapers;

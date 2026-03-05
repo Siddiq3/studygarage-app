@@ -1,306 +1,128 @@
-import { ActivityIndicator, StyleSheet, Text, TouchableOpacity, View,Dimensions} from 'react-native';
-import React, { useState, useEffect } from "react";
-import {
-    responsiveHeight,
-    responsiveWidth,
-    responsiveFontSize,
-} from "react-native-responsive-dimensions";
-const { width, height } = Dimensions.get("window");
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import { format, addHours, differenceInMilliseconds } from 'date-fns';
+import React, { useEffect, useState } from 'react';
+import { differenceInMilliseconds } from 'date-fns';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import LegacyHubLayout from './src/features/hubs/LegacyHubLayout';
+
+const DAY_MS = 24 * 60 * 60 * 1000;
+
+const decodeText = (value) => {
+  try {
+    return decodeURIComponent(value || '');
+  } catch (_error) {
+    return value || '';
+  }
+};
+
 const Apinter = ({ navigation }) => {
-    const [questions, setQuestions] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [buttonDisabled, setButtonDisabled] = useState(false);
-    const [remainingTime, setRemainingTime] = useState(0);
-    const getQuiz = async () => {
-        setIsLoading(true);
-        const url1 = 'https://siddiq3.github.io/Api/Cardapi.json';
+  const [questions, setQuestions] = useState({});
+  const [isLoading, setIsLoading] = useState(false);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
+  const [remainingTime, setRemainingTime] = useState(0);
 
-        try {
-            const res = await fetch(url1);
-            const data = await res.json();
-            setQuestions(data.results[0]);
-        } catch (error) {
-            console.error("Error fetching data:", error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
+  const getQuiz = async () => {
+    setIsLoading(true);
+    try {
+      const response = await fetch('https://siddiq3.github.io/Api/Cardapi.json');
+      const payload = await response.json();
+      setQuestions(payload?.results?.[0] || {});
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
-    useEffect(() => {
-        getQuiz();
-        checkButtonStatus();
-    
-        return () => backHandler.remove();
-    }, []);
+  useEffect(() => {
+    getQuiz();
+    checkButtonStatus();
+  }, []);
 
-    // Effect for updating remaining time and clearing interval
-    useEffect(() => {
-        if (buttonDisabled) {
-            const intervalId = setInterval(() => {
-                updateRemainingTime();
-            
-        return () => backHandler.remove();
+  useEffect(() => {
+    if (!buttonDisabled) return undefined;
+
+    const intervalId = setInterval(() => {
+      updateRemainingTime();
     }, 1000);
 
-            return () => clearInterval(intervalId);
-        }
-    }, [buttonDisabled]);
-    const openURL = (url) => {
-        Linking.openURL(url).catch((err) => console.error('An error occurred', err));
-    };
-    // Function to save the last button click time
-    const saveLastButtonClickTime = async () => {
-        try {
-            const currentTime = new Date();
-            await AsyncStorage.setItem("lastButtonClickTime1", currentTime.toString());
-        } catch (error) {
-            console.error("Error saving last button click time:", error);
-        }
-    };
+    return () => clearInterval(intervalId);
+  }, [buttonDisabled]);
 
-    // Function to check the status of the button based on the last click time
-    const checkButtonStatus = async () => {
-        try {
-            const lastButtonClickTime1 = await AsyncStorage.getItem("lastButtonClickTime1");
-            if (lastButtonClickTime1) {
-                const timeDifference = differenceInMilliseconds(new Date(), new Date(lastButtonClickTime1));
-                const fourHoursInMilliseconds = 24 * 60 * 60 * 1000;
-
-                if (timeDifference < fourHoursInMilliseconds) {
-                    setButtonDisabled(true);
-                    setRemainingTime(fourHoursInMilliseconds - timeDifference);
-                } else {
-                    setButtonDisabled(false);
-                }
-            }
-        } catch (error) {
-            console.error("Error checking button status:", error);
-        }
-    };
-
-    // Function to update remaining time
-    const updateRemainingTime = () => {
-        setRemainingTime((prevTime) => {
-            if (prevTime > 1000) {
-                return prevTime - 1000;
-            } else {
-                setButtonDisabled(false);
-                return 0;
-            }
-
-    });
-};
-    // Function to format remaining time in HH:MM:SS format
-    const formatRemainingTime = (milliseconds) => {
-        const seconds = Math.ceil(milliseconds / 1000);
-        return `${Math.floor(seconds / 3600)}:${Math.floor((seconds % 3600) / 60)}:${seconds % 60}`;
-    };
-
-    // Function to handle button click
-    const setButton = () => {
-        if (!buttonDisabled) {
-            navigation.navigate("Question");
-
-            saveLastButtonClickTime();
-            setButtonDisabled(true);
-            setRemainingTime(24 * 60 * 60 * 1000);
-            checkButtonStatus();
-        }
-    };
-
-    const renderButton = (label, onPress, dataKey) => (
-        <TouchableOpacity style={styles.button} onPress={onPress}>
-            <Text style={styles.buttonText1}>{decodeURIComponent(questions[dataKey])}</Text>
-        </TouchableOpacity>
-    );
-
-    if (isLoading) {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-        );
+  const saveLastButtonClickTime = async () => {
+    try {
+      await AsyncStorage.setItem('lastButtonClickTime1', new Date().toString());
+    } catch (error) {
+      console.error('Error saving last button click time:', error);
     }
+  };
 
-    return (
+  const checkButtonStatus = async () => {
+    try {
+      const lastButtonClickTime = await AsyncStorage.getItem('lastButtonClickTime1');
+      if (!lastButtonClickTime) return;
 
-        <View style={styles.container}>
-            {/* Main container */}
+      const elapsed = differenceInMilliseconds(new Date(), new Date(lastButtonClickTime));
+      if (elapsed < DAY_MS) {
+        setButtonDisabled(true);
+        setRemainingTime(DAY_MS - elapsed);
+      } else {
+        setButtonDisabled(false);
+      }
+    } catch (error) {
+      console.error('Error checking button status:', error);
+    }
+  };
 
-            <View style={styles.innerContainer}>
-                <Text style={styles.textAboveButtons}>AP INTER</Text>
+  const updateRemainingTime = () => {
+    setRemainingTime((prevTime) => {
+      if (prevTime > 1000) {
+        return prevTime - 1000;
+      }
+      setButtonDisabled(false);
+      return 0;
+    });
+  };
 
-                <View style={styles.buttonRow}>
-                    {/* Add more buttons here */}
-                    {renderButton('interimp1', () => navigation.navigate('interimp1'), 'interimp1')}
-                    {renderButton('interprev1', () => navigation.navigate('interprev1'), 'interprev1')}
-                    {renderButton('year1m', () => navigation.navigate('year1m'), 'year1m')}
-                </View>
-                {/* Third row */}
-                <View style={styles.buttonRow}>
-                    {renderButton('interimp2', () => navigation.navigate('interimp2'), 'interimp2')}
-                    {renderButton('interprev2', () => navigation.navigate('interprev2'), 'interprev2')}
-                    {renderButton('year2m', () => navigation.navigate('year2m'), 'year2m')}
-                </View>
+  const formatRemainingTime = (milliseconds) => {
+    const seconds = Math.ceil(milliseconds / 1000);
+    return `${Math.floor(seconds / 3600)}:${Math.floor((seconds % 3600) / 60)}:${seconds % 60}`;
+  };
 
+  const setButton = () => {
+    if (!buttonDisabled) {
+      navigation.navigate('Question');
+      saveLastButtonClickTime();
+      setButtonDisabled(true);
+      setRemainingTime(DAY_MS);
+      checkButtonStatus();
+    }
+  };
 
+  const buttons = [
+    { id: 'interimp1', label: decodeText(questions?.interimp1), onPress: () => navigation.navigate('interimp1') },
+    { id: 'interprev1', label: decodeText(questions?.interprev1), onPress: () => navigation.navigate('interprev1') },
+    { id: 'year1m', label: decodeText(questions?.year1m), onPress: () => navigation.navigate('year1m') },
+    { id: 'interimp2', label: decodeText(questions?.interimp2), onPress: () => navigation.navigate('interimp2') },
+    { id: 'interprev2', label: decodeText(questions?.interprev2), onPress: () => navigation.navigate('interprev2') },
+    { id: 'year2m', label: decodeText(questions?.year2m), onPress: () => navigation.navigate('year2m') },
+  ];
 
+  const remainingLabel = 'Or Try After 24 hours Remaining Time:' + ' ' + formatRemainingTime(remainingTime);
 
-            </View>
-            <View>
-                <Text style={styles.Text}>Today's Quiz  Questions</Text>
-            </View>
-            <TouchableOpacity
-                activeOpacity={1}
-                style={[
-                    styles.quizButton,
-                    {
-                        opacity: buttonDisabled ? 0.5 : 1,
-                        backgroundColor: buttonDisabled ? "#999999" : "#0C2A53",
-                    },
-                ]}
-                onPress={setButton}
-                disabled={buttonDisabled}
-            >
-                {buttonDisabled ? (
-                    <Text style={styles.disabledButtonText}>
-                        Today's Quiz Completed! To Earn More, Click on the "Earn With Quiz" Button.
-                        {"\n"}
-                        Or Try After 24 hours Remaining Time: {formatRemainingTime(remainingTime)}
-                    </Text>
-                ) : (
-                    <>
-                        {isLoading ? (
-                            <Text style={styles.buttonText}>Loading...</Text>
-                        ) : (
-                            <>
-                                <Text style={styles.buttonText}>
-                                    {decodeURIComponent(questions?.t11 || "")} Quiz
-                                </Text>
-                                <Text style={styles.subButtonText}>
-                                    Q. {decodeURIComponent(questions?.q11 || "")}?
-                                </Text>
-                            </>
-                        )}
-
-                        <Text style={styles.subButtonText}>
-                            Click here for the answer
-                        </Text>
-                    </>
-                )}
-            </TouchableOpacity>
-        </View>
-
-    );
+  return (
+    <LegacyHubLayout
+      title="AP Inter"
+      subtitle="Select year-wise resources and practice daily quiz"
+      buttons={buttons}
+      isLoading={isLoading}
+      onQuizPress={setButton}
+      quizDisabled={buttonDisabled}
+      quizTitle={decodeText(questions?.t11)}
+      quizQuestion={decodeText(questions?.q11)}
+      lockedMessage={'Today\'s Quiz Completed! To Earn More, Click on the "Earn With Quiz" Button.'}
+      remainingTime={remainingLabel}
+      showQuizLoader={isLoading}
+    />
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        //flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 20,
-        marginRight: 20
-    },
-    innerContainer: {
-        backgroundColor: '#ffffff', // Example background color
-        padding: 10, // Example padding
-        shadowColor: '#C7C8CC',
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
-        shadowOpacity: 0.50,
-        shadowRadius: 3,
-        elevation: 5,
-        borderRadius: 20
-    },
-
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    buttonRow: {
-        flexDirection: 'row',
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginBottom: 10,
-    },
-    button: {
-        width: width * 0.25, // Adjust button width as needed
-        height: height * 0.13,
-        backgroundColor: '#C7C8CC',
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginHorizontal: 10,
-        marginVertical: 3,// Add margin between buttons
-        shadowColor: '#392467',
-        shadowOffset: {
-            width: 2,
-            height: 2,
-        },
-        shadowOpacity: 0.50,
-        shadowRadius: 3.84,
-        elevation: 10,
-    },
-    buttonText1: {
-        fontSize: 12,
-        color: '#000000',
-    },
-    textAboveButtons: {
-        marginBottom: 10, // Add spacing between the text and the buttons
-        fontSize: 16, // Example font size
-        fontWeight: 'bold', // Example font weight
-    },
-    quizContainer: {
-        marginTop: 10,
-        backgroundColor: '#f0f0f0',
-        borderTopLeftRadius: 20,
-        borderTopRightRadius: 20,
-    },
-    quizButton: {
-        marginLeft: 20,
-        borderRadius: 20,
-        height: responsiveHeight(21.5),
-        width: responsiveWidth(90),
-        marginTop: 10,
-        padding: 10,
-        justifyContent: "center",
-        alignItems: "center",
-        marginBottom: 10
-    },
-    buttonText: {
-        fontSize: responsiveFontSize(2.5),
-        fontWeight: "bold",
-        color: "#ffffff",
-    },
-    subButtonText: {
-        fontSize: responsiveFontSize(2),
-        color: "#ffffff",
-    },
-    disabledButtonText: {
-        fontSize: responsiveFontSize(2),
-        fontWeight: "400",
-        color: "#ffffff",
-        textAlign: "center",
-        padding: 10,
-        backgroundColor: "#0C2A53",
-        borderRadius: 10,
-        marginTop: 10,
-    },
-    Text: {
-        fontSize: responsiveFontSize(2.5),
-        fontWeight: 'bold',
-        //textAlign: 'center',
-        marginTop: 10,
-        textAlign: 'left',
-        // marginHorizontal: -10
-
-    },
-});
 
 export default Apinter;

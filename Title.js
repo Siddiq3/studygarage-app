@@ -1,24 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
 
 const Title = ({ titleText }) => {
-    return (
-        <View style={styles.container}>
-            <Text style={styles.title}>{titleText}</Text>
-        </View>
-    );
+  return (
+    <View className="items-center justify-center py-4">
+      <Text className="text-[34px] font-black tracking-[0.4px] text-sg-text dark:text-sgd-text">{titleText}</Text>
+    </View>
+  );
 };
 
 export default Title;
-
-const styles = StyleSheet.create({
-    title: {
-        fontSize: 36,
-        fontWeight: '600',
-    },
-    container: {
-        paddingVertical: 16,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});

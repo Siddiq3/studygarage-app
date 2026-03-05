@@ -1,37 +1,15 @@
-import { Text, View} from 'react-native';
-import React, { useEffect, useState } from "react";
-import WebView from "react-native-webview";
-
+import React from 'react';
+import ModernContentWebView from '../../components/ModernContentWebView';
 
 const P2019e1 = () => {
-    const [questions, setQuestions] = useState([]);
-    const [isLoading, setIsLoading] = useState(false)
-    const getQuiz = async () => {
-        setIsLoading(true)
-        const url1 = 'https://siddiq3.github.io/Api/Nmmspqp.json';
-        const res = await fetch(url1);
-        const data = await res.json();
-
-        setQuestions(data.results[0]);
-        setIsLoading(false)
-
-    };
-
-    useEffect(() => {
-        getQuiz();
-    }, []);
-    return (
-        <View style={{ flex: 1 }}>
-            {isLoading ? <Text style={{ flex: 1, fontSize: 30, fontWeight: '500', }}>Loading...</Text> : questions && (<WebView
-                source={{
-                    uri:
-                        `${questions.P2019e1}`
-
-                }}
-                />
-            )}
-        </View>
-    );
-}
+  return (
+    <ModernContentWebView
+      fetchUrl='https://siddiq3.github.io/Api/Nmmspqp.json'
+      resultIndex={0}
+      resultPath='P2019e1'
+      screenName='p2019e1'
+    />
+  );
+};
 
 export default P2019e1;

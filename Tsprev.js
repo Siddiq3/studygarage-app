@@ -1,104 +1,39 @@
-import { BackHandler, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React, { useEffect } from 'react';
+import { BackHandler } from 'react-native';
+import SimpleSubjectHub from './src/features/hubs/SimpleSubjectHub';
 
 const Tsprev = ({ navigation }) => {
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
+      navigation.goBack();
+      return true;
+    });
 
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack(); // Navigate back when back button is pressed
-            return true; // Prevent default behavior
-        });
+    return () => backHandler.remove();
+  }, [navigation]);
 
-        return () => backHandler.remove();
-    }, []);
+  const items = [
+    { label: 'TELUGU', route: 'telugu ts' },
+    { label: 'HINDI', route: 'hindi ts' },
+    { label: 'ENGLISH', route: 'english ts' },
+    { label: 'MATHAMATICS-EM', route: 'maths em ts' },
+    { label: 'MATHAMATICS-TM', route: 'maths tm ts' },
+    { label: 'BIOLOGY-EM', route: 'biology em ts' },
+    { label: 'BIOLOGY-TM', route: 'biology tm ts' },
+    { label: 'PHYSCICAL SCIENCE-EM', route: 'physics em ts' },
+    { label: 'PHYSCICAL SCIENCE-TM', route: 'physics tm ts' },
+    { label: 'SOCIAL-TM', route: 'social tm ts' },
+    { label: 'SOCIAL-EM', route: 'social em ts' },
+  ];
 
-    return (
-        <View style={styles.container}>
-            <ScrollView>
-
-                <Text style={{ fontSize: 25, textAlign: 'center', color: '#D82148' }}>
-                    Previous Year Question Papers
-                </Text>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('telugu ts')}>
-                        <Text style={{ fontSize: 20 }}>TELUGU</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('hindi ts')}>
-                        <Text style={{ fontSize: 20 }}>HINDI</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('english ts')}>
-                        <Text style={{ fontSize: 20 }}>ENGLISH</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('maths em ts')}>
-                        <Text style={{ fontSize: 20 }}>MATHAMATICS-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('maths tm ts')}>
-                        <Text style={{ fontSize: 20 }}>MATHAMATICS-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('biology em ts')}>
-                        <Text style={{ fontSize: 20 }}>BIOLOGY-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('biology tm ts')}>
-                        <Text style={{ fontSize: 20 }}>BIOLOGY-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('physics em ts')}>
-                        <Text style={{ fontSize: 20 }}>PHYSCICAL SCIENCE-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('physics tm ts')}>
-                        <Text style={{ fontSize: 20 }}>PHYSCICAL SCIENCE-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('social tm ts')}>
-                        <Text style={{ fontSize: 20 }}>SOCIAL-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('social em ts')}>
-                        <Text style={{ fontSize: 20 }}>SOCIAL-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-            </ScrollView>
-        </View>
-    );
-}
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#ffafbd'
-    },
-});
+  return (
+    <SimpleSubjectHub
+      navigation={navigation}
+      title='Previous Year Papers'
+      subtitle='Practice with past Telangana question sets'
+      items={items}
+    />
+  );
+};
 
 export default Tsprev;

@@ -1,67 +1,20 @@
-import { BackHandler, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import StaticRouteListScreen from '../src/features/lists/StaticRouteListScreen';
 
 const Engtpts = ({ navigation }) => {
-
-  useEffect(() => {
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      () => {
-        navigation.goBack();
-        return true;
-      }
-    );
-
-    return () => backHandler.remove();
-  }, [navigation]);
-
   return (
-    <View style={styles.container}>
-      <ScrollView>
-
-        <Card style={{ padding: 10, margin: 20 }}>
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('english ts tp1')}
-          >
-            <Text style={{ fontSize: 20 }}>TestPaper-1</Text>
-          </TouchableWithoutFeedback>
-        </Card>
-
-        <Card style={{ padding: 10, margin: 20 }}>
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('english ts tp2')}
-          >
-            <Text style={{ fontSize: 20 }}>TestPaper-2</Text>
-          </TouchableWithoutFeedback>
-        </Card>
-
-        <Card style={{ padding: 10, margin: 20 }}>
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('english ts tp3')}
-          >
-            <Text style={{ fontSize: 20 }}>TestPaper-3</Text>
-          </TouchableWithoutFeedback>
-        </Card>
-
-        <Card style={{ padding: 10, margin: 20 }}>
-          <TouchableWithoutFeedback
-            onPress={() => navigation.navigate('english ts tp4')}
-          >
-            <Text style={{ fontSize: 20 }}>TestPaper-4</Text>
-          </TouchableWithoutFeedback>
-        </Card>
-
-      </ScrollView>
-    </View>
+    <StaticRouteListScreen
+      navigation={navigation}
+      title='Test Papers'
+      subtitle='Open a paper set to continue practice'
+      items={[
+    { label: 'TestPaper-1', screen: 'english ts tp1' },
+    { label: 'TestPaper-2', screen: 'english ts tp2' },
+    { label: 'TestPaper-3', screen: 'english ts tp3' },
+    { label: 'TestPaper-4', screen: 'english ts tp4' },
+      ]}
+    />
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff"
-  },
-});
 
 export default Engtpts;

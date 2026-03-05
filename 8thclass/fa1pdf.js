@@ -1,48 +1,14 @@
-import { ActivityIndicator, StyleSheet, View } from 'react-native';
-import React, { useState, useEffect } from 'react'
-import MrecAdComponent from "../MrecAdComponent";
-
-import { WebView } from 'react-native-webview';
+import React from 'react';
+import ModernContentWebView from '../components/ModernContentWebView';
 
 const Fa18pdf = ({ route }) => {
-    const { url } = route.params;
-    const [loading, setLoading] = useState(true);
-
-    useEffect(() => {
-        setLoading(true);
-    }, [url]);
-
-    const renderLoadingIndicator = () => (
-        <View style={styles.loadingContainer}>
-            <ActivityIndicator size="large" color="#0000ff" />
-        </View>
-    );
-
-    return (
-        <View style={styles.container}>
-            <WebView
-                source={{ uri: `${url}` }}
-                javaScriptEnabled={true}
-                domStorageEnabled={true}
-                renderLoading={renderLoadingIndicator}
-                startInLoadingState={true}
-                onLoad={() => setLoading(false)}
-                onError={() => setLoading(false)}
-            />
-            <MrecAdComponent/>
-        </View>
-    );
+  return (
+    <ModernContentWebView
+      route={route}
+      routeParamKey='url'
+      screenName='fa18pdf'
+    />
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-});
 
 export default Fa18pdf;

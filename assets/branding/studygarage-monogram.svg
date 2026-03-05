@@ -1,0 +1,31 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <title>StudyGarage Monogram SG</title>
+  <desc>Minimal geometric SG monogram for dark premium branding.</desc>
+
+  <!-- Transparent background for flexible placement -->
+  <g transform="translate(16 16)">
+    <path
+      d="M224 236H420C496 236 544 282 544 348C544 414 496 460 420 460H320C244 460 196 506 196 572C196 638 244 684 320 684H516"
+      stroke="#F5F7FF"
+      stroke-width="76"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M796 684H640C554 684 492 622 492 536V384C492 298 554 236 640 236H804"
+      stroke="#F5F7FF"
+      stroke-width="76"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M804 468H692"
+      stroke="#F5F7FF"
+      stroke-width="76"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+</svg>

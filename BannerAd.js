@@ -1,13 +1,25 @@
-import React, { useCallback, useEffect, useRef } from 'react';
-import { StyleSheet, View } from 'react-native';
+import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import { Platform, StyleSheet, View } from 'react-native';
 import { LevelPlayAdSize, LevelPlayBannerAdView } from 'unity-levelplay-mediation';
 
-const BANNER_AD_UNIT_ID = 'bp8awtxn68kk95bs';
+const LEVELPLAY_BANNER_ANDROID_DEFAULT_ID = 'bp8awtxn68kk95bs';
+
+const BANNER_AD_UNIT_ID = Platform.select({
+  android:
+    process.env.EXPO_PUBLIC_LEVELPLAY_BANNER_AD_UNIT_ID ||
+    process.env.LEVELPLAY_BANNER_AD_UNIT_ID ||
+    LEVELPLAY_BANNER_ANDROID_DEFAULT_ID,
+  ios:
+    process.env.EXPO_PUBLIC_LEVELPLAY_BANNER_AD_UNIT_ID_IOS ||
+    process.env.LEVELPLAY_BANNER_AD_UNIT_ID_IOS ||
+    '',
+});
 const BANNER_AD_SIZE = LevelPlayAdSize.BANNER;
 const BANNER_PLACEMENT_NAME = null;
 
 const BannerAdComponent = () => {
   const bannerRef = useRef(null);
+  const isAvailable = useMemo(() => Boolean(BANNER_AD_UNIT_ID), []);
 
   const listener = {
     onAdLoaded: (adInfo) => {
@@ -42,14 +54,21 @@ const BannerAdComponent = () => {
   };
 
   const loadBanner = useCallback(() => {
+    if (!isAvailable) return;
     bannerRef.current?.loadAd();
-  }, []);
+  }, [isAvailable]);
 
   useEffect(() => {
+    if (!isAvailable) return undefined;
+
     return () => {
       bannerRef.current?.destroy();
     };
-  }, []);
+  }, [isAvailable]);
+
+  if (!isAvailable) {
+    return null;
+  }
 
   return (
     <View style={styles.container}>

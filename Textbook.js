@@ -1,89 +1,29 @@
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import SimpleSubjectHub from './src/features/hubs/SimpleSubjectHub';
 
 const Textbook = ({ navigation }) => {
+  const items = [
+    { label: 'TELUGU', route: 'telugu textbook' },
+    { label: 'HINDI', route: 'hindi textbook' },
+    { label: 'ENGLISH', route: 'english textbook' },
+    { label: 'MATHEMATICS-EM', route: 'maths em textbook' },
+    { label: 'MATHEMATICS-TM', route: 'maths tm textbook' },
+    { label: 'BIOLOGY-EM', route: 'biology em textbook' },
+    { label: 'BIOLOGY-TM', route: 'biology tm textbook' },
+    { label: 'PHYSICAL SCIENCE-EM', route: 'physics em textbook' },
+    { label: 'PHYSICAL SCIENCE-TM', route: 'physics tm textbook' },
+    { label: 'SOCIAL-TM', route: 'social tm textbook' },
+    { label: 'SOCIAL-EM', route: 'social em textbook' },
+  ];
 
-
-    return (
-        <View style={styles.container}>
-            <ScrollView>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('telugu textbook')}>
-                        <Text style={{ fontSize: 20 }}>TELUGU</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('hindi textbook')}>
-                        <Text style={{ fontSize: 20 }}>HINDI</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('english textbook')}>
-                        <Text style={{ fontSize: 20 }}>ENGLISH</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('maths em textbook')}>
-                        <Text style={{ fontSize: 20 }}>MATHAMATICS-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('maths tm textbook')}>
-                        <Text style={{ fontSize: 20 }}>MATHAMATICS-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('biology em textbook')}>
-                        <Text style={{ fontSize: 20 }}>BIOLOGY-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('biology tm textbook')}>
-                        <Text style={{ fontSize: 20 }}>BIOLOGY-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('physics em textbook')}>
-                        <Text style={{ fontSize: 20 }}>PHYSCICAL SCIENCE-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('physics tm textbook')}>
-                        <Text style={{ fontSize: 20 }}>PHYSCICAL SCIENCE-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('social tm textbook')}>
-                        <Text style={{ fontSize: 20 }}>SOCIAL-TM</Text>
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <TouchableOpacity onPress={() => navigation.navigate('social em textbook')}>
-                        <Text style={{ fontSize: 20 }}>SOCIAL-EM</Text>
-                    </TouchableOpacity>
-                </Card>
-            </ScrollView>
-        </View>
-    );
-}
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-});
+  return (
+    <SimpleSubjectHub
+      navigation={navigation}
+      title="Textbooks"
+      subtitle="Open chapter books by subject"
+      items={items}
+    />
+  );
+};
 
 export default Textbook;

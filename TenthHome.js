@@ -29,7 +29,7 @@ const TenthHome = ({ navigation }) => {
     return (
 
 
-        <View style={{ flex: 1, backgroundColor: '#000000' }}>
+        <View style={{ flex: 1, backgroundColor: '#121212' }}>
             <ScrollView>
 
 

@@ -1,0 +1,108 @@
+// MIGRATION_TODO: keep legacy `sg` / `sgd` aliases during migration;
+// new primitives should use semantic `ds.*` tokens only.
+module.exports = {
+  theme: {
+    extend: {
+      colors: {
+        ds: {
+          bg: {
+            base: '#121212',
+            elevated: '#1A1C2E',
+            deep: '#101116',
+          },
+          surface: {
+            base: 'rgba(255,255,255,0.06)',
+            strong: 'rgba(255,255,255,0.08)',
+          },
+          border: {
+            subtle: 'rgba(255,255,255,0.10)',
+          },
+          text: {
+            primary: '#F5F7FF',
+            secondary: '#B8C0D4',
+            muted: '#8F98AD',
+          },
+          accent: {
+            mint: '#36D8A3',
+            purple: '#B026FF',
+            gold: '#E9C667',
+            red: '#FF3B30',
+          },
+          interaction: {
+            pressed: 'rgba(255,255,255,0.08)',
+            focus: 'rgba(176,38,255,0.28)',
+            'selected-bg': 'rgba(176,38,255,0.16)',
+            'disabled-bg': 'rgba(255,255,255,0.04)',
+          },
+          status: {
+            success: '#36D8A3',
+            warning: '#F5B91A',
+            info: '#33BECC',
+          },
+          overlay: {
+            scrim: 'rgba(10,10,10,0.78)',
+            toast: 'rgba(18,18,18,0.92)',
+          },
+        },
+        sg: {
+          bg: '#121212',
+          bg2: '#1A1C2E',
+          surface: '#1A1D27',
+          surface2: '#202432',
+          glass: 'rgba(26,29,39,0.90)',
+          border: 'rgba(255,255,255,0.10)',
+          text: '#F5F7FF',
+          muted: '#AEB5C7',
+          primary: '#B026FF',
+          primary2: '#7C5CFF',
+          primarySoft: '#2A2341',
+          accent: '#E9C667',
+          success: '#36D8A3',
+          warning: '#FFD700',
+          danger: '#FF3B30',
+          info: '#5B7CFF',
+          glow1: 'rgba(176,38,255,0.24)',
+          glow2: 'rgba(233,198,103,0.22)',
+        },
+        sgd: {
+          bg: '#121212',
+          bg2: '#1A1C2E',
+          surface: '#1A1D27',
+          surface2: '#202432',
+          glass: 'rgba(26,29,39,0.90)',
+          border: 'rgba(255,255,255,0.10)',
+          text: '#F5F7FF',
+          muted: '#AEB5C7',
+          primary: '#B026FF',
+          primary2: '#7C5CFF',
+          primarySoft: '#2A2341',
+          accent: '#E9C667',
+          success: '#36D8A3',
+          warning: '#FFD700',
+          danger: '#FF3B30',
+          info: '#5B7CFF',
+          glow1: 'rgba(176,38,255,0.24)',
+          glow2: 'rgba(233,198,103,0.22)',
+        },
+      },
+      spacing: {
+        'ds-1': '4px',
+        'ds-2': '8px',
+        'ds-3': '12px',
+        'ds-4': '16px',
+        'ds-5': '20px',
+        'ds-6': '24px',
+        'ds-8': '32px',
+      },
+      borderRadius: {
+        'ds-sm': '12px',
+        'ds-md': '16px',
+        'ds-lg': '20px',
+        'ds-xl': '24px',
+        'ds-2xl': '28px',
+        'ds-pill': '999px',
+        'ds-round': '9999px',
+      },
+    },
+  },
+};

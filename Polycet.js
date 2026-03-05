@@ -1,62 +1,33 @@
-import { BackHandler, StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React, { useEffect } from 'react';
+import { BackHandler } from 'react-native';
+import SimpleSubjectHub from './src/features/hubs/SimpleSubjectHub';
 
 const Polycet = ({ navigation }) => {
   useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-      navigation.goBack(); // Navigate back when back button is pressed
-      return true; // Prevent default behavior
+      navigation.goBack();
+      return true;
     });
 
-    // ✅ cleanup properly when component unmounts
     return () => backHandler.remove();
   }, [navigation]);
 
+  const items = [
+    { label: 'AP POLYCET Previous Papers', route: 'appoly' },
+    { label: 'IIIT 2023 Preparation', route: 'IIItp' },
+    { label: 'TS POLYCET Previous Papers', route: 'tspoly' },
+    { label: 'AP & TS POLYCET Preparation', route: 'polypre' },
+    { label: 'Mock Tests', route: 'polymock' },
+  ];
+
   return (
-    <View style={styles.container}>
-      <ScrollView>
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity onPress={() => navigation.navigate('appoly')}>
-            <Text style={{ fontSize: 20 }}>AP POLYCET Previous PAPERS</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity onPress={() => navigation.navigate('IIItp')}>
-            <Text style={{ fontSize: 20 }}>IIIT 2023 PREPARATION</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity onPress={() => navigation.navigate('tspoly')}>
-            <Text style={{ fontSize: 20 }}>TS POLYCET Previous PAPERS</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity onPress={() => navigation.navigate('polypre')}>
-            <Text style={{ fontSize: 20 }}>AP & TS POLYCET 2023 PREPARATION</Text>
-          </TouchableOpacity>
-        </Card>
-
-        <Card style={{ padding: 30, margin: 20 }}>
-          <TouchableOpacity onPress={() => navigation.navigate('polymock')}>
-            <Text style={{ fontSize: 20 }}>MOCK TESTS</Text>
-          </TouchableOpacity>
-        </Card>
-      </ScrollView>
-    </View>
+    <SimpleSubjectHub
+      navigation={navigation}
+      title="Polycet"
+      subtitle="Previous papers and preparation tracks"
+      items={items}
+    />
   );
 };
-
-
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffafbd',
-  },
-});
 
 export default Polycet;

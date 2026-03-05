@@ -1,55 +1,20 @@
-import { BackHandler, ScrollView, StyleSheet, Text, TouchableWithoutFeedback, View } from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import StaticRouteListScreen from '../src/features/lists/StaticRouteListScreen';
 
 const Socetpts = ({ navigation }) => {
-
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack();
-            return true;
-        });
-
-        return () => backHandler.remove();
-    }, [navigation]);
-
-    return (
-        <View style={styles.container}>
-            <ScrollView>
-
-                <Card style={{ padding: 25, margin: 15 }}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('socialem ts tp1')}>
-                        <Text style={{ fontSize: 20 }}>TestPaper-1</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={{ padding: 25, margin: 15 }}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('socialem ts tp2')}>
-                        <Text style={{ fontSize: 20 }}>TestPaper-2</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={{ padding: 25, margin: 15 }}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('socialem ts tp3')}>
-                        <Text style={{ fontSize: 20 }}>TestPaper-3</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-                <Card style={{ padding: 25, margin: 15 }}>
-                    <TouchableWithoutFeedback onPress={() => navigation.navigate('socialem ts tp4')}>
-                        <Text style={{ fontSize: 20 }}>TestPaper-4</Text>
-                    </TouchableWithoutFeedback>
-                </Card>
-
-            </ScrollView>
-        </View>
-    );
+  return (
+    <StaticRouteListScreen
+      navigation={navigation}
+      title='Test Papers'
+      subtitle='Open a paper set to continue practice'
+      items={[
+    { label: 'TestPaper-1', screen: 'socialem ts tp1' },
+    { label: 'TestPaper-2', screen: 'socialem ts tp2' },
+    { label: 'TestPaper-3', screen: 'socialem ts tp3' },
+    { label: 'TestPaper-4', screen: 'socialem ts tp4' },
+      ]}
+    />
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-});
 
 export default Socetpts;

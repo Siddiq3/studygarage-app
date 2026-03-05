@@ -1,145 +1,162 @@
-import React, { useState, useEffect } from 'react';
-import { BackHandler, StyleSheet, Text, View, TextInput, TouchableOpacity, Alert } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, BackHandler, Text, TextInput, View, useColorScheme } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import Ionicons from '@expo/vector-icons/Ionicons';
+import { LinearGradient } from 'expo-linear-gradient';
+import Animated, { FadeInDown } from 'react-native-reanimated';
+import ScreenLayoutContainer from './src/design-system/components/ScreenLayoutContainer';
+import SGCard from './src/design-system/components/SGCard';
+import SGButton from './src/design-system/components/SGButton';
 
 const WithdrawalFormPage = () => {
-    const [formData, setFormData] = useState({
-        userName: '',
-        phoneNumber: '',
-        upiId: '',
-        email: '',
-    });
+  const navigation = useNavigation();
+  const isDark = useColorScheme() === 'dark';
 
-    const navigation = useNavigation(); // Get the navigation object
+  const [formData, setFormData] = useState({
+    userName: '',
+    phoneNumber: '',
+    upiId: '',
+    email: '',
+  });
 
-    const handleBackPress = () => {
-        Alert.alert(
-            'Exit App',
-            'Enter Your Details And Click On Submit Button OtherWise Money Will be Not Credited',
-            [
-                { text: 'Cancel', onPress: () => { }, style: 'cancel' },
-                { text: 'Exit', onPress: () => BackHandler.exitApp() },
-            ],
-            { cancelable: false }
-        );
-        return true;
-    };
-
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
-
-        return () => {
-            backHandler.remove();
-        };
-    }, []);
-
-    const handleSubmit = async () => {
-        // Implement your form submission logic here
-        try {
-            const response = await fetch('https://api.way2employee.com/sk0301withdrawal', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(formData),
-            });
-
-            if (response.ok) {
-                Alert.alert('Withdrawal request submitted successfully!');
-                // Navigate to the home page after successful submission
-                navigation.navigate('10th class'); // 'Home' should be the name of your home page in your navigation stack
-            } else {
-                Alert.alert('Error submitting withdrawal request');
-            }
-        } catch (error) {
-            console.error('Error:', error);
-            Alert.alert('An unexpected error occurred');
-        }
-
-        // Reset the form
-        setFormData({
-            userName: '',
-            phoneNumber: '',
-            upiId: '',
-            email: '',
-        });
-    };
-
-    return (
-        <View style={styles.container}>
-            <Text style={styles.formTitle}>Withdrawal Form</Text>
-            {/* Your form inputs */}
-            <TextInput
-                style={styles.input}
-                placeholder="User Name"
-                value={formData.userName}
-                onChangeText={(text) => setFormData({ ...formData, userName: text })}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Phone Number"
-                value={formData.phoneNumber}
-                onChangeText={(text) => setFormData({ ...formData, phoneNumber: text })}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="UPI ID"
-                value={formData.upiId}
-                onChangeText={(text) => setFormData({ ...formData, upiId: text })}
-            />
-            <TextInput
-                style={styles.input}
-                placeholder="Email"
-                value={formData.email}
-                onChangeText={(text) => setFormData({ ...formData, email: text })}
-            />
-            {/* Submit button */}
-            <TouchableOpacity
-                style={styles.submitButton}
-                onPress={handleSubmit}
-            >
-                <Text style={styles.submitButtonText}>Submit</Text>
-            </TouchableOpacity>
-        </View>
+  const handleBackPress = () => {
+    Alert.alert(
+      'Exit App',
+      'Enter Your Details And Click On Submit Button OtherWise Money Will be Not Credited',
+      [
+        { text: 'Cancel', onPress: () => {}, style: 'cancel' },
+        { text: 'Exit', onPress: () => BackHandler.exitApp() },
+      ],
+      { cancelable: false }
     );
+    return true;
+  };
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener('hardwareBackPress', handleBackPress);
+    return () => backHandler.remove();
+  }, []);
+
+  const handleSubmit = async () => {
+    try {
+      const response = await fetch('https://api.way2employee.com/sk0301withdrawal', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        Alert.alert('Withdrawal request submitted successfully!');
+        navigation.navigate('10th class');
+      } else {
+        Alert.alert('Error submitting withdrawal request');
+      }
+    } catch (error) {
+      console.error('Error:', error);
+      Alert.alert('An unexpected error occurred');
+    }
+
+    setFormData({
+      userName: '',
+      phoneNumber: '',
+      upiId: '',
+      email: '',
+    });
+  };
+
+  return (
+    <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
+      <Animated.View entering={FadeInDown.duration(240)}>
+        <SGCard className="mb-4 overflow-hidden">
+          <LinearGradient
+            colors={['rgba(56,37,103,0.46)', 'rgba(17,28,43,0.9)', 'rgba(14,20,31,0.95)']}
+            start={{ x: 0, y: 0 }}
+            end={{ x: 1, y: 1 }}
+            className="-m-4 mb-4 rounded-[24px] border border-white/10 px-5 py-4"
+          >
+            <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-white/70">Withdrawal</Text>
+            <Text className="mt-1 text-[28px] font-extrabold leading-[32px] text-white">Submit Payout Details</Text>
+            <Text className="mt-1 text-[13px] font-medium text-[#AEB8CF]">
+              Fill all fields correctly to receive your reward amount.
+            </Text>
+
+            <View className="mt-3 self-start rounded-full border border-[#00FFA3]/35 bg-[#0F3329] px-2.5 py-1">
+              <Text className="text-[11px] font-extrabold text-[#00FFA3]">Secure payout form</Text>
+            </View>
+          </LinearGradient>
+
+          <View className="mt-4 gap-3">
+            <InputField
+              placeholder="User Name"
+              iconName="person-outline"
+              value={formData.userName}
+              onChangeText={(text) => setFormData((prev) => ({ ...prev, userName: text }))}
+              isDark={isDark}
+            />
+            <InputField
+              placeholder="Phone Number"
+              iconName="call-outline"
+              value={formData.phoneNumber}
+              onChangeText={(text) => setFormData((prev) => ({ ...prev, phoneNumber: text }))}
+              isDark={isDark}
+              keyboardType="phone-pad"
+            />
+            <InputField
+              placeholder="UPI ID"
+              iconName="wallet-outline"
+              value={formData.upiId}
+              onChangeText={(text) => setFormData((prev) => ({ ...prev, upiId: text }))}
+              isDark={isDark}
+              autoCapitalize="none"
+            />
+            <InputField
+              placeholder="Email"
+              iconName="mail-outline"
+              value={formData.email}
+              onChangeText={(text) => setFormData((prev) => ({ ...prev, email: text }))}
+              isDark={isDark}
+              keyboardType="email-address"
+              autoCapitalize="none"
+            />
+          </View>
+
+          <SGButton label="Submit" onPress={handleSubmit} className="mt-5" />
+          <Text className="mt-3 text-[11px] font-medium text-sg-muted dark:text-sgd-muted">
+            Double-check UPI ID and phone number before submitting.
+          </Text>
+        </SGCard>
+      </Animated.View>
+    </ScreenLayoutContainer>
+  );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        padding: 20,
-    },
-    formTitle: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 20,
-        textAlign: 'center',
-    },
-    input: {
-        height: 45,
-        borderColor: 'gray',
-        borderWidth: 1,
-        marginBottom: 15,
-        paddingLeft: 15,
-        width: '100%',
-        borderRadius: 8,
-        fontSize: 16,
-    },
-    submitButton: {
-        backgroundColor: '#2196F3',
-        paddingVertical: 12,
-        paddingHorizontal: 30,
-        borderRadius: 8,
-        alignItems: 'center',
-        marginTop: 20,
-    },
-    submitButtonText: {
-        color: '#fff',
-        fontSize: 18,
-        fontWeight: 'bold',
-    },
-});
+function InputField({
+  placeholder,
+  iconName,
+  value,
+  onChangeText,
+  isDark,
+  keyboardType = 'default',
+  autoCapitalize = 'sentences',
+}) {
+  return (
+    <View className="flex-row items-center rounded-[18px] border border-white/10 bg-[#141A25] px-4 py-3">
+      <View className="mr-2 h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#1D2431]">
+        <Ionicons name={iconName} size={15} color="#BAC5DC" />
+      </View>
+      <TextInput
+        placeholder={placeholder}
+        placeholderTextColor={isDark ? '#AEB5C6' : '#7A6A66'}
+        value={value}
+        onChangeText={onChangeText}
+        keyboardType={keyboardType}
+        autoCapitalize={autoCapitalize}
+        className="flex-1 text-[16px] font-semibold text-sg-text dark:text-sgd-text"
+      />
+    </View>
+  );
+}
 
 export default WithdrawalFormPage;

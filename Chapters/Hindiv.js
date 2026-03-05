@@ -1,14 +1,11 @@
-import { Text, View} from 'react-native';
-import React from "react";
+import React from 'react';
+import ComingSoonScreen from '../src/features/chapters/ComingSoonScreen';
 
-const Hindiv = () => {
-    return (
-        <View>
-            <ScrollView>
-                <Text style={{ fontSize: 40, textAlign: 'center' }}> UPLOADED SHORTLY...</Text>
-            </ScrollView>
-        </View>
-    );
-}
+const Hindiv = () => (
+  <ComingSoonScreen
+    title="Hindi Video Explanations"
+    subtitle="Hindi chapter explainers will be uploaded shortly"
+  />
+);
 
 export default Hindiv;

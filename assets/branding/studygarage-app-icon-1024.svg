@@ -1,0 +1,50 @@
+<svg width="1024" height="1024" viewBox="0 0 1024 1024" xmlns="http://www.w3.org/2000/svg" fill="none">
+  <title>StudyGarage App Icon 1024</title>
+  <desc>Dark-first premium app icon with SG monogram.</desc>
+
+  <rect width="1024" height="1024" fill="#0B0C10"/>
+
+  <!-- Safe area guide (invisible in final exports): margin 148px -->
+  <!-- <rect x="148" y="148" width="728" height="728" stroke="#00FF00" stroke-opacity="0.1"/> -->
+
+  <g transform="translate(176 176)">
+    <path
+      d="M88 84H254C314 84 352 120 352 172C352 224 314 260 254 260H174C114 260 76 296 76 348C76 400 114 436 174 436H328"
+      stroke="#F5F7FF"
+      stroke-width="56"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M560 436H438C370 436 320 386 320 318V202C320 134 370 84 438 84H566"
+      stroke="#F5F7FF"
+      stroke-width="56"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M566 266H476"
+      stroke="#F5F7FF"
+      stroke-width="56"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+
+  <!-- Subtle premium edge highlight (top-left only) -->
+  <path d="M64 64H420" stroke="url(#edgeHighlight)" stroke-width="2" stroke-linecap="round"/>
+  <path d="M64 64V420" stroke="url(#edgeHighlightV)" stroke-width="2" stroke-linecap="round"/>
+
+  <defs>
+    <linearGradient id="edgeHighlight" x1="64" y1="64" x2="420" y2="64" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F7FF" stop-opacity="0.14"/>
+      <stop offset="1" stop-color="#F5F7FF" stop-opacity="0"/>
+    </linearGradient>
+    <linearGradient id="edgeHighlightV" x1="64" y1="64" x2="64" y2="420" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#F5F7FF" stop-opacity="0.12"/>
+      <stop offset="1" stop-color="#F5F7FF" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+</svg>

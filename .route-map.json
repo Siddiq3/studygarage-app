@@ -1,0 +1,3957 @@
+[
+  {
+    "name": "FirstPage",
+    "component": "FirstPage",
+    "path": "./firstpage"
+  },
+  {
+    "name": "WelcomeReward",
+    "component": "WelcomeRewardScreen",
+    "path": "./src/features/onboardingReward/WelcomeRewardScreen"
+  },
+  {
+    "name": "SecondPage",
+    "component": "SecondPage",
+    "path": "./secondpage"
+  },
+  {
+    "name": "ChapterDetails",
+    "component": "ChapterDetails",
+    "path": "./Chapter"
+  },
+  {
+    "name": "Quiz",
+    "component": "Quizques",
+    "path": "./Quizdq"
+  },
+  {
+    "name": "Quiz Results",
+    "component": "QuizResults",
+    "path": "./Quizres"
+  },
+  {
+    "name": "SubjectDataPage",
+    "component": "SubjectData",
+    "path": "./Subjectdetails"
+  },
+  {
+    "name": "TotalScorePage",
+    "component": "TotalScorePage",
+    "path": "./TotalScorePage"
+  },
+  {
+    "name": "WithdrawalHistoryPage",
+    "component": "WithdrawalHistoryPage",
+    "path": "./Whistory"
+  },
+  {
+    "name": "WithdrawalFormPage",
+    "component": "WithdrawalFormPage",
+    "path": "./Withdraw"
+  },
+  {
+    "name": "apssc",
+    "component": "Menu",
+    "path": "./Menu"
+  },
+  {
+    "name": "nmms",
+    "component": "Nmms",
+    "path": "./Nmms"
+  },
+  {
+    "name": "nmmssm",
+    "component": "Nmmssm",
+    "path": "./Nmms/Nmmssm"
+  },
+  {
+    "name": "nmmspp",
+    "component": "Nmmspp",
+    "path": "./Nmms/Nmmspp"
+  },
+  {
+    "name": "nmmsdt",
+    "component": "Dtest",
+    "path": "./Nmms/Daytest"
+  },
+  {
+    "name": "nmmstp",
+    "component": "Nmmstp",
+    "path": "./Nmms/Nmmstp"
+  },
+  {
+    "name": "test1",
+    "component": "Test1",
+    "path": "./Nmms/Test/T1"
+  },
+  {
+    "name": "test2",
+    "component": "Test2",
+    "path": "./Nmms/Test/T2"
+  },
+  {
+    "name": "test3",
+    "component": "Test3",
+    "path": "./Nmms/Test/T3"
+  },
+  {
+    "name": "test4",
+    "component": "Test4",
+    "path": "./Nmms/Test/T4"
+  },
+  {
+    "name": "test5",
+    "component": "Test5",
+    "path": "./Nmms/Test/T5"
+  },
+  {
+    "name": "test6",
+    "component": "Test6",
+    "path": "./Nmms/Test/T6"
+  },
+  {
+    "name": "nmmsme",
+    "component": "Nmmsme",
+    "path": "./Nmms/Subjects/Mathsem"
+  },
+  {
+    "name": "nmmsmt",
+    "component": "Nmmsmt",
+    "path": "./Nmms/Subjects/Mathtm"
+  },
+  {
+    "name": "nmmsse",
+    "component": "Nmmssoe",
+    "path": "./Nmms/Subjects/Sociem"
+  },
+  {
+    "name": "nmmsst",
+    "component": "Nmmssot",
+    "path": "./Nmms/Subjects/Socitm"
+  },
+  {
+    "name": "nmmssie",
+    "component": "Nmmssie",
+    "path": "./Nmms/Subjects/Scienceem"
+  },
+  {
+    "name": "nmmssit",
+    "component": "Nmmssit",
+    "path": "./Nmms/Subjects/Sciencetm"
+  },
+  {
+    "name": "nmmsme1",
+    "component": "Mate1",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat1"
+  },
+  {
+    "name": "nmmsme2",
+    "component": "Mate2",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat2"
+  },
+  {
+    "name": "nmmsme3",
+    "component": "Mate3",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat3"
+  },
+  {
+    "name": "nmmsme4",
+    "component": "Mate4",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat4"
+  },
+  {
+    "name": "nmmsme5",
+    "component": "Mate5",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat5"
+  },
+  {
+    "name": "nmmsme6",
+    "component": "Mate6",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat6"
+  },
+  {
+    "name": "nmmsme7",
+    "component": "Mate7",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat7"
+  },
+  {
+    "name": "nmmsme8",
+    "component": "Mate8",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat8"
+  },
+  {
+    "name": "nmmsme9",
+    "component": "Mate9",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat9"
+  },
+  {
+    "name": "nmmsme10",
+    "component": "Mate10",
+    "path": "./Nmms/Study/Studyem/Mathsem/Mat10"
+  },
+  {
+    "name": "nmmsmt1",
+    "component": "Matt1",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat1"
+  },
+  {
+    "name": "nmmsmt2",
+    "component": "Matt2",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat2"
+  },
+  {
+    "name": "nmmsmt3",
+    "component": "Matt3",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat3"
+  },
+  {
+    "name": "nmmsmt4",
+    "component": "Matt4",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat4"
+  },
+  {
+    "name": "nmmsmt5",
+    "component": "Matt5",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat5"
+  },
+  {
+    "name": "nmmsmt6",
+    "component": "Matt6",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat6"
+  },
+  {
+    "name": "nmmsmt7",
+    "component": "Matt7",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat7"
+  },
+  {
+    "name": "nmmsmt8",
+    "component": "Matt8",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat8"
+  },
+  {
+    "name": "nmmsmt9",
+    "component": "Matt9",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat9"
+  },
+  {
+    "name": "nmmsmt10",
+    "component": "Matt10",
+    "path": "./Nmms/Study/Studytm/Mathstm/Mat10"
+  },
+  {
+    "name": "nmmssoe1",
+    "component": "Soce1",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc1"
+  },
+  {
+    "name": "nmmssoe2",
+    "component": "Soce2",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc2"
+  },
+  {
+    "name": "nmmssoe3",
+    "component": "Soce3",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc3"
+  },
+  {
+    "name": "nmmssoe4",
+    "component": "Soce4",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc4"
+  },
+  {
+    "name": "nmmssoe5",
+    "component": "Soce5",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc5"
+  },
+  {
+    "name": "nmmssoe6",
+    "component": "Soce6",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc6"
+  },
+  {
+    "name": "nmmssoe7",
+    "component": "Soce7",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc7"
+  },
+  {
+    "name": "nmmssoe8",
+    "component": "Soce8",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc8"
+  },
+  {
+    "name": "nmmssoe9",
+    "component": "Soce9",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc9"
+  },
+  {
+    "name": "nmmssoe10",
+    "component": "Soce10",
+    "path": "./Nmms/Study/Studyem/Socialem/Soc10"
+  },
+  {
+    "name": "nmmssot1",
+    "component": "Soct1",
+    "path": "./Nmms/Study/Studytm/Social/Soc1"
+  },
+  {
+    "name": "nmmssot2",
+    "component": "Soct2",
+    "path": "./Nmms/Study/Studytm/Social/Soc2"
+  },
+  {
+    "name": "nmmssot3",
+    "component": "Soct3",
+    "path": "./Nmms/Study/Studytm/Social/Soc3"
+  },
+  {
+    "name": "nmmssot4",
+    "component": "Soct4",
+    "path": "./Nmms/Study/Studytm/Social/Soc4"
+  },
+  {
+    "name": "nmmssot5",
+    "component": "Soct5",
+    "path": "./Nmms/Study/Studytm/Social/Soc5"
+  },
+  {
+    "name": "nmmssot6",
+    "component": "Soct6",
+    "path": "./Nmms/Study/Studytm/Social/Soc6"
+  },
+  {
+    "name": "nmmssot7",
+    "component": "Soct7",
+    "path": "./Nmms/Study/Studytm/Social/Soc7"
+  },
+  {
+    "name": "nmmssot8",
+    "component": "Soct8",
+    "path": "./Nmms/Study/Studytm/Social/Soc8"
+  },
+  {
+    "name": "nmmssot9",
+    "component": "Soct9",
+    "path": "./Nmms/Study/Studytm/Social/Soc9"
+  },
+  {
+    "name": "nmmssot10",
+    "component": "Soct10",
+    "path": "./Nmms/Study/Studytm/Social/Soc10"
+  },
+  {
+    "name": "nmmssie1",
+    "component": "Scie1",
+    "path": "./Nmms/Study/Studyem/Science/Sci1"
+  },
+  {
+    "name": "nmmssie2",
+    "component": "Scie2",
+    "path": "./Nmms/Study/Studyem/Science/Sci2"
+  },
+  {
+    "name": "nmmssie3",
+    "component": "Scie3",
+    "path": "./Nmms/Study/Studyem/Science/Sci3"
+  },
+  {
+    "name": "nmmssie4",
+    "component": "Scie4",
+    "path": "./Nmms/Study/Studyem/Science/Sci4"
+  },
+  {
+    "name": "nmmssit1",
+    "component": "Scit1",
+    "path": "./Nmms/Study/Studytm/Sciencetm/Sci1"
+  },
+  {
+    "name": "nmmssit2",
+    "component": "Scit2",
+    "path": "./Nmms/Study/Studytm/Sciencetm/Sci2"
+  },
+  {
+    "name": "nmmssit3",
+    "component": "Scit3",
+    "path": "./Nmms/Study/Studytm/Sciencetm/Sci3"
+  },
+  {
+    "name": "nmmssit4",
+    "component": "Scit4",
+    "path": "./Nmms/Study/Studytm/Sciencetm/Sci4"
+  },
+  {
+    "name": "nmms2014em",
+    "component": "P2014e",
+    "path": "./Nmms/Pqp/p2014e"
+  },
+  {
+    "name": "nmms2014tm",
+    "component": "P2014t",
+    "path": "./Nmms/Pqp/p2014t"
+  },
+  {
+    "name": "nmms2015em",
+    "component": "P2015e",
+    "path": "./Nmms/Pqp/p2015e"
+  },
+  {
+    "name": "nmms2015tm",
+    "component": "P2015t",
+    "path": "./Nmms/Pqp/p2015t"
+  },
+  {
+    "name": "nmms2016em",
+    "component": "P2016e",
+    "path": "./Nmms/Pqp/p2016e"
+  },
+  {
+    "name": "nmms2016tm",
+    "component": "P2016t1",
+    "path": "./Nmms/Pqp/p2016t"
+  },
+  {
+    "name": "nmms2017em",
+    "component": "P2017e",
+    "path": "./Nmms/Pqp/p2017e"
+  },
+  {
+    "name": "nmms2017tm",
+    "component": "P2017t1",
+    "path": "./Nmms/Pqp/P2017t"
+  },
+  {
+    "name": "nmms2022em",
+    "component": "P2022e",
+    "path": "./Nmms/Pqp/P2022e"
+  },
+  {
+    "name": "nmms2022tm",
+    "component": "P2022t",
+    "path": "./Tspoly/P2022"
+  },
+  {
+    "name": "nmms2023em",
+    "component": "P2023e",
+    "path": "./Nmms/Pqp/P2023e"
+  },
+  {
+    "name": "nmms2023tm",
+    "component": "P2023t",
+    "path": "./Nmms/Pqp/P2023t"
+  },
+  {
+    "name": "nmms2018em1",
+    "component": "P2018e1",
+    "path": "./Nmms/Pqp/p2018e1"
+  },
+  {
+    "name": "nmms2018em2",
+    "component": "P2018e2",
+    "path": "./Nmms/Pqp/p2018e2"
+  },
+  {
+    "name": "nmms2018em3",
+    "component": "P2018e3",
+    "path": "./Nmms/Pqp/p2018e3"
+  },
+  {
+    "name": "nmms2018em4",
+    "component": "P2018e4",
+    "path": "./Nmms/Pqp/p2018e4"
+  },
+  {
+    "name": "nmms2018tm1",
+    "component": "P2018t1",
+    "path": "./Nmms/Pqp/p2018t1"
+  },
+  {
+    "name": "nmms2018tm2",
+    "component": "P2018t2",
+    "path": "./Nmms/Pqp/p2018t2"
+  },
+  {
+    "name": "nmms2018tm3",
+    "component": "P2018t3",
+    "path": "./Nmms/Pqp/p2018t3"
+  },
+  {
+    "name": "nmms2018tm4",
+    "component": "P2018t4",
+    "path": "./Nmms/Pqp/p2018t4"
+  },
+  {
+    "name": "nmms2019em1",
+    "component": "P2019e1",
+    "path": "./Nmms/Pqp/p2019e1"
+  },
+  {
+    "name": "nmms2019em2",
+    "component": "P2019e2",
+    "path": "./Nmms/Pqp/p2019e2"
+  },
+  {
+    "name": "nmms2019em3",
+    "component": "P2019e3",
+    "path": "./Nmms/Pqp/p2019e3"
+  },
+  {
+    "name": "nmms2019em4",
+    "component": "P2019e4",
+    "path": "./Nmms/Pqp/p2019e4"
+  },
+  {
+    "name": "nmms2019tm1",
+    "component": "P2019t1",
+    "path": "./Nmms/Pqp/p2019t1"
+  },
+  {
+    "name": "nmms2019tm2",
+    "component": "P2019t2",
+    "path": "./Nmms/Pqp/p2019t2"
+  },
+  {
+    "name": "nmms2019tm3",
+    "component": "P2019t3",
+    "path": "./Nmms/Pqp/p2019t3"
+  },
+  {
+    "name": "nmms2019tm4",
+    "component": "P2019t4",
+    "path": "./Nmms/Pqp/p2019t4"
+  },
+  {
+    "name": "interimp1",
+    "component": "Inter1stimpdata",
+    "path": "./INTER/inter1stimpdata"
+  },
+  {
+    "name": "Inter1stimpPage",
+    "component": "Inter1stimppdf",
+    "path": "./INTER/inter1stimppdf"
+  },
+  {
+    "name": "interprev1",
+    "component": "Inter1stpqpdata",
+    "path": "./INTER/inter1stpqpdata"
+  },
+  {
+    "name": "Inter1stpqpPage",
+    "component": "Inter1stpqppdf",
+    "path": "./INTER/inter1stpqppdf"
+  },
+  {
+    "name": "year1m",
+    "component": "Inter1stmdata",
+    "path": "./INTER/inter1stmdata"
+  },
+  {
+    "name": "Inter1stmPage",
+    "component": "Inter1stmpdf",
+    "path": "./INTER/inter1stmpdf"
+  },
+  {
+    "name": "interimp2",
+    "component": "Inter2ndimpdata",
+    "path": "./INTER/inter2ndimpdata"
+  },
+  {
+    "name": "Inter2ndimpPage",
+    "component": "Inter2ndimppdf",
+    "path": "./INTER/inter2ndimppdf"
+  },
+  {
+    "name": "interprev2",
+    "component": "Inter2ndpqpdata",
+    "path": "./INTER/inter2ndpqpdata"
+  },
+  {
+    "name": "Inter2ndpqpPage",
+    "component": "Inter2ndpqppdf",
+    "path": "./INTER/inter2ndpqppdf"
+  },
+  {
+    "name": "year2m",
+    "component": "Inter2ndmdata",
+    "path": "./INTER/inter2ndmdata"
+  },
+  {
+    "name": "Inter2ndmPage",
+    "component": "Inter2ndmpdf",
+    "path": "./INTER/inter2ndmpdf"
+  },
+  {
+    "name": "polycet1",
+    "component": "Polycet",
+    "path": "./Polycet"
+  },
+  {
+    "name": "tspoly",
+    "component": "Tspoly",
+    "path": "./Tspoly/tspoly"
+  },
+  {
+    "name": "appoly",
+    "component": "Appoly",
+    "path": "./Appoly/appoly"
+  },
+  {
+    "name": "tsprev",
+    "component": "Tsprev",
+    "path": "./Tsprev"
+  },
+  {
+    "name": "polymock",
+    "component": "Mocktest",
+    "path": "./Mocttest"
+  },
+  {
+    "name": "polypre",
+    "component": "Quiz",
+    "path": "./Quiz"
+  },
+  {
+    "name": "mocktest Result",
+    "component": "Mtres",
+    "path": "./Mtres"
+  },
+  {
+    "name": "poly2016",
+    "component": "P2016",
+    "path": "./Appoly/p2016"
+  },
+  {
+    "name": "poly2017",
+    "component": "P2017",
+    "path": "./Appoly/P2017"
+  },
+  {
+    "name": "poly2018",
+    "component": "P2018",
+    "path": "./Appoly/P2018"
+  },
+  {
+    "name": "poly2019",
+    "component": "P2019",
+    "path": "./Appoly/P2019"
+  },
+  {
+    "name": "poly2020",
+    "component": "P2020",
+    "path": "./Appoly/P2020"
+  },
+  {
+    "name": "poly2021",
+    "component": "P2021",
+    "path": "./Appoly/P2021"
+  },
+  {
+    "name": "poly2022",
+    "component": "P2022",
+    "path": "./Appoly/P2022"
+  },
+  {
+    "name": "poly2016t",
+    "component": "P2016t",
+    "path": "./Tspoly/p2016"
+  },
+  {
+    "name": "poly2017t",
+    "component": "P2017t",
+    "path": "./Tspoly/P2017"
+  },
+  {
+    "name": "poly2018t",
+    "component": "P2018t",
+    "path": "./Tspoly/P2018"
+  },
+  {
+    "name": "poly2019t",
+    "component": "P2019t",
+    "path": "./Tspoly/P2019"
+  },
+  {
+    "name": "poly2020t",
+    "component": "P2020t",
+    "path": "./Tspoly/P2020"
+  },
+  {
+    "name": "poly2021t",
+    "component": "P2021t",
+    "path": "./Tspoly/P2021"
+  },
+  {
+    "name": "poly2022t",
+    "component": "P2022t",
+    "path": "./Tspoly/P2022"
+  },
+  {
+    "name": "tsimp",
+    "component": "Tsimp",
+    "path": "./Tsimp"
+  },
+  {
+    "name": "tsplan",
+    "component": "Tsplan",
+    "path": "./Tsplan"
+  },
+  {
+    "name": "tssm",
+    "component": "Tsstudy",
+    "path": "./Tsstudy"
+  },
+  {
+    "name": "tsbp",
+    "component": "Tsblue",
+    "path": "./Tsblueprint"
+  },
+  {
+    "name": "tstp",
+    "component": "Tsmodel",
+    "path": "./Tsmodel"
+  },
+  {
+    "name": "telugu ts",
+    "component": "Tpfts",
+    "path": "./PRE TS/Tpf"
+  },
+  {
+    "name": "hindi ts",
+    "component": "Hpfts",
+    "path": "./PRE TS/Hpf"
+  },
+  {
+    "name": "english ts",
+    "component": "Epfts",
+    "path": "./PRE TS/Epf"
+  },
+  {
+    "name": "maths tm ts",
+    "component": "Mtpfts",
+    "path": "./PRE TS/Mtpf"
+  },
+  {
+    "name": "maths em ts",
+    "component": "Mepfts",
+    "path": "./PRE TS/Mepf"
+  },
+  {
+    "name": "physics tm ts",
+    "component": "Stpfts",
+    "path": "./PRE TS/Stpf"
+  },
+  {
+    "name": "physics em ts",
+    "component": "Sepfts",
+    "path": "./PRE TS/Sepf"
+  },
+  {
+    "name": "biology tm ts",
+    "component": "Ntpfts",
+    "path": "./PRE TS/Ntpfts"
+  },
+  {
+    "name": "biology em ts",
+    "component": "Nepfts",
+    "path": "./PRE TS/Nepfts"
+  },
+  {
+    "name": "social em ts",
+    "component": "Ssepfts",
+    "path": "./PRE TS/Ssepf"
+  },
+  {
+    "name": "social tm ts",
+    "component": "Sstpfts",
+    "path": "./PRE TS/Sstpf"
+  },
+  {
+    "name": "Telugu ImpTs",
+    "component": "Ttsimp",
+    "path": "./TS IMP/Ttsimp"
+  },
+  {
+    "name": "Hindi ImpTs",
+    "component": "Htsimp",
+    "path": "./TS IMP/Htsimp"
+  },
+  {
+    "name": "English ImpTs",
+    "component": "Etsimp",
+    "path": "./TS IMP/Etsimp"
+  },
+  {
+    "name": "Mathstm ImpTs",
+    "component": "Mttsimp",
+    "path": "./TS IMP/Mttsimp"
+  },
+  {
+    "name": "Mathsem ImpTs",
+    "component": "Metsimp",
+    "path": "./TS IMP/Metsimp"
+  },
+  {
+    "name": "Physicstm ImpTs",
+    "component": "Pttsimp",
+    "path": "./TS IMP/Pttsimp"
+  },
+  {
+    "name": "Physicsem ImpTs",
+    "component": "Petsimp",
+    "path": "./TS IMP/Petsimp"
+  },
+  {
+    "name": "Biologytm ImpTs",
+    "component": "Nttsimp",
+    "path": "./TS IMP/Nttsimp"
+  },
+  {
+    "name": "Biologyem ImpTs",
+    "component": "Netsimp",
+    "path": "./TS IMP/Netsimp"
+  },
+  {
+    "name": "Socialem ImpTs",
+    "component": "Setsimp",
+    "path": "./TS IMP/Setsimp"
+  },
+  {
+    "name": "Socialtm ImpTs",
+    "component": "Sttsimp",
+    "path": "./TS IMP/Sttsimp"
+  },
+  {
+    "name": "telugu tsb",
+    "component": "Ttsb",
+    "path": "./TS BLUEPRINT/Tpf"
+  },
+  {
+    "name": "hindi tsb",
+    "component": "Htsb",
+    "path": "./TS BLUEPRINT/Hpf"
+  },
+  {
+    "name": "english tsb",
+    "component": "Etsb",
+    "path": "./TS BLUEPRINT/Epf"
+  },
+  {
+    "name": "maths tm tsb",
+    "component": "Mttsb",
+    "path": "./TS BLUEPRINT/Mtpf"
+  },
+  {
+    "name": "maths em tsb",
+    "component": "Metsb",
+    "path": "./TS BLUEPRINT/Mepf"
+  },
+  {
+    "name": "physics tm tsb",
+    "component": "Pttsb",
+    "path": "./TS BLUEPRINT/Stpf"
+  },
+  {
+    "name": "physics em tsb",
+    "component": "Petsb",
+    "path": "./TS BLUEPRINT/Sepf"
+  },
+  {
+    "name": "biology tm tsb",
+    "component": "Nttsb",
+    "path": "./TS BLUEPRINT/Nttsb"
+  },
+  {
+    "name": "biology em tsb",
+    "component": "Netsb",
+    "path": "./TS BLUEPRINT/Netsb"
+  },
+  {
+    "name": "social em tsb",
+    "component": "Setsb",
+    "path": "./TS BLUEPRINT/Ssepf"
+  },
+  {
+    "name": "social tm tsb",
+    "component": "Sttsb",
+    "path": "./TS BLUEPRINT/Sstpf"
+  },
+  {
+    "name": "telugu tsm",
+    "component": "Ttssm",
+    "path": "./TS study/Ttsimp"
+  },
+  {
+    "name": "hindi tsm",
+    "component": "Htssm",
+    "path": "./TS study/Htsimp"
+  },
+  {
+    "name": "english tsm",
+    "component": "Etsism",
+    "path": "./TS study/Etsimp"
+  },
+  {
+    "name": "maths tm tsm",
+    "component": "Mttssm",
+    "path": "./TS study/Mttsimp"
+  },
+  {
+    "name": "maths em tsm",
+    "component": "Metssm",
+    "path": "./TS study/Metsimp"
+  },
+  {
+    "name": "physics tm tsm",
+    "component": "Pttssm",
+    "path": "./TS study/Pttsimp"
+  },
+  {
+    "name": "physics em tsm",
+    "component": "Petssm",
+    "path": "./TS study/Petsimp"
+  },
+  {
+    "name": "biology tm tsm",
+    "component": "Nttssm",
+    "path": "./TS study/Nttsimp"
+  },
+  {
+    "name": "biology em tsm",
+    "component": "Netssm",
+    "path": "./TS study/Netsimp"
+  },
+  {
+    "name": "social em tsm",
+    "component": "Setssm",
+    "path": "./TS study/Setsimp"
+  },
+  {
+    "name": "social tm tsm",
+    "component": "Sttssm",
+    "path": "./TS study/Sttsimp"
+  },
+  {
+    "name": "telugu tsp",
+    "component": "Teltspre",
+    "path": "./Sscpre ts/Telpre"
+  },
+  {
+    "name": "hindi tsp",
+    "component": "Hintspre",
+    "path": "./Sscpre ts/Hinpre"
+  },
+  {
+    "name": "english tsp",
+    "component": "Engtspre",
+    "path": "./Sscpre ts/Engpre"
+  },
+  {
+    "name": "maths tm tsp",
+    "component": "Mttspre",
+    "path": "./Sscpre ts/Mtpre"
+  },
+  {
+    "name": "maths em tsp",
+    "component": "Metspre",
+    "path": "./Sscpre ts/Mepre"
+  },
+  {
+    "name": "physics tm tsp",
+    "component": "Pttspre",
+    "path": "./Sscpre ts/Ptpre"
+  },
+  {
+    "name": "physics em tsp",
+    "component": "Petspre",
+    "path": "./Sscpre ts/Pepre"
+  },
+  {
+    "name": "biology tm tsp",
+    "component": "Nttspre",
+    "path": "./Sscpre ts/Ntpre"
+  },
+  {
+    "name": "biology em tsp",
+    "component": "Netspre",
+    "path": "./Sscpre ts/Nepre"
+  },
+  {
+    "name": "social em tsp",
+    "component": "Setspre",
+    "path": "./Sscpre ts/Sepre"
+  },
+  {
+    "name": "social tm tsp",
+    "component": "Sttspre",
+    "path": "./Sscpre ts/Stpre"
+  },
+  {
+    "name": "6thclass tb",
+    "component": "Class6tb",
+    "path": "./class6tb"
+  },
+  {
+    "name": "7thclass tb",
+    "component": "Class7tb",
+    "path": "./class7tb"
+  },
+  {
+    "name": "8thclass tb",
+    "component": "Class8tb",
+    "path": "./class8tb"
+  },
+  {
+    "name": "9thclass tb",
+    "component": "Class9tb",
+    "path": "./class9tb"
+  },
+  {
+    "name": "telugu tb6",
+    "component": "Tel6tb",
+    "path": "./6thclass/Textbooks/Telfa1"
+  },
+  {
+    "name": "hindi tb6",
+    "component": "Hin6tb",
+    "path": "./6thclass/Textbooks/Hinfa1"
+  },
+  {
+    "name": "english tb6",
+    "component": "Eng6tb",
+    "path": "./6thclass/Textbooks/Engfa1"
+  },
+  {
+    "name": "mathstm tb6",
+    "component": "M26tb",
+    "path": "./6thclass/Textbooks/Mattfa1"
+  },
+  {
+    "name": "mathsem tb6",
+    "component": "M16tb",
+    "path": "./6thclass/Textbooks/Matefa1"
+  },
+  {
+    "name": "nsem tb6",
+    "component": "Ns16tb",
+    "path": "./6thclass/Textbooks/Sciefa1"
+  },
+  {
+    "name": "nstm tb6",
+    "component": "Ns26tb",
+    "path": "./6thclass/Textbooks/Scitfa1"
+  },
+  {
+    "name": "socialem tb6",
+    "component": "Soc16tb",
+    "path": "./6thclass/Textbooks/Socefa1"
+  },
+  {
+    "name": "socialtm tb6",
+    "component": "Soc26tb",
+    "path": "./6thclass/Textbooks/Soctfa1"
+  },
+  {
+    "name": "telugu tb7",
+    "component": "Tel7tb",
+    "path": "./7thclass/Textbooks/Telfa1"
+  },
+  {
+    "name": "hindi tb7",
+    "component": "Hin7tb",
+    "path": "./7thclass/Textbooks/Hinfa1"
+  },
+  {
+    "name": "english tb7",
+    "component": "Eng7tb",
+    "path": "./7thclass/Textbooks/Engfa1"
+  },
+  {
+    "name": "mathstm tb7",
+    "component": "M27tb",
+    "path": "./7thclass/Textbooks/Mattfa1"
+  },
+  {
+    "name": "mathsem tb7",
+    "component": "M17tb",
+    "path": "./7thclass/Textbooks/Matefa1"
+  },
+  {
+    "name": "nsem tb7",
+    "component": "Ns17tb",
+    "path": "./7thclass/Textbooks/Sciefa1"
+  },
+  {
+    "name": "nstm tb7",
+    "component": "Ns27tb",
+    "path": "./7thclass/Textbooks/Scitfa1"
+  },
+  {
+    "name": "socialem tb7",
+    "component": "Soc17tb",
+    "path": "./7thclass/Textbooks/Socefa1"
+  },
+  {
+    "name": "socialtm tb7",
+    "component": "Soc27tb",
+    "path": "./7thclass/Textbooks/Soctfa1"
+  },
+  {
+    "name": "telugu tb8",
+    "component": "Tel8tb",
+    "path": "./8thclass/Textbooks/Telfa1"
+  },
+  {
+    "name": "hindi tb8",
+    "component": "Hin8tb",
+    "path": "./8thclass/Textbooks/Hinfa1"
+  },
+  {
+    "name": "english tb8",
+    "component": "Eng8tb",
+    "path": "./8thclass/Textbooks/Engfa1"
+  },
+  {
+    "name": "mathstm tb8",
+    "component": "M28tb",
+    "path": "./8thclass/Textbooks/Mattfa1"
+  },
+  {
+    "name": "mathsem tb8",
+    "component": "M18tb",
+    "path": "./8thclass/Textbooks/Matefa1"
+  },
+  {
+    "name": "nsem tb8",
+    "component": "Ns18tb",
+    "path": "./8thclass/Textbooks/Sciefa1"
+  },
+  {
+    "name": "nstm tb8",
+    "component": "Ns28tb",
+    "path": "./8thclass/Textbooks/Scitfa1"
+  },
+  {
+    "name": "psem tb8",
+    "component": "Ps18tb",
+    "path": "./8thclass/Textbooks/pstb"
+  },
+  {
+    "name": "pstm tb8",
+    "component": "Ps28tb",
+    "path": "./8thclass/Textbooks/pstb2"
+  },
+  {
+    "name": "socialem tb8",
+    "component": "Soc18tb",
+    "path": "./8thclass/Textbooks/Socefa1"
+  },
+  {
+    "name": "socialtm tb8",
+    "component": "Soc28tb",
+    "path": "./8thclass/Textbooks/Soctfa1"
+  },
+  {
+    "name": "social3m tb8",
+    "component": "Soc38tb",
+    "path": "./8thclass/Textbooks/Soce3tb"
+  },
+  {
+    "name": "telugu tb9",
+    "component": "Tel9tb",
+    "path": "./9thclass/Textbooks/Telfa1"
+  },
+  {
+    "name": "hindi tb9",
+    "component": "Hin9tb",
+    "path": "./9thclass/Textbooks/Hinfa1"
+  },
+  {
+    "name": "english tb9",
+    "component": "Eng9tb",
+    "path": "./9thclass/Textbooks/Engfa1"
+  },
+  {
+    "name": "mathstm tb9",
+    "component": "M29tb",
+    "path": "./9thclass/Textbooks/Mattfa1"
+  },
+  {
+    "name": "mathsem tb9",
+    "component": "M19tb",
+    "path": "./9thclass/Textbooks/Matefa1"
+  },
+  {
+    "name": "nsem tb9",
+    "component": "Ns19tb",
+    "path": "./9thclass/Textbooks/Sciefa1"
+  },
+  {
+    "name": "nstm tb9",
+    "component": "Ns29tb",
+    "path": "./9thclass/Textbooks/Scitfa1"
+  },
+  {
+    "name": "psem tb9",
+    "component": "Ps19tb",
+    "path": "./9thclass/Textbooks/pstb"
+  },
+  {
+    "name": "pstm tb9",
+    "component": "Ps29tb",
+    "path": "./9thclass/Textbooks/pstb2"
+  },
+  {
+    "name": "socialem tb9",
+    "component": "Soc19tb",
+    "path": "./9thclass/Textbooks/Socefa1"
+  },
+  {
+    "name": "socialtm tb9",
+    "component": "Soc29tb",
+    "path": "./9thclass/Textbooks/Soctfa1"
+  },
+  {
+    "name": "social3m tb9",
+    "component": "Soc39tb",
+    "path": "./9thclass/Textbooks/Soce3tb"
+  },
+  {
+    "name": "Question",
+    "component": "TodayQues",
+    "path": "./TodayQues"
+  },
+  {
+    "name": "Weekly Questions",
+    "component": "WeekQues",
+    "path": "./Weekquiz"
+  },
+  {
+    "name": "Question6",
+    "component": "Quiz6",
+    "path": "./Dailyquiz/Quiz6"
+  },
+  {
+    "name": "Question7",
+    "component": "Quiz7",
+    "path": "./Dailyquiz/Quiz7"
+  },
+  {
+    "name": "Question8",
+    "component": "Quiz8",
+    "path": "./Dailyquiz/Quiz8"
+  },
+  {
+    "name": "Question9",
+    "component": "Quiz9",
+    "path": "./Dailyquiz/Quiz9"
+  },
+  {
+    "name": "Question11",
+    "component": "Quiz11",
+    "path": "./Dailyquiz/Quiz11"
+  },
+  {
+    "name": "Question12",
+    "component": "Quiz12",
+    "path": "./Dailyquiz/Quiz12"
+  },
+  {
+    "name": "Question6ka",
+    "component": "Quiz6ka",
+    "path": "./Dailyquiz/Quiz6ka"
+  },
+  {
+    "name": "Question7ka",
+    "component": "Quiz7ka",
+    "path": "./Dailyquiz/Quiz7ka"
+  },
+  {
+    "name": "Question8ka",
+    "component": "Quiz8ka",
+    "path": "./Dailyquiz/Quiz8ka"
+  },
+  {
+    "name": "Question9ka",
+    "component": "Quiz9ka",
+    "path": "./Dailyquiz/Quiz9ka"
+  },
+  {
+    "name": "Question10ka",
+    "component": "Quiz10ka",
+    "path": "./Dailyquiz/Quiz10ka"
+  },
+  {
+    "name": "Question10ts",
+    "component": "Quiz10ts",
+    "path": "./Dailyquiz/Quiz10ts"
+  },
+  {
+    "name": "Daily Result",
+    "component": "DailyResult",
+    "path": "./Results/DailyRes"
+  },
+  {
+    "name": "Result6",
+    "component": "Qres6",
+    "path": "./Results/6qres"
+  },
+  {
+    "name": "Result7",
+    "component": "Qres7",
+    "path": "./Results/7qres"
+  },
+  {
+    "name": "Result8",
+    "component": "Qres8",
+    "path": "./Results/8qres"
+  },
+  {
+    "name": "Result9",
+    "component": "Qres9",
+    "path": "./Results/9qres"
+  },
+  {
+    "name": "Result11",
+    "component": "Qres11",
+    "path": "./Results/11qres"
+  },
+  {
+    "name": "Result12",
+    "component": "Qres12",
+    "path": "./Results/12qres"
+  },
+  {
+    "name": "Result6ka",
+    "component": "Qres6ka",
+    "path": "./Results/6kaqres"
+  },
+  {
+    "name": "Result7ka",
+    "component": "Qres7ka",
+    "path": "./Results/7kaqres"
+  },
+  {
+    "name": "Result8ka",
+    "component": "Qres8ka",
+    "path": "./Results/8kaqres"
+  },
+  {
+    "name": "Result9ka",
+    "component": "Qres9ka",
+    "path": "./Results/9kaqres"
+  },
+  {
+    "name": "Result10ka",
+    "component": "Qres10ka",
+    "path": "./Results/10kares"
+  },
+  {
+    "name": "Result10ts",
+    "component": "Qres10ts",
+    "path": "./Results/10tsqres"
+  },
+  {
+    "name": "Today Answer",
+    "component": "Todayans",
+    "path": "./Answers/TodayAns"
+  },
+  {
+    "name": "6thToday Answer",
+    "component": "qans6",
+    "path": "./Answers/qans6"
+  },
+  {
+    "name": "7thToday Answer",
+    "component": "qans7",
+    "path": "./Answers/qans7"
+  },
+  {
+    "name": "8thToday Answer",
+    "component": "qans8",
+    "path": "./Answers/qans8"
+  },
+  {
+    "name": "11thToday Answer",
+    "component": "qans11",
+    "path": "./Answers/qans11"
+  },
+  {
+    "name": "12thToday Answer",
+    "component": "qans12",
+    "path": "./Answers/qans12"
+  },
+  {
+    "name": "Weekly Result",
+    "component": "WeekResult",
+    "path": "./Results/WeekRes"
+  },
+  {
+    "name": "Weekly Answer",
+    "component": "Weekans",
+    "path": "./Answers/Weekans"
+  },
+  {
+    "name": "ssc",
+    "component": "Ssc",
+    "path": "./SSC"
+  },
+  {
+    "name": "Textbook",
+    "component": "Textbook",
+    "path": "./Textbook"
+  },
+  {
+    "name": "telugu textbook",
+    "component": "Telt",
+    "path": "./Textbooks/Telugutex"
+  },
+  {
+    "name": "hindi textbook",
+    "component": "Hindit",
+    "path": "./Textbooks/Hindit"
+  },
+  {
+    "name": "english textbook",
+    "component": "Engt",
+    "path": "./Textbooks/Engt"
+  },
+  {
+    "name": "maths em textbook",
+    "component": "Mathset",
+    "path": "./Textbooks/Mathset"
+  },
+  {
+    "name": "maths tm textbook",
+    "component": "Mathtt",
+    "path": "./Textbooks/Mathtt"
+  },
+  {
+    "name": "physics em textbook",
+    "component": "Phyet",
+    "path": "./Textbooks/Phyet"
+  },
+  {
+    "name": "physics tm textbook",
+    "component": "Phytt",
+    "path": "./Textbooks/Phytt"
+  },
+  {
+    "name": "biology em textbook",
+    "component": "Nset",
+    "path": "./Textbooks/Nset"
+  },
+  {
+    "name": "biology tm textbook",
+    "component": "Nstt",
+    "path": "./Textbooks/Nstt"
+  },
+  {
+    "name": "social em textbook",
+    "component": "Societ",
+    "path": "./Textbooks/Societ"
+  },
+  {
+    "name": "social tm textbook",
+    "component": "Socitt",
+    "path": "./Textbooks/Socitt"
+  },
+  {
+    "name": "IIItp",
+    "component": "Iiit",
+    "path": "./Iiit"
+  },
+  {
+    "name": "im",
+    "component": "Mathsiiit",
+    "path": "./IIIIt/Mathsiiit"
+  },
+  {
+    "name": "ip",
+    "component": "Phyiiit",
+    "path": "./IIIIt/Phyiiit"
+  },
+  {
+    "name": "syllabus",
+    "component": "Syllabusi",
+    "path": "./IIIIt/Sylabus"
+  },
+  {
+    "name": "phyics material",
+    "component": "Materialphy",
+    "path": "./IIIIt/Materialphy"
+  },
+  {
+    "name": "ib",
+    "component": "Materialbio",
+    "path": "./IIIIt/Materialbio"
+  },
+  {
+    "name": "maths Material",
+    "component": "Materialmaths",
+    "path": "./IIIIt/Materialmaths"
+  },
+  {
+    "name": "testpapers",
+    "component": "Testpapers",
+    "path": "./Testpapers"
+  },
+  {
+    "name": "telugu testpapersTS",
+    "component": "Teltpts",
+    "path": "./TestpapersTs/Telugutp"
+  },
+  {
+    "name": "hindi testpapersTS",
+    "component": "Hintpts",
+    "path": "./TestpapersTs/Hinditp"
+  },
+  {
+    "name": "english testpapersTS",
+    "component": "Engtpts",
+    "path": "./TestpapersTs/Engtp"
+  },
+  {
+    "name": "maths em testpapersTS",
+    "component": "Matetpts",
+    "path": "./TestpapersTs/Mathsetp"
+  },
+  {
+    "name": "maths tm testpapersTS",
+    "component": "Matttpts",
+    "path": "./TestpapersTs/Mathttp"
+  },
+  {
+    "name": "physics em testpapersTS",
+    "component": "Phyetpts",
+    "path": "./TestpapersTs/Phyetp"
+  },
+  {
+    "name": "physics tm testpapersTS",
+    "component": "Phyttpts",
+    "path": "./TestpapersTs/Phyttp"
+  },
+  {
+    "name": "ns em testpapersTS",
+    "component": "Netpts",
+    "path": "./TestpapersTs/Netstp"
+  },
+  {
+    "name": "ns tm testpapersTS",
+    "component": "Nttpts",
+    "path": "./TestpapersTs/Nttstp"
+  },
+  {
+    "name": "social em testpapersTS",
+    "component": "Socetpts",
+    "path": "./TestpapersTs/Societp"
+  },
+  {
+    "name": "social tm testpapersTS",
+    "component": "Socttpts",
+    "path": "./TestpapersTs/Socittp"
+  },
+  {
+    "name": "telugu ts tp1",
+    "component": "Ttpts1",
+    "path": "./TP Ts/ttp1"
+  },
+  {
+    "name": "telugu ts tp2",
+    "component": "Ttpts2",
+    "path": "./TP Ts/ttp2"
+  },
+  {
+    "name": "telugu ts tp3",
+    "component": "Ttpts3",
+    "path": "./TP Ts/ttp3"
+  },
+  {
+    "name": "telugu ts tp4",
+    "component": "Ttpts4",
+    "path": "./TP Ts/ttp4"
+  },
+  {
+    "name": "hindi ts tp1",
+    "component": "Htpts1",
+    "path": "./TP Ts/htp1"
+  },
+  {
+    "name": "hindi ts tp2",
+    "component": "Htpts2",
+    "path": "./TP Ts/htp2"
+  },
+  {
+    "name": "hindi ts tp3",
+    "component": "Htpts3",
+    "path": "./TP Ts/htp3"
+  },
+  {
+    "name": "hindi ts tp4",
+    "component": "Htpts4",
+    "path": "./TP Ts/htp4"
+  },
+  {
+    "name": "english ts tp1",
+    "component": "Etpts1",
+    "path": "./TP Ts/etp1"
+  },
+  {
+    "name": "english ts tp2",
+    "component": "Etpts2",
+    "path": "./TP Ts/etp2"
+  },
+  {
+    "name": "english ts tp3",
+    "component": "Etpts3",
+    "path": "./TP Ts/etp3"
+  },
+  {
+    "name": "english ts tp4",
+    "component": "Etpts4",
+    "path": "./TP Ts/etp4"
+  },
+  {
+    "name": "mathsem ts tp1",
+    "component": "Metpts1",
+    "path": "./TP Ts/metp1"
+  },
+  {
+    "name": "mathsem ts tp2",
+    "component": "Metpts2",
+    "path": "./TP Ts/mtep2"
+  },
+  {
+    "name": "mathsem ts tp3",
+    "component": "Metpts3",
+    "path": "./TP Ts/metp3"
+  },
+  {
+    "name": "mathsem ts tp4",
+    "component": "Metpts4",
+    "path": "./TP Ts/metp4"
+  },
+  {
+    "name": "mathstm ts tp1",
+    "component": "Mttpts1",
+    "path": "./TP Ts/mttp1"
+  },
+  {
+    "name": "mathstm ts tp2",
+    "component": "Mttpts2",
+    "path": "./TP Ts/mttp2"
+  },
+  {
+    "name": "mathstm ts tp3",
+    "component": "Mttpts3",
+    "path": "./TP Ts/mttp3"
+  },
+  {
+    "name": "mathstm ts tp4",
+    "component": "Mttpts4",
+    "path": "./TP Ts/mttp4"
+  },
+  {
+    "name": "phytm ts tp1",
+    "component": "Sttpts1",
+    "path": "./TP Ts/sttp1"
+  },
+  {
+    "name": "phytm ts tp2",
+    "component": "Sttpts2",
+    "path": "./TP Ts/sttp2"
+  },
+  {
+    "name": "phytm ts tp3",
+    "component": "Sttpts3",
+    "path": "./TP Ts/sttp3"
+  },
+  {
+    "name": "phytm ts tp4",
+    "component": "Sttpts4",
+    "path": "./TP Ts/sttp4"
+  },
+  {
+    "name": "phyem ts tp1",
+    "component": "Setpts1",
+    "path": "./TP Ts/setp1"
+  },
+  {
+    "name": "phyem ts tp2",
+    "component": "Setpts2",
+    "path": "./TP Ts/setp2"
+  },
+  {
+    "name": "phyem ts tp3",
+    "component": "Setpts3",
+    "path": "./TP Ts/setp3"
+  },
+  {
+    "name": "phyem ts tp4",
+    "component": "Setpts4",
+    "path": "./TP Ts/setp4"
+  },
+  {
+    "name": "nstm ts tp1",
+    "component": "Nttpts1",
+    "path": "./TP Ts/Nttpts1"
+  },
+  {
+    "name": "nstm ts tp2",
+    "component": "Nttpts2",
+    "path": "./TP Ts/Nttpts2"
+  },
+  {
+    "name": "nstm ts tp3",
+    "component": "Nttpts3",
+    "path": "./TP Ts/Nttpts3"
+  },
+  {
+    "name": "nstm ts tp4",
+    "component": "Nttpts4",
+    "path": "./TP Ts/Nttpts4"
+  },
+  {
+    "name": "nsem ts tp1",
+    "component": "Netpts1",
+    "path": "./TP Ts/Netpts1"
+  },
+  {
+    "name": "nsem ts tp2",
+    "component": "Netpts2",
+    "path": "./TP Ts/Netpts2"
+  },
+  {
+    "name": "nsem ts tp3",
+    "component": "Netpts3",
+    "path": "./TP Ts/Netpts3"
+  },
+  {
+    "name": "nsem ts tp4",
+    "component": "Netpts4",
+    "path": "./TP Ts/Netpts4"
+  },
+  {
+    "name": "socialem ts tp1",
+    "component": "Ssetpts1",
+    "path": "./TP Ts/ssetp1"
+  },
+  {
+    "name": "socialem ts tp2",
+    "component": "Ssetpts2",
+    "path": "./TP Ts/ssetp2"
+  },
+  {
+    "name": "socialem ts tp3",
+    "component": "Ssetpts3",
+    "path": "./TP Ts/ssetp3"
+  },
+  {
+    "name": "socialem ts tp4",
+    "component": "Ssetpts4",
+    "path": "./TP Ts/ssetp4"
+  },
+  {
+    "name": "socialtm ts tp1",
+    "component": "Ssttpts1",
+    "path": "./TP Ts/ssttp1"
+  },
+  {
+    "name": "socialtm ts tp2",
+    "component": "Ssttpts2",
+    "path": "./TP Ts/ssttp2"
+  },
+  {
+    "name": "socialtm ts tp3",
+    "component": "Ssttpts3",
+    "path": "./TP Ts/ssttp3"
+  },
+  {
+    "name": "socialtm ts tp4",
+    "component": "Ssttpts4",
+    "path": "./TP Ts/ssttp4"
+  },
+  {
+    "name": "quiz",
+    "component": "Quiz",
+    "path": "./Quiz"
+  },
+  {
+    "name": "Physics tmq",
+    "component": "Physicst1",
+    "path": "./QuizChapters/Physicst"
+  },
+  {
+    "name": "Physics emq",
+    "component": "Phyequiz",
+    "path": "./QuizChapters/Phyequiz"
+  },
+  {
+    "name": "Biology tmq",
+    "component": "Nste1",
+    "path": "./QuizChapters/Nste"
+  },
+  {
+    "name": "Social tmq",
+    "component": "Socialte1",
+    "path": "./QuizChapters/Socialte"
+  },
+  {
+    "name": "St1",
+    "component": "St1",
+    "path": "./Quiz/Sot/St1"
+  },
+  {
+    "name": "St5",
+    "component": "St5",
+    "path": "./Quiz/Sot/St5"
+  },
+  {
+    "name": "St2",
+    "component": "St2",
+    "path": "./Quiz/Sot/St2"
+  },
+  {
+    "name": "St3",
+    "component": "St3",
+    "path": "./Quiz/Sot/St3"
+  },
+  {
+    "name": "St4",
+    "component": "St4",
+    "path": "./Quiz/Sot/St4"
+  },
+  {
+    "name": "St6",
+    "component": "St6",
+    "path": "./Quiz/Sot/St6"
+  },
+  {
+    "name": "St7",
+    "component": "St7",
+    "path": "./Quiz/Sot/St7"
+  },
+  {
+    "name": "St8",
+    "component": "St8",
+    "path": "./Quiz/Sot/St8"
+  },
+  {
+    "name": "St9",
+    "component": "St9",
+    "path": "./Quiz/Sot/St9"
+  },
+  {
+    "name": "St10",
+    "component": "St10",
+    "path": "./Quiz/Sot/St10"
+  },
+  {
+    "name": "St11",
+    "component": "St11",
+    "path": "./Quiz/Sot/St11"
+  },
+  {
+    "name": "St12",
+    "component": "St12",
+    "path": "./Quiz/Sot/St12"
+  },
+  {
+    "name": "St13",
+    "component": "St13",
+    "path": "./Quiz/Sot/St13"
+  },
+  {
+    "name": "St14",
+    "component": "St14",
+    "path": "./Quiz/Sot/St14"
+  },
+  {
+    "name": "St15",
+    "component": "St15",
+    "path": "./Quiz/Sot/St15"
+  },
+  {
+    "name": "St16",
+    "component": "St16",
+    "path": "./Quiz/Sot/St16"
+  },
+  {
+    "name": "St17",
+    "component": "St17",
+    "path": "./Quiz/Sot/St17"
+  },
+  {
+    "name": "St18",
+    "component": "St18",
+    "path": "./Quiz/Sot/St18"
+  },
+  {
+    "name": "St19",
+    "component": "St19",
+    "path": "./Quiz/Sot/St19"
+  },
+  {
+    "name": "St20",
+    "component": "St20",
+    "path": "./Quiz/Sot/St20"
+  },
+  {
+    "name": "St21",
+    "component": "St21",
+    "path": "./Quiz/Sot/St21"
+  },
+  {
+    "name": "St22",
+    "component": "St22",
+    "path": "./Quiz/Sot/St22"
+  },
+  {
+    "name": "Nt1",
+    "component": "Nt1",
+    "path": "./Quiz/Nst/Nt1"
+  },
+  {
+    "name": "Nt2",
+    "component": "Nt2",
+    "path": "./Quiz/Nst/Nt2"
+  },
+  {
+    "name": "Nt3",
+    "component": "Nt3",
+    "path": "./Quiz/Nst/Nt3"
+  },
+  {
+    "name": "Nt4",
+    "component": "Nt4",
+    "path": "./Quiz/Nst/Nt4"
+  },
+  {
+    "name": "Nt5",
+    "component": "Nt5",
+    "path": "./Quiz/Nst/Nt5"
+  },
+  {
+    "name": "Nt6",
+    "component": "Nt6",
+    "path": "./Quiz/Nst/Nt6"
+  },
+  {
+    "name": "Nt7",
+    "component": "Nt7",
+    "path": "./Quiz/Nst/Nt7"
+  },
+  {
+    "name": "Pt1",
+    "component": "Pt1",
+    "path": "./Quiz/Phytq/Pt1"
+  },
+  {
+    "name": "Pt2",
+    "component": "Pt2",
+    "path": "./Quiz/Phytq/Pt2"
+  },
+  {
+    "name": "Pt3",
+    "component": "Pt3",
+    "path": "./Quiz/Phytq/Pt3"
+  },
+  {
+    "name": "Pt4",
+    "component": "Pt4",
+    "path": "./Quiz/Phytq/Pt4"
+  },
+  {
+    "name": "Pt5",
+    "component": "Pt5",
+    "path": "./Quiz/Phytq/Pt5"
+  },
+  {
+    "name": "Pt6",
+    "component": "Pt6",
+    "path": "./Quiz/Phytq/Pt6"
+  },
+  {
+    "name": "Pt7",
+    "component": "Pt7",
+    "path": "./Quiz/Phytq/Pt7"
+  },
+  {
+    "name": "Pt8",
+    "component": "Pt8",
+    "path": "./Quiz/Phytq/Pt8"
+  },
+  {
+    "name": "Pt9",
+    "component": "Pt9",
+    "path": "./Quiz/Phytq/Pt9"
+  },
+  {
+    "name": "Pt10",
+    "component": "Pt10",
+    "path": "./Quiz/Phytq/Pt10"
+  },
+  {
+    "name": "Pt11",
+    "component": "Pt11",
+    "path": "./Quiz/Phytq/Pt11"
+  },
+  {
+    "name": "Pt12",
+    "component": "Pt12",
+    "path": "./Quiz/Phytq/Pt12"
+  },
+  {
+    "name": "Pe1",
+    "component": "Pe1",
+    "path": "./Quiz/Phyeq/Pe1"
+  },
+  {
+    "name": "Pe2",
+    "component": "Pe2",
+    "path": "./Quiz/Phyeq/Pe2"
+  },
+  {
+    "name": "Pe3",
+    "component": "Pe3",
+    "path": "./Quiz/Phyeq/Pe3"
+  },
+  {
+    "name": "Pe4",
+    "component": "Pe4",
+    "path": "./Quiz/Phyeq/Pe4"
+  },
+  {
+    "name": "Pe5",
+    "component": "Pe5",
+    "path": "./Quiz/Phyeq/Pe5"
+  },
+  {
+    "name": "Pe6",
+    "component": "Pe6",
+    "path": "./Quiz/Phyeq/Pe6"
+  },
+  {
+    "name": "Pe7",
+    "component": "Pe7",
+    "path": "./Quiz/Phyeq/Pe7"
+  },
+  {
+    "name": "Pe8",
+    "component": "Pe8",
+    "path": "./Quiz/Phyeq/Pe8"
+  },
+  {
+    "name": "Pe9",
+    "component": "Pe9",
+    "path": "./Quiz/Phyeq/Pe9"
+  },
+  {
+    "name": "Pe10",
+    "component": "Pe10",
+    "path": "./Quiz/Phyeq/Pe10"
+  },
+  {
+    "name": "Pe11",
+    "component": "Pe11",
+    "path": "./Quiz/Phyeq/Pe11"
+  },
+  {
+    "name": "Telugu 2023",
+    "component": "Telp1",
+    "path": "./I2023/Telp"
+  },
+  {
+    "name": "Hindi 2023",
+    "component": "Hinp1",
+    "path": "./I2023/Hinp"
+  },
+  {
+    "name": "English 2023",
+    "component": "Engp1",
+    "path": "./I2023/Engp"
+  },
+  {
+    "name": "MathsTm 2023",
+    "component": "Mathtp1",
+    "path": "./I2023/Mathtp"
+  },
+  {
+    "name": "MathsEm 2023",
+    "component": "Mathep1",
+    "path": "./I2023/Mathep"
+  },
+  {
+    "name": "BiologyTm 2023",
+    "component": "Nstp1",
+    "path": "./I2023/Nstp"
+  },
+  {
+    "name": "PhysicsTm 2023",
+    "component": "Nstp1",
+    "path": "./I2023/Nstp"
+  },
+  {
+    "name": "BiologyEM 2023",
+    "component": "Nsep1",
+    "path": "./I2023/Nsep"
+  },
+  {
+    "name": "PhysicsEm 2023",
+    "component": "Nsep1",
+    "path": "./I2023/Nsep"
+  },
+  {
+    "name": "SocialEm 2023",
+    "component": "Socep1",
+    "path": "./I2023/Socep"
+  },
+  {
+    "name": "SocialTm 2023",
+    "component": "Soctp1",
+    "path": "./I2023/Soctp"
+  },
+  {
+    "name": "Telugu 2022p",
+    "component": "Telp2",
+    "path": "./I2022/Telp"
+  },
+  {
+    "name": "Hindi 2022p",
+    "component": "Hinp2",
+    "path": "./I2022/Hinp"
+  },
+  {
+    "name": "English 2022p",
+    "component": "Engp2",
+    "path": "./I2022/Engp"
+  },
+  {
+    "name": "MathsEm 2022p",
+    "component": "Mathtp2",
+    "path": "./I2022/Mathtp"
+  },
+  {
+    "name": "MathsTm 2022p",
+    "component": "Mathep2",
+    "path": "./I2022/Mathep"
+  },
+  {
+    "name": "BiologyTm 2022p",
+    "component": "Nstp2",
+    "path": "./I2022/Nstp"
+  },
+  {
+    "name": "BiologyEM 2022p",
+    "component": "Nsep2",
+    "path": "./I2022/Nsep"
+  },
+  {
+    "name": "SocialEm 2022p",
+    "component": "Socep2",
+    "path": "./I2022/Socep"
+  },
+  {
+    "name": "SocialTm 2022p",
+    "component": "Soctp2",
+    "path": "./I2022/Soctp"
+  },
+  {
+    "name": "PhysicsEm 2022p",
+    "component": "Phyep2",
+    "path": "./I2022/Phyep"
+  },
+  {
+    "name": "PhysicsTm 2022p",
+    "component": "Phytp2",
+    "path": "./I2022/Phytp"
+  },
+  {
+    "name": "Telugu 2019p1",
+    "component": "Telp4",
+    "path": "./I2019/Telp"
+  },
+  {
+    "name": "Hindi 2019p",
+    "component": "Hinp4",
+    "path": "./I2019/Hinp"
+  },
+  {
+    "name": "English 2019p1",
+    "component": "Engp4",
+    "path": "./I2019/Engp"
+  },
+  {
+    "name": "MathsEm 2019p1",
+    "component": "Mathep4",
+    "path": "./I2019/Mathep"
+  },
+  {
+    "name": "BiologyEM 2019p",
+    "component": "Nsep4",
+    "path": "./I2019/Nsep"
+  },
+  {
+    "name": "SocialEm 2019p1",
+    "component": "Socep4",
+    "path": "./I2019/Socep"
+  },
+  {
+    "name": "PhysicsEm 2019p",
+    "component": "Phyep4",
+    "path": "./I2019/Phyep"
+  },
+  {
+    "name": "Telugu 2019p2",
+    "component": "Telp5",
+    "path": "./II2019/Telp"
+  },
+  {
+    "name": "English 2019p2",
+    "component": "Engp5",
+    "path": "./II2019/Engp"
+  },
+  {
+    "name": "MathsEm 2019p2",
+    "component": "Mathep5",
+    "path": "./II2019/Mathep"
+  },
+  {
+    "name": "SocialEm 2019p2",
+    "component": "Socep5",
+    "path": "./II2019/Socep"
+  },
+  {
+    "name": "Telugu 2018p1",
+    "component": "Telp6",
+    "path": "./I2018/Telp"
+  },
+  {
+    "name": "Hindi 2018p",
+    "component": "Hinp6",
+    "path": "./I2018/Hinp"
+  },
+  {
+    "name": "English 2018p1",
+    "component": "Engp6",
+    "path": "./I2018/Engp"
+  },
+  {
+    "name": "MathsEm 2018p1",
+    "component": "Mathep6",
+    "path": "./I2018/Mathep"
+  },
+  {
+    "name": "BiologyEM 2018p",
+    "component": "Nsep6",
+    "path": "./I2018/Nsep"
+  },
+  {
+    "name": "SocialEm 2018p1",
+    "component": "Socep6",
+    "path": "./I2018/Socep"
+  },
+  {
+    "name": "PhysicsEm 2018p",
+    "component": "Phyp6",
+    "path": "./I2018/Phyep"
+  },
+  {
+    "name": "Telugu 2018p2",
+    "component": "Telp7",
+    "path": "./II2018/Telp"
+  },
+  {
+    "name": "English 2018p2",
+    "component": "Engp7",
+    "path": "./II2018/Engp"
+  },
+  {
+    "name": "MathsEm 2018p2",
+    "component": "Mathep7",
+    "path": "./II2018/Mathep"
+  },
+  {
+    "name": "SocialEm 2018p2",
+    "component": "Socep7",
+    "path": "./II2018/Socep"
+  },
+  {
+    "name": "Telugu 2017p1",
+    "component": "Telp8",
+    "path": "./I2017/Telp"
+  },
+  {
+    "name": "Hindi 2017p",
+    "component": "Hinp8",
+    "path": "./I2017/Hinp"
+  },
+  {
+    "name": "English 2017p1",
+    "component": "Engp8",
+    "path": "./I2017/Engp"
+  },
+  {
+    "name": "MathsEm 2017p1",
+    "component": "Mathep8",
+    "path": "./I2017/Mathep"
+  },
+  {
+    "name": "BiologyEM 2017p",
+    "component": "Nsep8",
+    "path": "./I2017/Nsep"
+  },
+  {
+    "name": "SocialEm 2017p1",
+    "component": "Socep8",
+    "path": "./I2017/Socep"
+  },
+  {
+    "name": "PhysicsEm 2017p",
+    "component": "Phyp8",
+    "path": "./I2017/Phyep"
+  },
+  {
+    "name": "Telugu 2016p1",
+    "component": "Telp11",
+    "path": "./I2016/Telp"
+  },
+  {
+    "name": "Hindi 2016p",
+    "component": "Hinp11",
+    "path": "./I2016/Hinp"
+  },
+  {
+    "name": "English 2016p1",
+    "component": "Engp11",
+    "path": "./I2016/Engp"
+  },
+  {
+    "name": "MathsEm 2016p1",
+    "component": "Mathep11",
+    "path": "./I2016/Mathep"
+  },
+  {
+    "name": "BiologyEM 2016p",
+    "component": "Nsep11",
+    "path": "./I2016/Nsep"
+  },
+  {
+    "name": "SocialEm 2016p1",
+    "component": "Socep11",
+    "path": "./I2016/Socep"
+  },
+  {
+    "name": "PhysicsEm 2016p",
+    "component": "Phyp11",
+    "path": "./I2016/Phyep"
+  },
+  {
+    "name": "Telugu 2015p1",
+    "component": "Telp13",
+    "path": "./I2015/Telp"
+  },
+  {
+    "name": "Hindi 2015p",
+    "component": "Hinp13",
+    "path": "./I2015/Hinp"
+  },
+  {
+    "name": "English 2015p1",
+    "component": "Engp13",
+    "path": "./I2015/Engp"
+  },
+  {
+    "name": "MathsEm 2015p1",
+    "component": "Mathep13",
+    "path": "./I2015/Mathep"
+  },
+  {
+    "name": "BiologyEM 2015p",
+    "component": "Nsep13",
+    "path": "./I2015/Nsep"
+  },
+  {
+    "name": "SocialEm 2015p1",
+    "component": "Socep13",
+    "path": "./I2015/Socep"
+  },
+  {
+    "name": "PhysicsEm 2015p",
+    "component": "Phyp13",
+    "path": "./I2015/Phyep"
+  },
+  {
+    "name": "Telugu 2017p2",
+    "component": "Telp10",
+    "path": "./II2017/Telp"
+  },
+  {
+    "name": "English 2017p2",
+    "component": "Engp10",
+    "path": "./II2017/Engp"
+  },
+  {
+    "name": "MathsEm 2017p2",
+    "component": "Mathep10",
+    "path": "./II2017/Mathep"
+  },
+  {
+    "name": "SocialEm 2017p2",
+    "component": "Socep10",
+    "path": "./II2017/Socep"
+  },
+  {
+    "name": "Telugu 2016p2",
+    "component": "Telp12",
+    "path": "./II2016/Telp"
+  },
+  {
+    "name": "English 2016p2",
+    "component": "Engp12",
+    "path": "./II2016/Engp"
+  },
+  {
+    "name": "MathsEm 2016p2",
+    "component": "Mathep12",
+    "path": "./II2016/Mathep"
+  },
+  {
+    "name": "SocialEm 2016p2",
+    "component": "Socep12",
+    "path": "./II2016/Socep"
+  },
+  {
+    "name": "Telugu 2015p2",
+    "component": "Telp14",
+    "path": "./II2015/Telp"
+  },
+  {
+    "name": "English 2015p2",
+    "component": "Engp14",
+    "path": "./II2015/Engp"
+  },
+  {
+    "name": "MathsEm 2015p2",
+    "component": "Mathep14",
+    "path": "./II2015/Mathep"
+  },
+  {
+    "name": "SocialEm 2015p2",
+    "component": "Socep14",
+    "path": "./II2015/Socep"
+  },
+  {
+    "name": "Telugu 2022",
+    "component": "Telp",
+    "path": "./Papers/Telp"
+  },
+  {
+    "name": "Hindi 2022",
+    "component": "Hinp",
+    "path": "./Papers/Hinp"
+  },
+  {
+    "name": "English 2022",
+    "component": "Engp",
+    "path": "./Papers/Engp"
+  },
+  {
+    "name": "MathsEm 2022",
+    "component": "Mathep",
+    "path": "./Papers/Mathep"
+  },
+  {
+    "name": "MathsTm 2022",
+    "component": "Mathep",
+    "path": "./Papers/Mathep"
+  },
+  {
+    "name": "BiologyTm 2022",
+    "component": "Nstp",
+    "path": "./Papers/Nstp"
+  },
+  {
+    "name": "BiologyEM 2022",
+    "component": "Nsep",
+    "path": "./Papers/Nsep"
+  },
+  {
+    "name": "SocialEm 2022",
+    "component": "Socep",
+    "path": "./Papers/Socep"
+  },
+  {
+    "name": "SocialTm 2022",
+    "component": "Soctp",
+    "path": "./Papers/Soctp"
+  },
+  {
+    "name": "PhysicsEm 2022",
+    "component": "Phyep",
+    "path": "./Papers/Phyep"
+  },
+  {
+    "name": "PhysicsTm 2022",
+    "component": "Phytp",
+    "path": "./Papers/Phytp"
+  },
+  {
+    "name": "apblueprint1",
+    "component": "Blueprintdata",
+    "path": "./tenth/blueprintdata"
+  },
+  {
+    "name": "UrlPage",
+    "component": "Blueprintpdf",
+    "path": "./tenth/blueprintpdf"
+  },
+  {
+    "name": "Importent",
+    "component": "Importe",
+    "path": "./Importe"
+  },
+  {
+    "name": "Prev Papers",
+    "component": "Home",
+    "path": "./Home"
+  },
+  {
+    "name": "telugu",
+    "component": "Tpop",
+    "path": "./pqp/Tpqp"
+  },
+  {
+    "name": "hindi",
+    "component": "Hpqp",
+    "path": "./pqp/Hpqp"
+  },
+  {
+    "name": "english",
+    "component": "Epop",
+    "path": "./pqp/Epqp"
+  },
+  {
+    "name": "maths em",
+    "component": "Mepqp",
+    "path": "./pqp/Mepqp"
+  },
+  {
+    "name": "maths tm",
+    "component": "Mtpop",
+    "path": "./pqp/Mtpop"
+  },
+  {
+    "name": "physics em",
+    "component": "Pepop",
+    "path": "./pqp/Pepqp"
+  },
+  {
+    "name": "physics tm",
+    "component": "Ptpop",
+    "path": "./pqp/Ptpqp"
+  },
+  {
+    "name": "biology em",
+    "component": "Nepop",
+    "path": "./pqp/Nepqp"
+  },
+  {
+    "name": "biology tm",
+    "component": "Ntpop",
+    "path": "./pqp/Ntpqp"
+  },
+  {
+    "name": "social em",
+    "component": "Sepop",
+    "path": "./pqp/Sepqp"
+  },
+  {
+    "name": "social tm",
+    "component": "Stpop",
+    "path": "./pqp/Stpqp"
+  },
+  {
+    "name": "Telugu Imp",
+    "component": "Impteldata",
+    "path": "./tenth/Impteld"
+  },
+  {
+    "name": "Hindi Imp",
+    "component": "Imphindata",
+    "path": "./tenth/Imphindata"
+  },
+  {
+    "name": "English Imp",
+    "component": "Impengdata",
+    "path": "./tenth/Impengdata"
+  },
+  {
+    "name": "Mathstm Imp",
+    "component": "Impmtdata",
+    "path": "./tenth/Impmtdata"
+  },
+  {
+    "name": "Mathsem Imp",
+    "component": "Impmedata",
+    "path": "./tenth/Impmedata"
+  },
+  {
+    "name": "Biologytm Imp",
+    "component": "Impntdata",
+    "path": "./tenth/Impntdata"
+  },
+  {
+    "name": "Physicstm Imp",
+    "component": "Impptdata",
+    "path": "./tenth/Impptdata"
+  },
+  {
+    "name": "Biologyem Imp",
+    "component": "Impnedata",
+    "path": "./tenth/Impnedata"
+  },
+  {
+    "name": "Physicsem Imp",
+    "component": "Imppedata",
+    "path": "./tenth/Imppedata"
+  },
+  {
+    "name": "Socialem Imp",
+    "component": "Impsedata",
+    "path": "./tenth/Impsedata"
+  },
+  {
+    "name": "Socialtm Imp",
+    "component": "Impstdata",
+    "path": "./tenth/Impstdata"
+  },
+  {
+    "name": "ImptelPage",
+    "component": "Imptelpdf",
+    "path": "./tenth/Imptelpdf"
+  },
+  {
+    "name": "ImphinPage",
+    "component": "Imphinpdf",
+    "path": "./tenth/Imphinpdf"
+  },
+  {
+    "name": "ImpengPage",
+    "component": "Impengpdf",
+    "path": "./tenth/Impengpdf"
+  },
+  {
+    "name": "ImpmtPage",
+    "component": "Impmtpdf",
+    "path": "./tenth/Impmtpdf"
+  },
+  {
+    "name": "ImpmePage",
+    "component": "Impmepdf",
+    "path": "./tenth/Impmepdf"
+  },
+  {
+    "name": "ImpntPage",
+    "component": "Impntpdf",
+    "path": "./tenth/Impntpddf"
+  },
+  {
+    "name": "ImpnePage",
+    "component": "Impnepdf",
+    "path": "./tenth/impnepdf"
+  },
+  {
+    "name": "ImppePage",
+    "component": "Imppepdf",
+    "path": "./tenth/Imppepdf"
+  },
+  {
+    "name": "ImpptPage",
+    "component": "Impptpdf",
+    "path": "./tenth/Impptpdf"
+  },
+  {
+    "name": "ImpsePage",
+    "component": "Impsepdf",
+    "path": "./tenth/Impsepdf"
+  },
+  {
+    "name": "ImpstPage",
+    "component": "Impstpdf",
+    "path": "./tenth/Impstpdf"
+  },
+  {
+    "name": "modelpapers",
+    "component": "Modelpaperdata",
+    "path": "./tenth/modelpdata"
+  },
+  {
+    "name": "ModelpaperPage",
+    "component": "Modelpaperpdf",
+    "path": "./tenth/modepppdf"
+  },
+  {
+    "name": "prefinal1",
+    "component": "Prefinaldata",
+    "path": "./tenth/prefinaldata"
+  },
+  {
+    "name": "PrefinalPage",
+    "component": "Prefinalpdf",
+    "path": "./tenth/prefinalpdf"
+  },
+  {
+    "name": "ssc2023",
+    "component": "Public2023data",
+    "path": "./tenth/pub2023data"
+  },
+  {
+    "name": "Public2023Page",
+    "component": "Pub2023pdf",
+    "path": "./tenth/pub2023pdf"
+  },
+  {
+    "name": "map",
+    "component": "Mapdata",
+    "path": "./tenth/Mapdata"
+  },
+  {
+    "name": "MapPage",
+    "component": "Mappdf",
+    "path": "./tenth/mappdf"
+  },
+  {
+    "name": "FA11",
+    "component": "Fa1data",
+    "path": "./tenth/fa1data"
+  },
+  {
+    "name": "Fa1Page",
+    "component": "Fa1pdf",
+    "path": "./tenth/fa1pdf"
+  },
+  {
+    "name": "FA21",
+    "component": "Fa2data",
+    "path": "./tenth/fa2data"
+  },
+  {
+    "name": "Fa2Page",
+    "component": "Fa2pdf",
+    "path": "./tenth/fa2pdf"
+  },
+  {
+    "name": "FA31",
+    "component": "Fa3data",
+    "path": "./tenth/fa3data"
+  },
+  {
+    "name": "Fa3Page",
+    "component": "Fa3pdf",
+    "path": "./tenth/fa3pdf"
+  },
+  {
+    "name": "FA41",
+    "component": "Fa4data",
+    "path": "./tenth/fa4data"
+  },
+  {
+    "name": "Fa4Page",
+    "component": "Fa4pdf",
+    "path": "./tenth/fa4pdf"
+  },
+  {
+    "name": "SA11",
+    "component": "Sa1data",
+    "path": "./tenth/sa1data"
+  },
+  {
+    "name": "Sa1Page",
+    "component": "Sa1pdf",
+    "path": "./tenth/sa1pdf"
+  },
+  {
+    "name": "rivision",
+    "component": "rivision",
+    "path": "./RIVISION"
+  },
+  {
+    "name": "rivisiontest11",
+    "component": "Rv1data",
+    "path": "./tenth/rv1data"
+  },
+  {
+    "name": "rivisiontest21",
+    "component": "Rv2data",
+    "path": "./tenth/rv2data"
+  },
+  {
+    "name": "rivisiontest31",
+    "component": "Rv3data",
+    "path": "./tenth/rv3data"
+  },
+  {
+    "name": "rivisiontest41",
+    "component": "Rv4data",
+    "path": "./tenth/rv4data"
+  },
+  {
+    "name": "Rv1Page",
+    "component": "Rv1pdf",
+    "path": "./tenth/rv1pdf"
+  },
+  {
+    "name": "Rv2Page",
+    "component": "Rv1pdf",
+    "path": "./tenth/rv1pdf"
+  },
+  {
+    "name": "Rv3Page",
+    "component": "Rv1pdf",
+    "path": "./tenth/rv1pdf"
+  },
+  {
+    "name": "Rv4Page",
+    "component": "Rv1pdf",
+    "path": "./tenth/rv1pdf"
+  },
+  {
+    "name": "mini1",
+    "component": "Minidata",
+    "path": "./tenth/minidata"
+  },
+  {
+    "name": "MiniPage",
+    "component": "Minipdf",
+    "path": "./tenth/minipdf"
+  },
+  {
+    "name": "weeklytest1",
+    "component": "Weeklytestdata",
+    "path": "./tenth/weeklytestdata"
+  },
+  {
+    "name": "WeeklytestPage",
+    "component": "Weeklytestpdf",
+    "path": "./tenth/weeklytestpdf"
+  },
+  {
+    "name": "dailytest",
+    "component": "Dailytestdata",
+    "path": "./tenth/dailytestdata"
+  },
+  {
+    "name": "DailytestPage",
+    "component": "Dailytestpdf",
+    "path": "./tenth/dailytestpdf"
+  },
+  {
+    "name": "grandtest",
+    "component": "Grandtestdata",
+    "path": "./tenth/grandtestdata"
+  },
+  {
+    "name": "GrandtestPage",
+    "component": "Grandtestpdf",
+    "path": "./tenth/grandtestpdf"
+  },
+  {
+    "name": "6thclass fa1",
+    "component": "Fa16data",
+    "path": "./6thclass/fa1data"
+  },
+  {
+    "name": "6thclass fa2",
+    "component": "Fa26data",
+    "path": "./6thclass/fa2data"
+  },
+  {
+    "name": "6thclass fa3",
+    "component": "Fa36data",
+    "path": "./6thclass/fa3data"
+  },
+  {
+    "name": "6thclass fa4",
+    "component": "Fa46data",
+    "path": "./6thclass/fa4data"
+  },
+  {
+    "name": "6thclass sa1",
+    "component": "Sa16data",
+    "path": "./6thclass/sa1data"
+  },
+  {
+    "name": "6thclass sa2",
+    "component": "Sa26data",
+    "path": "./6thclass/sa2data"
+  },
+  {
+    "name": "6thclass imp",
+    "component": "Imp6data",
+    "path": "./6thclass/impdata"
+  },
+  {
+    "name": "Fa16Page",
+    "component": "Fa16pdf",
+    "path": "./6thclass/fa1pdf"
+  },
+  {
+    "name": "Fa26Page",
+    "component": "Fa26pdf",
+    "path": "./6thclass/fa2pdf"
+  },
+  {
+    "name": "Fa36Page",
+    "component": "Fa36pdf",
+    "path": "./6thclass/fa3pdf"
+  },
+  {
+    "name": "Fa46Page",
+    "component": "Fa46pdf",
+    "path": "./6thclass/fa4pdf"
+  },
+  {
+    "name": "Sa16Page",
+    "component": "Sa16pdf",
+    "path": "./6thclass/sa1pdf"
+  },
+  {
+    "name": "Sa26Page",
+    "component": "Sa26pdf",
+    "path": "./6thclass/sa2pdf"
+  },
+  {
+    "name": "Imp6Page",
+    "component": "Imp6pdf",
+    "path": "./6thclass/imppdf"
+  },
+  {
+    "name": "7thclass fa1",
+    "component": "Fa17data",
+    "path": "./7thclass/fa1data"
+  },
+  {
+    "name": "7thclass fa2",
+    "component": "Fa27data",
+    "path": "./7thclass/fa2data"
+  },
+  {
+    "name": "7thclass fa3",
+    "component": "Fa37data",
+    "path": "./7thclass/fa3data"
+  },
+  {
+    "name": "7thclass fa4",
+    "component": "Fa47data",
+    "path": "./7thclass/fa4data"
+  },
+  {
+    "name": "7thclass sa1",
+    "component": "Sa17data",
+    "path": "./7thclass/sa1data"
+  },
+  {
+    "name": "7thclass sa2",
+    "component": "Sa27data",
+    "path": "./7thclass/sa2data"
+  },
+  {
+    "name": "7thclass imp",
+    "component": "Imp7data",
+    "path": "./7thclass/impdata"
+  },
+  {
+    "name": "Fa17Page",
+    "component": "Fa17pdf",
+    "path": "./7thclass/fa1pdf"
+  },
+  {
+    "name": "Fa27Page",
+    "component": "Fa27pdf",
+    "path": "./7thclass/fa2pdf"
+  },
+  {
+    "name": "Fa37Page",
+    "component": "Fa37pdf",
+    "path": "./7thclass/fa3pdf"
+  },
+  {
+    "name": "Fa47Page",
+    "component": "Fa47pdf",
+    "path": "./7thclass/fa4pdf"
+  },
+  {
+    "name": "Sa17Page",
+    "component": "Sa17pdf",
+    "path": "./7thclass/sa1pdf"
+  },
+  {
+    "name": "Sa27Page",
+    "component": "Sa27pdf",
+    "path": "./7thclass/sa2pdf"
+  },
+  {
+    "name": "Imp7Page",
+    "component": "Imp7pdf",
+    "path": "./7thclass/imppdf"
+  },
+  {
+    "name": "8thclass fa1",
+    "component": "Fa18data",
+    "path": "./8thclass/fa1data"
+  },
+  {
+    "name": "8thclass fa2",
+    "component": "Fa28data",
+    "path": "./8thclass/fa2data"
+  },
+  {
+    "name": "8thclass fa3",
+    "component": "Fa38data",
+    "path": "./8thclass/fa3data"
+  },
+  {
+    "name": "8thclass fa4",
+    "component": "Fa48data",
+    "path": "./8thclass/fa4data"
+  },
+  {
+    "name": "8thclass sa1",
+    "component": "Sa18data",
+    "path": "./8thclass/sa1data"
+  },
+  {
+    "name": "8thclass sa2",
+    "component": "Sa28data",
+    "path": "./8thclass/sa2data"
+  },
+  {
+    "name": "8thclass imp",
+    "component": "Imp8data",
+    "path": "./8thclass/impdata"
+  },
+  {
+    "name": "Fa18Page",
+    "component": "Fa18pdf",
+    "path": "./8thclass/fa1pdf"
+  },
+  {
+    "name": "Fa28Page",
+    "component": "Fa28pdf",
+    "path": "./8thclass/fa2pdf"
+  },
+  {
+    "name": "Fa38Page",
+    "component": "Fa38pdf",
+    "path": "./8thclass/fa3pdf"
+  },
+  {
+    "name": "Fa48Page",
+    "component": "Fa48pdf",
+    "path": "./8thclass/fa4pdf"
+  },
+  {
+    "name": "Sa18Page",
+    "component": "Sa18pdf",
+    "path": "./8thclass/sa1pdf"
+  },
+  {
+    "name": "Sa28Page",
+    "component": "Sa28pdf",
+    "path": "./8thclass/sa2pdf"
+  },
+  {
+    "name": "Imp8Page",
+    "component": "Imp8pdf",
+    "path": "./8thclass/imppdf"
+  },
+  {
+    "name": "9thclass fa1",
+    "component": "Fa19data",
+    "path": "./9thclass/fa1data"
+  },
+  {
+    "name": "9thclass fa2",
+    "component": "Fa29data",
+    "path": "./9thclass/fa2data"
+  },
+  {
+    "name": "9thclass fa3",
+    "component": "Fa39data",
+    "path": "./9thclass/fa3data"
+  },
+  {
+    "name": "9thclass fa4",
+    "component": "Fa49data",
+    "path": "./9thclass/fa4data"
+  },
+  {
+    "name": "9thclass sa1",
+    "component": "Sa19data",
+    "path": "./9thclass/sa1data"
+  },
+  {
+    "name": "9thclass sa2",
+    "component": "Sa29data",
+    "path": "./9thclass/sa2data"
+  },
+  {
+    "name": "9thclass imp",
+    "component": "Imp9data",
+    "path": "./9thclass/impdata"
+  },
+  {
+    "name": "Fa19Page",
+    "component": "Fa19pdf",
+    "path": "./9thclass/fa1pdf"
+  },
+  {
+    "name": "Fa29Page",
+    "component": "Fa29pdf",
+    "path": "./9thclass/fa2pdf"
+  },
+  {
+    "name": "Fa39Page",
+    "component": "Fa39pdf",
+    "path": "./9thclass/fa3pdf"
+  },
+  {
+    "name": "Fa49Page",
+    "component": "Fa49pdf",
+    "path": "./9thclass/fa4pdf"
+  },
+  {
+    "name": "Sa19Page",
+    "component": "Sa19pdf",
+    "path": "./9thclass/sa1pdf"
+  },
+  {
+    "name": "Sa29Page",
+    "component": "Sa29pdf",
+    "path": "./9thclass/sa2pdf"
+  },
+  {
+    "name": "Imp9Page",
+    "component": "Imp9pdf",
+    "path": "./9thclass/imppdf"
+  },
+  {
+    "name": "Mcasem1dataPage",
+    "component": "Mcasem1Pdf",
+    "path": "./MCA/sem1pdf"
+  },
+  {
+    "name": "Mcasem2dataPage",
+    "component": "Mcasem2Pdf",
+    "path": "./MCA/sem2pdf"
+  },
+  {
+    "name": "Mcasem3dataPage",
+    "component": "Mcasem3Pdf",
+    "path": "./MCA/sem3pdf"
+  },
+  {
+    "name": "Mcasem4dataPage",
+    "component": "Mcasem4Pdf",
+    "path": "./MCA/sem4pdf"
+  },
+  {
+    "name": "Mbasem1dataPage",
+    "component": "Mbasem1Pdf",
+    "path": "./MBA/sem1pdf"
+  },
+  {
+    "name": "Mbasem2dataPage",
+    "component": "Mbasem2Pdf",
+    "path": "./MBA/sem2pdf"
+  },
+  {
+    "name": "Mbasem3dataPage",
+    "component": "Mbasem3Pdf",
+    "path": "./MBA/sem3pdf"
+  },
+  {
+    "name": "Mbasem4dataPage",
+    "component": "Mbasem4Pdf",
+    "path": "./MBA/sem4pdf"
+  },
+  {
+    "name": "FA1ka",
+    "component": "Fa1dataka",
+    "path": "./KASSC/fa1data"
+  },
+  {
+    "name": "Fa1Pageka",
+    "component": "Fa1pdfka",
+    "path": "./KASSC/fa1pdf"
+  },
+  {
+    "name": "FA3ka",
+    "component": "Fa3dataka",
+    "path": "./KASSC/fa3data"
+  },
+  {
+    "name": "Fa3Pageka",
+    "component": "Fa3pdfka",
+    "path": "./KASSC/fa3pdf"
+  },
+  {
+    "name": "FA4ka",
+    "component": "Fa4dataka",
+    "path": "./KASSC/fa4data"
+  },
+  {
+    "name": "Fa4Pageka",
+    "component": "Fa4pdfka",
+    "path": "./KASSC/fa4pdf"
+  },
+  {
+    "name": "SA1ka",
+    "component": "Sa1dataka",
+    "path": "./KASSC/sa1data"
+  },
+  {
+    "name": "Sa1Pageka",
+    "component": "Sa1pdfka",
+    "path": "./KASSC/sa1pdf"
+  },
+  {
+    "name": "modelpaperska",
+    "component": "Modelpaperdataka",
+    "path": "./KASSC/modelpdata"
+  },
+  {
+    "name": "ModelpaperPageka",
+    "component": "Modelpaperpdfka",
+    "path": "./KASSC/modepppdf"
+  },
+  {
+    "name": "prefinalka",
+    "component": "Prefinaldataka",
+    "path": "./KASSC/prefinaldata"
+  },
+  {
+    "name": "PrefinalPageka",
+    "component": "Prefinalpdfka",
+    "path": "./KASSC/prefinalpdf"
+  },
+  {
+    "name": "ssc2023ka",
+    "component": "Public2023dataka",
+    "path": "./KASSC/pub2023data"
+  },
+  {
+    "name": "Public2023Pageka",
+    "component": "Pub2023pdfka",
+    "path": "./KASSC/pub2023pdf"
+  },
+  {
+    "name": "kablueprint1",
+    "component": "Blueprintdataka",
+    "path": "./KASSC/blueprintdata"
+  },
+  {
+    "name": "blueprintka",
+    "component": "Blueprintpdfka",
+    "path": "./KASSC/blueprintpdf"
+  },
+  {
+    "name": "solutionka",
+    "component": "Solutiondataka",
+    "path": "./KASSC/solutinsdata"
+  },
+  {
+    "name": "solutionPageka",
+    "component": "Solutionpdfka",
+    "path": "./KASSC/solutionspdf"
+  },
+  {
+    "name": "Importentka",
+    "component": "Impquestiondataka",
+    "path": "./KASSC/impquestionsdata"
+  },
+  {
+    "name": "imppqpPageka",
+    "component": "Impquestionspdfka",
+    "path": "./KASSC/impquestionspdf"
+  },
+  {
+    "name": "textbookska",
+    "component": "Textbookka",
+    "path": "./KASSC/textbook"
+  },
+  {
+    "name": "textbooksPageka",
+    "component": "Textbookpdfka",
+    "path": "./KASSC/textbookpdf"
+  },
+  {
+    "name": "Prev Paperska",
+    "component": "Kapqp",
+    "path": "./KApqp"
+  },
+  {
+    "name": "kanada ka",
+    "component": "Kanadapqpdataka",
+    "path": "./KASSC/kanadapqpdata"
+  },
+  {
+    "name": "KanPqpPageka",
+    "component": "Kanpqppdfka",
+    "path": "./KASSC/kanadapqppdf"
+  },
+  {
+    "name": "hindi ka",
+    "component": "Hinpqpdataka",
+    "path": "./KASSC/hinpqpdata"
+  },
+  {
+    "name": "HinPqpPageka",
+    "component": "Hinpqppdfka",
+    "path": "./KASSC/hinpqppdf"
+  },
+  {
+    "name": "english ka",
+    "component": "Engpqpdataka",
+    "path": "./KASSC/Engpqpdata"
+  },
+  {
+    "name": "EngPqpPageka",
+    "component": "Enfpqppdfka",
+    "path": "./KASSC/Engpqppdf"
+  },
+  {
+    "name": "maths ka",
+    "component": "Matpqpdataka",
+    "path": "./KASSC/Matpqpdata"
+  },
+  {
+    "name": "MatPqpPageka",
+    "component": "Matpqppdfka",
+    "path": "./KASSC/Matpqppdf"
+  },
+  {
+    "name": "biology ka",
+    "component": "Scipqpdataka",
+    "path": "./KASSC/sciencepqpdata"
+  },
+  {
+    "name": "SciPqpPageka",
+    "component": "Scipqppdfka",
+    "path": "./KASSC/sciencepqppdf"
+  },
+  {
+    "name": "social ka",
+    "component": "Socpqpdataka",
+    "path": "./KASSC/socialpqpdata"
+  },
+  {
+    "name": "SocPqpPageka",
+    "component": "Socpqppdfka",
+    "path": "./KASSC/socialpqppdf"
+  },
+  {
+    "name": "FA2ka",
+    "component": "Fa2dataka",
+    "path": "./KASSC/fa2data"
+  },
+  {
+    "name": "Fa2Pageka",
+    "component": "Fa2pdfka",
+    "path": "./KASSC/fa2pdf"
+  },
+  {
+    "name": "Videos",
+    "component": "Videos",
+    "path": "./Videos"
+  },
+  {
+    "name": "Telugu",
+    "component": "Telv",
+    "path": "./Chapters/Telv"
+  },
+  {
+    "name": "Hindi",
+    "component": "Hindiv",
+    "path": "./Chapters/Hindiv"
+  },
+  {
+    "name": "English",
+    "component": "Englishv",
+    "path": "./Chapters/Englishv"
+  },
+  {
+    "name": "Maths em",
+    "component": "Mathsee",
+    "path": "./Chapters/Mathse"
+  },
+  {
+    "name": "Maths tm",
+    "component": "Mathste",
+    "path": "./Chapters/Mathst"
+  },
+  {
+    "name": "Physics em",
+    "component": "Physicse",
+    "path": "./Chapters/Physicse"
+  },
+  {
+    "name": "Physics tm",
+    "component": "Physicst",
+    "path": "./Chapters/Physicst"
+  },
+  {
+    "name": "Biology em",
+    "component": "Nsee",
+    "path": "./Chapters/Nsee"
+  },
+  {
+    "name": "Biology tm",
+    "component": "Nste",
+    "path": "./Chapters/Nste"
+  },
+  {
+    "name": "Social em",
+    "component": "Socialee",
+    "path": "./Chapters/Socialee"
+  },
+  {
+    "name": "Social tm",
+    "component": "Socialte",
+    "path": "./Chapters/Socialte"
+  },
+  {
+    "name": "coordinations",
+    "component": "Coordination",
+    "path": "./Video/Boie/Coordination"
+  },
+  {
+    "name": "environment",
+    "component": "Envi",
+    "path": "./Video/Boie/Envi"
+  },
+  {
+    "name": "Chapter8",
+    "component": "Anu",
+    "path": "./Video/Boit/Anu"
+  },
+  {
+    "name": "Chapter7",
+    "component": "Jivakriya",
+    "path": "./Video/Boit/Jivakriya"
+  },
+  {
+    "name": "Chapter9",
+    "component": "Mana",
+    "path": "./Video/Boit/Mana"
+  },
+  {
+    "name": "Chapter4",
+    "component": "Prasarana",
+    "path": "./Video/Boit/Prasarana"
+  },
+  {
+    "name": "Chapter5",
+    "component": "Prasarana",
+    "path": "./Video/Boit/Prasarana"
+  },
+  {
+    "name": "Chapter10",
+    "component": "Sahaja",
+    "path": "./Video/Boit/Sahaja"
+  },
+  {
+    "name": "coordinate",
+    "component": "Coord",
+    "path": "./Video/Maths/Coord"
+  },
+  {
+    "name": "polynomials",
+    "component": "Poly",
+    "path": "./Video/Maths/Poly"
+  },
+  {
+    "name": "probability",
+    "component": "Prob",
+    "path": "./Video/Maths/Prob"
+  },
+  {
+    "name": "real numbers",
+    "component": "Real",
+    "path": "./Video/Maths/Real"
+  },
+  {
+    "name": "sets",
+    "component": "Sets",
+    "path": "./Video/Maths/Sets"
+  },
+  {
+    "name": "similar",
+    "component": "Similar",
+    "path": "./Video/Maths/Similar"
+  },
+  {
+    "name": "stats",
+    "component": "Stats",
+    "path": "./Video/Maths/Stats"
+  },
+  {
+    "name": "tangent",
+    "component": "Tangent",
+    "path": "./Video/Maths/Tangent"
+  },
+  {
+    "name": "trigonometry",
+    "component": "Trigy",
+    "path": "./Video/Maths/Trigy"
+  },
+  {
+    "name": "chapter1",
+    "component": "One",
+    "path": "./Video/Mathstm/One"
+  },
+  {
+    "name": "chapter2",
+    "component": "Two",
+    "path": "./Video/Mathstm/Two"
+  },
+  {
+    "name": "chapter3",
+    "component": "Thr",
+    "path": "./Video/Mathstm/Thr"
+  },
+  {
+    "name": "chapter4",
+    "component": "Four",
+    "path": "./Video/Mathstm/Four"
+  },
+  {
+    "name": "chapter5",
+    "component": "Five",
+    "path": "./Video/Mathstm/Five"
+  },
+  {
+    "name": "chapter6",
+    "component": "Six",
+    "path": "./Video/Mathstm/Six"
+  },
+  {
+    "name": "chapter7",
+    "component": "Sev",
+    "path": "./Video/Mathstm/Sev"
+  },
+  {
+    "name": "chapter8",
+    "component": "Eig",
+    "path": "./Video/Mathstm/Eig"
+  },
+  {
+    "name": "chapter9",
+    "component": "Nine",
+    "path": "./Video/Mathstm/Nine"
+  },
+  {
+    "name": "chapter10",
+    "component": "Ten",
+    "path": "./Video/Mathstm/Ten"
+  },
+  {
+    "name": "chapter11",
+    "component": "Leve",
+    "path": "./Video/Mathstm/Leve"
+  },
+  {
+    "name": "chapter12",
+    "component": "Twve",
+    "path": "./Video/Mathstm/Twva"
+  },
+  {
+    "name": "chapter13",
+    "component": "Thre",
+    "path": "./Video/Mathstm/Ther"
+  },
+  {
+    "name": "chapter14",
+    "component": "Fourt",
+    "path": "./Video/Mathstm/Fourt"
+  },
+  {
+    "name": "atom",
+    "component": "Atom",
+    "path": "./Video/Phye/Atom"
+  },
+  {
+    "name": "chemical",
+    "component": "Chemical",
+    "path": "./Video/Phye/Chemical"
+  },
+  {
+    "name": "curent",
+    "component": "Curent",
+    "path": "./Video/Phye/Curent"
+  },
+  {
+    "name": "eye",
+    "component": "Eye",
+    "path": "./Video/Phye/Eye"
+  },
+  {
+    "name": "Heat",
+    "component": "Heet",
+    "path": "./Video/Phye/Heet"
+  },
+  {
+    "name": "elctro",
+    "component": "Magn",
+    "path": "./Video/Phye/Magn"
+  },
+  {
+    "name": "plane",
+    "component": "Planee",
+    "path": "./Video/Phye/Planee"
+  },
+  {
+    "name": "curved",
+    "component": "Refraction",
+    "path": "./Video/Phye/Refraction"
+  },
+  {
+    "name": "2nd",
+    "component": "Amlalu",
+    "path": "./Video/Physcics/Amlalu"
+  },
+  {
+    "name": "4th",
+    "component": "Curved",
+    "path": "./Video/Physcics/Curved"
+  },
+  {
+    "name": "9th",
+    "component": "Electri",
+    "path": "./Video/Physcics/Electri"
+  },
+  {
+    "name": "10th",
+    "component": "Electro",
+    "path": "./Video/Physcics/Electro"
+  },
+  {
+    "name": "1st",
+    "component": "Heat",
+    "path": "./Video/Physcics/Heat"
+  },
+  {
+    "name": "5th",
+    "component": "Human",
+    "path": "./Video/Physcics/Humaneye"
+  },
+  {
+    "name": "6th",
+    "component": "Param",
+    "path": "./Video/Physcics/Paramanuvu"
+  },
+  {
+    "name": "3rd",
+    "component": "Plane",
+    "path": "./Video/Physcics/Plane"
+  },
+  {
+    "name": "class6ka",
+    "component": "class6ka",
+    "path": "./KA CLASS 6TO9/Class6"
+  },
+  {
+    "name": "class7ka",
+    "component": "class7ka",
+    "path": "./KA CLASS 6TO9/Class7"
+  },
+  {
+    "name": "class8ka",
+    "component": "class8ka",
+    "path": "./KA CLASS 6TO9/Class8"
+  },
+  {
+    "name": "class9ka",
+    "component": "class9ka",
+    "path": "./KA CLASS 6TO9/Class9"
+  },
+  {
+    "name": "6thclass fa1ka",
+    "component": "Fa16dataka",
+    "path": "./KA6THCLASS/fa1data"
+  },
+  {
+    "name": "6thclass fa2ka",
+    "component": "Fa26dataka",
+    "path": "./KA6THCLASS/fa2data"
+  },
+  {
+    "name": "6thclass fa3ka",
+    "component": "Fa36dataka",
+    "path": "./KA6THCLASS/fa3data"
+  },
+  {
+    "name": "6thclass fa4ka",
+    "component": "Fa46dataka",
+    "path": "./KA6THCLASS/fa4data"
+  },
+  {
+    "name": "6thclass sa1ka",
+    "component": "Sa16dataka",
+    "path": "./KA6THCLASS/sa1data"
+  },
+  {
+    "name": "6thclass sa2ka",
+    "component": "Sa26dataka",
+    "path": "./KA6THCLASS/sa2data"
+  },
+  {
+    "name": "6thclass impka",
+    "component": "Imp6dataka",
+    "path": "./KA6THCLASS/impdata"
+  },
+  {
+    "name": "Fa16Pageka",
+    "component": "Fa16pdfka",
+    "path": "./KA6THCLASS/fa1pdf"
+  },
+  {
+    "name": "Fa26Pageka",
+    "component": "Fa26pdfka",
+    "path": "./KA6THCLASS/fa2pdf"
+  },
+  {
+    "name": "Fa36Pageka",
+    "component": "Fa36pdfka",
+    "path": "./KA6THCLASS/fa3pdf"
+  },
+  {
+    "name": "Fa46Pageka",
+    "component": "Fa46pdfka",
+    "path": "./KA6THCLASS/fa4pdf"
+  },
+  {
+    "name": "Sa16Pageka",
+    "component": "Sa16pdfka",
+    "path": "./KA6THCLASS/sa1pdf"
+  },
+  {
+    "name": "Sa26Pageka",
+    "component": "Sa26pdfka",
+    "path": "./KA6THCLASS/sa2pdf"
+  },
+  {
+    "name": "Imp6Pageka",
+    "component": "Imp6pdfka",
+    "path": "./KA6THCLASS/imppdf"
+  },
+  {
+    "name": "7thclass fa1ka",
+    "component": "Fa17dataka",
+    "path": "./7thclass/fa1data"
+  },
+  {
+    "name": "7thclass fa2ka",
+    "component": "Fa27dataka",
+    "path": "./KA7THCLASS/fa2data"
+  },
+  {
+    "name": "7thclass fa3ka",
+    "component": "Fa37dataka",
+    "path": "./KA7THCLASS/fa3data"
+  },
+  {
+    "name": "7thclass fa4ka",
+    "component": "Fa47dataka",
+    "path": "./KA7THCLASS/fa4data"
+  },
+  {
+    "name": "7thclass sa1ka",
+    "component": "Sa17dataka",
+    "path": "./KA7THCLASS/sa1data"
+  },
+  {
+    "name": "7thclass sa2ka",
+    "component": "Sa27dataka",
+    "path": "./KA7THCLASS/sa2data"
+  },
+  {
+    "name": "7thclass impka",
+    "component": "Imp7dataka",
+    "path": "./KA7THCLASS/impdata"
+  },
+  {
+    "name": "Fa17Pageka",
+    "component": "Fa17pdfka",
+    "path": "./KA7THCLASS/fa1pdf"
+  },
+  {
+    "name": "Fa27Pageka",
+    "component": "Fa27pdfka",
+    "path": "./KA7THCLASS/fa2pdf"
+  },
+  {
+    "name": "Fa37Pageka",
+    "component": "Fa37pdfka",
+    "path": "./KA7THCLASS/fa3pdf"
+  },
+  {
+    "name": "Fa47Pageka",
+    "component": "Fa47pdfka",
+    "path": "./KA7THCLASS/fa4pdf"
+  },
+  {
+    "name": "Sa17Pageka",
+    "component": "Sa17pdfka",
+    "path": "./KA7THCLASS/sa1pdf"
+  },
+  {
+    "name": "Sa27Pageka",
+    "component": "Sa27pdfka",
+    "path": "./KA7THCLASS/sa2pdf"
+  },
+  {
+    "name": "Imp7Pageka",
+    "component": "Imp7pdfka",
+    "path": "./KA7THCLASS/imppdf"
+  },
+  {
+    "name": "8thclass fa1ka",
+    "component": "Fa18dataka",
+    "path": "./KA8THCLASS/fa1data"
+  },
+  {
+    "name": "8thclass fa2ka",
+    "component": "Fa28dataka",
+    "path": "./KA8THCLASS/fa2data"
+  },
+  {
+    "name": "8thclass fa3ka",
+    "component": "Fa38dataka",
+    "path": "./KA8THCLASS/fa3data"
+  },
+  {
+    "name": "8thclass fa4ka",
+    "component": "Fa48dataka",
+    "path": "./KA8THCLASS/fa4data"
+  },
+  {
+    "name": "8thclass sa1ka",
+    "component": "Sa18dataka",
+    "path": "./KA8THCLASS/sa1data"
+  },
+  {
+    "name": "8thclass sa2ka",
+    "component": "Sa28dataka",
+    "path": "./KA8THCLASS/sa2data"
+  },
+  {
+    "name": "8thclass impka",
+    "component": "Imp8dataka",
+    "path": "./KA8THCLASS/impdata"
+  },
+  {
+    "name": "Fa18Pageka",
+    "component": "Fa18pdfka",
+    "path": "./KA8THCLASS/fa1pdf"
+  },
+  {
+    "name": "Fa28Pageka",
+    "component": "Fa28pdfka",
+    "path": "./KA8THCLASS/fa2pdf"
+  },
+  {
+    "name": "Fa38Pageka",
+    "component": "Fa38pdfka",
+    "path": "./KA8THCLASS/fa3pdf"
+  },
+  {
+    "name": "Fa48Pageka",
+    "component": "Fa48pdfka",
+    "path": "./KA8THCLASS/fa4pdf"
+  },
+  {
+    "name": "Sa18Pageka",
+    "component": "Sa18pdfka",
+    "path": "./KA8THCLASS/sa1pdf"
+  },
+  {
+    "name": "Sa28Pageka",
+    "component": "Sa28pdfka",
+    "path": "./KA8THCLASS/sa2pdf"
+  },
+  {
+    "name": "Imp8Pageka",
+    "component": "Imp8pdfka",
+    "path": "./KA8THCLASS/imppdf"
+  },
+  {
+    "name": "9thclass fa1ka",
+    "component": "Fa19dataka",
+    "path": "./KA9THCLASS/fa1data"
+  },
+  {
+    "name": "9thclass fa2ka",
+    "component": "Fa29dataka",
+    "path": "./KA9THCLASS/fa2data"
+  },
+  {
+    "name": "9thclass fa3ka",
+    "component": "Fa39dataka",
+    "path": "./KA9THCLASS/fa3data"
+  },
+  {
+    "name": "9thclass fa4ka",
+    "component": "Fa49dataka",
+    "path": "./KA9THCLASS/fa4data"
+  },
+  {
+    "name": "9thclass sa1ka",
+    "component": "Sa19dataka",
+    "path": "./KA9THCLASS/sa1data"
+  },
+  {
+    "name": "9thclass sa2ka",
+    "component": "Sa29dataka",
+    "path": "./KA9THCLASS/sa2data"
+  },
+  {
+    "name": "9thclass impka",
+    "component": "Imp9dataka",
+    "path": "./KA9THCLASS/impdata"
+  },
+  {
+    "name": "Fa19Pageka",
+    "component": "Fa19pdfka",
+    "path": "./KA9THCLASS/fa1pdf"
+  },
+  {
+    "name": "Fa29Pageka",
+    "component": "Fa29pdfka",
+    "path": "./KA9THCLASS/fa2pdf"
+  },
+  {
+    "name": "Fa39Pageka",
+    "component": "Fa39pdfka",
+    "path": "./KA9THCLASS/fa3pdf"
+  },
+  {
+    "name": "Fa49Pageka",
+    "component": "Fa49pdfka",
+    "path": "./KA9THCLASS/fa4pdf"
+  },
+  {
+    "name": "Sa19Pageka",
+    "component": "Sa19pdfka",
+    "path": "./KA9THCLASS/sa1pdf"
+  },
+  {
+    "name": "Sa29Pageka",
+    "component": "Sa29pdfka",
+    "path": "./KA9THCLASS/sa2pdf"
+  },
+  {
+    "name": "Imp9Pageka",
+    "component": "Imp9pdfka",
+    "path": "./KA9THCLASS/imppdf"
+  }
+]

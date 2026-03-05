@@ -1,74 +1,20 @@
-import React from "react";
-import { View, ScrollView, Button, Linking, StyleSheet } from "react-native";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../src/features/chapters/ChapterActionListScreen';
 
-const Telv = () => {
-  return (
-    <View style={styles.container}>
-      <ScrollView>
-
-        <Card style={styles.card}>
-          <Button
-            color='#5F939A'
-            title='ప్రకృతి వికృతులు'
-            onPress={() => Linking.openURL('https://youtu.be/0lQdldMIpjg')}
-          />
-        </Card>
-
-        <Card style={styles.card}>
-          <Button
-            color='#5F939A'
-            title='తెలుగు వ్యాకరణం | సంధులు'
-            onPress={() => Linking.openURL('https://youtu.be/5a0W-tI7Ylg')}
-          />
-        </Card>
-
-        <Card style={styles.card}>
-          <Button
-            color='#5F939A'
-            title='grammar in Amaravathi lesson'
-            onPress={() => Linking.openURL('https://youtu.be/_nocBp5Pykc')}
-          />
-        </Card>
-
-        <Card style={styles.card}>
-          <Button
-            color='#5F939A'
-            title='Nanarthalu'
-            onPress={() => Linking.openURL('https://youtu.be/yuf5fLxtbzA')}
-          />
-        </Card>
-
-        <Card style={styles.card}>
-          <Button
-            color='#5F939A'
-            title='అలంకారములు'
-            onPress={() => Linking.openURL('https://youtu.be/7EtMePPAp6o')}
-          />
-        </Card>
-
-        <Card style={styles.card}>
-          <Button
-            color='#5F939A'
-            title='సమాసాలు'
-            onPress={() => Linking.openURL('https://youtu.be/CNbjMD4dtlk')}
-          />
-        </Card>
-
-      </ScrollView>
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#F7F3E9',
-  },
-  card: {
-    padding: 30,
-    margin: 20,
-  },
-});
+const Telv = (props) => (
+  <ChapterActionListScreen
+    {...props}
+    title="Telugu Video Explanations"
+    subtitle="Open a topic to continue"
+    items={[
+      { label: 'ప్రకృతి వికృతులు', url: 'https://youtu.be/0lQdldMIpjg' },
+      { label: 'తెలుగు వ్యాకరణం | సంధులు', url: 'https://youtu.be/5a0W-tI7Ylg' },
+      { label: 'grammar in Amaravathi lesson', url: 'https://youtu.be/_nocBp5Pykc' },
+      { label: 'Nanarthalu', url: 'https://youtu.be/yuf5fLxtbzA' },
+      { label: 'అలంకారములు', url: 'https://youtu.be/7EtMePPAp6o' },
+      { label: 'సమాసాలు', url: 'https://youtu.be/CNbjMD4dtlk' },
+    ]}
+  />
+);
 
 export default Telv;

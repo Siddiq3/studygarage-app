@@ -1,115 +1,118 @@
-import { 
-    ActivityIndicator,
-    BackHandler,
-    Dimensions,
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View 
-} from 'react-native';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useMemo, useState } from "react";
+import { BackHandler, FlatList, Text, View } from "react-native";
+import axios from "axios";
+import Animated, { FadeInDown } from "react-native-reanimated";
+import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
+import SGCard from "./src/design-system/components/SGCard";
+import AnimatedActionCard from "./src/design-system/components/AnimatedActionCard";
+import { buildQuizChaptersUrl } from "./src/utils/quizDataUrl";
+import ShimmerSkeleton from "./src/components/ui/ShimmerSkeleton";
 
-import Icon from 'react-native-vector-icons/FontAwesome';
-import axios from 'axios';
-import { useNavigation } from '@react-navigation/native';
+const ChapterDetails = ({ route, navigation }) => {
+  const { stateBoard, classValue, subject } = route.params;
+  const [chapterDetails, setChapterDetails] = useState([]);
+  const [loading, setLoading] = useState(true);
 
-const ChapterDetails = ({ route }) => {
-    const { stateBoard, classValue, subject } = route.params;
-    const [chapterDetails, setChapterDetails] = useState([]);
-    const [loading, setLoading] = useState(true);
-    const navigation = useNavigation();
+  const apiUrl = buildQuizChaptersUrl({ stateBoard, classValue, subject });
 
-    console.log('Received params:', stateBoard, classValue, subject);
-
-    const apiUrl = `https://api.way2employee.com/quizdata/${stateBoard}/${classValue}/${subject}`;
-
-    // Fetch data
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get(apiUrl);
-                const data = response.data.results;
-                setChapterDetails(data);
-                setLoading(false);
-            } catch (error) {
-                console.error('Error fetching data:', error);
-                setLoading(false);
-            }
-        };
-
-        fetchData();
-    }, [apiUrl]);
-
-    // Handle Android back button
-    useEffect(() => {
-        const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-            navigation.goBack();
-            return true; // prevent default
-        });
-
-        return () => backHandler.remove(); // ✅ cleanup properly
-    }, [navigation]);
-
-    if (loading) {
-        return (
-            <View style={styles.loadingContainer}>
-                <ActivityIndicator size="large" color="#0000ff" />
-            </View>
-        );
-    }
-
-    const uniqueChapters = Array.from(new Set(chapterDetails.map(item => item.chapter)));
-
-    const handleChapterPress = (selectedChapter) => {
-        navigation.navigate('Quiz', { stateBoard, classValue, subject, chapter: selectedChapter });
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(apiUrl);
+        setChapterDetails(response?.data?.results || []);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        setLoading(false);
+      }
     };
 
-    const renderItem = ({ item }) => (
-        <TouchableOpacity onPress={() => handleChapterPress(item)}>
-            <View style={styles.chapterItem}>
-                <Text style={styles.chapterText}>{item}</Text>
-                <Icon name="chevron-right" size={20} color="#333" />
+    fetchData();
+  }, [apiUrl]);
+
+  useEffect(() => {
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      () => {
+        navigation.goBack();
+        return true;
+      }
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
+
+  const uniqueChapters = useMemo(
+    () => Array.from(new Set(chapterDetails.map((item) => item.chapter))),
+    [chapterDetails]
+  );
+
+  const handleChapterPress = (selectedChapter) => {
+    navigation.navigate("Quiz", {
+      stateBoard,
+      classValue,
+      subject,
+      chapter: selectedChapter,
+    });
+  };
+
+  return (
+    <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
+      <Animated.View entering={FadeInDown.duration(220)}>
+        <SGCard className="mb-4">
+          <Text className="text-[30px] font-extrabold leading-[34px] text-sg-text dark:text-sgd-text">
+            {subject}
+          </Text>
+          <Text className="mt-1 text-[14px] font-medium text-sg-muted dark:text-sgd-muted">
+            Choose a chapter to start quiz practice
+          </Text>
+
+          {loading ? (
+            <View className="py-5">
+              {[0, 1, 2, 3].map((idx) => (
+                <View key={`chapter-loader-${idx}`} className="mb-3">
+                  <ShimmerSkeleton height={70} borderRadius={19} />
+                </View>
+              ))}
             </View>
-        </TouchableOpacity>
-    );
-
-    return (
-        <View style={styles.container}>
+          ) : (
             <FlatList
-                data={uniqueChapters}
-                renderItem={renderItem}
-                keyExtractor={(item) => item}
+              data={uniqueChapters}
+              scrollEnabled={false}
+              keyExtractor={(item) => item}
+              contentContainerStyle={{ paddingTop: 16 }}
+              renderItem={({ item, index }) => (
+                <Animated.View
+                  entering={FadeInDown.delay(25 + index * 14).duration(180)}
+                  className="mb-3"
+                >
+                  <AnimatedActionCard onPress={() => handleChapterPress(item)}>
+                    <View className="rounded-[19px] border border-sg-border bg-sg-surface/88 px-4 py-4 dark:border-sgd-border dark:bg-sgd-surface/88">
+                      <View className="flex-row items-center justify-between">
+                        <Text className="flex-1 text-[17px] font-bold text-sg-text dark:text-sgd-text">
+                          {item}
+                        </Text>
+                        <Text className="ml-3 text-[12px] font-semibold text-sg-muted dark:text-sgd-muted">
+                          Open
+                        </Text>
+                      </View>
+                    </View>
+                  </AnimatedActionCard>
+                </Animated.View>
+              )}
+              ListEmptyComponent={
+                <View className="rounded-[20px] border border-sg-border bg-sg-surface/86 px-4 py-5 dark:border-sgd-border dark:bg-sgd-surface/86">
+                  <Text className="text-center text-[15px] font-semibold text-sg-muted dark:text-sgd-muted">
+                    No chapters found
+                  </Text>
+                </View>
+              }
             />
-        </View>
-    );
+          )}
+        </SGCard>
+      </Animated.View>
+    </ScreenLayoutContainer>
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        backgroundColor: '#fff',
-        paddingVertical: 10,
-        paddingHorizontal: 20,
-        marginTop: 20
-    },
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    chapterItem: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 20,
-        padding: 20,
-        backgroundColor: '#f0f0f0',
-        borderRadius: 8,
-    },
-    chapterText: {
-        fontSize: Dimensions.get('window').width > 360 ? 16 : 14,
-    },
-});
 
 export default ChapterDetails;

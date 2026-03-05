@@ -1,71 +1,29 @@
-import { StyleSheet, Text, TouchableOpacity, View, ScrollView } from 'react-native';
-import React, { useState, useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import RemoteLabelHub from '../../src/features/hubs/RemoteLabelHub';
 
 const Nmmsme = ({ navigation }) => {
-    const [questions, setQuestions] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
+  const items = [
+    { key: 'nmmsme1', route: 'nmmsme1' },
+    { key: 'nmmsme2', route: 'nmmsme2' },
+    { key: 'nmmsme3', route: 'nmmsme3' },
+    { key: 'nmmsme4', route: 'nmmsme4' },
+    { key: 'nmmsme5', route: 'nmmsme5' },
+    { key: 'nmmsme6', route: 'nmmsme6' },
+    { key: 'nmmsme7', route: 'nmmsme7' },
+    { key: 'nmmsme8', route: 'nmmsme8' },
+    { key: 'nmmsme9', route: 'nmmsme9' },
+    { key: 'nmmsme10', route: 'nmmsme10' },
+  ];
 
-    const getQuiz = async () => {
-        setIsLoading(true);
-        try {
-            const url1 = 'https://siddiq3.github.io/Api/nmms.json';
-            const res = await fetch(url1);
-            const data = await res.json();
-            setQuestions(data.results[0]);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-    useEffect(() => {
-        getQuiz();
-    }, []);
-
-    const renderCard = (questionKey, screen) => (
-        <Card style={{ padding: 10, margin: 15 }}>
-            <TouchableOpacity
-                style={{ padding: 10, margin: 15 }}
-                activeOpacity={1}
-                onPress={() => navigation.navigate(screen)}
-            >
-                {isLoading ? (
-                    <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text>
-                ) : (
-                    questions && (
-                        <Text style={{ textAlign: 'center', fontSize: 20 }}>
-                            {decodeURIComponent(questions[questionKey])}
-                        </Text>
-                    )
-                )}
-            </TouchableOpacity>
-        </Card>
-    );
-
-    return (
-        <View style={styles.container}>
-            <ScrollView>
-                {renderCard('nmmsme1', 'nmmsme1')}
-                {renderCard('nmmsme2', 'nmmsme2')}
-                {renderCard('nmmsme3', 'nmmsme3')}
-                {renderCard('nmmsme4', 'nmmsme4')}
-                {renderCard('nmmsme5', 'nmmsme5')}
-                {renderCard('nmmsme6', 'nmmsme6')}
-                {renderCard('nmmsme7', 'nmmsme7')}
-                {renderCard('nmmsme8', 'nmmsme8')}
-                {renderCard('nmmsme9', 'nmmsme9')}
-                {renderCard('nmmsme10', 'nmmsme10')}
-            </ScrollView>
-        </View>
-    );
+  return (
+    <RemoteLabelHub
+      navigation={navigation}
+      title="NMMS Maths EM"
+      subtitle="Topic-wise learning modules"
+      dataUrl="https://siddiq3.github.io/Api/nmms.json"
+      items={items}
+    />
+  );
 };
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-});
 
 export default Nmmsme;

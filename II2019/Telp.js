@@ -1,22 +1,13 @@
-import { View} from 'react-native';
-import React, { useEffect } from "react";
-import WebView from 'react-native-webview';
-import MrecAdComponent from "../MrecAdComponent";
-
-
+import React from 'react';
+import ModernContentWebView from '../components/ModernContentWebView';
 
 const Telp5 = () => {
-
-    return (
-        <View style={{ flex: 1 }}>
-            <WebView
-                source={{
-                    uri: `https://drive.google.com/file/d/14iMLyStWf8i508pzlWcQAKCHtE6RVxEC/view?usp=share_link`,
-                }}
-        />
-        <MrecAdComponent/>
-        </View>
-    );
-}
+  return (
+    <ModernContentWebView
+      uri={`https://drive.google.com/file/d/14iMLyStWf8i508pzlWcQAKCHtE6RVxEC/view?usp=share_link`}
+      screenName='telp5'
+    />
+  );
+};
 
 export default Telp5;

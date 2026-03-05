@@ -1,146 +1,38 @@
-import { BackHandler, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
-import React, { useState, useEffect } from "react";
-
-import { Card } from "react-native-shadow-cards";
+import React, { useEffect } from 'react';
+import { BackHandler } from 'react-native';
+import RemoteLabelHub from './src/features/hubs/RemoteLabelHub';
 
 const Class7tb = ({ navigation }) => {
-
-    const [questions, setQuestions] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-
-    const getQuiz = async () => {
-        setIsLoading(true);
-        try {
-            const url1 = 'https://siddiq3.github.io/Api/subject.json';
-            const res = await fetch(url1);
-            const data = await res.json();
-            setQuestions(data.results[0]);
-        } catch (error) {
-            console.error(error);
-        } finally {
-            setIsLoading(false);
-        }
-    };
-
-useEffect(() => {
-    getQuiz();
-
+  useEffect(() => {
     const backHandler = BackHandler.addEventListener('hardwareBackPress', () => {
-        navigation.goBack(); // Navigate back when back button is pressed
-        return true; // Prevent default behavior
+      navigation.goBack();
+      return true;
     });
 
-    // ✅ Correct cleanup
     return () => backHandler.remove();
-}, []);
+  }, [navigation]);
 
+  const items = [
+    { key: 'ttb7', route: 'telugu tb7' },
+    { key: 'htb7', route: 'hindi tb7' },
+    { key: 'etb7', route: 'english tb7' },
+    { key: 'mttb7', route: 'mathstm tb7' },
+    { key: 'metb7', route: 'mathsem tb7' },
+    { key: 'nttb7', route: 'nstm tb7' },
+    { key: 'netb7', route: 'nsem tb7' },
+    { key: 'sttb7', route: 'socialtm tb7' },
+    { key: 'setb7', route: 'socialem tb7' },
+  ];
 
-    return (
-        <View style={styles.container}>
-            <ScrollView>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('telugu tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.ttb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('hindi tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.htb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('english tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.etb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('mathstm tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.mttb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('mathsem tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.metb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('nstm tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.nttb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('nsem tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.netb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('socialtm tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.sttb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-                <Card style={{ padding: 10, margin: 15 }}>
-                    <TouchableOpacity
-                        activeOpacity={1}
-                        onPress={() => navigation.navigate('socialem tb7')}
-                    >
-                        {isLoading ? <Text style={{ fontSize: 16, fontWeight: '500' }}>Loading...</Text> :
-                            questions && <Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center' }}>{decodeURIComponent(questions.setb7)}</Text>}
-                    </TouchableOpacity>
-                </Card>
-
-            </ScrollView>
-        </View>
-    );
-}
-
+  return (
+    <RemoteLabelHub
+      navigation={navigation}
+      title="Class 7 Textbooks"
+      subtitle="Open subject-wise class 7 books"
+      dataUrl="https://siddiq3.github.io/Api/subject.json"
+      items={items}
+    />
+  );
+};
 
 export default Class7tb;
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-    },
-
-});
-

@@ -1,99 +1,179 @@
 ////////////////////////////////////////////////////////////////////////////////////////////////
 
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+import { migrateRewardSchemaV1 } from './src/services/rewards/firstInstallRewardService';
+import {
+  addCoins as addCoinsToWallet,
+  getBalance as getWalletBalance,
+  spendCoins as spendCoinsFromWallet,
+  subscribeWalletBalance,
+} from './src/wallet/walletStore';
 
 const QuizContext = createContext();
 
 export const QuizProvider = ({ children }) => {
-    const [totalScore, setTotalScore] = useState(50);
-    const [updatingTotalScore, setUpdatingTotalScore] = useState(false);
+  const [totalScore, setTotalScore] = useState(0);
+  const [coinStateReady, setCoinStateReady] = useState(false);
+  const [updatingTotalScore, setUpdatingTotalScore] = useState(false);
 
-    useEffect(() => {
-        // Load the total score from AsyncStorage when the context provider mounts
-        loadTotalScore();
-    
-    }, []);
-
-    const loadTotalScore = async () => {
-        try {
-            const storedTotalScore = await AsyncStorage.getItem('totalScore');
-            if (storedTotalScore !== null) {
-                setTotalScore(parseInt(storedTotalScore, 10));
-            }
-        } catch (error) {
-            console.error('Error loading total score:', error);
-        }
+  useEffect(() => {
+    let mounted = true;
+    initializeCoinState(() => mounted);
+    const unsubscribe = subscribeWalletBalance((balance) => {
+      if (!mounted) return;
+      if (!Number.isFinite(balance)) return;
+      setTotalScore(balance);
+      setCoinStateReady(true);
+    });
+    return () => {
+      mounted = false;
+      unsubscribe();
     };
+  }, []);
 
-    /*const updateTotalScore = async (score) => {
-        try {
-            setUpdatingTotalScore(true);
+  const initializeCoinState = async (isMounted = () => true) => {
+    try {
+      // Hydrate quickly from the wallet snapshot so UI does not flash a fake default.
+      const cachedBalance = await getWalletBalance();
+      if (isMounted() && Number.isFinite(cachedBalance)) {
+        setTotalScore(cachedBalance);
+        setCoinStateReady(true);
+      }
 
-            // Add the provided score to the total score
-            const newTotalScore = totalScore + score;
+      await migrateRewardSchemaV1();
+      const storedBalance = await getWalletBalance();
+      if (isMounted()) {
+        setTotalScore(storedBalance);
+        setCoinStateReady(true);
+      }
+    } catch (error) {
+      console.error('Error initializing total score:', error);
+      if (isMounted()) {
+        setCoinStateReady(true);
+      }
+    }
+  };
 
-            // Check if the user has reached a total score of 1000 for withdrawal
-            if (newTotalScore >= 1000) {
-                // Perform the withdrawal logic (deduct 10)
-                const withdrawalAmount = 1000;
-                console.log(`Withdrawal successful! Amount: ${withdrawalAmount}`);
-                // Deduct the withdrawal amount from the total score
-                const remainingScore = newTotalScore - withdrawalAmount;
-                // Save the updated total score to AsyncStorage
-                await AsyncStorage.setItem('totalScore', remainingScore.toString());
-                // Update the state to reflect the change
-                setTotalScore(remainingScore);
-            } else {
-                // Save the updated total score to AsyncStorage
-                await AsyncStorage.setItem('totalScore', newTotalScore.toString());
-                // Update the state to reflect the change
-                setTotalScore(newTotalScore);
-            }
-        } catch (error) {
-            console.error('Error updating total score:', error);
-        } finally {
-            setUpdatingTotalScore(false);
-        }
-    }; */
-    const updateTotalScore = async (score) => {
-        try {
-            setUpdatingTotalScore(true);
+  const setCoinBalanceSafe = async (amount) => {
+    const safeAmount = Math.max(0, Number.isFinite(Number(amount)) ? Number(amount) : 0);
+    const currentBalance = await getWalletBalance();
+    if (safeAmount === currentBalance) {
+      setTotalScore(safeAmount);
+      return { ok: true, applied: false, balance: safeAmount };
+    }
 
-            // Use the callback function to correctly update the state based on the previous state
-            setTotalScore((prevTotalScore) => {
-                const newTotalScore = prevTotalScore + score;
+    if (safeAmount > currentBalance) {
+      const result = await addCoinsToWallet({
+        eventId: `manual_adjustment:set:${safeAmount}:${Date.now()}`,
+        amount: safeAmount - currentBalance,
+        source: 'manual_adjustment',
+        meta: { mode: 'setCoinBalanceSafe', target: safeAmount },
+      });
+      setTotalScore(result.balance);
+      return result;
+    }
 
-                if (newTotalScore >= 1000) {
-                    const withdrawalAmount = 1000;
-                    console.log(`Withdrawal successful! Amount: ${withdrawalAmount}`);
-                    const remainingScore = newTotalScore - withdrawalAmount;
+    const result = await spendCoinsFromWallet({
+      eventId: `manual_adjustment:set:${safeAmount}:${Date.now()}`,
+      amount: currentBalance - safeAmount,
+      reason: 'manual_adjustment',
+      meta: { mode: 'setCoinBalanceSafe', target: safeAmount },
+    });
+    setTotalScore(result.balance);
+    return result;
+  };
 
-                    // Save the updated total score to AsyncStorage
-                    AsyncStorage.setItem('totalScore', remainingScore.toString());
+  const updateTotalScore = async (score, options = {}) => {
+    try {
+      setUpdatingTotalScore(true);
+      const delta = Number(score);
+      if (!Number.isFinite(delta) || delta === 0) {
+        return { ok: true, applied: false, balance: totalScore };
+      }
 
-                    return remainingScore;
-                } else {
-                    // Save the updated total score to AsyncStorage
-                    AsyncStorage.setItem('totalScore', newTotalScore.toString());
+      const baseSource = options?.source || options?.reason || 'legacy';
+      const eventId =
+        options?.eventId ||
+        `legacy:${baseSource}:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`;
+      const meta = options?.meta;
 
-                    return newTotalScore;
-                }
+      const result =
+        delta > 0
+          ? await addCoinsToWallet({
+              eventId,
+              amount: delta,
+              source: baseSource,
+              meta,
+            })
+          : await spendCoinsFromWallet({
+              eventId,
+              amount: Math.abs(delta),
+              reason: baseSource,
+              meta,
             });
-        } catch (error) {
-            console.error('Error updating total score:', error);
-        } finally {
-            setUpdatingTotalScore(false);
-        }
-    };
 
-    return (
-        <QuizContext.Provider value={{ totalScore, updateTotalScore }}>
-            {children}
-        </QuizContext.Provider>
-    );
+      setTotalScore(result.balance);
+      return result;
+    } catch (error) {
+      console.error('Error updating total score:', error);
+      return { ok: false, applied: false, balance: totalScore };
+    } finally {
+      setUpdatingTotalScore(false);
+    }
+  };
+
+  const addCoins = async ({ eventId, amount, source = 'legacy', meta } = {}) => {
+    const result = await addCoinsToWallet({
+      eventId:
+        eventId || `legacy:${source}:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`,
+      amount: Number(amount) || 0,
+      source,
+      meta,
+    });
+    setTotalScore(result.balance);
+    return result;
+  };
+
+  const spendCoins = async ({ eventId, amount, reason = 'legacy', source, meta } = {}) => {
+    const result = await spendCoinsFromWallet({
+      eventId:
+        eventId || `legacy:${reason}:${Date.now()}:${Math.random().toString(36).slice(2, 8)}`,
+      amount: Number(amount) || 0,
+      reason,
+      source,
+      meta,
+    });
+    setTotalScore(result.balance);
+    return result;
+  };
+
+  const awardCoinsWithMirror = async (amount, reason = 'generic', eventId, meta) => {
+    return updateTotalScore(amount, {
+      eventId,
+      source: reason,
+      meta,
+    });
+  };
+
+  return (
+    <QuizContext.Provider
+      value={{
+        totalScore,
+        coinBalance: totalScore,
+        updateTotalScore,
+        setCoinBalanceSafe,
+        awardCoinsWithMirror,
+        addCoins,
+        spendCoins,
+        coinStateReady,
+        updatingTotalScore,
+      }}
+    >
+      {children}
+    </QuizContext.Provider>
+  );
 };
 
 export const useQuizContext = () => {
-    return useContext(QuizContext);
+  return useContext(QuizContext);
 };

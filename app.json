@@ -4,12 +4,12 @@
     "slug": "10th_class",
     "version": "2.8.84",
     "orientation": "portrait",
-    "icon": "./assets/icon1.png",
-    "userInterfaceStyle": "light",
+    "icon": "./assets/branding/final-logo-pack/sg-mint-purple-1024-dark.png",
+    "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/sg.png",
+      "image": "./assets/sg-dark.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#0B0C10"
     },
     "updates": {
       "enabled": false,
@@ -27,8 +27,8 @@
       "versionCode": 264,
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/icon1.png",
-        "backgroundColor": "#FFFFFF"
+        "foregroundImage": "./assets/branding/final-logo-pack/sg-mint-purple-1024-transparent.png",
+        "backgroundColor": "#0B0C10"
       }
     },
     "web": {
@@ -47,7 +47,9 @@
         {
           "mode": "development"
         }
-      ]
+      ],
+      "expo-font",
+      "expo-secure-store"
     ]
   }
 }
