@@ -3,7 +3,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import Constants from 'expo-constants';
 import * as Application from 'expo-application';
 
-const UPDATE_CONFIG_URL =
+const ENV_UPDATE_CONFIG_URL =
+  typeof process?.env?.EXPO_PUBLIC_APP_UPDATE_CONFIG_URL === 'string'
+    ? process.env.EXPO_PUBLIC_APP_UPDATE_CONFIG_URL.trim()
+    : '';
+const PRIMARY_UPDATE_CONFIG_URL =
+  ENV_UPDATE_CONFIG_URL ||
+  'https://raw.githubusercontent.com/Siddiq3/Api/main/app-update.json';
+const FALLBACK_UPDATE_CONFIG_URL =
   'https://cdn.jsdelivr.net/gh/Siddiq3/QuizData@main/app-update.json';
 const LAST_OPTIONAL_DISMISS_KEY = 'sg_update_optional_last_dismissed_at';
 const DEFAULT_OPTIONAL_COOLDOWN_HOURS = 12;
@@ -118,18 +125,34 @@ export const clearOptionalUpdateDismissed = async () => {
   await AsyncStorage.removeItem(LAST_OPTIONAL_DISMISS_KEY);
 };
 
-export const checkForAppUpdate = async () => {
-  const response = await fetch(UPDATE_CONFIG_URL, {
-    method: 'GET',
-    headers: { Accept: 'application/json' },
-    cache: 'no-store',
-  });
+const fetchUpdateConfig = async () => {
+  // Minute-level cache-buster to reduce stale CDN/browser cache while avoiding noisy URLs.
+  const cacheBuster = Math.floor(Date.now() / 60000);
+  const urlsToTry = [PRIMARY_UPDATE_CONFIG_URL, FALLBACK_UPDATE_CONFIG_URL].filter(Boolean);
+  let lastError = null;
 
-  if (!response.ok) {
-    throw new Error(`Update config request failed with status ${response.status}`);
+  for (const url of urlsToTry) {
+    try {
+      const separator = url.includes('?') ? '&' : '?';
+      const response = await fetch(`${url}${separator}t=${cacheBuster}`, {
+        method: 'GET',
+        headers: { Accept: 'application/json' },
+        cache: 'no-store',
+      });
+      if (!response.ok) {
+        throw new Error(`Update config request failed with status ${response.status}`);
+      }
+      return response.json();
+    } catch (error) {
+      lastError = error;
+    }
   }
 
-  const rawConfig = await response.json();
+  throw lastError || new Error('Unable to fetch update config');
+};
+
+export const checkForAppUpdate = async () => {
+  const rawConfig = await fetchUpdateConfig();
   const config = normalizeConfig(rawConfig);
 
   if (!config.latestVersion) {

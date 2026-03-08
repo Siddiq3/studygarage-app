@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { Alert, Linking } from 'react-native';
 import * as Haptics from 'expo-haptics';
-import AppUpdatePrompt from '../../components/update/AppUpdatePrompt';
+import AppUpdateModal from '../../components/update/AppUpdateModal';
 import {
   checkForAppUpdate,
   markOptionalUpdateDismissed,
@@ -73,17 +73,17 @@ export default function AppUpdateGate() {
   if (loading) return null;
 
   return (
-    <AppUpdatePrompt
+    <AppUpdateModal
       visible={Boolean(updateInfo)}
-      forceUpdate={Boolean(updateInfo?.forceUpdate)}
+      type={updateInfo?.forceUpdate ? 'required' : 'optional'}
       title={updateInfo?.title}
       message={updateInfo?.message}
       currentVersion={updateInfo?.currentVersion}
       latestVersion={updateInfo?.latestVersion}
       updateNowLabel={updateInfo?.updateNowLabel}
       laterLabel={updateInfo?.laterLabel}
-      onPressUpdate={handleUpdateNow}
-      onPressLater={handleLater}
+      onUpdate={handleUpdateNow}
+      onDismiss={handleLater}
     />
   );
 }

@@ -25,6 +25,7 @@ import Coin from "../../components/rewards/Coin";
 
 type SuccessRouteParams = {
   rewardCoins?: number;
+  countdownSeconds?: number;
   onCollectCoins?: () => Promise<void> | void;
   onContinueQuiz?: () => Promise<void> | void;
   showInterstitialAdAndWait?: () => Promise<boolean> | boolean;
@@ -54,10 +55,11 @@ const SUCCESS_HEADLINES = [
   "Great Job!",
   "Correct!",
 ];
+const NEXT_QUESTION_WAIT_SECONDS = 8;
 
 const NextQuestionCountdown = React.memo(function NextQuestionCountdown({
   start,
-  initialSeconds = 10,
+  initialSeconds = NEXT_QUESTION_WAIT_SECONDS,
   onComplete,
 }: CountdownProps) {
   const [remaining, setRemaining] = useState(initialSeconds);
@@ -194,6 +196,9 @@ export default function SuccessScreen({ navigation, route }: Props) {
   const [showRewardChip, setShowRewardChip] = useState(false);
   const hasStartedFlowRef = useRef(false);
   const isMountedRef = useRef(true);
+  const autoReturnTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
+    null
+  );
   const entryHapticTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(
     null
   );
@@ -212,6 +217,12 @@ export default function SuccessScreen({ navigation, route }: Props) {
   const buttonGlow = useSharedValue(0.45);
 
   const rewardCoins = Math.max(0, Number(route?.params?.rewardCoins ?? 1));
+  const countdownSeconds = Math.max(
+    0,
+    Number(
+      route?.params?.countdownSeconds ?? NEXT_QUESTION_WAIT_SECONDS
+    ) || 0
+  );
   const successHeadline = useMemo(
     () =>
       SUCCESS_HEADLINES[Math.floor(Math.random() * SUCCESS_HEADLINES.length)],
@@ -373,9 +384,21 @@ export default function SuccessScreen({ navigation, route }: Props) {
     } finally {
       if (!isMountedRef.current) return;
       setIsCollecting(false);
+      if (countdownSeconds <= 0) {
+        if (autoReturnTimeoutRef.current) {
+          clearTimeout(autoReturnTimeoutRef.current);
+        }
+        autoReturnTimeoutRef.current = setTimeout(() => {
+          if (!isMountedRef.current) return;
+          finishQuizFlow().catch((error) => {
+            console.log("Continue quiz flow failed:", error);
+          });
+        }, 650);
+        return;
+      }
       setCountdownStarted(true);
     }
-  }, [route?.params]);
+  }, [countdownSeconds, finishQuizFlow, route?.params]);
 
   useEffect(() => {
     isMountedRef.current = true;
@@ -383,6 +406,10 @@ export default function SuccessScreen({ navigation, route }: Props) {
 
     return () => {
       isMountedRef.current = false;
+      if (autoReturnTimeoutRef.current) {
+        clearTimeout(autoReturnTimeoutRef.current);
+        autoReturnTimeoutRef.current = null;
+      }
     };
   }, [startSuccessFlow]);
 
@@ -433,7 +460,7 @@ export default function SuccessScreen({ navigation, route }: Props) {
             <Animated.View style={textStyle}>
               <NextQuestionCountdown
                 start={countdownStarted}
-                initialSeconds={10}
+                initialSeconds={countdownSeconds}
                 onComplete={() => {
                   finishQuizFlow().catch((error) => {
                     console.log("Continue quiz flow failed:", error);

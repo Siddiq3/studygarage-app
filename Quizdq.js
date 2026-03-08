@@ -21,6 +21,7 @@ import { defaultConfig } from "./src/config/remoteConfig";
 import BannerAdComponent from "./BannerAd";
 
 const TARGET_CORRECT = 7;
+const CORRECT_ANSWER_REVIEW_SECONDS = 8;
 const SEEN_STORAGE_PREFIX = "sg_seen_questions";
 const SEEN_WRITE_DEBOUNCE_MS = 300;
 
@@ -92,8 +93,10 @@ const Quizques = ({ navigation, route }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectionLocked, setSelectionLocked] = useState(false);
+  const [postCorrectCountdown, setPostCorrectCountdown] = useState(null);
 
   const pendingAdvanceTimeoutRef = useRef(null);
+  const postCorrectCountdownTimeoutRef = useRef(null);
   const questionsRef = useRef([]);
   const totalQuestionsRef = useRef(0);
   const scoreRef = useRef(0);
@@ -201,6 +204,14 @@ const Quizques = ({ navigation, route }) => {
     }
   }, []);
 
+  const clearPostCorrectCountdownTimeout = useCallback(() => {
+    if (postCorrectCountdownTimeoutRef.current) {
+      clearTimeout(postCorrectCountdownTimeoutRef.current);
+      postCorrectCountdownTimeoutRef.current = null;
+    }
+    setPostCorrectCountdown(null);
+  }, []);
+
   const clearSeenPersistTimeout = useCallback(() => {
     if (seenWriteTimeoutRef.current) {
       clearTimeout(seenWriteTimeoutRef.current);
@@ -255,6 +266,7 @@ const Quizques = ({ navigation, route }) => {
     if (resultNavigatedRef.current) return;
     resultNavigatedRef.current = true;
     clearPendingAdvanceTimeout();
+    clearPostCorrectCountdownTimeout();
     clearSeenPersistTimeout();
 
     flushSeenIds()
@@ -270,6 +282,7 @@ const Quizques = ({ navigation, route }) => {
       });
   }, [
     clearPendingAdvanceTimeout,
+    clearPostCorrectCountdownTimeout,
     clearSeenPersistTimeout,
     flushSeenIds,
     navigation,
@@ -279,6 +292,7 @@ const Quizques = ({ navigation, route }) => {
 
   const advanceToNextQuestion = useCallback(() => {
     clearPendingAdvanceTimeout();
+    clearPostCorrectCountdownTimeout();
     setSelectedOption(null);
     setSelectionLocked(false);
 
@@ -300,10 +314,35 @@ const Quizques = ({ navigation, route }) => {
     });
   }, [
     clearPendingAdvanceTimeout,
+    clearPostCorrectCountdownTimeout,
     generateOptionsAndShuffle,
     handleShowResult,
     markQuestionSeen,
   ]);
+
+  const startPostCorrectAnswerReview = useCallback(
+    (onDone) => {
+      clearPostCorrectCountdownTimeout();
+      let secondsRemaining = CORRECT_ANSWER_REVIEW_SECONDS;
+      setPostCorrectCountdown(secondsRemaining);
+
+      const tick = () => {
+        secondsRemaining -= 1;
+
+        if (secondsRemaining <= 0) {
+          clearPostCorrectCountdownTimeout();
+          onDone?.();
+          return;
+        }
+
+        setPostCorrectCountdown(secondsRemaining);
+        postCorrectCountdownTimeoutRef.current = setTimeout(tick, 1000);
+      };
+
+      postCorrectCountdownTimeoutRef.current = setTimeout(tick, 1000);
+    },
+    [clearPostCorrectCountdownTimeout]
+  );
 
   const triggerWrongFeedback = useCallback(() => {
     wrongPulse.value = withSequence(
@@ -361,6 +400,7 @@ const Quizques = ({ navigation, route }) => {
       setIncorrectQuestions(0);
       setSelectedOption(null);
       setSelectionLocked(false);
+      clearPostCorrectCountdownTimeout();
       scoreRef.current = 0;
       correctQuestionsRef.current = 0;
       incorrectQuestionsRef.current = 0;
@@ -381,6 +421,7 @@ const Quizques = ({ navigation, route }) => {
     }
   }, [
     chapter,
+    clearPostCorrectCountdownTimeout,
     classValue,
     generateOptionsAndShuffle,
     markQuestionSeen,
@@ -404,13 +445,19 @@ const Quizques = ({ navigation, route }) => {
   useEffect(() => {
     return () => {
       clearPendingAdvanceTimeout();
+      clearPostCorrectCountdownTimeout();
       clearSeenPersistTimeout();
       flushSeenIds();
     };
-  }, [clearPendingAdvanceTimeout, clearSeenPersistTimeout, flushSeenIds]);
+  }, [
+    clearPendingAdvanceTimeout,
+    clearPostCorrectCountdownTimeout,
+    clearSeenPersistTimeout,
+    flushSeenIds,
+  ]);
 
   const handleNextPress = () => {
-    if (selectionLocked) return;
+    if (selectionLocked || postCorrectCountdown !== null) return;
     advanceToNextQuestion();
   };
 
@@ -430,6 +477,7 @@ const Quizques = ({ navigation, route }) => {
 
       navigation.navigate("SuccessScreen", {
         rewardCoins: correctRewardCoins,
+        countdownSeconds: 0,
         onCollectCoins: async () => {
           const questionId = getQuestionStableId(questions[ques], ques);
           await addCoins({
@@ -445,11 +493,13 @@ const Quizques = ({ navigation, route }) => {
         },
         showInterstitialAdAndWait: showAdAndWaitForClose,
         onContinueQuiz: () => {
-          if (nextCorrect >= TARGET_CORRECT) {
-            handleShowResult();
-            return;
-          }
-          advanceToNextQuestion();
+          startPostCorrectAnswerReview(() => {
+            if (nextCorrect >= TARGET_CORRECT) {
+              handleShowResult();
+              return;
+            }
+            advanceToNextQuestion();
+          });
         },
       });
       return;
@@ -528,7 +578,13 @@ const Quizques = ({ navigation, route }) => {
             ))}
           </View>
 
-          {ques !== totalQuestions - 1 ? (
+          {postCorrectCountdown !== null ? (
+            <View className="mt-2 items-end">
+              <Text className="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[12px] font-bold text-[#DFE7F9]">
+                Next question in {postCorrectCountdown}...
+              </Text>
+            </View>
+          ) : ques !== totalQuestions - 1 ? (
             <TouchableOpacity
               onPress={handleNextPress}
               className="mt-1 self-end rounded-full border border-white/15 bg-white/7 px-4 py-2"

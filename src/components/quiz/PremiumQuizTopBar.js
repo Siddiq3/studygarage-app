@@ -86,7 +86,7 @@ export default function PremiumQuizTopBar({
 
         <Text
           numberOfLines={1}
-          className="mx-3 flex-1 text-center text-[12px] font-bold uppercase tracking-[1px] text-white/70"
+          className="mx-3 flex-1 text-center text-[12px] font-bold uppercase tracking-[1px] text-[#C7D2E9]"
         >
           {progressMode === "goal"
             ? sessionLabel
@@ -136,11 +136,11 @@ export default function PremiumQuizTopBar({
 
       {progressMode === "goal" ? (
         <View className="mt-2 flex-row items-center justify-between">
-          <Text className="text-[12px] font-semibold text-white/78">
+          <Text className="text-[12px] font-semibold text-[#DFE7F9]">
             Correct: {Math.min(correctCount, clampedTarget)} / {clampedTarget}
           </Text>
           {helperText ? (
-            <Text className="ml-3 flex-1 text-right text-[11px] font-medium text-white/58">
+            <Text className="ml-3 flex-1 text-right text-[11px] font-medium text-[#AEB8CF]">
               {helperText}
             </Text>
           ) : null}
