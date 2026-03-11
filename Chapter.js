@@ -42,17 +42,29 @@ const ChapterDetails = ({ route, navigation }) => {
     return () => backHandler.remove();
   }, [navigation]);
 
-  const uniqueChapters = useMemo(
-    () => Array.from(new Set(chapterDetails.map((item) => item.chapter))),
-    [chapterDetails]
-  );
+  const uniqueChapters = useMemo(() => {
+    const seenLabels = new Set();
+    return chapterDetails.reduce((acc, item) => {
+      const chapterLabel = String(item?.chapter || "").trim();
+      if (!chapterLabel || seenLabels.has(chapterLabel)) return acc;
+      seenLabels.add(chapterLabel);
+      acc.push({
+        chapter: chapterLabel,
+        slug: String(item?.slug || "").trim(),
+        file: String(item?.file || "").trim(),
+      });
+      return acc;
+    }, []);
+  }, [chapterDetails]);
 
   const handleChapterPress = (selectedChapter) => {
     navigation.navigate("Quiz", {
       stateBoard,
       classValue,
       subject,
-      chapter: selectedChapter,
+      chapter: selectedChapter?.chapter || "",
+      chapterSlug: selectedChapter?.slug || "",
+      chapterFile: selectedChapter?.file || "",
     });
   };
 
@@ -79,7 +91,7 @@ const ChapterDetails = ({ route, navigation }) => {
             <FlatList
               data={uniqueChapters}
               scrollEnabled={false}
-              keyExtractor={(item) => item}
+              keyExtractor={(item) => item.slug || item.file || item.chapter}
               contentContainerStyle={{ paddingTop: 16 }}
               renderItem={({ item, index }) => (
                 <Animated.View
@@ -90,7 +102,7 @@ const ChapterDetails = ({ route, navigation }) => {
                     <View className="rounded-[19px] border border-sg-border bg-sg-surface/88 px-4 py-4 dark:border-sgd-border dark:bg-sgd-surface/88">
                       <View className="flex-row items-center justify-between">
                         <Text className="flex-1 text-[17px] font-bold text-sg-text dark:text-sgd-text">
-                          {item}
+                          {item.chapter}
                         </Text>
                         <Text className="ml-3 text-[12px] font-semibold text-sg-muted dark:text-sgd-muted">
                           Open

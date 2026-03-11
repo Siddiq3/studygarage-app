@@ -63,6 +63,12 @@ react {
     autolinkLibrariesWithApp()
 }
 
+// Unity LevelPlay pulls adquality-sdk from JitPack via a version range.
+// Excluding it avoids flaky JitPack metadata failures (HTTP 521) in CI/EAS.
+configurations.configureEach {
+    exclude group: "com.unity3d.ads-mediation", module: "adquality-sdk"
+}
+
 /**
  * Set this to true to Run Proguard on Release builds to minify the Java bytecode.
  */
@@ -92,8 +98,8 @@ android {
         applicationId 'siddiqkolimidev.tenth_app'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 265
-        versionName "2.8.85"
+        versionCode 268
+        versionName "3.1.0"
     }
     signingConfigs {
         debug {

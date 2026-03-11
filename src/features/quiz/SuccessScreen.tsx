@@ -117,9 +117,16 @@ const AnimatedRewardChip = React.memo(function AnimatedRewardChip({
   const [displayValue, setDisplayValue] = useState(0);
   const shimmerX = useSharedValue(-1);
   const chipScale = useSharedValue(1);
+  const isDailyCapReached = targetValue <= 0;
 
   useEffect(() => {
     if (!start) return;
+    if (isDailyCapReached) {
+      setDisplayValue(0);
+      shimmerX.value = -1;
+      chipScale.value = 1;
+      return;
+    }
 
     let active = true;
     let frameTimer: ReturnType<typeof setTimeout> | null = null;
@@ -158,7 +165,7 @@ const AnimatedRewardChip = React.memo(function AnimatedRewardChip({
         clearTimeout(frameTimer);
       }
     };
-  }, [chipScale, shimmerX, start, targetValue]);
+  }, [chipScale, isDailyCapReached, shimmerX, start, targetValue]);
 
   const chipAnimatedStyle = useAnimatedStyle(() => ({
     transform: [{ scale: chipScale.value }],
@@ -171,6 +178,19 @@ const AnimatedRewardChip = React.memo(function AnimatedRewardChip({
       { skewX: "-18deg" },
     ],
   }));
+
+  if (isDailyCapReached) {
+    return (
+      <Animated.View
+        style={chipAnimatedStyle}
+        className="mt-3 rounded-full border border-white/14 bg-white/8 px-4 py-2"
+      >
+        <Text className="text-[13px] font-bold text-[#DFE7F9]">
+          Daily quiz coin limit reached
+        </Text>
+      </Animated.View>
+    );
+  }
 
   return (
     <Animated.View
@@ -217,6 +237,7 @@ export default function SuccessScreen({ navigation, route }: Props) {
   const buttonGlow = useSharedValue(0.45);
 
   const rewardCoins = Math.max(0, Number(route?.params?.rewardCoins ?? 1));
+  const isDailyCapReached = rewardCoins <= 0;
   const countdownSeconds = Math.max(
     0,
     Number(
@@ -446,7 +467,9 @@ export default function SuccessScreen({ navigation, route }: Props) {
                 {successHeadline}
               </Text>
               <Text className="mt-1 text-center text-[13px] font-semibold text-sg-muted dark:text-sgd-muted">
-                Reward unlocked
+                {isDailyCapReached
+                  ? "Daily quiz coin limit reached"
+                  : "Reward unlocked"}
               </Text>
             </Animated.View>
 

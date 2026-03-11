@@ -2,7 +2,9 @@ import React, { useCallback, useEffect, useMemo, useRef, useState } from "react"
 import { Alert, BackHandler, Text, TouchableOpacity, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Animated, {
+  FadeIn,
   FadeInDown,
+  FadeOut,
   useAnimatedStyle,
   useSharedValue,
   withSequence,
@@ -18,12 +20,18 @@ import SGEmptyState from "./src/design-system/components/SGEmptyState";
 import { buildQuizQuestionsUrl } from "./src/utils/quizDataUrl";
 import useRemoteConfig from "./src/hooks/useRemoteConfig";
 import { defaultConfig } from "./src/config/remoteConfig";
+import {
+  getTodayQuizReward,
+  recordTodayQuizReward,
+} from "./src/services/rewards/quizDailyRewardCap";
 import BannerAdComponent from "./BannerAd";
 
 const TARGET_CORRECT = 7;
 const CORRECT_ANSWER_REVIEW_SECONDS = 8;
 const SEEN_STORAGE_PREFIX = "sg_seen_questions";
 const SEEN_WRITE_DEBOUNCE_MS = 300;
+const BRAND_MINT = "#36D8A3";
+const BRAND_PURPLE = "#B026FF";
 
 const normalizeKeySegment = (value) =>
   String(value ?? "unknown")
@@ -94,6 +102,7 @@ const Quizques = ({ navigation, route }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectionLocked, setSelectionLocked] = useState(false);
   const [postCorrectCountdown, setPostCorrectCountdown] = useState(null);
+  const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   const pendingAdvanceTimeoutRef = useRef(null);
   const postCorrectCountdownTimeoutRef = useRef(null);
@@ -109,19 +118,21 @@ const Quizques = ({ navigation, route }) => {
   const wrongShakeX = useSharedValue(0);
   const wrongPulse = useSharedValue(1);
 
-  const { stateBoard, classValue, subject, chapter } = route.params;
+  const { stateBoard, classValue, subject, chapter, chapterSlug, chapterFile } =
+    route.params;
+  const chapterLabel = chapter || chapterSlug || chapterFile || "";
   const { totalScore, addCoins } = useQuizContext();
   const { showAdAndWaitForClose } = useInterstitialAd();
   const { config: remoteConfig } = useRemoteConfig();
   const seenStorageKey = useMemo(
-    () => buildSeenStorageKey(subject, chapter),
-    [chapter, subject]
+    () => buildSeenStorageKey(subject, chapterLabel),
+    [chapterLabel, subject]
   );
   const quizSessionIdRef = useRef(
     String(
       route?.params?.quizSessionId ||
         `${normalizeKeySegment(subject)}:${normalizeKeySegment(
-          chapter
+          chapterLabel
         )}:${Date.now()}`
     )
   );
@@ -185,6 +196,9 @@ const Quizques = ({ navigation, route }) => {
   }, [navigation]);
 
   const handleBackPress = useCallback(() => {
+    if (showCompletionModal) {
+      return true;
+    }
     Alert.alert(
       "Exit",
       "Are you sure you want to go back?",
@@ -195,7 +209,7 @@ const Quizques = ({ navigation, route }) => {
       { cancelable: false }
     );
     return true;
-  }, [handleContinue]);
+  }, [handleContinue, showCompletionModal]);
 
   const clearPendingAdvanceTimeout = useCallback(() => {
     if (pendingAdvanceTimeoutRef.current) {
@@ -272,23 +286,32 @@ const Quizques = ({ navigation, route }) => {
     flushSeenIds()
       .catch(() => {})
       .finally(() => {
-        navigation.navigate("Quiz Results", {
-          score: scoreRef.current,
-          totalQuestions,
-          correctQuestions: correctQuestionsRef.current,
-          incorrectQuestions: incorrectQuestionsRef.current,
-          totalScore,
-        });
+        setShowCompletionModal(true);
       });
   }, [
     clearPendingAdvanceTimeout,
     clearPostCorrectCountdownTimeout,
     clearSeenPersistTimeout,
     flushSeenIds,
-    navigation,
-    totalQuestions,
-    totalScore,
   ]);
+
+  const handleCompletionStartAgain = useCallback(() => {
+    setShowCompletionModal(false);
+    if (navigation?.canGoBack?.()) {
+      navigation.goBack();
+      return;
+    }
+    navigation.navigate("ChapterDetails", {
+      stateBoard,
+      classValue,
+      subject,
+    });
+  }, [classValue, navigation, stateBoard, subject]);
+
+  const handleCompletionGoBack = useCallback(() => {
+    setShowCompletionModal(false);
+    handleContinue();
+  }, [handleContinue]);
 
   const advanceToNextQuestion = useCallback(() => {
     clearPendingAdvanceTimeout();
@@ -366,12 +389,26 @@ const Quizques = ({ navigation, route }) => {
       classValue,
       subject,
       chapter,
+      chapterSlug,
+      chapterFile,
     });
 
     try {
       const res = await fetch(url);
-      const data = await res.json();
+      const payload = await res.text();
+      let data = { results: [] };
+      try {
+        data = JSON.parse(payload);
+      } catch (_parseError) {
+        console.warn(
+          "Quiz payload is not valid JSON for URL:",
+          url,
+          "payload head:",
+          String(payload).slice(0, 120)
+        );
+      }
       const quizResults = Array.isArray(data?.results) ? data.results : [];
+
       const preparedQuestions = quizResults.map((question, index) => ({
         ...question,
         _stableId: getQuestionStableId(question, index),
@@ -421,12 +458,15 @@ const Quizques = ({ navigation, route }) => {
     }
   }, [
     chapter,
+    chapterFile,
+    chapterLabel,
+    chapterSlug,
     clearPostCorrectCountdownTimeout,
     classValue,
     generateOptionsAndShuffle,
     markQuestionSeen,
-    seenStorageKey,
     stateBoard,
+    seenStorageKey,
     subject,
   ]);
 
@@ -461,7 +501,7 @@ const Quizques = ({ navigation, route }) => {
     advanceToNextQuestion();
   };
 
-  const handlSelectedOption = (_option) => {
+  const handlSelectedOption = async (_option) => {
     if (selectionLocked || !questions?.[ques]) return;
 
     setSelectionLocked(true);
@@ -475,21 +515,43 @@ const Quizques = ({ navigation, route }) => {
       scoreRef.current = nextScore;
       correctQuestionsRef.current = nextCorrect;
 
+      let quizRewardForThisAnswer = correctRewardCoins;
+      try {
+        quizRewardForThisAnswer = await getTodayQuizReward();
+      } catch (error) {
+        console.error("Failed to read daily quiz cap state:", error);
+      }
+
+      const normalizedQuizReward = Math.max(
+        0,
+        Number(quizRewardForThisAnswer) || 0
+      );
+
       navigation.navigate("SuccessScreen", {
-        rewardCoins: correctRewardCoins,
+        rewardCoins: normalizedQuizReward,
         countdownSeconds: 0,
         onCollectCoins: async () => {
+          if (normalizedQuizReward <= 0) {
+            return;
+          }
           const questionId = getQuestionStableId(questions[ques], ques);
-          await addCoins({
+          const creditResult = await addCoins({
             eventId: `quiz:${quizSessionIdRef.current}:${questionId}`,
-            amount: correctRewardCoins,
+            amount: normalizedQuizReward,
             source: "quiz_correct",
             meta: {
               questionId,
               subject: normalizeKeySegment(subject),
-              chapter: normalizeKeySegment(chapter),
+              chapter: normalizeKeySegment(chapterLabel),
             },
           });
+          if (creditResult?.applied) {
+            try {
+              await recordTodayQuizReward(normalizedQuizReward);
+            } catch (error) {
+              console.error("Failed to persist quiz daily cap progress:", error);
+            }
+          }
         },
         showInterstitialAdAndWait: showAdAndWaitForClose,
         onContinueQuiz: () => {
@@ -537,80 +599,150 @@ const Quizques = ({ navigation, route }) => {
   const showQuizBanner = !isLoading && Array.isArray(questions) && questions.length > 0;
 
   return (
-    <View className="flex-1 bg-[#0B0C10] px-4 pb-5 pt-4">
-      <PremiumQuizTopBar
-        progressMode="goal"
-        sessionLabel={chapter || "Quiz Session"}
-        correctCount={correctQuestions}
-        targetCorrect={TARGET_CORRECT}
-        helperText={`Get ${TARGET_CORRECT} correct to finish`}
-        onBackPress={handleBackPress}
-        showTimer={false}
-        coinBalance={totalScore}
-      />
+    <View className="flex-1 bg-[#0B0C10]">
+      <View className="flex-1 px-4 pb-5 pt-4">
+        <PremiumQuizTopBar
+          progressMode="goal"
+          sessionLabel={chapterLabel || "Quiz Session"}
+          correctCount={correctQuestions}
+          targetCorrect={TARGET_CORRECT}
+          helperText={`Get ${TARGET_CORRECT} correct to finish`}
+          onBackPress={handleBackPress}
+          showTimer={false}
+          coinBalance={totalScore}
+        />
 
-      {isLoading ? (
-        <QuizLoadingSkeleton />
-      ) : questions && questions.length > 0 && ques < totalQuestions ? (
-        <Animated.View
-          entering={FadeInDown.duration(220)}
-          className="flex-1"
-          style={wrongAnswerStyle}
-        >
-          <View className="mb-4 rounded-[22px] border border-white/10 bg-white/6 px-4 py-4">
-            <Text className="text-center text-[12px] font-bold uppercase tracking-[1.1px] text-white/65">
-              Question Prompt
-            </Text>
-            <Text className="mt-2 text-center text-[22px] font-black leading-[30px] text-white">
-              {decodedQuestion}
-            </Text>
-          </View>
-
-          <View className="flex-1">
-            {options.map((option, index) => (
-              <PremiumAnswerCard
-                key={`${option}-${index}`}
-                label={decodeURIComponent(option)}
-                onPress={() => handlSelectedOption(option)}
-                disabled={selectionLocked}
-                state={resolveOptionState(option)}
-              />
-            ))}
-          </View>
-
-          {postCorrectCountdown !== null ? (
-            <View className="mt-2 items-end">
-              <Text className="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[12px] font-bold text-[#DFE7F9]">
-                Next question in {postCorrectCountdown}...
+        {isLoading ? (
+          <QuizLoadingSkeleton />
+        ) : questions && questions.length > 0 && ques < totalQuestions ? (
+          <Animated.View
+            entering={FadeInDown.duration(220)}
+            className="flex-1"
+            style={wrongAnswerStyle}
+          >
+            <View className="mb-4 rounded-[22px] border border-white/10 bg-white/6 px-4 py-4">
+              <Text className="text-center text-[12px] font-bold uppercase tracking-[1.1px] text-white/65">
+                Question Prompt
+              </Text>
+              <Text className="mt-2 text-center text-[22px] font-black leading-[30px] text-white">
+                {decodedQuestion}
               </Text>
             </View>
-          ) : ques !== totalQuestions - 1 ? (
+
+            <View className="flex-1">
+              {options.map((option, index) => (
+                <PremiumAnswerCard
+                  key={`${option}-${index}`}
+                  label={decodeURIComponent(option)}
+                  onPress={() => handlSelectedOption(option)}
+                  disabled={selectionLocked}
+                  state={resolveOptionState(option)}
+                />
+              ))}
+            </View>
+
+            {postCorrectCountdown !== null ? (
+              <View className="mt-2 items-end">
+                <Text className="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[12px] font-bold text-[#DFE7F9]">
+                  Next question in {postCorrectCountdown}...
+                </Text>
+              </View>
+            ) : ques !== totalQuestions - 1 ? (
+              <TouchableOpacity
+                onPress={handleNextPress}
+                className="mt-1 self-end rounded-full border border-white/15 bg-white/7 px-4 py-2"
+              >
+                <Text className="text-[12px] font-bold uppercase tracking-[0.9px] text-white/90">
+                  Skip
+                </Text>
+              </TouchableOpacity>
+            ) : null}
+          </Animated.View>
+        ) : (
+          <View className="flex-1 justify-center">
+            <SGEmptyState
+              title="Quiz set is empty right now"
+              subtitle="Please go back and try another chapter."
+              actionLabel="Go Home"
+              onActionPress={handleContinue}
+              badgeLabel="QUIZ EMPTY"
+            />
+          </View>
+        )}
+
+        {showQuizBanner ? (
+          <View className="mt-2 items-center">
+            <BannerAdComponent />
+          </View>
+        ) : null}
+      </View>
+
+      {showCompletionModal ? (
+        <Animated.View
+          entering={FadeIn.duration(180)}
+          exiting={FadeOut.duration(160)}
+          className="absolute inset-0 z-[100] justify-center bg-black/80 px-5"
+          pointerEvents="auto"
+        >
+          <Animated.View
+            entering={FadeInDown.duration(240)}
+            className="rounded-[30px] border border-white/10 bg-[#151B2A] px-5 py-6"
+          >
+            <View className="mb-4 items-center">
+              <View className="h-[82px] w-[82px] items-center justify-center rounded-full border border-white/12 bg-[#10182B]">
+                <View className="h-[58px] w-[58px] items-center justify-center rounded-full border border-white/10 bg-[#0E1320]">
+                  <Text
+                    className="text-[26px] font-black"
+                    style={{ color: BRAND_MINT }}
+                  >
+                    7
+                  </Text>
+                </View>
+              </View>
+              <View className="mt-4 flex-row items-center">
+                <View
+                  className="h-[8px] w-[8px] rounded-full"
+                  style={{ backgroundColor: BRAND_MINT }}
+                />
+                <View className="mx-2 h-[2px] w-[28px] bg-white/25" />
+                <View
+                  className="h-[8px] w-[8px] rounded-full"
+                  style={{ backgroundColor: BRAND_PURPLE }}
+                />
+              </View>
+            </View>
+
+            <Text className="text-center text-[30px] font-extrabold text-white">
+              Quiz Completed
+            </Text>
+            <Text className="mt-2 text-center text-[14px] font-medium text-[#C7D2E9]">
+              You reached {TARGET_CORRECT} correct answers.
+            </Text>
+            <Text className="mt-1 text-center text-[13px] font-medium text-white/60">
+              Choose what you want to do next.
+            </Text>
+
             <TouchableOpacity
-              onPress={handleNextPress}
-              className="mt-1 self-end rounded-full border border-white/15 bg-white/7 px-4 py-2"
+              onPress={handleCompletionStartAgain}
+              className="mt-6 rounded-[18px] border border-white/12 bg-[#2E2152] px-4 py-4"
+              activeOpacity={0.88}
             >
-              <Text className="text-[12px] font-bold uppercase tracking-[0.9px] text-white/90">
-                Skip
+              <Text className="text-center text-[17px] font-extrabold text-white">
+                Start Again
               </Text>
             </TouchableOpacity>
-          ) : null}
-        </Animated.View>
-      ) : (
-        <View className="flex-1 justify-center">
-          <SGEmptyState
-            title="Quiz set is empty right now"
-            subtitle="Please go back and try another chapter."
-            actionLabel="Go Home"
-            onActionPress={handleContinue}
-            badgeLabel="QUIZ EMPTY"
-          />
-        </View>
-      )}
 
-      {showQuizBanner ? (
-        <View className="mt-2 items-center">
-          <BannerAdComponent />
-        </View>
+            <TouchableOpacity
+              onPress={handleCompletionGoBack}
+              className="mt-3 rounded-[18px] border border-white/12 bg-white/10 px-4 py-4"
+              activeOpacity={0.88}
+            >
+              <Text className="text-center text-[17px] font-bold text-white/95">
+                Go Back
+              </Text>
+            </TouchableOpacity>
+          </Animated.View>
+        </Animated.View>
       ) : null}
     </View>
   );

@@ -67,6 +67,7 @@ import StreakCelebrationOverlay from "./src/components/streak/StreakCelebrationO
 import StreakIntroPopup from "./src/components/streak/StreakIntroPopup";
 import ReviewPromptPopup from "./src/components/review/ReviewPromptPopup";
 import MiniToast from "./src/components/ui/MiniToast";
+import PromoCard from "./src/components/promo/PromoCard";
 import { useDailyCheckIn } from "./src/hooks/useDailyCheckIn";
 import useDailyClaimGate from "./src/hooks/useDailyClaimGate";
 import { localStore } from "./src/services/storage/localStore";
@@ -250,6 +251,8 @@ const SecondPage = ({ route, navigation }) => {
   const dailyPopupIdleRetryTimerRef = useRef(null);
   const dailyPopupInteractionTaskRef = useRef(null);
   const scrollIdleTimerRef = useRef(null);
+  const scrollViewRef = useRef(null);
+  const moduleSectionOffsetRef = useRef(0);
   const pendingDailyPopupRef = useRef(false);
   const isUserScrollingRef = useRef(false);
 
@@ -272,11 +275,8 @@ const SecondPage = ({ route, navigation }) => {
   const [isSubmittingReview, setIsSubmittingReview] = useState(false);
   const [miniToast, setMiniToast] = useState({ visible: false, message: "" });
 
-  const {
-    isBootReady,
-    isFirstInstallOpen,
-    markDailyRewardClaimed,
-  } = useAppBoot();
+  const { isBootReady, isFirstInstallOpen, markDailyRewardClaimed } =
+    useAppBoot();
   const {
     isReady: dailyClaimGateReady,
     shouldShow: shouldShowDailyClaimGate,
@@ -778,26 +778,23 @@ const SecondPage = ({ route, navigation }) => {
     dailyQuizCompleted && dailyUsageMinutes >= minUsageMinutes;
   const missionLabel = missionCompleted ? "Completed" : "Start Mission";
 
-  const openExternalWithFallback = useCallback(
-    async (urls, failureMessage) => {
-      for (const url of urls) {
-        try {
-          // Try deep link/intent first, then fallback to web URL.
-          await Linking.openURL(url);
-          return true;
-        } catch (error) {
-          // Continue trying other URLs.
-        }
+  const openExternalWithFallback = useCallback(async (urls, failureMessage) => {
+    for (const url of urls) {
+      try {
+        // Try deep link/intent first, then fallback to web URL.
+        await Linking.openURL(url);
+        return true;
+      } catch (error) {
+        // Continue trying other URLs.
       }
+    }
 
-      Snackbar.show({
-        text: failureMessage,
-        duration: Snackbar.LENGTH_SHORT,
-      });
-      return false;
-    },
-    []
-  );
+    Snackbar.show({
+      text: failureMessage,
+      duration: Snackbar.LENGTH_SHORT,
+    });
+    return false;
+  }, []);
 
   const openWhatsApp = useCallback(async () => {
     const urls =
@@ -1171,6 +1168,30 @@ const SecondPage = ({ route, navigation }) => {
     });
   };
 
+  const scrollToMainModule = useCallback(() => {
+    const scrollNode = scrollViewRef.current;
+    if (!scrollNode || typeof scrollNode.scrollTo !== "function") {
+      return;
+    }
+
+    scrollNode.scrollTo({
+      y: Math.max(moduleSectionOffsetRef.current - 12, 0),
+      animated: true,
+    });
+  }, []);
+
+  const scrollToHomeTop = useCallback(() => {
+    const scrollNode = scrollViewRef.current;
+    if (!scrollNode || typeof scrollNode.scrollTo !== "function") {
+      return;
+    }
+
+    scrollNode.scrollTo({
+      y: 0,
+      animated: true,
+    });
+  }, []);
+
   const handleDockPress = async (key) => {
     if (key === "profile") {
       openProfileDrawer();
@@ -1182,9 +1203,12 @@ const SecondPage = ({ route, navigation }) => {
     }
 
     setActiveDock(key);
-    if (key === "home") return;
+    if (key === "home") {
+      scrollToHomeTop();
+      return;
+    }
     if (key === "learn") {
-      navigation.navigate("SubjectDataPage", { stateBoard, classValue });
+      scrollToMainModule();
       return;
     }
     if (key === "quiz") {
@@ -1263,6 +1287,7 @@ const SecondPage = ({ route, navigation }) => {
             scroll
             className="bg-transparent"
             scrollViewProps={{
+              ref: scrollViewRef,
               keyboardShouldPersistTaps: "handled",
               onScrollBeginDrag: handleMainScrollBeginDrag,
               onScrollEndDrag: handleMainScrollEndDrag,
@@ -1496,9 +1521,23 @@ const SecondPage = ({ route, navigation }) => {
               </View>
             </Animated.View>
 
+            <Animated.View entering={FadeInDown.delay(150).duration(240)}>
+              <PromoCard
+                sectionTitle="Featured Tools"
+                sectionSubtitle="Partner picks from outside StudyGarage"
+                stateBoard={stateBoard}
+                classValue={classValue}
+              />
+            </Animated.View>
+
             <Animated.View
               entering={FadeInDown.delay(120).duration(240)}
               className="mb-4"
+              onLayout={(event) => {
+                const nextY = event?.nativeEvent?.layout?.y;
+                if (!Number.isFinite(nextY)) return;
+                moduleSectionOffsetRef.current = nextY;
+              }}
             >
               {ComponentToRender || (
                 <SGEmptyState
