@@ -24,7 +24,7 @@
     },
     "android": {
       "package": "siddiqkolimidev.tenth_app",
-      "versionCode": 268,
+      "versionCode": 269,
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
         "foregroundImage": "./assets/branding/final-logo-pack/sg-mint-purple-1024-transparent.png",
