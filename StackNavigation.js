@@ -902,6 +902,12 @@ import Quiz10ts from "./Dailyquiz/Quiz10ts";
 import Qres10ts from "./Results/10tsqres";
 import SubjectData from "./Subjectdetails";
 
+import CareerPlanScreen from "./src/features/career/CareerPlanScreen";
+import CareerOptionScreen from "./src/features/career/CareerOptionScreen";
+import CareerGoalScreen from "./src/features/career/CareerGoalScreen";
+import CareerQuizScreen from "./src/features/career/CareerQuizScreen";
+import CareerGovtJobsScreen from "./src/features/career/CareerGovtJobsScreen";
+
 const Stack = createNativeStackNavigator();
 
 const MainStackNavigator1 = () => {
@@ -994,6 +1000,31 @@ const MainStackNavigator1 = () => {
         name="SecondPage"
         component={SecondPage}
         initialParams={bootParams || undefined}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CareerPlanScreen"
+        component={CareerPlanScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CareerGoalScreen"
+        component={CareerGoalScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CareerGovtJobsScreen"
+        component={CareerGovtJobsScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CareerQuizScreen"
+        component={CareerQuizScreen}
+        options={{ headerShown: false }}
+      />
+      <Stack.Screen
+        name="CareerOptionScreen"
+        component={CareerOptionScreen}
         options={{ headerShown: false }}
       />
       <Stack.Screen

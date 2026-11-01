@@ -9,6 +9,7 @@ import { ScreenChromeContext } from './ScreenLayoutContainer';
 export const HEADER_TONES = {
   green: { bg: '#17694F', title: '#F4EFE2', body: '#D5E6DB', eyebrow: '#F2B632', icon: 'book' },
   berry: { bg: '#8C2F4B', title: '#F4EFE2', body: '#F0D9DF', eyebrow: '#F2B632', icon: 'document-text' },
+  teal: { bg: '#0F6E78', title: '#F4EFE2', body: '#D3E8EA', eyebrow: '#F2B632', icon: 'compass' },
   blue: { bg: '#2B6A8F', title: '#F4EFE2', body: '#D7E6EF', eyebrow: '#F2B632', icon: 'play-circle' },
   board: { bg: '#14342A', title: '#F4EFE2', body: '#B5C6BB', eyebrow: '#F2B632', icon: 'help-circle' },
   marigold: { bg: '#F2B632', title: '#14342A', body: '#3A3A22', eyebrow: '#14342A', icon: 'wallet', statusDark: true },

@@ -29,8 +29,6 @@ import Animated, {
 import { useQuizContext } from "./QuizContext";
 import ScreenHeader from "./src/design-system/components/ScreenHeader";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
-import SGCard from "./src/design-system/components/SGCard";
-import SGButton from "./src/design-system/components/SGButton";
 import Coin from "./src/components/rewards/Coin";
 import VoucherDetailModal from "./src/components/wallet/VoucherDetailModal";
 import CoinFlyOverlay from "./src/components/ui/CoinFlyOverlay";
@@ -984,12 +982,12 @@ const TotalScorePage = ({ navigation }) => {
           <PressableScale
             onPress={() => handleRedeemTilePress(item.provider)}
             activeScale={0.97}
-            className="min-h-[128px] justify-between rounded-[18px] p-3.5"
+            className="min-h-[112px] justify-between rounded-[18px] p-3.5"
             style={{ backgroundColor: item.color }}
           >
             <Ionicons name={item.icon} size={28} color="#F4EFE2" />
             <Text
-              className="text-[17px] font-sg-display leading-[21px] text-[#F4EFE2]"
+              className="mt-3 text-[17px] font-sg-display leading-[22px] text-[#F4EFE2]"
               numberOfLines={2}
             >
               {item.label}
@@ -1125,120 +1123,123 @@ const TotalScorePage = ({ navigation }) => {
         </AnimatedView>
       </ScreenHeader>
 
-      <Animated.View>
-        <View className="mb-4">
-          <View className="mb-2 flex-row items-center justify-between">
-            <View className="flex-1 pr-3">
-              <Text className="mt-1 text-[22px] font-sg-display text-sg-text">
-                Redeem
-              </Text>
-              <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
-                Choose how you want to redeem your coins
-              </Text>
-            </View>
-          </View>
-
-          <FlatList
-            data={redeemTiles}
-            keyExtractor={(item) => item.key}
-            numColumns={2}
-            scrollEnabled={false}
-            columnWrapperStyle={{ columnGap: 14, marginBottom: 14 }}
-            contentContainerStyle={{ paddingTop: 4 }}
-            renderItem={renderRedeemOptionTile}
-          />
-        </View>
-      </Animated.View>
-
-      <Animated.View>
-        <SGCard className="mb-4">
-          <Text className="mt-1 text-[22px] font-sg-display text-sg-text">
+      {/* Earning comes first: it is the one thing every student can do right now. */}
+      <View className="mb-6 rounded-[22px] bg-sg-board p-5">
+        <View className="flex-row items-center justify-between">
+          <Text className="flex-1 pr-3 text-[24px] leading-[30px] font-sg-display text-[#F4EFE2]">
             Earn more coins
           </Text>
-          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
-            {dailyAdEarnLimit}x per day
-          </Text>
+          <View
+            className="flex-row"
+            accessibilityElementsHidden
+            importantForAccessibility="no-hide-descendants"
+          >
+            {Array.from({ length: dailyAdEarnLimit }).map((_, index) => (
+              <View
+                key={index}
+                className={`ml-1.5 h-3 w-3 rounded-full ${
+                  index < adClaimsRemaining ? "bg-[#F2B632]" : "bg-[#F4EFE2]/20"
+                }`}
+              />
+            ))}
+          </View>
+        </View>
+        <Text className="mt-1 text-[14px] leading-[20px] font-sg-medium text-[#B5C6BB]">
+          Remaining today: {adClaimsRemaining}/{dailyAdEarnLimit}
+        </Text>
 
-          <View className="mt-3">
-            <PressableScale
-              onPress={handleWatchAdAndEarn}
-              activeScale={0.98}
-              disabled={adButtonDisabled}
-              className={`min-h-[52px] flex-row items-center justify-center rounded-[16px] border px-4 ${
-                adButtonDisabled
-                  ? "border-sg-border bg-[#FFFCF5]"
-                  : "border-[#9A6400]/25 bg-[#FFFCF5]"
+        <View className="mt-4">
+          <PressableScale
+            onPress={handleWatchAdAndEarn}
+            activeScale={0.98}
+            disabled={adButtonDisabled}
+            className={`min-h-[56px] flex-row items-center justify-center rounded-[16px] px-4 ${
+              adButtonDisabled ? "bg-[#1C4336]" : "bg-[#F2B632]"
+            }`}
+          >
+            {adUiState === "loading" ? (
+              <ActivityIndicator size="small" color="#F4EFE2" />
+            ) : (
+              <View className="h-7 w-7 items-center justify-center rounded-full bg-[#14342A]">
+                <Coin size={15} compact />
+              </View>
+            )}
+            <Text
+              className={`ml-2 text-[17px] font-sg-extrabold ${
+                adButtonDisabled ? "text-[#F4EFE2]" : "text-[#14342A]"
               }`}
             >
-              {adUiState === "loading" ? (
-                <ActivityIndicator size="small" color="#1D2A24" />
-              ) : (
-                <Coin size={15} compact />
-              )}
-              <Text
-                className={`ml-2 text-[15px] font-sg-extrabold ${
-                  adButtonDisabled ? "text-sg-text/70" : "text-[#1D2A24]"
-                }`}
-              >
-                {adButtonLabel}
-              </Text>
-            </PressableScale>
+              {adButtonLabel}
+            </Text>
+          </PressableScale>
 
-            <Animated.View
-              pointerEvents="none"
-              style={adRewardChipStyle}
-              className="absolute right-2 top-[-12px] flex-row items-center rounded-full border border-[#9A6400]/34 bg-[#FFFCF5] px-3 py-[4px]"
+          <Animated.View
+            pointerEvents="none"
+            style={adRewardChipStyle}
+            className="absolute right-2 top-[-12px] flex-row items-center rounded-full bg-[#FFFCF5] px-3 py-[4px]"
+          >
+            <Coin size={11} compact />
+            <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">
+              +{dailyAdRewardCoins}
+            </Text>
+          </Animated.View>
+        </View>
+
+        {adUiState === "cooldown" && adNextWaitMs > 0 ? (
+          <Text className="mt-2.5 text-[14px] leading-[20px] font-sg-medium text-[#B5C6BB]">
+            Next chance in {formatAdCooldown(adNextWaitMs)}
+          </Text>
+        ) : null}
+        {lastErrorMessage && adClaimsRemaining > 0 ? (
+          <Text className="mt-2.5 text-[14px] leading-[20px] font-sg-medium text-[#B5C6BB]">
+            {lastErrorMessage}
+          </Text>
+        ) : null}
+        {!rewardedAdAvailable ? (
+          <Text className="mt-2.5 text-[14px] leading-[20px] font-sg-medium text-[#B5C6BB]">
+            Rewarded ad unit is not configured yet.
+          </Text>
+        ) : null}
+      </View>
+
+      <View className="mb-6">
+        <Text className="text-[24px] leading-[30px] font-sg-display text-sg-text">Redeem</Text>
+        <Text className="mb-3 mt-0.5 text-[14px] leading-[20px] font-sg-medium text-sg-muted">
+          Choose how you want to redeem your coins
+        </Text>
+        <FlatList
+          data={redeemTiles}
+          keyExtractor={(item) => item.key}
+          numColumns={2}
+          scrollEnabled={false}
+          columnWrapperStyle={{ columnGap: 10, marginBottom: 10 }}
+          renderItem={renderRedeemOptionTile}
+        />
+      </View>
+
+      {/* Rows, not buttons: these are places to look things up, not actions to take. */}
+      <View className="mb-6">
+        <Text className="mb-3 text-[24px] leading-[30px] font-sg-display text-sg-text">Activity</Text>
+        <View className="overflow-hidden rounded-[18px] bg-sg-surface">
+          {[
+            { label: "Wallet activity", icon: "receipt-outline", onPress: handleWalletHistory },
+            { label: "Coin history", icon: "time-outline", onPress: handleCoinHistory },
+          ].map((row, index) => (
+            <PressableScale
+              key={row.label}
+              onPress={row.onPress}
+              activeScale={0.99}
+              className={`min-h-[60px] flex-row items-center px-4 ${
+                index ? "border-t border-sg-border" : ""
+              }`}
             >
-              <Coin size={11} compact />
-              <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">
-                +{dailyAdRewardCoins}
-              </Text>
-            </Animated.View>
-          </View>
-
-          <Text className="mt-2 text-[12px] font-sg-semibold text-[#1D2A24]">
-            Remaining today: {adClaimsRemaining}/{dailyAdEarnLimit}
-          </Text>
-          {adUiState === "cooldown" && adNextWaitMs > 0 ? (
-            <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
-              Next chance in {formatAdCooldown(adNextWaitMs)}
-            </Text>
-          ) : null}
-          {lastErrorMessage && adClaimsRemaining > 0 ? (
-            <Text className="mt-1 text-[12px] font-sg-medium text-[#1D2A24]">
-              {lastErrorMessage}
-            </Text>
-          ) : null}
-          {!rewardedAdAvailable ? (
-            <Text className="mt-1 text-[12px] font-sg-medium text-[#1D2A24]">
-              Rewarded ad unit is not configured yet.
-            </Text>
-          ) : null}
-        </SGCard>
-      </Animated.View>
-
-      <Animated.View>
-        <SGCard className="mb-4">
-          <Text className="mt-1 text-[20px] font-sg-display text-sg-text">
-            Activity
-          </Text>
-          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
-            Track redemption requests and coin activity
-          </Text>
-          <SGButton
-            label="Wallet activity"
-            onPress={handleWalletHistory}
-            variant="ghost"
-            className="mt-3"
-          />
-          <SGButton
-            label="Coin history"
-            onPress={handleCoinHistory}
-            variant="ghost"
-            className="mt-2"
-          />
-        </SGCard>
-      </Animated.View>
+              <Ionicons name={row.icon} size={22} color="#17694F" />
+              <Text className="ml-3 flex-1 text-[16px] font-sg-semibold text-sg-text">{row.label}</Text>
+              <Ionicons name="chevron-forward" size={18} color="#5F6A63" />
+            </PressableScale>
+          ))}
+        </View>
+      </View>
 
       <VoucherDetailModal
         visible={voucherModalVisible}

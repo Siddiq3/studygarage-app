@@ -1425,6 +1425,34 @@ const SecondPage = ({ route, navigation }) => {
               />
             </Animated.View>
 
+            {classValue === "10thClass" || classValue === "Inter" ? (
+              <PressableScale
+                onPress={() =>
+                  navigation.navigate("CareerPlanScreen", {
+                    stateBoard,
+                    classValue,
+                  })
+                }
+                activeScale={0.98}
+                containerClassName="mb-5"
+                className="min-h-[92px] flex-row items-center overflow-hidden rounded-[18px] p-4"
+                style={{ backgroundColor: "#0F6E78" }}
+              >
+                <Ionicons name="compass" size={36} color="#F2B632" />
+                <View className="ml-3 flex-1">
+                  <Text className="text-[20px] leading-[25px] font-sg-display text-[#F4EFE2]">
+                    Your career plan
+                  </Text>
+                  <Text className="mt-0.5 text-[13px] leading-[18px] font-sg-medium text-[#D3E8EA]">
+                    {classValue === "Inter"
+                      ? "See what you can become with your Inter group"
+                      : "Confused after 10th? Find what suits you"}
+                  </Text>
+                </View>
+                <Ionicons name="arrow-forward" size={20} color="#F4EFE2" />
+              </PressableScale>
+            ) : null}
+
             <Animated.View>
               <PromoCard
                 sectionTitle="Featured Tools"

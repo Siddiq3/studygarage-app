@@ -159,18 +159,19 @@ const useInterstitialAd = () => {
         const isReady = await interstitialAd.isAdReady();
         if (isReady) {
           await interstitialAd.showAd(placementName);
-        } else {
-          console.log("Interstitial not ready yet");
-          await loadAd();
+          return true;
         }
+        console.log("Interstitial not ready yet");
+        await loadAd();
       } catch (error) {
         console.log("Interstitial show failed:", error);
         if (isInvalidAdUnitIdError(error)) {
           clearRetryTimeout();
-          return;
+          return false;
         }
         scheduleReload();
       }
+      return false;
     },
     [clearRetryTimeout, isInvalidAdUnitIdError, loadAd, scheduleReload]
   );
