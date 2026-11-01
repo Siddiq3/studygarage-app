@@ -3,7 +3,7 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import React, { useState, useEffect } from 'react';
 import { Alert, BackHandler, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import { useQuizContext } from './QuizContext';
 import PremiumQuizTopBar from './src/components/quiz/PremiumQuizTopBar';
 import PremiumAnswerCard from './src/components/quiz/PremiumAnswerCard';
@@ -223,7 +223,7 @@ const TodayQues = ({ navigation }) => {
         <QuizLoadingSkeleton />
       ) : (
         questions && questions.length > 0 && ques < totalQuestions ? (
-          <Animated.View entering={FadeInDown.duration(220)} className="flex-1">
+          <Animated.View className="flex-1">
             <View className="mb-4 rounded-[18px] border border-[#F4EFE2]/10 bg-[#F4EFE2]/6 px-4 py-4">
               <Text className="text-center text-[12px] font-sg-bold text-[#F4EFE2]/65">Daily Question</Text>
               <Text className="mt-2 text-center text-[22px] font-sg-display leading-[30px] text-[#F4EFE2]">{decodedQuestion}</Text>

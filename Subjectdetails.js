@@ -41,7 +41,7 @@ const SubjectData = ({ route }) => {
 
   return (
     <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
-      <ScreenHeader eyebrow="Subjects" title="Choose a subject" subtitle={`${stateBoard} · ${classValue}`} />
+      <ScreenHeader tone="board" eyebrow="Subjects" title="Choose a subject" subtitle={`${stateBoard} · ${classValue}`} />
       {loading ? (
         <View className="gap-2.5">
           {[0, 1, 2, 3].map((idx) => (

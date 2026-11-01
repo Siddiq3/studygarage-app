@@ -1,5 +1,6 @@
 import React, {
   useCallback,
+  useContext,
   useEffect,
   useMemo,
   useRef,
@@ -20,8 +21,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import Animated, {
   cancelAnimation,
   Easing,
-  FadeInDown,
-  interpolate,
+    interpolate,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
@@ -47,7 +47,9 @@ import Class8ka from "./KA CLASS 6TO9/Class8";
 import Class7ka from "./KA CLASS 6TO9/Class7";
 import Class6ka from "./KA CLASS 6TO9/Class6";
 import MainPage from "./sidemenu";
-import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
+import ScreenLayoutContainer, {
+  ScreenChromeContext,
+} from "./src/design-system/components/ScreenLayoutContainer";
 import SGSectionHeader from "./src/design-system/components/SGSectionHeader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SGEmptyState from "./src/design-system/components/SGEmptyState";
@@ -73,6 +75,7 @@ import { toLocalDateKey } from "./src/utils/dateKey";
 import useAppSound from "./src/hooks/useAppSound";
 import useReviewPrompt from "./src/hooks/useReviewPrompt";
 import { useIsFocused } from "@react-navigation/native";
+import { StatusBar } from "expo-status-bar";
 
 const defaultAvatarImage = require("./assets/boy.png");
 const girlAvatarImage = require("./assets/girl.png");
@@ -97,34 +100,43 @@ const WHATSAPP_CHANNEL_INTENT_URL = `intent://channel/${WHATSAPP_CHANNEL_ID}#Int
   WHATSAPP_CHANNEL_WEB_URL
 )};end`;
 
-function ActionTile({ icon, label, hint, tone = "default", onPress }) {
-  const toneSurface =
-    tone === "quiz"
-      ? "bg-sg-primarySoft"
-      : tone === "rewards"
-      ? "bg-sg-marigoldSoft"
-      : "bg-sg-bg2";
-  const iconColor =
-    tone === "quiz" ? "#17694F" : tone === "rewards" ? "#9A6400" : "#1D2A24";
+const ACTION_TONES = {
+  quiz: { bg: "#F2B632", ink: "#14342A", hint: "#3A3A22" },
+  default: { bg: "#2B6A8F", ink: "#F4EFE2", hint: "#D7E6EF" },
+  rewards: { bg: "#8C2F4B", ink: "#F4EFE2", hint: "#F0D9DF" },
+};
+
+function ActionTile({ icon, label, hint, tone = "default", tilt = "0deg", onPress }) {
+  const colors = ACTION_TONES[tone] || ACTION_TONES.default;
 
   return (
     <PressableScale
       onPress={onPress}
       activeScale={0.97}
       containerClassName="flex-1"
-      className="min-h-[112px] rounded-[16px] border border-sg-border bg-sg-surface p-3"
+      className="min-h-[112px] justify-between rounded-[18px] p-3"
+      style={{ backgroundColor: colors.bg, transform: [{ rotate: tilt }] }}
     >
-      <View
-        className={`mb-2.5 h-10 w-10 items-center justify-center rounded-[12px] ${toneSurface}`}
-      >
-        <Ionicons name={icon} size={20} color={iconColor} />
+      <Ionicons name={icon} size={26} color={colors.ink} />
+      <View>
+        <Text className="text-[16px] font-sg-display" style={{ color: colors.ink }}>
+          {label}
+        </Text>
+        <Text className="text-[12px] font-sg-medium" style={{ color: colors.hint }}>
+          {hint}
+        </Text>
       </View>
-      <Text className="text-[14px] font-sg-bold text-sg-text">{label}</Text>
-      <Text className="mt-0.5 text-[12px] font-sg-medium text-sg-muted">
-        {hint}
-      </Text>
     </PressableScale>
   );
+}
+
+function BoardBand() {
+  const { setBandColor } = useContext(ScreenChromeContext);
+  useEffect(() => {
+    setBandColor("#14342A");
+    return () => setBandColor(null);
+  }, [setBandColor]);
+  return <StatusBar style="light" />;
 }
 
 function CommunityIconButton({ icon, label, onPress }) {
@@ -1231,8 +1243,16 @@ const SecondPage = ({ route, navigation }) => {
               scrollEventThrottle: 16,
             }}
           >
+            <View
+              className="mb-4 overflow-hidden rounded-b-[28px] bg-sg-board px-4 pb-5"
+              style={{
+                marginTop: -(Math.max(insets.top, 14) + 12),
+                marginHorizontal: -16,
+                paddingTop: Math.max(insets.top, 14) + 12,
+              }}
+            >
+              <BoardBand />
             <Animated.View
-              entering={FadeInDown.duration(240)}
               className="mb-4 flex-row items-center"
             >
               <TouchableOpacity
@@ -1243,7 +1263,7 @@ const SecondPage = ({ route, navigation }) => {
               >
                 <Image
                   source={avatarSource}
-                  className="h-[52px] w-[52px] rounded-[16px] bg-sg-bg2"
+                  className="h-[52px] w-[52px] rounded-[16px] bg-[#1C4336]"
                   resizeMode="cover"
                 />
               </TouchableOpacity>
@@ -1251,13 +1271,13 @@ const SecondPage = ({ route, navigation }) => {
               <View className="flex-1 pr-2">
                 <Text
                   numberOfLines={1}
-                  className="text-[26px] leading-[30px] font-sg-display tracking-[-0.5px] text-sg-text"
+                  className="text-[26px] leading-[30px] font-sg-display tracking-[-0.5px] text-[#F4EFE2]"
                 >
                   {`Hi ${userName}`}
                 </Text>
                 <Text
                   numberOfLines={1}
-                  className="text-[13px] font-sg-medium text-sg-muted"
+                  className="text-[13px] font-sg-medium text-[#B5C6BB]"
                 >
                   {stateBoard} · {classValue.replace("Class", " class")}
                 </Text>
@@ -1323,8 +1343,7 @@ const SecondPage = ({ route, navigation }) => {
             </Animated.View>
 
             <Animated.View
-              entering={FadeInDown.delay(35).duration(240)}
-              className="mb-3 overflow-hidden rounded-[22px] bg-sg-board p-5"
+              className="mt-1"
             >
               <View className="flex-row items-start justify-between">
                 <Text className="text-[13px] font-sg-semibold text-[#F2B632]">
@@ -1337,7 +1356,7 @@ const SecondPage = ({ route, navigation }) => {
                   {missionProgress}%
                 </Text>
               </View>
-              <Text className="mt-2 text-[26px] leading-[31px] font-sg-display tracking-[-0.4px] text-[#F4EFE2]">
+              <Text className="mt-2 text-[34px] leading-[38px] font-sg-display tracking-[-0.7px] text-[#F4EFE2]">
                 One quiz, thirty minutes of study
               </Text>
 
@@ -1377,25 +1396,28 @@ const SecondPage = ({ route, navigation }) => {
               </Text>
             </Animated.View>
 
+            </View>
+
             <Animated.View
-              entering={FadeInDown.delay(70).duration(240)}
               className="mb-5 flex-row gap-2.5"
             >
               <ActionTile
-                icon="flash-outline"
+                icon="flash"
+                tilt="-1.5deg"
                 label="Quick quiz"
                 hint="Start now"
                 tone="quiz"
                 onPress={openQuizZoneScreen}
               />
               <ActionTile
-                icon="library-outline"
+                icon="library"
                 label="Materials"
                 hint="Textbooks"
                 onPress={() => handleDockPress("library")}
               />
               <ActionTile
-                icon="wallet-outline"
+                icon="wallet"
+                tilt="1.5deg"
                 label="Rewards"
                 hint="Your coins"
                 tone="rewards"
@@ -1403,7 +1425,7 @@ const SecondPage = ({ route, navigation }) => {
               />
             </Animated.View>
 
-            <Animated.View entering={FadeInDown.delay(150).duration(240)}>
+            <Animated.View>
               <PromoCard
                 sectionTitle="Featured Tools"
                 sectionSubtitle="Partner picks from outside StudyGarage"
@@ -1413,7 +1435,6 @@ const SecondPage = ({ route, navigation }) => {
             </Animated.View>
 
             <Animated.View
-              entering={FadeInDown.delay(120).duration(240)}
               className="mb-4"
               onLayout={(event) => {
                 const nextY = event?.nativeEvent?.layout?.y;
@@ -1432,7 +1453,7 @@ const SecondPage = ({ route, navigation }) => {
               )}
             </Animated.View>
 
-            <Animated.View entering={FadeInDown.delay(170).duration(240)}>
+            <Animated.View>
               <View className="mb-4 mt-2">
                 <SGSectionHeader
                   title="StudyGarage club"

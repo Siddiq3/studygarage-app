@@ -9,9 +9,7 @@ import { Clipboard, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Haptics from "expo-haptics";
 import Animated, {
-  FadeInDown,
-  FadeInUp,
-  useAnimatedStyle,
+      useAnimatedStyle,
   withTiming,
 } from "react-native-reanimated";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
@@ -245,7 +243,7 @@ export default function ReferralScreen({ navigation }) {
         <CoinAnimatedValue value={totalScore} />
       </View>
 
-      <Animated.View entering={FadeInDown.duration(220)} className="mt-2">
+      <Animated.View className="mt-2">
         <Text
           className="text-[31px] font-sg-display leading-[34px] text-[#1D2A24]"
           style={{ fontFamily: "PlusJakartaSans_700Bold", letterSpacing: -0.45 }}
@@ -262,7 +260,6 @@ export default function ReferralScreen({ navigation }) {
       </Animated.View>
 
       <AnimatedView
-        entering={FadeInUp.delay(60).duration(260)}
         style={cardStyle}
         className="mt-5"
       >
@@ -378,7 +375,6 @@ export default function ReferralScreen({ navigation }) {
       </AnimatedView>
 
       <Animated.View
-        entering={FadeInDown.delay(90).duration(220)}
         className="mt-4"
       >
         <ReferralProgressBar
@@ -388,7 +384,6 @@ export default function ReferralScreen({ navigation }) {
       </Animated.View>
 
       <Animated.View
-        entering={FadeInDown.delay(120).duration(220)}
         className="mt-4"
       >
         <SGCard className="rounded-[18px] border-sg-border bg-sg-surface">
@@ -434,7 +429,6 @@ export default function ReferralScreen({ navigation }) {
       </Animated.View>
 
       <Animated.View
-        entering={FadeInDown.delay(140).duration(210)}
         className="mt-4 mb-2"
       >
         <SGButton

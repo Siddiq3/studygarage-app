@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { BackHandler, View } from "react-native";
 import axios from "axios";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
 import ScreenHeader from "./src/design-system/components/ScreenHeader";
 import ContentsList from "./src/design-system/components/ContentsList";
@@ -71,8 +71,8 @@ const ChapterDetails = ({ route, navigation }) => {
 
   return (
     <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
-      <ScreenHeader eyebrow="Chapters" title={subject} subtitle="Choose a chapter to start the quiz" />
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <ScreenHeader tone="board" icon="layers" eyebrow="Chapters" title={subject} subtitle="Choose a chapter to start the quiz" />
+      <Animated.View>
         {loading ? (
           <View className="gap-2.5">
             {[0, 1, 2, 3].map((idx) => (

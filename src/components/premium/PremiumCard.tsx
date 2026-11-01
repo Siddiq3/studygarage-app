@@ -1,5 +1,5 @@
 import React from 'react';
-import Animated, { FadeInDown, FadeOutDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import SurfaceCard from '../ui/SurfaceCard';
 import useReducedMotionPreference from '../../hooks/useReducedMotionPreference';
 
@@ -23,8 +23,6 @@ export default function PremiumCard({
 
   return (
     <Animated.View
-      entering={FadeInDown.duration(220).delay(delayMs)}
-      exiting={FadeOutDown.duration(140)}
     >
       <SurfaceCard {...rest}>{children}</SurfaceCard>
     </Animated.View>

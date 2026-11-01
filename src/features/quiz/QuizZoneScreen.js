@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { View } from "react-native";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import axios from "axios";
 import Snackbar from "react-native-snackbar";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
@@ -86,9 +86,9 @@ export default function QuizZoneScreen({ navigation, route }) {
 
   return (
     <ScreenLayoutContainer variant="home" contentClassName="px-4 pb-8" scroll>
-      <ScreenHeader eyebrow="Daily practice" title="Quiz zone" subtitle={titleLabel} />
+      <ScreenHeader tone="board" eyebrow="Daily practice" title="Quiz zone" subtitle={titleLabel} />
 
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <Animated.View>
         {loading ? (
           <QuizListSkeleton />
         ) : quizData.length === 0 ? (

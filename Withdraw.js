@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Alert, BackHandler, Text, TextInput, View, useColorScheme } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import ScreenLayoutContainer from './src/design-system/components/ScreenLayoutContainer';
 import ScreenHeader from './src/design-system/components/ScreenHeader';
 import SGCard from './src/design-system/components/SGCard';
@@ -69,12 +69,13 @@ const WithdrawalFormPage = () => {
   return (
     <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
       <ScreenHeader
+        tone="marigold"
         onBack={handleBackPress}
         eyebrow="Withdrawal"
         title="Payout details"
         subtitle="Fill in every field correctly to receive your reward."
       />
-      <Animated.View entering={FadeInDown.duration(240)}>
+      <Animated.View>
         <SGCard className="mb-4">
           <View className="gap-3">
             <InputField

@@ -3,9 +3,11 @@ import { FlatList, Text, View } from "react-native";
 import Snackbar from "react-native-snackbar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Haptics from "expo-haptics";
-import Animated, { FadeInUp } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { useQuizContext } from "../../../QuizContext";
+import ScreenHeader from "../../design-system/components/ScreenHeader";
+import Coin from "../../components/rewards/Coin";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
 import PressableScale from "../../components/ui/PressableScale";
 import VoucherAmountCard from "../../components/wallet/VoucherAmountCard";
@@ -115,36 +117,18 @@ export default function VoucherProviderScreen({
 
   const renderHeader = useMemo(
     () => (
-      <View className="px-4 pb-2 pt-1">
-        <View className="flex-row items-start justify-between">
-          <View className="flex-1 pr-3">
-            <Text
-              className="text-[28px] font-sg-display leading-[33px] text-[#1D2A24]"
-              style={{ fontFamily: "BricolageGrotesque_700Bold" }}
-              numberOfLines={1}
-            >
-              {config.title}
-            </Text>
-            <Text
-              className="mt-1 text-[13px] font-sg-medium text-[#1D2A24]"
-              style={{ fontFamily: "PlusJakartaSans_500Medium" }}
-            >
-              {config.subtitle}
-            </Text>
+      <View className="px-4">
+        <ScreenHeader
+          tone="marigold"
+          title={config.title}
+          subtitle={config.subtitle}
+          right={
+          <View className="h-11 flex-row items-center rounded-[14px] bg-[#14342A] px-3">
+            <Coin size={14} compact />
+            <Text className="ml-1.5 text-[14px] font-sg-bold text-[#F2B632]">{totalScore}</Text>
           </View>
-
-          <View className="rounded-full border border-[#9A6400]/25 bg-[#FFFCF5] px-3 py-1.5">
-            <View className="flex-row items-center">
-              <Ionicons name="flame-outline" size={13} color="#9A6400" />
-              <Text
-                className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]"
-                style={{ fontFamily: "PlusJakartaSans_600SemiBold" }}
-              >
-                {totalScore}
-              </Text>
-            </View>
-          </View>
-        </View>
+        }
+        />
 
         {error ? (
           <Text
@@ -193,7 +177,6 @@ export default function VoucherProviderScreen({
               const isLocked = !isUnavailable && totalScore < item.coinCost;
               return (
                 <Animated.View
-                  entering={FadeInUp.delay(70 + index * 60).duration(240)}
                   className="min-w-0 flex-1"
                 >
                   <VoucherAmountCard

@@ -20,8 +20,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Haptics from "expo-haptics";
 import Animated, {
-  FadeInDown,
-  useAnimatedStyle,
+    useAnimatedStyle,
   useSharedValue,
   withSequence,
   withSpring,
@@ -945,7 +944,7 @@ const TotalScorePage = ({ navigation }) => {
         provider: "upi",
         label: "Get on UPI",
         icon: "qr-code-outline",
-        color: "#1C7C55",
+        color: "#17694F",
         sourceRef: upiTileRef,
       },
       {
@@ -953,7 +952,7 @@ const TotalScorePage = ({ navigation }) => {
         provider: "google",
         label: "Redeem Code (Google Play)",
         icon: "logo-google-playstore",
-        color: "#1D2A24",
+        color: "#14342A",
         sourceRef: googleTileRef,
       },
       {
@@ -961,7 +960,7 @@ const TotalScorePage = ({ navigation }) => {
         provider: "flipkart",
         label: "Flipkart Voucher",
         icon: "cart-outline",
-        color: "#1D2A24",
+        color: "#2B6A8F",
         sourceRef: flipkartTileRef,
       },
       {
@@ -969,7 +968,7 @@ const TotalScorePage = ({ navigation }) => {
         provider: "amazon",
         label: "Amazon Pay",
         icon: "bag-handle-outline",
-        color: "#C4551A",
+        color: "#8C2F4B",
         sourceRef: amazonTileRef,
       },
     ],
@@ -979,27 +978,18 @@ const TotalScorePage = ({ navigation }) => {
   const renderRedeemOptionTile = useCallback(
     ({ item, index }) => (
       <Animated.View
-        entering={FadeInDown.delay(60 + index * 45).duration(220)}
         className="min-w-0 flex-1"
       >
         <View ref={item.sourceRef} collapsable={false}>
           <PressableScale
             onPress={() => handleRedeemTilePress(item.provider)}
             activeScale={0.97}
-            className="min-h-[134px] rounded-[20px] border border-sg-border bg-[#FFFCF5] px-3.5 py-4"
-            style={{
-              shadowColor: item.color,
-              shadowOffset: { width: 0, height: 4 },
-              shadowOpacity: 0.12,
-              shadowRadius: 8,
-              elevation: 4,
-            }}
+            className="min-h-[128px] justify-between rounded-[18px] p-3.5"
+            style={{ backgroundColor: item.color }}
           >
-            <View className="h-[40px] w-[40px] items-center justify-center rounded-[12px] border border-sg-border bg-[#FFFCF5]">
-              <Ionicons name={item.icon} size={19} color={item.color} />
-            </View>
+            <Ionicons name={item.icon} size={28} color="#F4EFE2" />
             <Text
-              className="mt-3 text-[14px] font-sg-extrabold leading-[18px] text-sg-text"
+              className="text-[17px] font-sg-display leading-[21px] text-[#F4EFE2]"
               numberOfLines={2}
             >
               {item.label}
@@ -1111,51 +1101,31 @@ const TotalScorePage = ({ navigation }) => {
 
   return (
     <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
-      <ScreenHeader eyebrow="Rewards wallet" title="Your coins" />
-      <Animated.View entering={FadeInDown.duration(240)}>
-        <SGCard className="mb-4 overflow-hidden">
-          <View className="mt-3 flex-row items-center justify-between">
-            <Text className="text-[12px] font-sg-bold text-sg-text/70">
-              Available
-            </Text>
-            <AnimatedView
-              ref={walletPillRef}
-              collapsable={false}
-              style={walletPillStyle}
-              className="rounded-full border border-[#9A6400]/30 bg-[#FFFCF5] px-2.5 py-1"
-            >
-              <View className="flex-row items-center">
-                <Coin size={12} compact />
-                <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">
-                  {displayScore}
-                </Text>
-              </View>
-            </AnimatedView>
-          </View>
-
-          <View className="mt-2 flex-row items-end">
-            <View className="mb-1 mr-2">
-              <Coin size={22} compact />
-            </View>
-            <View className="relative overflow-hidden rounded-[12px] px-1">
-              <View className="absolute -inset-x-2 -top-1 bottom-1 rounded-full bg-[#E5A019]/16" />
-              <Text className="text-[44px] font-sg-display leading-[46px] text-sg-text">
-                {displayScore}
-              </Text>
-              <AnimatedView
-                pointerEvents="none"
-                style={coinShineStyle}
-                className="absolute inset-y-0 left-[-30px] w-7 rounded-full bg-sg-text/35"
-              />
-            </View>
-          </View>
-          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
-            Current wallet coins
+      <ScreenHeader tone="marigold" eyebrow="Rewards wallet" title="Your coins">
+        <AnimatedView
+          ref={walletPillRef}
+          collapsable={false}
+          style={[walletPillStyle, { alignSelf: "flex-start" }]}
+          className="mt-3 flex-row items-end"
+        >
+          <Text
+            className="font-sg-display text-[#14342A]"
+            style={{
+              fontSize: 88,
+              lineHeight: 96,
+              letterSpacing: -3,
+              fontVariant: ["tabular-nums"],
+            }}
+          >
+            {displayScore}
           </Text>
-        </SGCard>
-      </Animated.View>
+          <Text className="mb-4 ml-2 text-[18px] font-sg-bold text-[#14342A]">
+            coins
+          </Text>
+        </AnimatedView>
+      </ScreenHeader>
 
-      <Animated.View entering={FadeInDown.delay(45).duration(220)}>
+      <Animated.View>
         <View className="mb-4">
           <View className="mb-2 flex-row items-center justify-between">
             <View className="flex-1 pr-3">
@@ -1180,7 +1150,7 @@ const TotalScorePage = ({ navigation }) => {
         </View>
       </Animated.View>
 
-      <Animated.View entering={FadeInDown.delay(60).duration(220)}>
+      <Animated.View>
         <SGCard className="mb-4">
           <Text className="mt-1 text-[22px] font-sg-display text-sg-text">
             Earn more coins
@@ -1206,7 +1176,7 @@ const TotalScorePage = ({ navigation }) => {
                 <Coin size={15} compact />
               )}
               <Text
-                className={`ml-2 text-[15px] font-extrabold ${
+                className={`ml-2 text-[15px] font-sg-extrabold ${
                   adButtonDisabled ? "text-sg-text/70" : "text-[#1D2A24]"
                 }`}
               >
@@ -1247,7 +1217,7 @@ const TotalScorePage = ({ navigation }) => {
         </SGCard>
       </Animated.View>
 
-      <Animated.View entering={FadeInDown.delay(120).duration(220)}>
+      <Animated.View>
         <SGCard className="mb-4">
           <Text className="mt-1 text-[20px] font-sg-display text-sg-text">
             Activity
@@ -1256,13 +1226,13 @@ const TotalScorePage = ({ navigation }) => {
             Track redemption requests and coin activity
           </Text>
           <SGButton
-            label="Wallet Activity"
+            label="Wallet activity"
             onPress={handleWalletHistory}
             variant="ghost"
             className="mt-3"
           />
           <SGButton
-            label="Coin History"
+            label="Coin history"
             onPress={handleCoinHistory}
             variant="ghost"
             className="mt-2"

@@ -2,13 +2,15 @@ import React from 'react';
 import { Pressable, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
 import * as Haptics from 'expo-haptics';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import SGEmptyState from '../../design-system/components/SGEmptyState';
 import SGSectionHeader from '../../design-system/components/SGSectionHeader';
 import ShimmerSkeleton from '../../components/ui/ShimmerSkeleton';
 import { iconForLabel } from '../../design-system/components/moduleIcons';
 
-function ModuleTile({ label, onPress }) {
+const TILE_COLORS = ['#17694F', '#8C2F4B', '#2B6A8F', '#14342A', '#C4481A'];
+
+function ModuleTile({ label, index, onPress }) {
   return (
     <Pressable
       onPress={() => {
@@ -19,8 +21,8 @@ function ModuleTile({ label, onPress }) {
       android_ripple={{ color: 'rgba(29,42,36,0.06)' }}
       className="min-h-[104px] rounded-[16px] border border-sg-border bg-sg-surface px-2.5 py-3 active:bg-sg-bg2"
     >
-      <View className="mb-2 h-9 w-9 items-center justify-center rounded-[11px] bg-sg-primarySoft">
-        <Ionicons name={iconForLabel(label)} size={18} color="#17694F" />
+      <View className="mb-2 h-9 w-9 items-center justify-center rounded-[11px]" style={{ backgroundColor: TILE_COLORS[index % TILE_COLORS.length] }}>
+        <Ionicons name={iconForLabel(label)} size={18} color="#F4EFE2" />
       </View>
       <Text numberOfLines={3} className="text-[13px] leading-[17px] font-sg-semibold text-sg-text">
         {label}
@@ -58,10 +60,9 @@ export default function LegacyHubLayout({ title, subtitle, buttons, isLoading })
           {namedButtons.map((button, index) => (
             <Animated.View
               key={button.id || `${button.label}-${index}`}
-              entering={FadeInDown.delay(20 + index * 12).duration(200)}
               className="mb-2.5 w-[31.8%]"
             >
-              <ModuleTile label={button.label} onPress={button.onPress} />
+              <ModuleTile label={button.label} index={index} onPress={button.onPress} />
             </Animated.View>
           ))}
         </View>

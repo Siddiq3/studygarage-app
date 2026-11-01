@@ -1,12 +1,7 @@
 import React from 'react';
 import { Modal, Pressable, Text, View } from 'react-native';
 import Ionicons from '@expo/vector-icons/Ionicons';
-import Animated, {
-  FadeIn,
-  FadeInUp,
-  FadeOut,
-  FadeOutDown,
-} from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import PressableScale from '../ui/PressableScale';
 
 export default function AppUpdatePrompt({
@@ -26,8 +21,6 @@ export default function AppUpdatePrompt({
   return (
     <Modal transparent statusBarTranslucent animationType="none" visible={visible}>
       <Animated.View
-        entering={FadeIn.duration(180)}
-        exiting={FadeOut.duration(140)}
         className="flex-1 items-center justify-center px-5"
       >
         <Pressable
@@ -37,8 +30,6 @@ export default function AppUpdatePrompt({
         />
 
         <Animated.View
-          entering={FadeInUp.duration(240)}
-          exiting={FadeOutDown.duration(180)}
           className="w-full max-w-[392px] rounded-[18px] border border-sg-border bg-[#FFFCF5] px-5 py-5"
           style={{
             shadowColor: '#3B3322',

@@ -10,6 +10,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import Coin from "../../components/rewards/Coin";
+import ScreenHeader from "../../design-system/components/ScreenHeader";
 import PressableScale from "../../components/ui/PressableScale";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
 import { useQuizContext } from "../../../QuizContext";
@@ -435,24 +436,17 @@ const WalletActivityScreen = ({ navigation, route }: { navigation: any; route: a
   return (
     <ScreenLayoutContainer variant="wallet" scroll={false}>
       <View className="px-4">
-        <View className="mb-3 flex-row items-center justify-between">
-          <PressableScale
-            onPress={() => navigation.goBack()}
-            activeScale={0.96}
-            className="h-10 w-10 items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5]"
-          >
-            <Ionicons name="arrow-back" size={18} color="#1D2A24" />
-          </PressableScale>
-
-          <Text className="mx-3 flex-1 text-center text-[21px] font-sg-display text-[#1D2A24]">
-            Wallet Activity
-          </Text>
-
-          <View className="min-w-[78px] flex-row items-center justify-center rounded-full border border-[#9A6400]/30 bg-[#FFFCF5] px-2.5 py-1.5">
-            <Coin size={12} compact />
-            <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">{totalScore}</Text>
+        <ScreenHeader
+          tone="marigold"
+          title="Wallet activity"
+          subtitle="Your redemptions and requests"
+          right={
+          <View className="h-11 flex-row items-center rounded-[14px] bg-[#14342A] px-3">
+            <Coin size={14} compact />
+            <Text className="ml-1.5 text-[14px] font-sg-bold text-[#F2B632]">{totalScore}</Text>
           </View>
-        </View>
+        }
+        />
 
         <WalletActivityTabs activeTab={activeTab} onChange={setActiveTab} />
       </View>

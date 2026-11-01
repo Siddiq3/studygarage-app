@@ -3,8 +3,7 @@ import { Text, TextInput, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Haptics from "expo-haptics";
 import Animated, {
-  FadeInDown,
-  useAnimatedStyle,
+    useAnimatedStyle,
   useSharedValue,
   withSequence,
   withSpring,
@@ -82,7 +81,7 @@ export default function ApplyReferralScreen({ navigation }) {
 
   return (
     <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <Animated.View>
         <Text className="text-[28px] font-sg-display leading-[32px] text-sg-text">
           Apply Referral
         </Text>
@@ -92,7 +91,6 @@ export default function ApplyReferralScreen({ navigation }) {
       </Animated.View>
 
       <AnimatedView
-        entering={FadeInDown.delay(50).duration(240)}
         className="mt-4"
       >
         <SGCard>
@@ -166,7 +164,6 @@ export default function ApplyReferralScreen({ navigation }) {
       </AnimatedView>
 
       <Animated.View
-        entering={FadeInDown.delay(100).duration(220)}
         className="mt-4"
       >
         <PressableScale

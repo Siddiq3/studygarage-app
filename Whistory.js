@@ -2,7 +2,7 @@ import React, { useMemo } from "react";
 import { Alert, FlatList, Text, View } from "react-native";
 import { format } from "date-fns";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
 import ScreenHeader from "./src/design-system/components/ScreenHeader";
 import SGEmptyState from "./src/design-system/components/SGEmptyState";
@@ -130,12 +130,13 @@ const WithdrawalHistoryPage = ({ route }) => {
   return (
     <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
       <ScreenHeader
+        tone="marigold"
         eyebrow="Rewards wallet"
         title="Wallet history"
         subtitle={`${transactionCount} transactions · ${voucherCount} vouchers`}
       />
 
-      <Animated.View entering={FadeInDown.delay(60).duration(220)}>
+      <Animated.View>
         <View className="mb-4">
           {normalizedHistory.length > 0 ? (
             <FlatList

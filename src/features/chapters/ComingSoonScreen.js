@@ -9,7 +9,7 @@ export default function ComingSoonScreen({
 }) {
   return (
     <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
-      <ScreenHeader eyebrow="Videos" title={title} />
+      <ScreenHeader tone="berry" title={title} />
       <SGEmptyState icon="videocam-outline" title="Coming soon" subtitle={subtitle} />
     </ScreenLayoutContainer>
   );

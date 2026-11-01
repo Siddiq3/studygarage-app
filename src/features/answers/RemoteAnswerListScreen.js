@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FlatList, Text, View } from "react-native";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import useInterstitialAd from "../../../InterstitialAdComponent";
 import MrecAdComponent from "../../../MrecAdComponent";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
@@ -66,8 +66,8 @@ export default function RemoteAnswerListScreen({
 
   return (
     <ScreenLayoutContainer variant="home" contentClassName="px-4 pb-6" scroll>
-      <ScreenHeader eyebrow="Quiz review" title={title} subtitle={subtitle} />
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <ScreenHeader tone="board" icon="checkmark-circle" eyebrow="Quiz review" title={title} subtitle={subtitle} />
+      <Animated.View>
         {isLoading ? (
           <View className="gap-2.5">
             {[0, 1, 2, 3].map((idx) => (

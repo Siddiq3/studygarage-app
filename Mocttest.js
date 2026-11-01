@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Text, View } from "react-native";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
 import SGCard from "./src/design-system/components/SGCard";
 import SGButton from "./src/design-system/components/SGButton";
@@ -72,7 +72,7 @@ const Mocktest = ({ navigation }) => {
 
   return (
     <ScreenLayoutContainer variant="board" contentClassName="px-4" scroll>
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <Animated.View>
         <SGCard board className="mb-4">
           <Text className="text-[12px] font-sg-bold text-[#B5C6BB]">
             Mock Test

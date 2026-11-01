@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { BackHandler, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import ScreenLayoutContainer from './src/design-system/components/ScreenLayoutContainer';
 import ScreenHeader from './src/design-system/components/ScreenHeader';
 import ContentsList from './src/design-system/components/ContentsList';
@@ -54,8 +54,8 @@ const Ssc = ({ navigation }) => {
 
   return (
     <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
-      <ScreenHeader eyebrow="SSC 2023" title="Subject papers" subtitle="Open subject-wise SSC paper sets" />
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <ScreenHeader tone="berry" eyebrow="SSC 2023" title="Subject papers" subtitle="Open subject-wise SSC paper sets" />
+      <Animated.View>
         <ContentsList
           items={items.map((item) => ({
             label: isLoading ? 'Loading' : item.label,

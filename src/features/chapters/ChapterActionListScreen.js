@@ -1,6 +1,6 @@
 import React from 'react';
 import { Linking } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import ScreenLayoutContainer from '../../design-system/components/ScreenLayoutContainer';
 import ScreenHeader from '../../design-system/components/ScreenHeader';
 import ContentsList from '../../design-system/components/ContentsList';
@@ -24,8 +24,8 @@ export default function ChapterActionListScreen({
 
   return (
     <ScreenLayoutContainer variant={variant} contentClassName="px-4" scroll>
-      <ScreenHeader eyebrow="Videos" title={title} subtitle={subtitle} />
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <ScreenHeader tone="blue" eyebrow="Videos" title={title} subtitle={subtitle} />
+      <Animated.View>
         <ContentsList
           numbered
           items={items.map((item) => ({

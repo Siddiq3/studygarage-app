@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { FlatList, Text, View } from "react-native";
 import axios from "axios";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
 import SGCard from "./src/design-system/components/SGCard";
 import AnimatedActionCard from "./src/design-system/components/AnimatedActionCard";
@@ -40,7 +40,7 @@ const Subjectq = ({ route, navigation }) => {
 
   return (
     <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <Animated.View>
         <SGCard className="mb-4">
           <Text className="text-[30px] font-sg-display leading-[34px] text-sg-text">
             {class1} Quiz Subjects
@@ -65,7 +65,6 @@ const Subjectq = ({ route, navigation }) => {
               contentContainerStyle={{ paddingTop: 16 }}
               renderItem={({ item, index }) => (
                 <Animated.View
-                  entering={FadeInDown.delay(25 + index * 14).duration(180)}
                   className="mb-3"
                 >
                   <AnimatedActionCard onPress={() => handleSubjectPress(item)}>

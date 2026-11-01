@@ -1,4 +1,4 @@
-import React, { useMemo, type ReactElement } from "react";
+import React, { createContext, useMemo, useState, type ReactElement } from "react";
 import { ScrollView, View, type ScrollViewProps } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -12,6 +12,12 @@ type Props = {
   variant?: "default" | "home" | "wallet" | "onboarding" | "reward" | "board";
   scrollViewProps?: ScrollViewProps;
 };
+
+// Lets a full-bleed header colour the status bar band and undo the page padding.
+export const ScreenChromeContext = createContext<{
+  topPadding: number;
+  setBandColor: (color: string | null) => void;
+}>({ topPadding: 0, setBandColor: () => {} });
 
 const RULE_GAP = 34;
 const RULE_COUNT = 40;
@@ -43,12 +49,16 @@ export default function ScreenLayoutContainer({
 }: Props) {
   const insets = useSafeAreaInsets();
   const isBoard = variant === "board";
+  const [bandColor, setBandColor] = useState<string | null>(null);
+  const topPadding = Math.max(insets.top, 14) + 12;
+  const chrome = useMemo(() => ({ topPadding, setBandColor }), [topPadding]);
 
   return (
     <View
       className={`flex-1 ${className}`}
       style={{ backgroundColor: isBoard ? "#14342A" : "#F6F1E7" }}
     >
+      <ScreenChromeContext.Provider value={chrome}>
       <StatusBar style={isBoard ? "light" : "dark"} />
       {isBoard ? null : <PaperRules />}
 
@@ -61,7 +71,7 @@ export default function ScreenLayoutContainer({
             scrollViewProps?.keyboardShouldPersistTaps ?? "handled"
           }
           contentContainerStyle={{
-            paddingTop: Math.max(insets.top, 14) + 12,
+            paddingTop: topPadding,
             paddingBottom: Math.max(insets.bottom, 12) + 16,
           }}
           className={contentClassName}
@@ -72,7 +82,7 @@ export default function ScreenLayoutContainer({
         <View
           className={`flex-1 ${contentClassName}`}
           style={{
-            paddingTop: Math.max(insets.top, 14) + 12,
+            paddingTop: topPadding,
             paddingBottom: Math.max(insets.bottom, 12) + 8,
           }}
         >
@@ -83,8 +93,9 @@ export default function ScreenLayoutContainer({
       <View
         pointerEvents="none"
         className="absolute left-0 right-0 top-0"
-        style={{ height: insets.top, backgroundColor: isBoard ? "#14342A" : "#F6F1E7" }}
+        style={{ height: insets.top, backgroundColor: bandColor ?? (isBoard ? "#14342A" : "#F6F1E7") }}
       />
+      </ScreenChromeContext.Provider>
     </View>
   );
 }

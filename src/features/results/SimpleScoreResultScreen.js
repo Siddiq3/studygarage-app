@@ -1,6 +1,6 @@
 import React from 'react';
 import { Image, Text, View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import useInterstitialAd from '../../../InterstitialAdComponent';
 import MrecAdComponent from '../../../MrecAdComponent';
 import ScreenLayoutContainer from '../../design-system/components/ScreenLayoutContainer';
@@ -35,18 +35,18 @@ export default function SimpleScoreResultScreen({
     <ScreenLayoutContainer variant="board" contentClassName="px-4 pb-6" scroll>
       <ScreenHeader board eyebrow="Result summary" title={title} className="mb-6" />
 
-      <Animated.View entering={FadeInDown.duration(240)} className="mb-5">
+      <Animated.View className="mb-5">
         <Text className="text-[13px] font-sg-semibold text-[#B5C6BB]">Score</Text>
         <Text className="text-[72px] leading-[78px] font-sg-display tracking-[-2px] text-[#F2B632]" style={{ fontVariant: ['tabular-nums'] }}>
           {score}
         </Text>
       </Animated.View>
 
-      <Animated.View entering={FadeInDown.delay(70).duration(240)} className="mb-5 items-center rounded-[18px] bg-[#FFFCF5] py-4">
+      <Animated.View className="mb-5 items-center rounded-[18px] bg-[#FFFCF5] py-4">
         <Image source={{ uri: resultBanner }} className="h-[200px] w-[200px]" resizeMode="contain" accessibilityLabel="Result illustration" />
       </Animated.View>
 
-      <Animated.View entering={FadeInDown.delay(120).duration(240)} className="mb-5 gap-2.5">
+      <Animated.View className="mb-5 gap-2.5">
         <SGButton label={homeButtonLabel} variant="board" onPress={() => handleNavigate(homeRoute)} />
         {answersRoute ? <SGButton label={answersButtonLabel} variant="boardGhost" onPress={() => handleNavigate(answersRoute)} /> : null}
       </Animated.View>

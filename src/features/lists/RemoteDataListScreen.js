@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from "react";
 import { BackHandler, View } from "react-native";
-import Animated, { FadeInDown } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import useInterstitialAd from "../../../InterstitialAdComponent";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
 import ScreenHeader from "../../design-system/components/ScreenHeader";
@@ -55,8 +55,8 @@ export default function RemoteDataListScreen({
 
   return (
     <ScreenLayoutContainer variant={variant} contentClassName="px-4" scroll>
-      <ScreenHeader title={title} subtitle={subtitle} />
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <ScreenHeader tone="berry" title={title} subtitle={subtitle} />
+      <Animated.View>
         {loading ? (
           <View className="gap-2.5">
             {[0, 1, 2, 3, 4].map((idx) => (

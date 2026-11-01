@@ -3,6 +3,7 @@ import { Alert, Text, TextInput, View, useColorScheme } from "react-native";
 import Snackbar from "react-native-snackbar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
+import ScreenHeader from "../../design-system/components/ScreenHeader";
 import SGCard from "../../design-system/components/SGCard";
 import SGButton from "../../design-system/components/SGButton";
 import RedeemSuccessOverlay from "./RedeemSuccessOverlay";
@@ -290,34 +291,14 @@ export default function RedeemFormScreen({ navigation, route }) {
   return (
     <>
       <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
+        <ScreenHeader
+          tone="marigold"
+          eyebrow="Redeem"
+          title="Your details"
+          subtitle="We send your reward to these."
+        />
         <SGCard className="mb-4 overflow-hidden">
-          <View className="flex-row items-start justify-between">
-            <View className="flex-1 pr-3">
-              <Text className="text-[12px] font-sg-bold text-sg-muted">
-                Redeem Form
-              </Text>
-              <Text
-                className="mt-1 text-[24px] font-sg-display leading-[30px] text-sg-text"
-                numberOfLines={1}
-              >
-                Submit Voucher Request
-              </Text>
-              <Text className="mt-1 text-[13px] font-sg-medium text-[#1D2A24]">
-                Fill your details to complete this redeem request.
-              </Text>
-            </View>
-
-            <View className="rounded-full border border-[#9A6400]/25 bg-[#FFFCF5] px-3 py-1.5">
-              <View className="flex-row items-center">
-                <Ionicons name="flame-outline" size={12} color="#9A6400" />
-                <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">
-                  {totalScore}
-                </Text>
-              </View>
-            </View>
-          </View>
-
-          <View className="mt-4 gap-3">
+          <View className="gap-3">
             <InputField
               placeholder="Full Name"
               iconName="person-outline"

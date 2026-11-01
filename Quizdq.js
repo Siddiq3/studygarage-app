@@ -6,10 +6,7 @@ import { Alert, BackHandler, Text, TouchableOpacity, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Animated, {
   Easing,
-  FadeIn,
-  FadeInDown,
-  FadeOut,
-  useAnimatedStyle,
+        useAnimatedStyle,
   useSharedValue,
   withSequence,
   withSpring,
@@ -111,7 +108,6 @@ function NextQuestionBar({ seconds, totalSeconds }) {
 
   return (
     <Animated.View
-      entering={FadeInDown.duration(240)}
       className="mt-2 rounded-[18px] bg-[#1C4336] p-3"
     >
       <View className="flex-row items-center">
@@ -676,7 +672,6 @@ const Quizques = ({ navigation, route }) => {
           <QuizLoadingSkeleton />
         ) : questions && questions.length > 0 && ques < totalQuestions ? (
           <Animated.View
-            entering={FadeInDown.duration(220)}
             className="flex-1"
             style={wrongAnswerStyle}
           >
@@ -738,13 +733,10 @@ const Quizques = ({ navigation, route }) => {
 
       {showCompletionModal ? (
         <Animated.View
-          entering={FadeIn.duration(180)}
-          exiting={FadeOut.duration(160)}
           className="absolute inset-0 z-[100] justify-center bg-[#0F281F]/80 px-5"
           pointerEvents="auto"
         >
           <Animated.View
-            entering={FadeInDown.duration(240)}
             className="rounded-[18px] border border-[#F4EFE2]/10 bg-[#1C4336] px-5 py-6"
           >
             <View className="mb-4 items-center">

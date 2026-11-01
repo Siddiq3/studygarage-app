@@ -3,8 +3,7 @@ import { Alert, BackHandler, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import Animated, {
-  FadeInUp,
-  useAnimatedStyle,
+    useAnimatedStyle,
   useSharedValue,
   withSequence,
   withTiming,
@@ -359,7 +358,7 @@ export default function LegacyDailyQuizScreen({
 
   return (
     <ScreenLayoutContainer variant="board" contentClassName="px-4" scroll={false}>
-      <Animated.View entering={FadeInUp.duration(240)}>
+      <Animated.View>
         <SGCard board className="mb-3">
           <Text className="text-[12px] font-sg-bold text-[#B5C6BB]">Daily Challenge</Text>
           <Text className="mt-1 text-[26px] font-sg-display leading-[30px] tracking-tight text-[#F4EFE2]">{screenTitle}</Text>
@@ -380,7 +379,7 @@ export default function LegacyDailyQuizScreen({
         </SGCard>
       </Animated.View>
 
-      <Animated.View entering={FadeInUp.delay(70).duration(240)} className="flex-1">
+      <Animated.View className="flex-1">
         <SGCard board className="mb-3 flex-1">
           {isLoading ? (
             <View className="flex-1 items-center justify-center py-10">
@@ -431,7 +430,7 @@ export default function LegacyDailyQuizScreen({
         </SGCard>
       </Animated.View>
 
-      <Animated.View entering={FadeInUp.delay(130).duration(240)}>
+      <Animated.View>
         <SGCard board className="mb-3">
           <View className="flex-row items-center justify-between gap-3">
             <View className="flex-1 rounded-[14px] border border-[#F4EFE2]/16 bg-[#1C4336] px-3 py-2">

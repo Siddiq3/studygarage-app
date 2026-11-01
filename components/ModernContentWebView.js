@@ -5,7 +5,7 @@ import { StatusBar } from "expo-status-bar";
 import { useNavigation } from "@react-navigation/native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import WebView from "react-native-webview";
-import Animated, { FadeIn } from "react-native-reanimated";
+import Animated from "react-native-reanimated";
 import MrecAdComponent from "../MrecAdComponent";
 import ShimmerSkeleton from "../src/components/ui/ShimmerSkeleton";
 
@@ -208,7 +208,6 @@ export default function ModernContentWebView({
       </View>
 
       <Animated.View
-        entering={FadeIn.duration(220)}
         className="flex-1 px-2 pb-1"
       >
         <View style={styles.viewerCard} className="flex-1 overflow-hidden rounded-[14px]">

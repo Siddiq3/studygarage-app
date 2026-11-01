@@ -3,7 +3,7 @@ import { Alert, BackHandler, Text, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import ScreenLayoutContainer from './src/design-system/components/ScreenLayoutContainer';
-import SGCard from './src/design-system/components/SGCard';
+import ScreenHeader from './src/design-system/components/ScreenHeader';
 import SGButton from './src/design-system/components/SGButton';
 
 const QuizResults = ({ route, navigation }) => {
@@ -77,47 +77,32 @@ const QuizResults = ({ route, navigation }) => {
   };
 
   return (
-    <ScreenLayoutContainer variant="reward" contentClassName="px-4" scroll>
-      <Animated.View entering={FadeInDown.duration(240)}>
-        <SGCard className="mb-4">
-          <Text className="text-[12px] font-sg-bold text-sg-muted">Performance</Text>
-          <Text className="mt-1 text-[30px] font-sg-display leading-[34px] text-sg-text">Quiz Results</Text>
-          <Text className="mt-1 text-[14px] font-sg-semibold text-sg-muted">
-            Need minimum 50% marks to add coins.
-          </Text>
-
-          <View className="mt-4 rounded-[20px] border border-sg-border bg-sg-bg2 px-4 py-4">
-            <Row label="Total Questions" value={totalQuestions} />
-            <Row label="Correct" value={correctQuestions} tone="success" />
-            <Row label="Incorrect" value={incorrectQuestions} tone="danger" />
-            <Row label="Score" value={score} />
-            <Row label="Percentage" value={`${percentageCorrect.toFixed(2)}%`} tone={percentageCorrect >= 50 ? 'success' : 'danger'} />
-          </View>
-        </SGCard>
-      </Animated.View>
-
-      <Animated.View entering={FadeInDown.delay(80).duration(240)}>
-        <SGCard className="mb-4">
-          <SGButton label="Retry" onPress={handleRetry} className="mb-3" />
-          <SGButton label="Home" onPress={handleContinue} variant="ghost" />
-        </SGCard>
-      </Animated.View>
+    <ScreenLayoutContainer variant="board" contentClassName="px-5 pb-6" scroll>
+      <ScreenHeader board onBack={handleBackPress} eyebrow="Quiz results" title={percentageCorrect >= 50 ? 'You crushed it.' : 'Run it back.'} subtitle="Score 50% or more to add coins." className="mb-4" />
+      <View >
+        <Text
+          className="font-sg-display text-[#F2B632]"
+          style={{ fontSize: 96, lineHeight: 104, letterSpacing: -3, fontVariant: ['tabular-nums'] }}
+        >
+          {Math.round(percentageCorrect)}%
+        </Text>
+        <View className="mb-6 mt-3 flex-row border-y border-[#F4EFE2]/16 py-4">
+          <Stat value={correctQuestions} label="Correct" color="#8FD9B4" />
+          <Stat value={incorrectQuestions} label="Incorrect" color="#F28B76" />
+          <Stat value={score} label="Score" color="#F4EFE2" />
+        </View>
+        <SGButton label="Retry" variant="board" onPress={handleRetry} className="mb-2.5" />
+        <SGButton label="Home" variant="boardGhost" onPress={handleContinue} />
+      </View>
     </ScreenLayoutContainer>
   );
 };
 
-function Row({ label, value, tone = 'neutral' }) {
-  const toneClass =
-    tone === 'success'
-      ? 'text-[#1C7C55]'
-      : tone === 'danger'
-      ? 'text-[#BF3F2B]'
-      : 'text-sg-text';
-
+function Stat({ value, label, color }) {
   return (
-    <View className="mb-3 flex-row items-center justify-between">
-      <Text className="text-[14px] font-sg-semibold text-sg-muted">{label}</Text>
-      <Text className={`text-[16px] font-sg-extrabold ${toneClass}`}>{value}</Text>
+    <View className="flex-1">
+      <Text className="text-[26px] font-sg-display" style={{ color }}>{value}</Text>
+      <Text className="text-[13px] font-sg-medium text-[#B5C6BB]">{label}</Text>
     </View>
   );
 }

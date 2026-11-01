@@ -1,5 +1,5 @@
 import React from 'react';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import ScreenLayoutContainer from '../../design-system/components/ScreenLayoutContainer';
 import ScreenHeader from '../../design-system/components/ScreenHeader';
 import ContentsList from '../../design-system/components/ContentsList';
@@ -27,7 +27,7 @@ export default function SimpleSubjectHub({
   return (
     <ScreenLayoutContainer variant={variant} contentClassName={contentClassName} scroll>
       <ScreenHeader title={title} subtitle={subtitle} />
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <Animated.View>
         {items.length ? (
           <ContentsList items={items.map((item) => ({ ...item, onPress: () => handleItemPress(item) }))} />
         ) : (

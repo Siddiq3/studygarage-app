@@ -19,9 +19,6 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
-import SGCard from "../../design-system/components/SGCard";
-import PressableScale from "../../components/ui/PressableScale";
-import Coin from "../../components/rewards/Coin";
 
 type SuccessRouteParams = {
   rewardCoins?: number;
@@ -50,9 +47,9 @@ type AnimatedRewardChipProps = {
 };
 
 const SUCCESS_HEADLINES = [
-  "Nice Work!",
+  "Nice work!",
   "Brilliant!",
-  "Great Job!",
+  "Great job!",
   "Correct!",
 ];
 const NEXT_QUESTION_WAIT_SECONDS = 8;
@@ -104,7 +101,7 @@ const NextQuestionCountdown = React.memo(function NextQuestionCountdown({
   if (!start) return null;
 
   return (
-    <Text className="mt-4 text-center text-[14px] font-sg-semibold text-[#B5C6BB]">
+    <Text className="mt-4 text-[14px] font-sg-semibold text-[#B5C6BB]">
       Next question in {remaining}...
     </Text>
   );
@@ -183,7 +180,7 @@ const AnimatedRewardChip = React.memo(function AnimatedRewardChip({
     return (
       <Animated.View
         style={chipAnimatedStyle}
-        className="mt-3 rounded-full border border-[#F4EFE2]/14 bg-[#F4EFE2]/8 px-4 py-2"
+        className="mt-5 self-start rounded-[14px] bg-[#1C4336] px-4 py-2.5"
       >
         <Text className="text-[13px] font-sg-bold text-[#F4EFE2]">
           Daily quiz coin limit reached
@@ -195,15 +192,14 @@ const AnimatedRewardChip = React.memo(function AnimatedRewardChip({
   return (
     <Animated.View
       style={chipAnimatedStyle}
-      className="relative mt-3 flex-row items-center overflow-hidden rounded-full border border-[#F2B632]/30 bg-[#1C4336] px-4 py-2"
+      className="relative mt-5 flex-row items-center self-start overflow-hidden rounded-[14px] bg-[#F2B632] px-4 py-2.5"
     >
       <Animated.View
         pointerEvents="none"
         style={shimmerStyle}
-        className="absolute bottom-[-16px] top-[-16px] w-14 bg-[#F2B632]"
+        className="absolute bottom-[-16px] top-[-16px] w-14 bg-[#FFFCF5]"
       />
-      <Coin size={16} compact />
-      <Text className="ml-2 text-[14px] font-sg-extrabold text-[#F2B632]">
+      <Text className="text-[26px] font-sg-display text-[#14342A]">
         +{displayValue} coins
       </Text>
     </Animated.View>
@@ -211,8 +207,7 @@ const AnimatedRewardChip = React.memo(function AnimatedRewardChip({
 });
 
 export default function SuccessScreen({ navigation, route }: Props) {
-  const [isCollecting, setIsCollecting] = useState(false);
-  const [countdownStarted, setCountdownStarted] = useState(false);
+    const [countdownStarted, setCountdownStarted] = useState(false);
   const [showRewardChip, setShowRewardChip] = useState(false);
   const hasStartedFlowRef = useRef(false);
   const isMountedRef = useRef(true);
@@ -232,9 +227,6 @@ export default function SuccessScreen({ navigation, route }: Props) {
   const textTranslateY = useSharedValue(10);
   const chipOpacity = useSharedValue(0);
   const chipTranslateY = useSharedValue(10);
-  const buttonOpacity = useSharedValue(0);
-  const buttonTranslateY = useSharedValue(12);
-  const buttonGlow = useSharedValue(0.45);
 
   const rewardCoins = Math.max(0, Number(route?.params?.rewardCoins ?? 1));
   const isDailyCapReached = rewardCoins <= 0;
@@ -279,11 +271,6 @@ export default function SuccessScreen({ navigation, route }: Props) {
       220,
       withTiming(0, { duration: 220, easing: Easing.out(Easing.cubic) })
     );
-    buttonOpacity.value = withDelay(280, withTiming(1, { duration: 180 }));
-    buttonTranslateY.value = withDelay(
-      280,
-      withTiming(0, { duration: 220, easing: Easing.out(Easing.cubic) })
-    );
     iconRingScale.value = withDelay(
       240,
       withSequence(
@@ -308,8 +295,6 @@ export default function SuccessScreen({ navigation, route }: Props) {
       }
     };
   }, [
-    buttonOpacity,
-    buttonTranslateY,
     cardOpacity,
     cardScale,
     cardTranslateY,
@@ -361,36 +346,13 @@ export default function SuccessScreen({ navigation, route }: Props) {
     transform: [{ translateY: chipTranslateY.value }],
   }));
 
-  const buttonStyle = useAnimatedStyle(() => ({
-    opacity: buttonOpacity.value,
-    transform: [{ translateY: buttonTranslateY.value }],
-  }));
-
   const iconRingStyle = useAnimatedStyle(() => ({
     transform: [{ scale: iconRingScale.value }],
-  }));
-
-  useEffect(() => {
-    if (isCollecting || countdownStarted) {
-      buttonGlow.value = withTiming(0.3, { duration: 160 });
-      return;
-    }
-
-    buttonGlow.value = withSequence(
-      withTiming(0.75, { duration: 200 }),
-      withTiming(0.55, { duration: 220 })
-    );
-  }, [buttonGlow, countdownStarted, isCollecting]);
-
-  const buttonGlowStyle = useAnimatedStyle(() => ({
-    shadowOpacity: 0.26 * buttonGlow.value,
-    shadowRadius: 10 + 6 * buttonGlow.value,
   }));
 
   const startSuccessFlow = useCallback(async () => {
     if (hasStartedFlowRef.current) return;
     hasStartedFlowRef.current = true;
-    setIsCollecting(true);
 
     try {
       if (typeof route?.params?.onCollectCoins === "function") {
@@ -404,7 +366,6 @@ export default function SuccessScreen({ navigation, route }: Props) {
       console.log("Success flow failed:", error);
     } finally {
       if (!isMountedRef.current) return;
-      setIsCollecting(false);
       if (countdownSeconds <= 0) {
         if (autoReturnTimeoutRef.current) {
           clearTimeout(autoReturnTimeoutRef.current);
@@ -434,87 +395,36 @@ export default function SuccessScreen({ navigation, route }: Props) {
     };
   }, [startSuccessFlow]);
 
-  const handleCollectCoins = useCallback(() => {
-    startSuccessFlow().catch((error) => {
-      console.log("Manual start flow failed:", error);
-    });
-  }, [startSuccessFlow]);
-
   return (
-    <ScreenLayoutContainer
-      variant="board"
-      contentClassName="px-4"
-      scroll={false}
-    >
+    <ScreenLayoutContainer variant="board" contentClassName="px-5" scroll={false}>
       <View className="flex-1 justify-center">
-        <Animated.View style={cardStyle}>
-          <SGCard board className="items-center py-8">
-            <Animated.View
-              style={badgeStyle}
-              className="relative h-[92px] w-[92px] items-center justify-center"
-            >
-              <Animated.View
-                style={iconRingStyle}
-                className="absolute inset-0 rounded-full border border-[#8FD9B4]/35 bg-[#1C4336]/72"
-              />
-              <View className="h-[72px] w-[72px] items-center justify-center rounded-full border border-[#8FD9B4]/40 bg-[#1C4336]">
-                <Ionicons name="checkmark" size={42} color="#8FD9B4" />
-              </View>
-            </Animated.View>
-
-            <Animated.View style={textStyle} className="items-center">
-              <Text className="mt-4 text-center text-[30px] font-sg-display leading-[34px] text-[#F4EFE2]">
-                {successHeadline}
-              </Text>
-              <Text className="mt-1 text-center text-[13px] font-sg-semibold text-[#B5C6BB]">
-                {isDailyCapReached
-                  ? "Daily quiz coin limit reached"
-                  : "Reward unlocked"}
-              </Text>
-            </Animated.View>
-
-            <Animated.View style={chipStyle}>
-              <AnimatedRewardChip
-                start={showRewardChip}
-                targetValue={rewardCoins}
-              />
-            </Animated.View>
-
-            <Animated.View style={textStyle}>
-              <NextQuestionCountdown
-                start={countdownStarted}
-                initialSeconds={countdownSeconds}
-                onComplete={() => {
-                  finishQuizFlow().catch((error) => {
-                    console.log("Continue quiz flow failed:", error);
-                  });
-                }}
-              />
-            </Animated.View>
-          </SGCard>
+        <Animated.View
+          style={[badgeStyle, iconRingStyle, { alignSelf: "flex-start" }]}
+          className="h-[84px] w-[84px] items-center justify-center rounded-[26px] bg-[#8FD9B4]"
+        >
+          <Ionicons name="checkmark" size={52} color="#14342A" />
         </Animated.View>
 
-        <Animated.View style={buttonStyle} className="mt-4">
-          <Animated.View
-            style={buttonGlowStyle}
-            className="overflow-hidden rounded-full border border-[#F2B632]/28 bg-[#1C4336]"
-          >
-            <PressableScale
-              onPress={handleCollectCoins}
-              disabled={isCollecting || countdownStarted}
-              activeScale={0.96}
-              hapticType="tap"
-              className="min-h-[56px] items-center justify-center rounded-full border border-[#F4EFE2]/8 bg-[#1C4336]"
-            >
-              <Text className="text-[17px] font-sg-bold text-[#F4EFE2]/95">
-                {countdownStarted
-                  ? "Please wait..."
-                  : isCollecting
-                  ? "Collecting..."
-                  : "Collect Coins"}
-              </Text>
-            </PressableScale>
-          </Animated.View>
+        <Animated.View style={textStyle}>
+          <Text className="mt-5 text-[56px] font-sg-display leading-[60px] tracking-[-1.4px] text-[#F4EFE2]">
+            {successHeadline}
+          </Text>
+        </Animated.View>
+
+        <Animated.View style={chipStyle}>
+          <AnimatedRewardChip start={showRewardChip} targetValue={rewardCoins} />
+        </Animated.View>
+
+        <Animated.View style={textStyle}>
+          <NextQuestionCountdown
+            start={countdownStarted}
+            initialSeconds={countdownSeconds}
+            onComplete={() => {
+              finishQuizFlow().catch((error) => {
+                console.log("Continue quiz flow failed:", error);
+              });
+            }}
+          />
         </Animated.View>
       </View>
     </ScreenLayoutContainer>

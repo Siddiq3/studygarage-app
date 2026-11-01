@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { View } from 'react-native';
-import Animated, { FadeInDown } from 'react-native-reanimated';
+import Animated from 'react-native-reanimated';
 import ScreenLayoutContainer from '../../design-system/components/ScreenLayoutContainer';
 import ScreenHeader from '../../design-system/components/ScreenHeader';
 import ContentsList from '../../design-system/components/ContentsList';
@@ -87,7 +87,7 @@ export default function RemoteLabelHub({
   return (
     <ScreenLayoutContainer variant={variant} contentClassName={contentClassName} scroll>
       <ScreenHeader title={title} subtitle={subtitle} />
-      <Animated.View entering={FadeInDown.duration(220)}>
+      <Animated.View>
         {isLoading ? (
           <View className="gap-2.5">
             {[0, 1, 2, 3].map((idx) => (
