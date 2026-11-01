@@ -80,13 +80,13 @@ const QuizResults = ({ route, navigation }) => {
     <ScreenLayoutContainer variant="reward" contentClassName="px-4" scroll>
       <Animated.View entering={FadeInDown.duration(240)}>
         <SGCard className="mb-4">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">Performance</Text>
-          <Text className="mt-1 text-[30px] font-extrabold leading-[34px] text-sg-text dark:text-sgd-text">Quiz Results</Text>
-          <Text className="mt-1 text-[14px] font-semibold text-sg-muted dark:text-sgd-muted">
+          <Text className="text-[12px] font-sg-bold text-sg-muted">Performance</Text>
+          <Text className="mt-1 text-[30px] font-sg-display leading-[34px] text-sg-text">Quiz Results</Text>
+          <Text className="mt-1 text-[14px] font-sg-semibold text-sg-muted">
             Need minimum 50% marks to add coins.
           </Text>
 
-          <View className="mt-4 rounded-[20px] border border-white/10 bg-white/6 px-4 py-4">
+          <View className="mt-4 rounded-[20px] border border-sg-border bg-sg-bg2 px-4 py-4">
             <Row label="Total Questions" value={totalQuestions} />
             <Row label="Correct" value={correctQuestions} tone="success" />
             <Row label="Incorrect" value={incorrectQuestions} tone="danger" />
@@ -109,15 +109,15 @@ const QuizResults = ({ route, navigation }) => {
 function Row({ label, value, tone = 'neutral' }) {
   const toneClass =
     tone === 'success'
-      ? 'text-[#00FFA3]'
+      ? 'text-[#1C7C55]'
       : tone === 'danger'
-      ? 'text-[#FF908B]'
-      : 'text-sg-text dark:text-sgd-text';
+      ? 'text-[#BF3F2B]'
+      : 'text-sg-text';
 
   return (
     <View className="mb-3 flex-row items-center justify-between">
-      <Text className="text-[14px] font-semibold text-sg-muted dark:text-sgd-muted">{label}</Text>
-      <Text className={`text-[16px] font-extrabold ${toneClass}`}>{value}</Text>
+      <Text className="text-[14px] font-sg-semibold text-sg-muted">{label}</Text>
+      <Text className={`text-[16px] font-sg-extrabold ${toneClass}`}>{value}</Text>
     </View>
   );
 }

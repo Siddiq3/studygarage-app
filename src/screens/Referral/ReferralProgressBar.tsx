@@ -80,17 +80,17 @@ export default function ReferralProgressBar({
   const marker10 = referralsCount >= 10;
 
   return (
-    <SGCard className="rounded-[22px] border-white/10 bg-white/[0.05]">
+    <SGCard className="rounded-[18px] border-sg-border bg-sg-surface">
       <View className="flex-row items-center justify-between">
-        <Text className="text-[11px] font-bold uppercase tracking-[1.2px] text-[#B8C0D4]">
+        <Text className="text-[12px] font-sg-bold text-[#1D2A24]">
           Referral Milestones
         </Text>
         <PressableScale
           activeScale={0.96}
-          className="rounded-full border border-white/12 bg-[#161B25] px-3 py-1.5"
+          className="rounded-full border border-sg-border bg-[#FFFCF5] px-3 py-1.5"
           onPress={onViewMilestones}
         >
-          <Text className="text-[10px] font-bold uppercase tracking-[0.8px] text-[#F5F7FF]">
+          <Text className="text-[12px] font-sg-bold text-[#1D2A24]">
             View Milestones
           </Text>
         </PressableScale>
@@ -100,16 +100,16 @@ export default function ReferralProgressBar({
         <AnimatedView
           pointerEvents="none"
           style={glowStyle}
-          className="absolute -inset-1 rounded-full bg-[#FFD700]/15"
+          className="absolute -inset-1 rounded-full bg-[#E5A019]/15"
         />
 
         <View
           onLayout={(event) => setTrackWidth(event.nativeEvent.layout.width)}
-          className="h-[8px] overflow-hidden rounded-full border border-white/10 bg-white/[0.05]"
+          className="h-[8px] overflow-hidden rounded-full border border-sg-border bg-sg-surface"
         >
           <AnimatedView style={fillStyle} className="h-full w-full overflow-hidden">
             <LinearGradient
-              colors={['#715400', '#D59E00', '#FFD700']}
+              colors={['#FBEFD2', '#E5A019', '#E5A019']}
               start={{ x: 0, y: 0.5 }}
               end={{ x: 1, y: 0.5 }}
               className="h-full w-full"
@@ -122,32 +122,32 @@ export default function ReferralProgressBar({
         <View className="items-center">
           <View
             className={`h-2.5 w-2.5 rounded-full ${
-              marker1 ? 'bg-[#FFD700]' : 'bg-white/25'
+              marker1 ? 'bg-[#E5A019]' : 'bg-sg-text/25'
             }`}
           />
-          <Text className="mt-1 text-[10px] font-semibold text-[#AEB7CA]">1</Text>
+          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">1</Text>
         </View>
 
         <View className="items-center">
           <View
             className={`h-2.5 w-2.5 rounded-full ${
-              marker5 ? 'bg-[#FFD700]' : 'bg-white/25'
+              marker5 ? 'bg-[#E5A019]' : 'bg-sg-text/25'
             }`}
           />
-          <Text className="mt-1 text-[10px] font-semibold text-[#AEB7CA]">5</Text>
+          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">5</Text>
         </View>
 
         <View className="items-center">
           <View
             className={`h-2.5 w-2.5 rounded-full ${
-              marker10 ? 'bg-[#FFD700]' : 'bg-white/25'
+              marker10 ? 'bg-[#E5A019]' : 'bg-sg-text/25'
             }`}
           />
-          <Text className="mt-1 text-[10px] font-semibold text-[#AEB7CA]">10</Text>
+          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">10</Text>
         </View>
       </View>
 
-      <Text className="mt-2 text-[11px] font-medium text-[#B8C0D4]">
+      <Text className="mt-2 text-[12px] font-sg-medium text-[#1D2A24]">
         {nextMilestoneText}
       </Text>
     </SGCard>

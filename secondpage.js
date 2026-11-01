@@ -16,7 +16,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import Animated, {
   cancelAnimation,
@@ -27,12 +26,10 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withDelay,
-  withRepeat,
   withSequence,
   withSpring,
   withTiming,
 } from "react-native-reanimated";
-import { LinearGradient } from "expo-linear-gradient";
 import * as Haptics from "expo-haptics";
 import Snackbar from "react-native-snackbar";
 import { useQuizContext } from "./QuizContext";
@@ -51,7 +48,8 @@ import Class7ka from "./KA CLASS 6TO9/Class7";
 import Class6ka from "./KA CLASS 6TO9/Class6";
 import MainPage from "./sidemenu";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
-import SGCard from "./src/design-system/components/SGCard";
+import SGSectionHeader from "./src/design-system/components/SGSectionHeader";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SGEmptyState from "./src/design-system/components/SGEmptyState";
 import PressableScale from "./src/components/ui/PressableScale";
 import { useStreak } from "./src/services/streak/useStreak";
@@ -99,106 +97,69 @@ const WHATSAPP_CHANNEL_INTENT_URL = `intent://channel/${WHATSAPP_CHANNEL_ID}#Int
   WHATSAPP_CHANNEL_WEB_URL
 )};end`;
 
-function ActionOrb({ icon, label, hint, tone = "default", onPress }) {
-  const pressScale = useSharedValue(1);
-  const iconLift = useSharedValue(0);
-
-  const glowColor =
-    tone === "quiz" ? "#00FFA3" : tone === "rewards" ? "#FFD700" : "#6E7FA6";
+function ActionTile({ icon, label, hint, tone = "default", onPress }) {
+  const toneSurface =
+    tone === "quiz"
+      ? "bg-sg-primarySoft"
+      : tone === "rewards"
+      ? "bg-sg-marigoldSoft"
+      : "bg-sg-bg2";
   const iconColor =
-    tone === "quiz" ? "#00FFA3" : tone === "rewards" ? "#FFD700" : "#A2AECB";
-
-  const orbStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: pressScale.value }],
-  }));
-
-  const iconStyle = useAnimatedStyle(() => ({
-    transform: [{ translateY: -iconLift.value }],
-  }));
-
-  const onPressIn = () => {
-    pressScale.value = withTiming(0.95, { duration: 90 });
-    iconLift.value = withTiming(2, { duration: 90 });
-  };
-
-  const onPressOut = () => {
-    pressScale.value = withSpring(1, {
-      damping: 10,
-      stiffness: 255,
-      mass: 0.35,
-    });
-    iconLift.value = withTiming(0, { duration: 130 });
-  };
+    tone === "quiz" ? "#17694F" : tone === "rewards" ? "#9A6400" : "#1D2A24";
 
   return (
-    <View className="flex-1 items-center">
-      <Pressable
-        hitSlop={8}
-        onPress={onPress}
-        onPressIn={onPressIn}
-        onPressOut={onPressOut}
-        className="items-center"
+    <PressableScale
+      onPress={onPress}
+      activeScale={0.97}
+      containerClassName="flex-1"
+      className="min-h-[112px] rounded-[16px] border border-sg-border bg-sg-surface p-3"
+    >
+      <View
+        className={`mb-2.5 h-10 w-10 items-center justify-center rounded-[12px] ${toneSurface}`}
       >
-        <Animated.View
-          style={orbStyle}
-          className="h-[86px] w-[86px] items-center justify-center rounded-full border border-white/15 bg-white/6"
-        >
-          <View
-            className="h-[64px] w-[64px] items-center justify-center rounded-full border border-white/10 bg-[#0F1218]"
-            style={{
-              shadowColor: glowColor,
-              shadowOffset: { width: 0, height: 6 },
-              shadowOpacity: tone === "default" ? 0.16 : 0.24,
-              shadowRadius: tone === "default" ? 8 : 10,
-              elevation: tone === "default" ? 6 : 8,
-            }}
-          >
-            <Animated.View style={iconStyle}>
-              <Ionicons name={icon} size={22} color={iconColor} />
-            </Animated.View>
-          </View>
-        </Animated.View>
-        <Text className="mt-2 text-[13px] font-extrabold text-white">
-          {label}
-        </Text>
-        <Text className="mt-0.5 text-[11px] font-semibold text-white/66">
-          {hint}
-        </Text>
-      </Pressable>
-    </View>
+        <Ionicons name={icon} size={20} color={iconColor} />
+      </View>
+      <Text className="text-[14px] font-sg-bold text-sg-text">{label}</Text>
+      <Text className="mt-0.5 text-[12px] font-sg-medium text-sg-muted">
+        {hint}
+      </Text>
+    </PressableScale>
   );
 }
 
-function CommunityIconButton({ icon, label, onPress, accent = "#8FA1C9" }) {
+function CommunityIconButton({ icon, label, onPress }) {
   return (
     <PressableScale
       onPress={onPress}
       activeScale={0.95}
-      className="items-center"
+      accessibilityLabel={label}
+      className="min-h-[64px] items-center justify-center px-2"
     >
-      <View className="h-[54px] w-[54px] items-center justify-center rounded-full border border-white/14 bg-[#141925]">
-        <View
-          className="h-[42px] w-[42px] items-center justify-center rounded-full border border-white/10 bg-[#0F131D]"
-          style={{
-            shadowColor: accent,
-            shadowOffset: { width: 0, height: 5 },
-            shadowOpacity: 0.28,
-            shadowRadius: 8,
-            elevation: 5,
-          }}
-        >
-          <Ionicons name={icon} size={18} color={accent} />
-        </View>
-      </View>
-      <Text className="mt-1.5 text-[10px] font-semibold text-white/72">
+      <Ionicons name={icon} size={22} color="#47544D" />
+      <Text className="mt-1 text-[12px] font-sg-medium text-sg-muted">
         {label}
       </Text>
     </PressableScale>
   );
 }
 
+function MissionStep({ done, label }) {
+  return (
+    <View className="mr-4 flex-row items-center">
+      <Ionicons
+        name={done ? "checkmark-circle" : "ellipse-outline"}
+        size={16}
+        color={done ? "#8FD9B4" : "#B5C6BB"}
+      />
+      <Text className="ml-1.5 text-[13px] font-sg-medium text-[#F4EFE2]">
+        {label}
+      </Text>
+    </View>
+  );
+}
+
 const SecondPage = ({ route, navigation }) => {
-  const isDark = true;
+  const insets = useSafeAreaInsets();
   const isScreenFocused = useIsFocused();
   const { totalScore, awardCoinsWithMirror, coinStateReady } = useQuizContext();
   const {
@@ -262,7 +223,6 @@ const SecondPage = ({ route, navigation }) => {
     useState(PROFILE_DRAWER_WIDTH);
   const [isSecondPage] = useState(true);
   const [activeDock, setActiveDock] = useState("home");
-  const [dockWidth, setDockWidth] = useState(0);
   const [displayWalletScore, setDisplayWalletScore] = useState(
     coinStateReady ? totalScore : null
   );
@@ -331,8 +291,6 @@ const SecondPage = ({ route, navigation }) => {
   const streakIconScale = useSharedValue(1);
   const streakRippleScale = useSharedValue(0);
   const streakRippleOpacity = useSharedValue(0);
-  const dockIndicatorX = useSharedValue(0);
-  const coinShineX = useSharedValue(-52);
   const streakOverlayDepth = useSharedValue(0);
   const drawerOpenProgress = useSharedValue(0);
 
@@ -347,15 +305,6 @@ const SecondPage = ({ route, navigation }) => {
       { translateY: 72 - 120 * day7RewardFly.value },
       { scale: 1 - day7RewardFly.value * 0.2 },
     ],
-  }));
-
-  const dockIndicatorStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: dockIndicatorX.value }],
-  }));
-
-  const coinShineStyle = useAnimatedStyle(() => ({
-    transform: [{ translateX: coinShineX.value }],
-    opacity: 0.2,
   }));
 
   const streakIconAnimatedStyle = useAnimatedStyle(() => ({
@@ -531,14 +480,6 @@ const SecondPage = ({ route, navigation }) => {
   }, [navigation, walletPulseOnce, walletScale]);
 
   useEffect(() => {
-    coinShineX.value = withRepeat(
-      withTiming(58, { duration: 4200 }),
-      -1,
-      false
-    );
-  }, [coinShineX]);
-
-  useEffect(() => {
     recordActiveStudySeconds(trackedActiveSeconds);
   }, [recordActiveStudySeconds, trackedActiveSeconds]);
 
@@ -672,6 +613,10 @@ const SecondPage = ({ route, navigation }) => {
 
   useEffect(() => {
     if (isScreenFocused) {
+      // Dock items that open another screen must not stay highlighted on return.
+      setActiveDock((current) =>
+        current === "quiz" || current === "library" ? "home" : current
+      );
       return;
     }
     pendingDailyPopupRef.current = false;
@@ -776,7 +721,7 @@ const SecondPage = ({ route, navigation }) => {
   );
   const missionCompleted =
     dailyQuizCompleted && dailyUsageMinutes >= minUsageMinutes;
-  const missionLabel = missionCompleted ? "Completed" : "Start Mission";
+  const missionLabel = missionCompleted ? "Completed" : "Start mission";
 
   const openExternalWithFallback = useCallback(async (urls, failureMessage) => {
     for (const url of urls) {
@@ -1000,12 +945,12 @@ const SecondPage = ({ route, navigation }) => {
       Snackbar.show({
         text: `+${DAILY_CHECKIN_COINS} coins added`,
         duration: Snackbar.LENGTH_SHORT,
-        backgroundColor: "#151A24",
-        textColor: "#FFD700",
+        backgroundColor: "#FFFCF5",
+        textColor: "#9A6400",
       });
     } finally {
       const elapsedMs = Date.now() - startedAt;
-      const minVisibleMs = 6200;
+      const minVisibleMs = 1900; // lets the claim blast land; Home stays tappable meanwhile
       if (elapsedMs < minVisibleMs) {
         await new Promise((resolve) =>
           setTimeout(resolve, minVisibleMs - elapsedMs)
@@ -1153,6 +1098,8 @@ const SecondPage = ({ route, navigation }) => {
 
   const openStreakDetails = () => {
     navigation.navigate("StreakDetailsScreen", {
+      stateBoard,
+      classValue,
       streakCount,
       igniteToday,
       milestoneReached,
@@ -1266,23 +1213,12 @@ const SecondPage = ({ route, navigation }) => {
     navigation,
   ]);
 
-  useEffect(() => {
-    if (!dockWidth) return;
-    const activeIndex = Math.max(
-      0,
-      dockItems.findIndex((item) => item.key === activeDock)
-    );
-    const eachWidth = dockWidth / dockItems.length;
-    const nextX = eachWidth * activeIndex + eachWidth / 2 - 7;
-    dockIndicatorX.value = withSpring(nextX, { damping: 13, stiffness: 220 });
-  }, [activeDock, dockIndicatorX, dockWidth]);
-
   return (
-    <View className="flex-1 bg-[#0B0C10]">
-      <View className="flex-1 bg-[#0B0C10]">
+    <View className="flex-1 bg-sg-bg">
+      <View className="flex-1 bg-sg-bg">
         <Animated.View style={homeDepthStyle} className="flex-1">
           <ScreenLayoutContainer
-            variant="reward"
+            variant="home"
             contentClassName="px-4 pb-28"
             scroll
             className="bg-transparent"
@@ -1295,230 +1231,176 @@ const SecondPage = ({ route, navigation }) => {
               scrollEventThrottle: 16,
             }}
           >
-            <Animated.View entering={FadeInDown.duration(240)}>
-              <SGCard className="mb-4 border-white/10">
-                <View className="flex-row items-center">
-                  <TouchableOpacity
-                    onPress={openProfileDrawer}
-                    className="mr-3"
-                  >
-                    <LinearGradient
-                      colors={
-                        isDark
-                          ? ["#1F2252", "#00FFA3", "#B026FF"]
-                          : ["#3868FF", "#00D996", "#8B2CFF"]
-                      }
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 1 }}
-                      className="rounded-[20px] p-[1.8px]"
-                    >
-                      <Image
-                        source={avatarSource}
-                        className="h-[56px] w-[56px] rounded-[18px]"
-                        resizeMode="cover"
-                      />
-                    </LinearGradient>
-                  </TouchableOpacity>
+            <Animated.View
+              entering={FadeInDown.duration(240)}
+              className="mb-4 flex-row items-center"
+            >
+              <TouchableOpacity
+                onPress={openProfileDrawer}
+                accessibilityRole="button"
+                accessibilityLabel="Open profile"
+                className="mr-3"
+              >
+                <Image
+                  source={avatarSource}
+                  className="h-[52px] w-[52px] rounded-[16px] bg-sg-bg2"
+                  resizeMode="cover"
+                />
+              </TouchableOpacity>
 
-                  <View className="flex-1">
-                    <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">
-                      Exclusive Learning Club
-                    </Text>
-                    <Text
-                      numberOfLines={1}
-                      className="mt-1 text-[36px] font-black leading-[38px] text-sg-text dark:text-sgd-text"
-                    >{`Hi ${userName}!`}</Text>
-                    <Text className="text-[13px] font-semibold text-sg-muted dark:text-sgd-muted">
-                      {stateBoard} • {classValue}
-                    </Text>
-                  </View>
-
-                  <View className="ml-3 items-end">
-                    <PressableScale
-                      onPress={openStreakDetails}
-                      activeScale={0.96}
-                      className="mb-2"
-                    >
-                      <Animated.View
-                        ref={streakIconRef}
-                        collapsable={false}
-                        style={[
-                          streakIconAnimatedStyle,
-                          {
-                            shadowColor: "#FF7A3D",
-                            shadowOffset: { width: 0, height: 5 },
-                            shadowOpacity: 0.2,
-                            shadowRadius: 8,
-                            elevation: 6,
-                          },
-                        ]}
-                        className="flex-row items-center rounded-full border border-[#FF7A3D]/35 bg-[#2A1712]/75 px-2.5 py-1.5"
-                      >
-                        <Animated.View
-                          pointerEvents="none"
-                          style={streakRippleStyle}
-                          className="absolute -inset-1 rounded-full border border-[#FFB36A]/35 bg-[#FF7A3D]/18"
-                        />
-                        <Ionicons
-                          name="flame-outline"
-                          size={12}
-                          color="#FF9A3D"
-                        />
-                        <Text className="ml-1 text-[11px] font-extrabold text-[#FFD7BF]">
-                          {streakCount}
-                        </Text>
-                      </Animated.View>
-                    </PressableScale>
-
-                    <View ref={walletPillRef} collapsable={false}>
-                      <TouchableOpacity
-                        onPress={() => navigation.navigate("TotalScorePage")}
-                      >
-                        <Animated.View style={walletAnimatedStyle}>
-                          <View
-                            className="relative overflow-hidden rounded-full border border-white/15 bg-white/6 px-3.5 py-2.5"
-                            style={{
-                              shadowColor: "#FFD700",
-                              shadowOffset: { width: 0, height: 6 },
-                              shadowOpacity: 0.22,
-                              shadowRadius: 12,
-                              elevation: 8,
-                            }}
-                          >
-                            <Animated.View
-                              pointerEvents="none"
-                              style={coinShineStyle}
-                              className="absolute inset-y-0 left-0 w-8"
-                            >
-                              <LinearGradient
-                                colors={[
-                                  "rgba(255,255,255,0)",
-                                  "rgba(255,255,255,0.28)",
-                                  "rgba(255,255,255,0)",
-                                ]}
-                                start={{ x: 0, y: 0 }}
-                                end={{ x: 1, y: 0 }}
-                                className="h-full w-full"
-                              />
-                            </Animated.View>
-                            <View className="flex-row items-center">
-                              <Image
-                                source={CoinIcon}
-                                className="mr-1.5 h-[18px] w-[18px]"
-                              />
-                              <Text className="text-[16px] font-black text-[#FFD700]">
-                                {coinStateReady &&
-                                Number.isFinite(displayWalletScore)
-                                  ? displayWalletScore
-                                  : "…"}
-                              </Text>
-                            </View>
-                          </View>
-                        </Animated.View>
-                      </TouchableOpacity>
-                    </View>
-                  </View>
-                </View>
-
-                <Animated.View
-                  pointerEvents="none"
-                  style={day7RewardFlyStyle}
-                  className="absolute right-6 top-16 flex-row items-center rounded-full bg-white/15 px-2 py-1"
+              <View className="flex-1 pr-2">
+                <Text
+                  numberOfLines={1}
+                  className="text-[26px] leading-[30px] font-sg-display tracking-[-0.5px] text-sg-text"
                 >
-                  <Coin size={14} compact />
-                  <Text className="ml-1 text-[11px] font-black text-white">
-                    +{streakBonusCoins}
+                  {`Hi ${userName}`}
+                </Text>
+                <Text
+                  numberOfLines={1}
+                  className="text-[13px] font-sg-medium text-sg-muted"
+                >
+                  {stateBoard} · {classValue.replace("Class", " class")}
+                </Text>
+              </View>
+
+              <PressableScale
+                onPress={openStreakDetails}
+                activeScale={0.96}
+                accessibilityLabel={`Streak ${streakCount} days`}
+                className="mr-1.5"
+              >
+                <Animated.View
+                  ref={streakIconRef}
+                  collapsable={false}
+                  style={streakIconAnimatedStyle}
+                  className="h-10 flex-row items-center rounded-[12px] bg-sg-emberSoft px-2.5"
+                >
+                  <Animated.View
+                    pointerEvents="none"
+                    style={streakRippleStyle}
+                    className="absolute -inset-1 rounded-[14px] border border-sg-ember/35 bg-sg-ember/18"
+                  />
+                  <Ionicons name="flame" size={15} color="#C4551A" />
+                  <Text className="ml-1 text-[14px] font-sg-bold text-sg-ember">
+                    {streakCount}
                   </Text>
                 </Animated.View>
+              </PressableScale>
 
-                <View className="mt-4 rounded-[18px] border border-white/12 bg-[#111521]/92 p-3.5">
-                  <View className="flex-row items-start justify-between">
-                    <View className="flex-1 pr-3">
-                      <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-[#8D97B0]">
-                        Today&apos;s Mission
-                      </Text>
-                      <Text className="mt-1 text-[15px] font-extrabold text-white">
-                        Complete 1 quiz + 30 mins study
-                      </Text>
-                      <Text className="mt-1 text-[12px] font-semibold text-[#A8B2CA]">
-                        Reward: +{streakBonusCoins} coins on streak milestone
-                      </Text>
-                    </View>
-                    <View className="rounded-full border border-[#00FFA3]/35 bg-[#103428]/70 px-2.5 py-1">
-                      <Text className="text-[12px] font-black text-[#00FFA3]">
-                        {missionProgress}%
-                      </Text>
-                    </View>
-                  </View>
-
-                  <View className="mt-3 h-2 overflow-hidden rounded-full border border-white/10 bg-white/8">
-                    <LinearGradient
-                      colors={["#B026FF", "#00FFA3"]}
-                      start={{ x: 0, y: 0 }}
-                      end={{ x: 1, y: 0 }}
-                      className="h-full rounded-full"
-                      style={{ width: `${Math.max(8, missionProgress)}%` }}
-                    />
-                  </View>
-
-                  <View className="mt-3 flex-row items-center justify-between">
-                    <Text className="text-[12px] font-semibold text-[#B8C2D8]">
-                      Quiz: {dailyQuizCompleted ? "Done" : "Pending"}
-                      {"  "}|{"  "}Usage: {dailyUsageMinutes}/{minUsageMinutes}m
-                    </Text>
-                    <TouchableOpacity
-                      onPress={openTodayMission}
-                      className={`rounded-full border px-3.5 py-1.5 ${
-                        missionCompleted
-                          ? "border-[#00FFA3]/40 bg-[#113A2D]"
-                          : "border-white/14 bg-white/8"
-                      }`}
+              <View ref={walletPillRef} collapsable={false}>
+                <TouchableOpacity
+                  onPress={() => navigation.navigate("TotalScorePage")}
+                  accessibilityRole="button"
+                  accessibilityLabel="Open coin wallet"
+                >
+                  <Animated.View
+                    style={walletAnimatedStyle}
+                    className="h-10 flex-row items-center rounded-[12px] bg-sg-marigoldSoft px-2.5"
+                  >
+                    <Image source={CoinIcon} className="mr-1 h-[18px] w-[18px]" />
+                    <Text
+                      className="text-[14px] font-sg-bold text-sg-accent"
+                      style={{ fontVariant: ["tabular-nums"] }}
                     >
-                      <Text
-                        className={`text-[12px] font-extrabold ${
-                          missionCompleted ? "text-[#00FFA3]" : "text-white"
-                        }`}
-                      >
-                        {missionLabel}
-                      </Text>
-                    </TouchableOpacity>
-                  </View>
+                      {coinStateReady && Number.isFinite(displayWalletScore)
+                        ? displayWalletScore
+                        : "…"}
+                    </Text>
+                  </Animated.View>
+                </TouchableOpacity>
+              </View>
 
-                  <View className="mt-3 rounded-xl border border-dashed border-white/16 bg-black/24 px-3 py-2">
-                    <Text className="text-[10px] font-bold uppercase tracking-[1.1px] text-[#8D97B0]">
-                      {tomorrowTeaser.label}
-                    </Text>
-                    <Text className="mt-1 text-[12px] font-semibold text-[#C7D1E6]">
-                      {tomorrowTeaser.rewardHint}
-                    </Text>
-                  </View>
-                </View>
-              </SGCard>
+              <Animated.View
+                pointerEvents="none"
+                style={day7RewardFlyStyle}
+                className="absolute right-6 top-16 flex-row items-center rounded-[10px] bg-sg-board px-2 py-1"
+              >
+                <Coin size={14} compact />
+                <Text className="ml-1 text-[12px] font-sg-bold text-[#F4EFE2]">
+                  +{streakBonusCoins}
+                </Text>
+              </Animated.View>
             </Animated.View>
 
-            <Animated.View entering={FadeInDown.delay(35).duration(240)}>
-              <View className="mb-4 flex-row items-start justify-between px-1">
-                <ActionOrb
-                  icon="sparkles-outline"
-                  label="Quick Quiz"
-                  hint="Start now"
-                  tone="quiz"
-                  onPress={openQuizZoneScreen}
-                />
-                <ActionOrb
-                  icon="library-outline"
-                  label="Materials"
-                  hint="Smart study"
-                  onPress={() => handleDockPress("library")}
-                />
-                <ActionOrb
-                  icon="wallet-outline"
-                  label="Rewards"
-                  hint="Coins wallet"
-                  tone="rewards"
-                  onPress={() => navigation.navigate("TotalScorePage")}
+            <Animated.View
+              entering={FadeInDown.delay(35).duration(240)}
+              className="mb-3 overflow-hidden rounded-[22px] bg-sg-board p-5"
+            >
+              <View className="flex-row items-start justify-between">
+                <Text className="text-[13px] font-sg-semibold text-[#F2B632]">
+                  Today&apos;s mission
+                </Text>
+                <Text
+                  className="text-[13px] font-sg-bold text-[#F4EFE2]"
+                  style={{ fontVariant: ["tabular-nums"] }}
+                >
+                  {missionProgress}%
+                </Text>
+              </View>
+              <Text className="mt-2 text-[26px] leading-[31px] font-sg-display tracking-[-0.4px] text-[#F4EFE2]">
+                One quiz, thirty minutes of study
+              </Text>
+
+              <View className="mt-4 h-1.5 overflow-hidden rounded-full bg-[#F4EFE2]/16">
+                <View
+                  className="h-full rounded-full bg-[#F2B632]"
+                  style={{ width: `${missionProgress}%` }}
                 />
               </View>
+
+              <View className="mt-3.5 flex-row flex-wrap">
+                <MissionStep done={dailyQuizCompleted} label="1 quiz" />
+                <MissionStep
+                  done={dailyUsageMinutes >= minUsageMinutes}
+                  label={`${dailyUsageMinutes}/${minUsageMinutes} min`}
+                />
+              </View>
+
+              <TouchableOpacity
+                onPress={openTodayMission}
+                accessibilityRole="button"
+                className={`mt-4 min-h-[50px] flex-row items-center justify-center rounded-[14px] ${
+                  missionCompleted ? "bg-[#1C4336]" : "bg-[#F2B632]"
+                }`}
+              >
+                <Text
+                  className={`text-[15px] font-sg-bold ${
+                    missionCompleted ? "text-[#8FD9B4]" : "text-[#14342A]"
+                  }`}
+                >
+                  {missionLabel}
+                </Text>
+              </TouchableOpacity>
+
+              <Text className="mt-3 text-[13px] leading-[18px] font-sg-medium text-[#B5C6BB]">
+                {tomorrowTeaser.rewardHint}
+              </Text>
+            </Animated.View>
+
+            <Animated.View
+              entering={FadeInDown.delay(70).duration(240)}
+              className="mb-5 flex-row gap-2.5"
+            >
+              <ActionTile
+                icon="flash-outline"
+                label="Quick quiz"
+                hint="Start now"
+                tone="quiz"
+                onPress={openQuizZoneScreen}
+              />
+              <ActionTile
+                icon="library-outline"
+                label="Materials"
+                hint="Textbooks"
+                onPress={() => handleDockPress("library")}
+              />
+              <ActionTile
+                icon="wallet-outline"
+                label="Rewards"
+                hint="Your coins"
+                tone="rewards"
+                onPress={() => navigation.navigate("TotalScorePage")}
+              />
             </Animated.View>
 
             <Animated.View entering={FadeInDown.delay(150).duration(240)}>
@@ -1551,165 +1433,84 @@ const SecondPage = ({ route, navigation }) => {
             </Animated.View>
 
             <Animated.View entering={FadeInDown.delay(170).duration(240)}>
-              <SGCard className="mb-4">
-                <Text className="text-[11px] font-bold uppercase tracking-[1.2px] text-sg-muted dark:text-sgd-muted">
-                  Community
-                </Text>
-                <Text className="mt-1 text-[23px] font-extrabold leading-[28px] text-sg-text dark:text-sgd-text">
-                  StudyGarage Club
-                </Text>
-                <Text className="mt-1 text-[13px] font-medium text-sg-muted dark:text-sgd-muted">
-                  Daily updates, exam tips, and student discussions
-                </Text>
-
+              <View className="mb-4 mt-2">
+                <SGSectionHeader
+                  title="StudyGarage club"
+                  subtitle="Daily updates, exam tips and student discussions"
+                  className="mb-3"
+                />
                 <PressableScale
                   onPress={openWhatsApp}
-                  activeScale={0.95}
-                  className="mt-4 overflow-hidden rounded-full"
+                  activeScale={0.98}
+                  className="min-h-[56px] flex-row items-center justify-between rounded-[16px] border border-sg-border bg-sg-surface px-4"
                 >
-                  <LinearGradient
-                    colors={["#2B1D49", "#27416B", "#1A4F44"]}
-                    start={{ x: 0, y: 0.4 }}
-                    end={{ x: 1, y: 1 }}
-                    className="rounded-full p-[1px]"
-                  >
-                    <View className="min-h-[52px] flex-row items-center justify-between rounded-full border border-white/12 bg-[#111726] px-4">
-                      <View className="flex-row items-center">
-                        <Ionicons
-                          name="logo-whatsapp"
-                          size={18}
-                          color="#00FFA3"
-                        />
-                        <Text className="ml-2 text-[15px] font-extrabold text-white">
-                          Join Community
-                        </Text>
-                      </View>
-                      <Ionicons
-                        name="arrow-forward"
-                        size={18}
-                        color="#C7D3EE"
-                      />
-                    </View>
-                  </LinearGradient>
+                  <View className="flex-row items-center">
+                    <Ionicons name="logo-whatsapp" size={20} color="#17694F" />
+                    <Text className="ml-2.5 text-[15px] font-sg-bold text-sg-text">
+                      Join the community
+                    </Text>
+                  </View>
+                  <Ionicons name="arrow-forward" size={18} color="#5F6A63" />
                 </PressableScale>
-
-                <View className="mt-4 flex-row items-start justify-between">
+                <View className="mt-2 flex-row items-start justify-around">
                   <CommunityIconButton
                     icon="logo-instagram"
                     label="Instagram"
                     onPress={openInstagram}
-                    accent="#D472FF"
                   />
                   <CommunityIconButton
                     icon="logo-youtube"
                     label="YouTube"
                     onPress={openYouTube}
-                    accent="#FF6B6B"
                   />
                   <CommunityIconButton
                     icon="logo-linkedin"
                     label="LinkedIn"
                     onPress={openLinkedIn}
-                    accent="#4DA1FF"
                   />
                   <CommunityIconButton
                     icon="paper-plane-outline"
                     label="Telegram"
                     onPress={openTelegram}
-                    accent="#67D4FF"
                   />
                 </View>
-              </SGCard>
+              </View>
             </Animated.View>
           </ScreenLayoutContainer>
 
-          <View pointerEvents="none" className="absolute inset-0">
-            <LinearGradient
-              colors={[
-                "rgba(176,38,255,0.22)",
-                "rgba(11,12,16,0.04)",
-                "rgba(11,12,16,0)",
-              ]}
-              start={{ x: 0.5, y: 0 }}
-              end={{ x: 0.5, y: 1 }}
-              className="absolute -top-20 left-[-16%] h-[340px] w-[132%] rounded-full"
-            />
-            <LinearGradient
-              colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.58)"]}
-              start={{ x: 0.5, y: 0 }}
-              end={{ x: 0.5, y: 1 }}
-              className="absolute bottom-0 left-0 right-0 h-[270px]"
-            />
-          </View>
-
-          <View className="pointer-events-box-none absolute bottom-4 left-3 right-3">
-            <View
-              className="rounded-[28px] border border-white/12 bg-[#141416]/92 px-2 py-2"
-              style={{
-                shadowColor: "#000000",
-                shadowOffset: { width: 0, height: 10 },
-                shadowOpacity: 0.42,
-                shadowRadius: 18,
-                elevation: 14,
-              }}
-            >
-              <View
-                className="flex-row items-center justify-between"
-                onLayout={(event) =>
-                  setDockWidth(event.nativeEvent.layout.width)
-                }
-              >
-                <Animated.View
-                  pointerEvents="none"
-                  className="absolute bottom-0 h-1.5 w-3.5 rounded-full bg-[#B026FF]"
-                  style={dockIndicatorStyle}
-                />
-                {dockItems.map((item) => {
-                  const active = activeDock === item.key;
-                  return (
-                    <Pressable
-                      key={item.key}
-                      onPress={() => handleDockPress(item.key)}
-                      className={`min-w-[58px] items-center rounded-[18px] px-1 py-1.5 ${
-                        active ? "bg-[#251433]" : ""
+          <View className="pointer-events-box-none absolute bottom-0 left-0 right-0 border-t border-sg-border bg-sg-surface px-2 pb-3 pt-2" style={{ paddingBottom: Math.max(insets.bottom, 10) }}>
+            <View className="flex-row items-center justify-between">
+              {dockItems.map((item) => {
+                const active = activeDock === item.key;
+                return (
+                  <Pressable
+                    key={item.key}
+                    onPress={() => handleDockPress(item.key)}
+                    accessibilityRole="tab"
+                    accessibilityState={{ selected: active }}
+                    className="flex-1 items-center py-0.5"
+                  >
+                    <View
+                      className={`h-8 w-14 items-center justify-center rounded-[10px] ${
+                        active ? "bg-sg-primarySoft" : ""
                       }`}
-                      style={
-                        active
-                          ? {
-                              shadowColor: "#B026FF",
-                              shadowOffset: { width: 0, height: 6 },
-                              shadowOpacity: 0.36,
-                              shadowRadius: 10,
-                              elevation: 8,
-                            }
-                          : undefined
-                      }
                     >
-                      <View
-                        className="items-center"
-                        style={{
-                          transform: [{ scale: active ? 1.1 : 1 }],
-                        }}
-                      >
-                        <Ionicons
-                          name={item.icon}
-                          size={20}
-                          color={active ? "#B026FF" : "#9AA3B6"}
-                        />
-                        <Text
-                          className={`mt-0.5 text-[11px] font-semibold ${
-                            active
-                              ? "text-[#B026FF]"
-                              : "text-sg-muted dark:text-sgd-muted"
-                          }`}
-                        >
-                          {item.label}
-                        </Text>
-                      </View>
-                    </Pressable>
-                  );
-                })}
-              </View>
+                      <Ionicons
+                        name={active ? item.icon.replace("-outline", "") : item.icon}
+                        size={20}
+                        color={active ? "#17694F" : "#5F6A63"}
+                      />
+                    </View>
+                    <Text
+                      className={`mt-0.5 text-[12px] ${
+                        active ? "font-sg-bold text-sg-primary" : "font-sg-medium text-sg-muted"
+                      }`}
+                    >
+                      {item.label}
+                    </Text>
+                  </Pressable>
+                );
+              })}
             </View>
           </View>
         </Animated.View>
@@ -1718,12 +1519,12 @@ const SecondPage = ({ route, navigation }) => {
           <CoinFlyOverlay
             startLayout={coinFlyStartLayout}
             endLayout={coinFlyEndLayout}
-            count={16}
-            minSize={19}
-            maxSize={28}
-            delayStepMs={34}
-            baseDurationMs={820}
-            durationJitterMs={150}
+            count={6}
+            minSize={20}
+            maxSize={26}
+            delayStepMs={55}
+            baseDurationMs={620}
+            durationJitterMs={90}
             arcMin={72}
             arcJitter={64}
             driftBase={14}
@@ -1801,7 +1602,7 @@ const SecondPage = ({ route, navigation }) => {
                 right: 0,
                 bottom: 0,
                 left: 0,
-                backgroundColor: "#000000",
+                backgroundColor: "#FFFCF5",
                 zIndex: 1900,
                 elevation: 10,
               },
@@ -1833,9 +1634,9 @@ const SecondPage = ({ route, navigation }) => {
                 left: 0,
                 bottom: 0,
                 width: drawerPanelWidth || PROFILE_DRAWER_WIDTH,
-                backgroundColor: "#0F1117",
+                backgroundColor: "#FFFCF5",
                 borderRightWidth: 1,
-                borderRightColor: "rgba(255,255,255,0.12)",
+                borderRightColor: "rgba(29,42,36,0.12)",
                 zIndex: 2000,
                 elevation: 22,
               },

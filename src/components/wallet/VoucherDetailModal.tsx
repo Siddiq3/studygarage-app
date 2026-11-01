@@ -47,48 +47,48 @@ export default function VoucherDetailModal({
       animationType="fade"
       onRequestClose={onCancel}
     >
-      <View className="flex-1 items-center justify-center bg-black/70 px-5">
+      <View className="flex-1 items-center justify-center bg-sg-bg2 px-5">
         <View
-          className="w-full rounded-[24px] border p-4"
+          className="w-full rounded-[18px] border p-4"
           style={{
-            backgroundColor: "#0B0C10",
-            borderColor: "rgba(255,255,255,0.12)",
+            backgroundColor: "#FFFCF5",
+            borderColor: "rgba(29,42,36,0.12)",
           }}
         >
           <View className="flex-row items-center justify-between">
-            <View className="h-[46px] w-[46px] items-center justify-center rounded-[14px] border border-white/12 bg-[#171B25]">
-              <Ionicons name={providerIcon} size={22} color="#8F74FF" />
+            <View className="h-[46px] w-[46px] items-center justify-center rounded-[14px] border border-sg-border bg-[#FFFCF5]">
+              <Ionicons name={providerIcon} size={22} color="#17694F" />
             </View>
             <Pressable
               onPress={onCancel}
-              className="h-[44px] w-[44px] items-center justify-center rounded-full border border-white/12 bg-white/5"
+              className="h-[44px] w-[44px] items-center justify-center rounded-full border border-sg-border bg-sg-bg2"
               accessibilityRole="button"
               accessibilityLabel="Close redeem modal"
             >
-              <Ionicons name="close" size={18} color="#CCD5EB" />
+              <Ionicons name="close" size={18} color="#1D2A24" />
             </Pressable>
           </View>
 
-          <Text className="mt-3 text-[18px] font-extrabold text-white">
+          <Text className="mt-3 text-[18px] font-sg-extrabold text-sg-text">
             {voucher.title}
           </Text>
-          <Text className="mt-1 text-[13px] font-semibold text-[#B0BAD2]">{`₹${voucher.amount} voucher`}</Text>
+          <Text className="mt-1 text-[13px] font-sg-semibold text-[#1D2A24]">{`₹${voucher.amount} voucher`}</Text>
 
-          <View className="mt-3 rounded-[16px] border border-white/10 bg-white/6 p-3">
-            <Text className="text-[12px] font-bold uppercase tracking-[1px] text-[#A9B4CC]">
+          <View className="mt-3 rounded-[16px] border border-sg-border bg-sg-bg2 p-3">
+            <Text className="text-[12px] font-sg-bold text-[#1D2A24]">
               Cost
             </Text>
-            <Text className="mt-1 text-[16px] font-extrabold text-white">
+            <Text className="mt-1 text-[16px] font-sg-extrabold text-sg-text">
               {voucher.coinCost} coins ({formatApproxRupees(voucher.coinCost)})
             </Text>
-            <Text className="mt-1 text-[11px] font-semibold text-[#FFD700]">
+            <Text className="mt-1 text-[12px] font-sg-semibold text-[#9A6400]">
               {COINS_FOR_TEN_RUPEES} coins = ₹10
             </Text>
           </View>
 
           {!hasEnoughCoins ? (
-            <View className="mt-3 rounded-[14px] border border-[#FF6E87]/30 bg-[#311926] px-3 py-2.5">
-              <Text className="text-[12px] font-semibold text-[#FFD4DF]">
+            <View className="mt-3 rounded-[14px] border border-[#BF3F2B]/30 bg-[#FFFCF5] px-3 py-2.5">
+              <Text className="text-[12px] font-sg-semibold text-[#BF3F2B]">
                 Insufficient Balance! You need {shortfall} more coins.
               </Text>
             </View>
@@ -114,10 +114,10 @@ export default function VoucherDetailModal({
                       width={16}
                       height={16}
                       borderRadius={8}
-                      baseColor="rgba(255,255,255,0.14)"
-                      highlightColor="rgba(255,255,255,0.34)"
+                      baseColor="rgba(29,42,36,0.14)"
+                      highlightColor="rgba(29,42,36,0.34)"
                     />
-                    <Text className="ml-2 text-[13px] font-extrabold text-white">
+                    <Text className="ml-2 text-[13px] font-sg-extrabold text-sg-text">
                       Confirming...
                     </Text>
                   </View>

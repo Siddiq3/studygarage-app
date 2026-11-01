@@ -1,17 +1,6 @@
-import { ScrollView, Text, View} from 'react-native';
-import React, { useEffect } from "react";
+import React from 'react';
+import ComingSoonScreen from '../../src/features/chapters/ComingSoonScreen';
 
-
-const Six = () => {
-
-    return (
-        <View>
-
-            <ScrollView>
-                <Text style={{ fontSize: 40 }}> UPLOADED SHORTLY...</Text>
-            </ScrollView>
-            </View>
-    );
-}
+const Six = () => <ComingSoonScreen title={"Mathematics (TM)"} />;
 
 export default Six;

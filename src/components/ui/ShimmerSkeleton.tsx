@@ -34,8 +34,8 @@ export default function ShimmerSkeleton({
   borderRadius = 10,
   className,
   style,
-  baseColor = "rgba(255,255,255,0.10)",
-  highlightColor = "rgba(255,255,255,0.30)",
+  baseColor = "rgba(29,42,36,0.07)",
+  highlightColor = "rgba(255,252,245,0.75)",
 }: Props) {
   const reducedMotionEnabled = useReducedMotionPreference();
   const shimmerProgress = useSharedValue(-1);
@@ -101,9 +101,9 @@ export default function ShimmerSkeleton({
       >
         <LinearGradient
           colors={[
-            "rgba(255,255,255,0)",
+            "rgba(255,252,245,0)",
             highlightColor,
-            "rgba(255,255,255,0)",
+            "rgba(255,252,245,0)",
           ]}
           start={{ x: 0, y: 0.5 }}
           end={{ x: 1, y: 0.5 }}

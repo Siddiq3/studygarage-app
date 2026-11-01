@@ -1,72 +1,59 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { Text, TouchableOpacity, View } from "react-native";
+import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { Image, Text, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { MotiView } from "moti";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import * as Haptics from "expo-haptics";
 import Animated, {
-  SensorType,
-  useAnimatedSensor,
+  Easing,
   useAnimatedStyle,
+  useSharedValue,
+  withDelay,
+  withSequence,
+  withTiming,
 } from "react-native-reanimated";
-import GlowBackground from "../../components/rewards/GlowBackground";
-import CoinDropAnimation from "../../components/rewards/CoinDropAnimation";
-import CountUpNumber from "../../components/rewards/CountUpNumber";
-import WalletPill from "../../components/rewards/WalletPill";
-import PrimaryCTAButton from "../../components/rewards/PrimaryCTAButton";
+import SGButton from "../../design-system/components/SGButton";
+import useReducedMotionPreference from "../../hooks/useReducedMotionPreference";
 import { useFirstInstallReward } from "../../services/rewards/useFirstInstallReward";
-import useAppSound from "../../hooks/useAppSound";
-import ShimmerSkeleton from "../../components/ui/ShimmerSkeleton";
 
+const COIN_LOGO = require("../../../assets/branding/chalk/coin-sg.png");
+const COIN_SIZE = 148;
+const START_DELAY_MS = 250;
+const FALL_MS = 1300;
+const LAND_MS = START_DELAY_MS + FALL_MS;
+const NUMBER_MS = LAND_MS + 350;
+const WALLET_MS = NUMBER_MS + 750;
+const BUTTON_MS = WALLET_MS + 350;
+const EASE_OUT = Easing.out(Easing.cubic);
+const EASE_SETTLE = Easing.bezier(0.22, 0.8, 0.3, 1);
+
+// One coin, transform and opacity only, nothing loops: this has to stay smooth on budget phones.
 export default function WelcomeRewardScreen({ navigation, route, onContinue }) {
   const insets = useSafeAreaInsets();
-
+  const reducedMotion = useReducedMotionPreference();
   const {
     isReady,
     shouldShowWelcomeReward,
     welcomeRewardPayload,
     completeWelcomeReward,
   } = useFirstInstallReward();
-  const { playSound } = useAppSound();
 
-  const hasRewardPersistedRef = useRef(false);
-  const [startCount, setStartCount] = useState(false);
-  const [startFly, setStartFly] = useState(false);
-  const [showWelcomeBurst, setShowWelcomeBurst] = useState(false);
-  const [showReferralBurst, setShowReferralBurst] = useState(false);
-  const [burstToken, setBurstToken] = useState(0);
-  const [walletPopToken, setWalletPopToken] = useState(0);
-  const [walletDeltaToken, setWalletDeltaToken] = useState(0);
-  const [showClaimed, setShowClaimed] = useState(false);
-  const [showCTA, setShowCTA] = useState(false);
-  const tiltSensor = useAnimatedSensor(SensorType.ROTATION, { interval: 80 });
-
-  const baseWelcomeCoins = welcomeRewardPayload?.baseWelcomeCoins ?? 50;
-  const referralBonusCoins = welcomeRewardPayload?.referralBonusCoins ?? 0;
   const totalWelcomeCoins = welcomeRewardPayload?.totalWelcomeCoins ?? 50;
+  const referralBonusCoins = welcomeRewardPayload?.referralBonusCoins ?? 0;
+  const firstName = String(route?.params?.userName || "").trim();
 
-  const coinParallaxStyle = useAnimatedStyle(() => {
-    const sensorValue = tiltSensor.sensor.value || {};
-    const roll = sensorValue.roll || 0;
-    const pitch = sensorValue.pitch || 0;
-    const translateX = Math.max(-6, Math.min(6, roll * 8));
-    const translateY = Math.max(-6, Math.min(6, pitch * 7));
+  const [walletBalance, setWalletBalance] = useState(0);
+  const hasRewardPersistedRef = useRef(false);
+  const startedRef = useRef(false);
 
-    return {
-      transform: [{ translateX }, { translateY }],
-    };
-  });
+  const coin = useSharedValue(0);
+  const ring = useSharedValue(0);
+  const amount = useSharedValue(0);
+  const wallet = useSharedValue(1);
+  const button = useSharedValue(0);
 
   const nextRouteParams = useMemo(
-    () => ({
-      ...(route?.params || {}),
-      walletPulseOnce: true,
-    }),
+    () => ({ ...(route?.params || {}), walletPulseOnce: true }),
     [route?.params]
   );
 
@@ -78,294 +65,181 @@ export default function WelcomeRewardScreen({ navigation, route, onContinue }) {
 
   const continueForward = useCallback(async () => {
     await persistWelcomeRewardOnce();
-
     if (typeof onContinue === "function") {
       onContinue();
       return;
     }
-
     navigation.replace("SecondPage", nextRouteParams);
   }, [navigation, nextRouteParams, onContinue, persistWelcomeRewardOnce]);
 
   useEffect(() => {
-    if (!isReady) return;
-    if (shouldShowWelcomeReward) return;
+    if (!isReady || shouldShowWelcomeReward) return;
     navigation.replace("SecondPage", nextRouteParams);
   }, [isReady, navigation, nextRouteParams, shouldShowWelcomeReward]);
 
   useEffect(() => {
-    if (!isReady || !shouldShowWelcomeReward) return;
+    if (!isReady || !shouldShowWelcomeReward || startedRef.current) return undefined;
+    startedRef.current = true;
 
-    const welcomeBurstTimer = setTimeout(() => {
-      setShowWelcomeBurst(true);
-      setBurstToken((prev) => prev + 1);
+    const credit = () => {
+      setWalletBalance(totalWelcomeCoins);
+      persistWelcomeRewardOnce().catch(() => {});
+    };
+
+    if (reducedMotion) {
+      coin.value = 1;
+      amount.value = 1;
+      button.value = 1;
+      credit();
+      return undefined;
+    }
+
+    coin.value = withDelay(
+      START_DELAY_MS,
+      withTiming(1, { duration: FALL_MS, easing: EASE_SETTLE })
+    );
+    ring.value = withDelay(LAND_MS - 150, withTiming(1, { duration: 1000, easing: EASE_OUT }));
+    amount.value = withDelay(NUMBER_MS, withTiming(1, { duration: 500, easing: EASE_OUT }));
+    button.value = withDelay(BUTTON_MS, withTiming(1, { duration: 400, easing: EASE_OUT }));
+
+    const landTimer = setTimeout(() => {
       Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
-      // Sound disabled for now.
-      // playSound("welcome_reward").catch(() => {});
-    }, 420);
-
-    const referralBurstTimer =
-      referralBonusCoins > 0
-        ? setTimeout(() => {
-            setShowReferralBurst(true);
-            setBurstToken((prev) => prev + 1);
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(
-              () => {}
-            );
-          }, 980)
-        : null;
-
-    const countTimer = setTimeout(
-      () => {
-        setStartCount(true);
-      },
-      referralBonusCoins > 0 ? 1580 : 1120
-    );
-
-    const ctaTimer = setTimeout(
-      () => {
-        setShowCTA(true);
-      },
-      referralBonusCoins > 0 ? 2500 : 2040
-    );
+    }, LAND_MS - 150);
+    const walletTimer = setTimeout(() => {
+      credit();
+      wallet.value = withSequence(
+        withTiming(1.12, { duration: 180, easing: EASE_OUT }),
+        withTiming(1, { duration: 280, easing: EASE_OUT })
+      );
+    }, WALLET_MS);
 
     return () => {
-      clearTimeout(welcomeBurstTimer);
-      if (referralBurstTimer) clearTimeout(referralBurstTimer);
-      clearTimeout(countTimer);
-      clearTimeout(ctaTimer);
+      clearTimeout(landTimer);
+      clearTimeout(walletTimer);
     };
-  }, [
-    isReady,
-    playSound,
-    referralBonusCoins,
-    shouldShowWelcomeReward,
-  ]);
+  }, [isReady, shouldShowWelcomeReward, reducedMotion]);
 
-  const handleCoinArrive = useCallback(() => {
-    setWalletPopToken((prev) => prev + 1);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
-    // Sound disabled for now.
-    // playSound("coin_land").catch(() => {});
-  }, [playSound]);
-
-  const handleFlyComplete = useCallback(async () => {
-    await persistWelcomeRewardOnce();
-    setShowClaimed(true);
-    setShowCTA(true);
-    setWalletDeltaToken((prev) => prev + 1);
-    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Medium).catch(() => {});
-  }, [persistWelcomeRewardOnce]);
-
-  const handleCounterComplete = useCallback(() => {
-    setStartFly(true);
-  }, []);
-
-  const handleSkip = useCallback(() => {
-    continueForward().catch(() => {});
-  }, [continueForward]);
-
-  if (!isReady) {
-    return (
-      <View
-        className="flex-1 items-center justify-center bg-[#070A10]"
-        style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}
-      >
-        <GlowBackground />
-        <View className="w-[220px]">
-          <ShimmerSkeleton height={18} borderRadius={10} />
-          <ShimmerSkeleton height={18} borderRadius={10} className="mt-3" />
-        </View>
-        <Text className="mt-3 text-[14px] font-semibold text-white/70">
-          Preparing reward...
-        </Text>
-      </View>
-    );
-  }
+  const coinStyle = useAnimatedStyle(() => ({
+    opacity: Math.min(1, coin.value * 4),
+    transform: [
+      { perspective: 800 },
+      { translateY: (1 - coin.value) * -190 },
+      { rotateY: `${(1 - coin.value) * 360}deg` },
+      { scale: 0.8 + coin.value * 0.2 },
+    ],
+  }));
+  const ringStyle = useAnimatedStyle(() => ({
+    opacity: ring.value === 0 ? 0 : (1 - ring.value) * 0.5,
+    transform: [{ scale: 1 + ring.value * 0.85 }],
+  }));
+  const amountStyle = useAnimatedStyle(() => ({
+    opacity: amount.value,
+    transform: [{ translateY: (1 - amount.value) * 10 }],
+  }));
+  const walletStyle = useAnimatedStyle(() => ({
+    transform: [{ scale: wallet.value }],
+  }));
+  const buttonStyle = useAnimatedStyle(() => ({
+    opacity: button.value,
+    transform: [{ translateY: (1 - button.value) * 8 }],
+  }));
 
   return (
     <View
-      className="flex-1 bg-[#070A10]"
-      style={{ paddingTop: insets.top + 8, paddingBottom: insets.bottom + 14 }}
+      className="flex-1 bg-[#14342A] px-5"
+      style={{ paddingTop: insets.top + 12, paddingBottom: insets.bottom + 16 }}
     >
-      <GlowBackground />
+      <StatusBar style="light" />
 
-      <View className="px-4">
-        <View className="flex-row items-center justify-between">
-          <TouchableOpacity
-            onPress={handleSkip}
-            className="rounded-full border border-white/10 bg-white/5 px-3 py-1.5"
+      <View className="h-10 flex-row justify-end">
+        <Animated.View
+          style={walletStyle}
+          accessibilityLabel={`Wallet: ${walletBalance} coins`}
+          className="h-10 flex-row items-center rounded-[12px] bg-[#1C4336] px-3"
+        >
+          <Ionicons name="wallet-outline" size={17} color="#F4EFE2" />
+          <Text
+            className="ml-1.5 text-[15px] font-sg-bold text-[#F2B632]"
+            style={{ fontVariant: ["tabular-nums"] }}
           >
-            <Text className="text-[12px] font-bold text-white/80">Skip</Text>
-          </TouchableOpacity>
-          <WalletPill
-            balance={totalWelcomeCoins}
-            popToken={walletPopToken}
-            deltaToken={walletDeltaToken}
-            deltaAmount={totalWelcomeCoins}
-            showClaimed={showClaimed}
-          />
-        </View>
+            {walletBalance}
+          </Text>
+        </Animated.View>
       </View>
 
-      <View className="flex-1 justify-between px-4">
-        <View className="pt-4">
-          <MotiView
-            from={{ opacity: 0, translateY: 20 }}
-            animate={{ opacity: 1, translateY: 0 }}
-            transition={{ type: "timing", duration: 460 }}
-            className="items-center"
-          >
-            <View className="relative items-center">
-              <Text
-                className="absolute text-center text-[38px] font-black leading-[42px] text-white/28"
-                style={{ transform: [{ translateX: 2 }, { translateY: 2 }] }}
-              >
-                Welcome Pack
-              </Text>
-              <Text className="text-center text-[38px] font-black leading-[42px] tracking-[-0.6px] text-white">
-                Welcome Pack
-              </Text>
-            </View>
-            <Text className="mt-2 text-center text-[15px] font-semibold text-[#BAC4DA]">
-              Your learning wallet just got a boost
-            </Text>
-            <View className="mt-4 flex-row flex-wrap items-center justify-center gap-2">
-              <View className="rounded-full border border-[#8FA1C9]/35 bg-white/6 px-3 py-1.5">
-                <Text className="text-[11px] font-bold text-[#E3EAFB]">
-                  Welcome bonus +{baseWelcomeCoins}
-                </Text>
-              </View>
-              {referralBonusCoins > 0 ? (
-                <View className="rounded-full border border-[#FFD47A]/45 bg-[#2B2414]/65 px-3 py-1.5">
-                  <Text className="text-[11px] font-bold text-[#FFE39A]">
-                    Referral bonus +{referralBonusCoins}
-                  </Text>
-                </View>
-              ) : null}
-            </View>
-          </MotiView>
-        </View>
+      <View className="mt-4">
+        <Text className="text-[36px] font-sg-display leading-[40px] tracking-[-0.7px] text-[#F4EFE2]">
+          {firstName ? `Welcome, ${firstName}` : "Welcome to StudyGarage"}
+        </Text>
+        <Text className="mt-2 text-[15px] leading-[22px] font-sg-medium text-[#B5C6BB]">
+          Here are your first coins. Earn more with every quiz.
+        </Text>
+      </View>
 
-        <View className="items-center justify-center">
+      <View className="flex-1 items-center justify-center">
+        <View
+          className="items-center justify-center"
+          style={{ width: COIN_SIZE, height: COIN_SIZE }}
+        >
           <Animated.View
-            style={coinParallaxStyle}
-            className="w-full items-center"
+            pointerEvents="none"
+            style={[
+              ringStyle,
+              {
+                position: "absolute",
+                width: COIN_SIZE,
+                height: COIN_SIZE,
+                borderRadius: COIN_SIZE / 2,
+                borderWidth: 3,
+                borderColor: "#F4EFE2",
+              },
+            ]}
+          />
+          <Animated.View
+            style={[
+              coinStyle,
+              {
+                width: COIN_SIZE,
+                height: COIN_SIZE,
+                borderRadius: COIN_SIZE / 2,
+                backgroundColor: "#F2B632",
+                alignItems: "center",
+                justifyContent: "center",
+              },
+            ]}
           >
-            <MotiView
-              from={{ opacity: 0, scale: 0.9, translateY: 14 }}
-              animate={{ opacity: 1, scale: 1, translateY: 0 }}
-              transition={{ type: "timing", duration: 420, delay: 220 }}
-              className="w-full items-center"
+            <View
+              className="items-center justify-center rounded-full border-2 border-[#14342A]/20"
+              style={{ width: COIN_SIZE - 22, height: COIN_SIZE - 22 }}
             >
-              <CoinDropAnimation
-                startFly={startFly}
-                onCoinArrive={handleCoinArrive}
-                onFlyComplete={handleFlyComplete}
+              <Image
+                source={COIN_LOGO}
+                accessibilityLabel="StudyGarage coin"
+                resizeMode="contain"
+                style={{ width: COIN_SIZE * 0.68, height: COIN_SIZE * 0.68 }}
               />
-
-              <CountUpNumber
-                target={totalWelcomeCoins}
-                start={startCount}
-                onComplete={handleCounterComplete}
-              />
-
-              <View className="pointer-events-none absolute -top-4 left-0 right-0 items-center">
-                {showWelcomeBurst ? (
-                  <MotiView
-                    key={`welcome-burst-${burstToken}`}
-                    from={{ opacity: 0, translateY: 10, scale: 0.92 }}
-                    animate={{ opacity: 1, translateY: 0, scale: 1 }}
-                    transition={{ type: "timing", duration: 260 }}
-                    className="mb-2 rounded-full border border-[#8FA1C9]/35 bg-white/8 px-3 py-1.5"
-                  >
-                    <Text className="text-[12px] font-extrabold text-[#EAF0FF]">
-                      +{baseWelcomeCoins}
-                    </Text>
-                    <TinySparkleBurst triggerToken={burstToken} tone="cool" />
-                  </MotiView>
-                ) : null}
-
-                {showReferralBurst && referralBonusCoins > 0 ? (
-                  <MotiView
-                    key={`referral-burst-${burstToken}`}
-                    from={{ opacity: 0, translateY: 10, scale: 0.92 }}
-                    animate={{ opacity: 1, translateY: 0, scale: 1 }}
-                    transition={{ type: "timing", duration: 260 }}
-                    className="rounded-full border border-[#FFD47A]/45 bg-[#2B2414]/65 px-3 py-1.5"
-                  >
-                    <Text className="text-[12px] font-extrabold text-[#FFE39A]">
-                      +{referralBonusCoins}
-                    </Text>
-                    <TinySparkleBurst
-                      triggerToken={burstToken + 100}
-                      tone="gold"
-                    />
-                  </MotiView>
-                ) : null}
-              </View>
-            </MotiView>
+            </View>
           </Animated.View>
         </View>
 
-        <View className="pb-1">
-          <MotiView
-            from={{ opacity: 0, translateY: 18 }}
-            animate={{
-              opacity: showCTA ? 1 : 0.28,
-              translateY: showCTA ? 0 : 10,
-            }}
-            transition={{ type: "timing", duration: 280 }}
+        <Animated.View style={amountStyle} className="mt-7 items-center">
+          <Text
+            className="text-[64px] leading-[70px] font-sg-display tracking-[-1.2px] text-[#F2B632]"
+            style={{ fontVariant: ["tabular-nums"] }}
           >
-            <PrimaryCTAButton
-              label="Start Learning"
-              onPress={continueForward}
-              disabled={!showCTA}
-            />
-            <Text className="mt-3 text-center text-[12px] font-semibold text-[#A3AECB]">
-              Let&apos;s keep the streak going
-            </Text>
-          </MotiView>
-        </View>
+            +{totalWelcomeCoins}
+          </Text>
+          <Text className="text-[16px] font-sg-semibold text-[#F4EFE2]">
+            {referralBonusCoins > 0
+              ? `coins, with +${referralBonusCoins} referral bonus`
+              : "coins"}
+          </Text>
+        </Animated.View>
       </View>
-    </View>
-  );
-}
 
-function TinySparkleBurst({ triggerToken, tone = "gold" }) {
-  const sparkColor = tone === "cool" ? "#DCE5FF" : "#FFE39A";
-  const sparkMeta = [
-    { dx: -22, dy: -10, delay: 0 },
-    { dx: 0, dy: -14, delay: 45 },
-    { dx: 22, dy: -10, delay: 90 },
-    { dx: -10, dy: -18, delay: 60 },
-    { dx: 10, dy: -18, delay: 120 },
-  ];
-
-  return (
-    <View
-      pointerEvents="none"
-      className="absolute left-0 right-0 top-0 bottom-0"
-    >
-      {sparkMeta.map((spark, index) => (
-        <MotiView
-          key={`spark-${triggerToken}-${index}`}
-          from={{ opacity: 0, translateX: 0, translateY: 0, scale: 0.7 }}
-          animate={{
-            opacity: 0,
-            translateX: spark.dx,
-            translateY: spark.dy,
-            scale: 1,
-          }}
-          transition={{
-            type: "timing",
-            duration: 520,
-            delay: spark.delay,
-          }}
-          className="absolute left-1/2 top-1/2 h-1 w-1 rounded-full"
-          style={{ backgroundColor: sparkColor }}
-        />
-      ))}
+      <Animated.View style={buttonStyle}>
+        <SGButton label="Start learning" variant="board" onPress={continueForward} />
+      </Animated.View>
     </View>
   );
 }

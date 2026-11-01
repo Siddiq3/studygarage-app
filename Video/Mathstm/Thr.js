@@ -1,64 +1,20 @@
-import { Button, Linking, ScrollView, View} from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
+const items = [
+  { label: "బహుపధులు | నిర్వచనం, పరిమాణం , శూన్యాలు.", url: "https://youtu.be/KkIW3ivSHWY" },
+  { label: "బహుపధులు | అభ్యాసం 3.1 | మొత్తం ప్రాబ్లమ్స్", url: "https://youtu.be/2KKx19zASzE" },
+  { label: "బహుపధుల రేఖా చిత్రాలు", url: "https://youtu.be/RHKarjnsEPA" },
+  { label: "బహుపధులు | అభ్యాసం 3.2 | మొత్తం ప్రాబ్లమ్స్.", url: "https://youtu.be/NkH7bYt89_c" },
+  { label: "అభ్యాసం 3.3 | Q.No.1", url: "https://youtu.be/gHR41AwnaOs" },
+  { label: "అభ్యాసం 3.3 | Q.No.2", url: "https://youtu.be/kVnIhx4eOVM" },
+  { label: "అభ్యాసం 3.3 | Q.No.3,4", url: "https://youtu.be/8zS4--kIuDQ" },
+  { label: "వర్గ బహుపధులు | గ్రాఫ్స్ (GRAPHS)", url: "https://youtu.be/YDad5f9EJLw" },
+  { label: "బహుపధుల భాగాహారం | అభ్యాసం 3.4 | మొత్తం ప్రాబ్లమ్స్", url: "https://youtu.be/SwNUaiOogWc" },
+];
 
-const Thr = () => {
-
-    return (
-        <View>
-
-            <ScrollView>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='   బహుపధులు | నిర్వచనం, పరిమాణం , శూన్యాలు.' onPress={() =>
-                        Linking.openURL(`https://youtu.be/KkIW3ivSHWY`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' బహుపధులు | అభ్యాసం 3.1 | మొత్తం ప్రాబ్లమ్స్ ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/2KKx19zASzE`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' బహుపధుల రేఖా చిత్రాలు ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/RHKarjnsEPA`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='బహుపధులు | అభ్యాసం 3.2 | మొత్తం ప్రాబ్లమ్స్.  ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/NkH7bYt89_c`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='అభ్యాసం 3.3 | Q.No.1  ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/gHR41AwnaOs`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' అభ్యాసం 3.3 | Q.No.2 ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/kVnIhx4eOVM`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='  అభ్యాసం 3.3 | Q.No.3,4' onPress={() =>
-                        Linking.openURL(`https://youtu.be/8zS4--kIuDQ`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' వర్గ బహుపధులు | గ్రాఫ్స్ (GRAPHS) ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/YDad5f9EJLw`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' బహుపధుల భాగాహారం | అభ్యాసం 3.4 | మొత్తం ప్రాబ్లమ్స్ ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/SwNUaiOogWc`)}>
-                    </Button>
-                </Card>
-
-            </ScrollView>
-            </View>
-    );
-}
+const Thr = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Mathematics (TM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Thr;

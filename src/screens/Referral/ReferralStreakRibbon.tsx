@@ -64,18 +64,18 @@ export default function ReferralStreakRibbon({ streakDays = 0 }) {
 
   return (
     <AnimatedView style={ribbonStyle} className="mt-1 self-start">
-      <View className="relative overflow-hidden rounded-full border border-white/10">
+      <View className="relative overflow-hidden rounded-full border border-sg-border">
         <LinearGradient
-          colors={['rgba(176,38,255,0.36)', 'rgba(17,20,30,0.96)']}
+          colors={['rgba(23,105,79,0.36)', 'rgba(255,252,245,0.96)']}
           start={{ x: 0, y: 0.4 }}
           end={{ x: 1, y: 1 }}
           className="flex-row items-center px-3 py-1.5"
         >
-          <View className="mr-2 rounded-full bg-[#FF7A1A]/20 p-1.5">
-            <Ionicons name="flame-outline" size={12} color="#FF9A3D" />
+          <View className="mr-2 rounded-full bg-[#C4551A]/20 p-1.5">
+            <Ionicons name="flame-outline" size={12} color="#C4551A" />
           </View>
 
-          <Text className="text-[11px] font-semibold text-[#B8C0D4]">
+          <Text className="text-[12px] font-sg-semibold text-[#1D2A24]">
             Referral Streak:
           </Text>
 
@@ -83,11 +83,11 @@ export default function ReferralStreakRibbon({ streakDays = 0 }) {
             <AnimatedView
               pointerEvents="none"
               style={rippleStyle}
-              className="absolute -inset-1 rounded-full bg-[#B026FF]/20"
+              className="absolute -inset-1 rounded-full bg-[#17694F]/20"
             />
             <Animated.Text
               style={countStyle}
-              className="text-[12px] font-extrabold text-[#F5F7FF]"
+              className="text-[12px] font-sg-extrabold text-[#1D2A24]"
             >
               {streakDays} Days
             </Animated.Text>

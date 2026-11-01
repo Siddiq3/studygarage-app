@@ -1,6 +1,9 @@
 import React, { useEffect, useMemo, useRef, useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { StatusBar } from "expo-status-bar";
+import { useNavigation } from "@react-navigation/native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 import WebView from "react-native-webview";
 import Animated, { FadeIn } from "react-native-reanimated";
 import MrecAdComponent from "../MrecAdComponent";
@@ -82,15 +85,14 @@ function shouldFallbackFromHtmlMessage(message) {
 }
 
 const PDF_THEME = {
-  canvasGradient: ["#0B0C10", "#111622", "#1A2338"],
-  cardBackground: "rgba(20, 26, 38, 0.92)",
-  cardBorder: "rgba(255, 255, 255, 0.12)",
-  textPrimary: "#F5F7FF",
-  textSecondary: "#B8C0D4",
-  loadingScrim: "rgba(8, 11, 18, 0.72)",
-  errorBorder: "rgba(255, 120, 120, 0.30)",
-  errorBackground: "rgba(12, 8, 12, 0.84)",
-  errorText: "#FFD3D3",
+  cardBackground: "#FFFCF5",
+  cardBorder: "rgba(29,42,36,0.12)",
+  textPrimary: "#1D2A24",
+  textSecondary: "#5F6A63",
+  loadingScrim: "#F6F1E7",
+  errorBorder: "rgba(191,63,43,0.30)",
+  errorBackground: "#F8E2DB",
+  errorText: "#BF3F2B",
 };
 
 export default function ModernContentWebView({
@@ -103,6 +105,8 @@ export default function ModernContentWebView({
   screenName = "content_reader",
   showAd = true,
 }) {
+  const navigation = useNavigation();
+  const insets = useSafeAreaInsets();
   const [loading, setLoading] = useState(true);
   const [resolvedUri, setResolvedUri] = useState("");
   const [activeIndex, setActiveIndex] = useState(0);
@@ -188,19 +192,26 @@ export default function ModernContentWebView({
   };
 
   return (
-    <View className="flex-1">
-      <LinearGradient
-        colors={PDF_THEME.canvasGradient}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 1 }}
-        className="absolute inset-0"
-      />
+    <View className="flex-1 bg-sg-bg">
+      <StatusBar style="dark" />
+      <View className="flex-row items-center px-3 pb-2" style={{ paddingTop: insets.top + 6 }}>
+        <Pressable
+          onPress={() => navigation.canGoBack() && navigation.goBack()}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel="Go back"
+          className="h-11 flex-row items-center rounded-[14px] border border-sg-border bg-sg-surface px-3 active:opacity-60"
+        >
+          <Ionicons name="arrow-back" size={18} color="#1D2A24" />
+          <Text className="ml-1.5 text-[14px] font-sg-semibold text-sg-text">Back</Text>
+        </Pressable>
+      </View>
 
       <Animated.View
         entering={FadeIn.duration(220)}
-        className="flex-1 px-2 pb-1 pt-2"
+        className="flex-1 px-2 pb-1"
       >
-        <View style={styles.viewerCard} className="flex-1 overflow-hidden rounded-[22px]">
+        <View style={styles.viewerCard} className="flex-1 overflow-hidden rounded-[14px]">
           {activeUri ? (
             <WebView
               key={activeUri}
@@ -249,13 +260,13 @@ export default function ModernContentWebView({
           ) : (
             <View className="flex-1 items-center justify-center px-5">
               <Text
-                className="text-center text-[16px] font-bold"
+                className="text-center text-[16px] font-sg-bold"
                 style={styles.primaryText}
               >
                 Content unavailable
               </Text>
               <Text
-                className="mt-2 text-center text-[13px]"
+                className="mt-2 text-center text-[13px] font-sg-medium"
                 style={styles.secondaryText}
               >
                 Please try again in a moment.
@@ -273,8 +284,8 @@ export default function ModernContentWebView({
                   className="mt-2"
                 />
               </View>
-              <Text className="text-[15px] font-semibold" style={styles.secondaryText}>
-                Loading content...
+              <Text className="text-[14px] font-sg-medium" style={styles.secondaryText}>
+                Opening document
               </Text>
             </View>
           ) : null}
@@ -282,11 +293,11 @@ export default function ModernContentWebView({
           {hadError ? (
             <View style={styles.errorNotice} className="absolute bottom-3 left-3 right-3 rounded-2xl px-4 py-3">
               <Text
-                className="text-center text-[12px] font-semibold"
+                className="text-center text-[12px] font-sg-semibold"
                 style={styles.errorText}
               >
-                Couldn&apos;t render this source. Tried fallback viewer
-                automatically.
+                We couldn&apos;t open this document. Check your connection and
+                try again.
               </Text>
             </View>
           ) : null}

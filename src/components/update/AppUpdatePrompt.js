@@ -33,15 +33,15 @@ export default function AppUpdatePrompt({
         <Pressable
           disabled={forceUpdate}
           onPress={onPressLater}
-          className="absolute inset-0 bg-black/70"
+          className="absolute inset-0 bg-sg-bg2"
         />
 
         <Animated.View
           entering={FadeInUp.duration(240)}
           exiting={FadeOutDown.duration(180)}
-          className="w-full max-w-[392px] rounded-[28px] border border-white/10 bg-[#141821] px-5 py-5"
+          className="w-full max-w-[392px] rounded-[18px] border border-sg-border bg-[#FFFCF5] px-5 py-5"
           style={{
-            shadowColor: '#000',
+            shadowColor: '#3B3322',
             shadowOffset: { width: 0, height: 12 },
             shadowOpacity: 0.26,
             shadowRadius: 18,
@@ -49,34 +49,34 @@ export default function AppUpdatePrompt({
           }}
         >
           <View className="mb-4 flex-row items-center justify-between">
-            <View className="h-[46px] w-[46px] items-center justify-center rounded-full border border-[#8F74FF]/45 bg-[#1D1C2E]">
+            <View className="h-[46px] w-[46px] items-center justify-center rounded-full border border-[#17694F]/45 bg-[#FFFCF5]">
               <Ionicons
                 name="cloud-download-outline"
                 size={22}
-                color="#BDA4FF"
+                color="#17694F"
               />
             </View>
             {forceUpdate ? (
-              <View className="rounded-full border border-[#FFB15A]/55 bg-[#2B1F13] px-3 py-1">
-                <Text className="text-[11px] font-bold uppercase tracking-[0.8px] text-[#FFD69D]">
+              <View className="rounded-full border border-[#C4551A]/55 bg-[#FFFCF5] px-3 py-1">
+                <Text className="text-[12px] font-sg-bold text-[#C4551A]">
                   Required
                 </Text>
               </View>
             ) : null}
           </View>
 
-          <Text className="text-[27px] font-black leading-[31px] text-[#F5F7FF]">
+          <Text className="text-[27px] font-sg-display leading-[31px] text-[#1D2A24]">
             {title}
           </Text>
-          <Text className="mt-2 text-[14px] leading-[20px] text-[#B8C0D4]">
+          <Text className="mt-2 text-[14px] leading-[20px] text-[#1D2A24] font-sg-medium">
             {message}
           </Text>
 
-          <View className="mt-4 flex-row items-center rounded-[14px] border border-white/10 bg-black/20 px-3 py-2.5">
-            <Text className="flex-1 text-[12px] font-semibold text-[#AAB4CB]">
+          <View className="mt-4 flex-row items-center rounded-[14px] border border-sg-border bg-sg-bg2 px-3 py-2.5">
+            <Text className="flex-1 text-[12px] font-sg-semibold text-[#1D2A24]">
               Current: {currentVersion || 'unknown'}
             </Text>
-            <Text className="text-[12px] font-bold text-[#E4EAF8]">
+            <Text className="text-[12px] font-sg-bold text-[#1D2A24]">
               Latest: {latestVersion || 'unknown'}
             </Text>
           </View>
@@ -87,9 +87,9 @@ export default function AppUpdatePrompt({
                 onPress={onPressLater}
                 activeScale={0.97}
                 hapticType="tap"
-                className="min-h-[52px] flex-1 items-center justify-center rounded-[14px] border border-white/12 bg-white/6"
+                className="min-h-[52px] flex-1 items-center justify-center rounded-[14px] border border-sg-border bg-sg-bg2"
               >
-                <Text className="text-[14px] font-extrabold text-[#DDE3F1]">
+                <Text className="text-[14px] font-sg-extrabold text-[#1D2A24]">
                   {laterLabel}
                 </Text>
               </PressableScale>
@@ -99,9 +99,9 @@ export default function AppUpdatePrompt({
               onPress={onPressUpdate}
               activeScale={0.96}
               hapticType="tap"
-              className="min-h-[52px] flex-1 items-center justify-center rounded-[14px] border border-[#8F74FF]/55 bg-[#1E1930]"
+              className="min-h-[52px] flex-1 items-center justify-center rounded-[14px] border border-[#17694F]/55 bg-[#FFFCF5]"
             >
-              <Text className="text-[14px] font-black text-[#F5F7FF]">
+              <Text className="text-[14px] font-sg-extrabold text-[#1D2A24]">
                 {updateNowLabel}
               </Text>
             </PressableScale>

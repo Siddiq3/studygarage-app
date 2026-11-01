@@ -25,10 +25,10 @@ const Emcet12 = ({ navigation }) => {
                 </Text>
 
                 <TouchableOpacity
-                    style={{ padding: 10, margin: 15, borderRadius: 15, marginTop: 20, backgroundColor: '#03045e' }}
+                    style={{ padding: 10, margin: 15, borderRadius: 15, marginTop: 20, backgroundColor: '#DDEBE2' }}
                     onPress={() => navigation.navigate('Question12')}
                 >
-                    <Text style={{ fontSize: responsiveFontSize(2.5), fontWeight: '500', textAlign: 'center', color: '#ffffff' }}>
+                    <Text style={{ fontSize: responsiveFontSize(2.5), fontFamily: 'PlusJakartaSans_500Medium', textAlign: 'center', color: '#1D2A24' }}>
                         START
                     </Text>
                 </TouchableOpacity>

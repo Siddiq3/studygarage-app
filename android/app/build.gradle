@@ -186,3 +186,15 @@ dependencies {
 }
 
 apply plugin: 'com.google.gms.google-services'
+
+// Release builds schedule the app's CMake configure before the libraries' codegen,
+// so a clean checkout (EAS) fails with "add_subdirectory ... not an existing directory".
+gradle.projectsEvaluated {
+    def codegenTasks = rootProject.subprojects
+        .findAll { it != project }
+        .collect { it.tasks.findByName("generateCodegenArtifactsFromSchema") }
+        .findAll { it != null }
+    tasks.matching { it.name.startsWith("configureCMake") }.configureEach {
+        dependsOn(codegenTasks)
+    }
+}

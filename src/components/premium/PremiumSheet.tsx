@@ -48,14 +48,14 @@ export default function PremiumSheet({
   return (
     <View className='absolute inset-0 z-50 justify-end'>
       <Animated.View style={scrimStyle} className='absolute inset-0'>
-        <Pressable onPress={onClose} className='absolute inset-0 bg-black/65' />
+        <Pressable onPress={onClose} className='absolute inset-0 bg-sg-bg2' />
       </Animated.View>
       <Animated.View
         style={[sheetStyle, { minHeight: sheetMinHeight }]}
-        className='overflow-hidden rounded-t-[28px] border border-white/12 bg-[#151821]'
+        className='overflow-hidden rounded-t-[28px] border border-sg-border bg-[#FFFCF5]'
       >
         <View className='items-center pb-2 pt-3'>
-          <View className='h-1.5 w-12 rounded-full bg-white/25' />
+          <View className='h-1.5 w-12 rounded-full bg-sg-text/25' />
         </View>
         <View className='px-4 pb-6'>{children}</View>
       </Animated.View>

@@ -1,49 +1,17 @@
-import { Button, Linking, ScrollView, View} from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
+const items = [
+  { label: "Thermal Equilibrium-heat and Temperature", url: "https://youtu.be/sxhkJPtWwoE" },
+  { label: "Temperature and Kinetic Energy", url: "https://youtu.be/xNZrSRy27f8" },
+  { label: "Applications of Specific Heat Capacity", url: "https://youtu.be/XWRgFtqkUrE" },
+  { label: "Principle of Calorimeter", url: "https://youtu.be/TXDzfauOLNc" },
+  { label: "Evaporation", url: "https://youtu.be/ZtShL8kNWfE" },
+  { label: "Evaporation Condensation", url: "https://youtu.be/cjSXiHIoibI" },
+];
 
-const Heet = () => {
-
-    return (
-        <View>
-
-            <ScrollView>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='Thermal Equilibrium-heat and Temperature' onPress={() =>
-                        Linking.openURL(`https://youtu.be/sxhkJPtWwoE`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='Temperature and Kinetic Energy' onPress={() =>
-                        Linking.openURL(`https://youtu.be/xNZrSRy27f8`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' Applications of Specific Heat Capacity' onPress={() =>
-                        Linking.openURL(`https://youtu.be/XWRgFtqkUrE`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='Principle of Calorimeter' onPress={() =>
-                        Linking.openURL(`https://youtu.be/TXDzfauOLNc`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='Evaporation' onPress={() =>
-                        Linking.openURL(`https://youtu.be/ZtShL8kNWfE`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='Evaporation Condensation' onPress={() =>
-                        Linking.openURL(`https://youtu.be/cjSXiHIoibI`)}>
-                    </Button>
-                </Card>
-
-            </ScrollView>
-            </View>
-    );
-}
+const Heet = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Physics (EM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Heet;

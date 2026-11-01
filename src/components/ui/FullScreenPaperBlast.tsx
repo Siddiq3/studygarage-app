@@ -26,6 +26,7 @@ type PaperMeta = {
   duration: number;
   delay: number;
   color: string;
+  arc: number;
 };
 
 type Props = {
@@ -35,6 +36,8 @@ type Props = {
   waveDelays?: number[];
   piecesPerWave?: number;
   zIndex?: number;
+  /** One short burst for tap feedback: pieces start at once and land fast. */
+  quick?: boolean;
 };
 
 function createSeededRandom(seed: number) {
@@ -49,10 +52,11 @@ function createSeededRandom(seed: number) {
 function buildPaperMeta(
   seed: number,
   waveCount: number,
-  piecesPerWave: number
+  piecesPerWave: number,
+  quick = false
 ): PaperMeta[] {
   const rand = createSeededRandom(seed * 17 + 91);
-  const colors = ["#FFD86B", "#9D78FF", "#36D8A3", "#DCE3F8", "#7C5CFF"];
+  const colors = ["#F2B632", "#17694F", "#C4481A", "#FFFCF5", "#F2B632"];
   const result: PaperMeta[] = [];
 
   for (let wave = 0; wave < waveCount; wave += 1) {
@@ -80,13 +84,23 @@ function buildPaperMeta(
         endX = startX - SCREEN_WIDTH * (0.58 + rand() * 0.68);
       }
 
-      const endY = SCREEN_HEIGHT + 95 + rand() * 250;
-      const width = 3 + rand() * 5;
-      const height = 13 + rand() * 22;
+      let endY = SCREEN_HEIGHT + 95 + rand() * 250;
+      let arc = 0;
+
+      // Quick mode bursts out of the screen centre instead of raining in from the edges.
+      if (quick) {
+        startX = SCREEN_WIDTH * 0.5 + (-24 + rand() * 48);
+        startY = SCREEN_HEIGHT * 0.45 + (-24 + rand() * 48);
+        endX = startX + (-0.75 + rand() * 1.5) * SCREEN_WIDTH;
+        endY = SCREEN_HEIGHT * (0.35 + rand() * 0.75);
+        arc = 120 + rand() * 300;
+      }
+      const width = quick ? 6 + rand() * 6 : 3 + rand() * 5;
+      const height = quick ? 12 + rand() * 14 : 13 + rand() * 22;
       const rotateStart = -45 + rand() * 90;
       const rotateEnd = rotateStart + (-390 + rand() * 780);
-      const duration = 2100 + rand() * 1800;
-      const delay = rand() * 2850;
+      const duration = quick ? 1300 + rand() * 450 : 2100 + rand() * 1800;
+      const delay = quick ? rand() * 90 : rand() * 2850;
       const color = colors[absoluteIndex % colors.length];
 
       result.push({
@@ -103,6 +117,7 @@ function buildPaperMeta(
         duration,
         delay,
         color,
+        arc,
       });
     }
   }
@@ -150,7 +165,10 @@ function PaperPiece({
     const p = progress.value;
     const fallCurve = p * p * 0.82 + p * 0.18;
     const x = meta.startX + (meta.endX - meta.startX) * p;
-    const y = meta.startY + (meta.endY - meta.startY) * fallCurve;
+    const y =
+      meta.startY +
+      (meta.endY - meta.startY) * fallCurve -
+      meta.arc * Math.sin(p * Math.PI);
     const rotate = meta.rotateStart + (meta.rotateEnd - meta.rotateStart) * p;
 
     return {
@@ -187,11 +205,12 @@ export default function FullScreenPaperBlast({
   waveDelays = [80, 900, 1720],
   piecesPerWave = 48,
   zIndex = 90,
+  quick = false,
 }: Props) {
   const waves = Math.max(1, waveDelays.length);
   const pieces = useMemo(
-    () => buildPaperMeta(seed, waves, Math.max(1, piecesPerWave)),
-    [piecesPerWave, seed, waves]
+    () => buildPaperMeta(seed, waves, Math.max(1, piecesPerWave), quick),
+    [piecesPerWave, quick, seed, waves]
   );
 
   if (!visible) {

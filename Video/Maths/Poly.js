@@ -1,29 +1,13 @@
-import { Button, Linking, ScrollView, View } from 'react-native';
-import React from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
-const Poly = () => {
-    return (
-        <View>
-            <ScrollView>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button
-                        color='#5F939A'
-                        title='Polynomial Part-1'
-                        onPress={() => Linking.openURL(`https://youtu.be/r-fMQWOt5SU`)}
-                    />
-                </Card>
+const items = [
+  { label: "Polynomial Part-1", url: "https://youtu.be/r-fMQWOt5SU" },
+  { label: "Polynomial Part-2", url: "https://youtu.be/l2h0Lm2DvuQ" },
+];
 
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button
-                        color='#5F939A'
-                        title='Polynomial Part-2'
-                        onPress={() => Linking.openURL(`https://youtu.be/l2h0Lm2DvuQ`)}
-                    />
-                </Card>
-            </ScrollView>
-        </View>
-    );
-};
+const Poly = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Mathematics (EM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Poly;

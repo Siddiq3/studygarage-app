@@ -1,33 +1,14 @@
-import { Button, Linking, ScrollView, View} from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
+const items = [
+  { label: "రెండు చరరాశులలో రెఖీయ సమీకరణాల జత | Introduction", url: "https://youtu.be/gF1W6juT4hQ" },
+  { label: "రరెండు చరరాశులలో రెఖీయ సమీకరణాల జత | అభ్యాసం 4.1", url: "https://youtu.be/Xp8pOFeCQO0" },
+  { label: "రెండు చరరాశులలో రెఖీయ సమీకరణాల జత | అభ్యాసం 4.1 | Q.No.3", url: "https://youtu.be/ASIjnluKk8A" },
+];
 
-const Four = () => {
-
-    return (
-        <View>
-
-            <ScrollView>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' రెండు చరరాశులలో రెఖీయ సమీకరణాల జత | Introduction  ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/gF1W6juT4hQ`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' రరెండు చరరాశులలో రెఖీయ సమీకరణాల జత | అభ్యాసం 4.1   ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/Xp8pOFeCQO0`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' రెండు చరరాశులలో రెఖీయ సమీకరణాల జత | అభ్యాసం 4.1 | Q.No.3 ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/ASIjnluKk8A`)}>
-                    </Button>
-                </Card>
-
-            </ScrollView>
-            </View>
-    );
-}
+const Four = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Mathematics (TM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Four;

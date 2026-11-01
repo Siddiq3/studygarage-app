@@ -1,17 +1,6 @@
-import { Text, View} from 'react-native';
-import React, { useEffect } from "react";
-import MrecAdComponent from "../MrecAdComponent";
+import React from 'react';
+import ComingSoonScreen from '../src/features/chapters/ComingSoonScreen';
 
-
-const Nstp = () => {
-
-    return (
-        <View>
-
-            <Text style={{ fontSize: 40, textAlign: 'center' }}> UPLOADED SHORTLY...</Text>
-            <MrecAdComponent />
-</View>
-    );
-}
+const Nstp = () => <ComingSoonScreen title="Previous paper" subtitle="This paper will be uploaded shortly" />;
 
 export default Nstp;

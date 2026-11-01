@@ -53,7 +53,7 @@ function MyTabs() {
                     inactiveTintColor: 'black',
 
                     labelStyle: { paddingBottom: 10, fontSize: 10 },
-                    style: { padding: 10, height: 70, backgroundColor: '#ADA2FF' }
+                    style: { padding: 10, height: 70, backgroundColor: '#17694F' }
                 }}>
 
 

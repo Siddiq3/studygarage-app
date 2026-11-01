@@ -62,10 +62,10 @@ export default function ReferralStatsCounter({
 
   return (
     <AnimatedView style={scaleStyle} className="items-start">
-      <Text className="text-[10px] font-bold uppercase tracking-[1px] text-[#AAB3C9]">
+      <Text className="text-[12px] font-sg-bold text-[#1D2A24]">
         {label}
       </Text>
-      <Text className="mt-1 text-[27px] font-black text-[#F5F7FF]">
+      <Text className="mt-1 text-[27px] font-sg-display text-[#1D2A24]">
         {displayValue} Friends Joined
       </Text>
     </AnimatedView>

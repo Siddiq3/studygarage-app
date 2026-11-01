@@ -13,16 +13,16 @@ import Animated, {
 
 const statusStyles = {
   completed: {
-    border: 'border-[#B026FF]/80',
-    text: 'text-white',
+    border: 'border-[#F2B632]/80',
+    text: 'text-[#F4EFE2]',
   },
   today: {
-    border: 'border-[#FF5A2F]',
-    text: 'text-white',
+    border: 'border-[#F28B76]',
+    text: 'text-[#F4EFE2]',
   },
   locked: {
-    border: 'border-[#434958]',
-    text: 'text-[#7B8499]',
+    border: 'border-[#1C4336]',
+    text: 'text-[#B5C6BB]',
   },
 };
 
@@ -139,20 +139,20 @@ export default function StreakDay({
   return (
     <Animated.View style={entryStyle} className="items-center">
       <Animated.View style={pulseStyle} className="items-center">
-        <Animated.View style={glowStyle} className="absolute -inset-1 rounded-full bg-[#FF5A2F]/40" />
-        <Animated.View style={ringStyle} className="absolute -inset-1.5 rounded-full border border-[#FF8A5E]/70" />
+        <Animated.View style={glowStyle} className="absolute -inset-1 rounded-full bg-[#F28B76]/40" />
+        <Animated.View style={ringStyle} className="absolute -inset-1.5 rounded-full border border-[#F2A05E]/70" />
         <View className={`relative h-11 w-11 items-center justify-center overflow-hidden rounded-full border ${styleGroup.border}`}>
           {status === 'completed' ? (
-            <LinearGradient colors={['#411665', '#7B2BCA', '#B026FF']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} className="absolute inset-0" />
+            <LinearGradient colors={['#1C4336', '#F2B632', '#F2B632']} start={{ x: 0, y: 0 }} end={{ x: 1, y: 1 }} className="absolute inset-0" />
           ) : null}
 
-          {status === 'today' ? <View className="absolute inset-[2px] rounded-full border border-[#FF8A5E]/80" /> : null}
+          {status === 'today' ? <View className="absolute inset-[2px] rounded-full border border-[#F2A05E]/80" /> : null}
 
-          <Text className={`text-[12px] font-black ${styleGroup.text}`}>{day}</Text>
+          <Text className={`text-[12px] font-sg-extrabold ${styleGroup.text}`}>{day}</Text>
 
-          {lockedBlur ? <View className="absolute inset-0 bg-black/42" /> : null}
+          {lockedBlur ? <View className="absolute inset-0 bg-[#0F281F]/42" /> : null}
         </View>
-        <Text className={`mt-1 text-[10px] font-semibold ${styleGroup.text}`}>Day {day}</Text>
+        <Text className={`mt-1 text-[12px] font-sg-semibold ${styleGroup.text}`}>Day {day}</Text>
       </Animated.View>
     </Animated.View>
   );

@@ -19,14 +19,14 @@ export default function PremiumDialog({ visible, onClose, children }: Props) {
       <Animated.View
         entering={FadeIn.duration(160)}
         exiting={FadeOut.duration(120)}
-        className='absolute inset-0 bg-black/60'
+        className='absolute inset-0 bg-sg-bg2'
       >
         <Pressable onPress={onClose} className='absolute inset-0' />
       </Animated.View>
       <Animated.View
         entering={reducedMotionEnabled ? FadeIn.duration(120) : ZoomIn.duration(180)}
         exiting={reducedMotionEnabled ? FadeOut.duration(100) : ZoomOut.duration(150)}
-        className='w-full max-w-[390px] overflow-hidden rounded-[24px] border border-white/12 bg-[#141821] p-5'
+        className='w-full max-w-[390px] overflow-hidden rounded-[18px] border border-sg-border bg-[#FFFCF5] p-5'
       >
         {children}
       </Animated.View>

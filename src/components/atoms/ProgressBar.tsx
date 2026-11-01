@@ -75,18 +75,18 @@ export default function ProgressBar({
   }));
 
   return (
-    <View className="overflow-hidden rounded-full border border-white/12 bg-white/7">
+    <View className="overflow-hidden rounded-full border border-sg-border bg-sg-bg2">
       <Animated.View
         className="h-3 overflow-hidden rounded-full"
         style={fillStyle}
       >
         <LinearGradient
-          colors={["#7E2CFF", "#B026FF", "#FF5A2F"]}
+          colors={["#17694F", "#17694F", "#BF3F2B"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 0 }}
           className="h-3 rounded-full"
         />
-        <View className="absolute right-0 top-1/2 h-2.5 w-2.5 -translate-y-[5px] rounded-full border border-white/60 bg-white/80" />
+        <View className="absolute right-0 top-1/2 h-2.5 w-2.5 -translate-y-[5px] rounded-full border border-sg-border bg-sg-text/80" />
 
         {reducedMotionEnabled ? null : (
           <Animated.View
@@ -95,9 +95,9 @@ export default function ProgressBar({
           >
             <LinearGradient
               colors={[
-                "rgba(255,255,255,0)",
-                "rgba(255,255,255,0.45)",
-                "rgba(255,255,255,0)",
+                "rgba(255,252,245,0)",
+                "rgba(29,42,36,0.45)",
+                "rgba(255,252,245,0)",
               ]}
               start={{ x: 0, y: 0 }}
               end={{ x: 1, y: 0 }}

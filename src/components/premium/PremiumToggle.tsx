@@ -33,7 +33,7 @@ export default function PremiumToggle({ label, value, onChange, hint }: Props) {
   }));
 
   const trackStyle = useAnimatedStyle(() => ({
-    backgroundColor: x.value > 0.5 ? 'rgba(143,116,255,0.38)' : 'rgba(255,255,255,0.12)',
+    backgroundColor: x.value > 0.5 ? '#17694F' : 'rgba(29,42,36,0.18)',
   }));
 
   const handlePress = () => {
@@ -42,20 +42,20 @@ export default function PremiumToggle({ label, value, onChange, hint }: Props) {
   };
 
   return (
-    <PressableScale onPress={handlePress} activeScale={0.98} className='rounded-[16px] border border-white/10 bg-white/5 px-3 py-3'>
+    <PressableScale onPress={handlePress} activeScale={0.98} className='rounded-[16px] border border-sg-border bg-sg-bg2 px-3 py-3'>
       <View className='flex-row items-center justify-between'>
         <View className='flex-1 pr-3'>
-          <PremiumText variant='body.md' className='text-white'>
+          <PremiumText variant='body.md' className='text-sg-text'>
             {label}
           </PremiumText>
           {hint ? (
-            <PremiumText variant='caption' className='mt-0.5 text-white/60'>
+            <PremiumText variant='caption' className='mt-0.5 text-sg-muted'>
               {hint}
             </PremiumText>
           ) : null}
         </View>
-        <Animated.View style={trackStyle} className='h-8 w-14 rounded-full border border-white/15 p-1'>
-          <Animated.View style={knobStyle} className='h-6 w-6 rounded-full bg-white' />
+        <Animated.View style={trackStyle} className='h-8 w-14 rounded-full p-1'>
+          <Animated.View style={knobStyle} className='h-6 w-6 rounded-full bg-[#FFFCF5]' />
         </Animated.View>
       </View>
     </PressableScale>

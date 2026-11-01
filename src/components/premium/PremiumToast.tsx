@@ -16,9 +16,9 @@ export default function PremiumToast({ visible, message }: Props) {
       <Animated.View
         entering={FadeInDown.duration(160)}
         exiting={FadeOutDown.duration(130)}
-        className='rounded-full border border-white/14 bg-[#12151F]/95 px-4 py-2'
+        className='rounded-full border border-sg-border bg-[#FFFCF5]/95 px-4 py-2'
       >
-        <PremiumText variant='caption' className='text-white'>
+        <PremiumText variant='caption' className='text-sg-text'>
           {message}
         </PremiumText>
       </Animated.View>

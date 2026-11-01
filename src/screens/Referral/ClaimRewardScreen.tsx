@@ -86,10 +86,10 @@ export default function ClaimRewardScreen({ navigation }) {
   return (
     <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
       <Animated.View entering={FadeInDown.duration(220)}>
-        <Text className="text-[28px] font-extrabold leading-[32px] text-sg-text dark:text-sgd-text">
+        <Text className="text-[28px] font-sg-display leading-[32px] text-[#F4EFE2]">
           Claim Referral Reward
         </Text>
-        <Text className="mt-2 text-[13px] font-semibold text-sg-muted dark:text-sgd-muted">
+        <Text className="mt-2 text-[13px] font-sg-semibold text-[#B5C6BB]">
           Paste your friend&apos;s confirmation token to claim coins.
         </Text>
       </Animated.View>
@@ -99,32 +99,32 @@ export default function ClaimRewardScreen({ navigation }) {
         className="mt-4"
       >
         <SGCard>
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">
+          <Text className="text-[12px] font-sg-bold text-[#B5C6BB]">
             Confirmation Token
           </Text>
 
-          <View className="mt-3 rounded-[16px] border border-white/12 bg-[#111622] px-3 py-2.5">
+          <View className="mt-3 rounded-[16px] border border-[#F4EFE2]/12 bg-[#14342A] px-3 py-2.5">
             <TextInput
               value={tokenInput}
               onChangeText={setTokenInput}
               placeholder="Paste token"
-              placeholderTextColor="#73809A"
+              placeholderTextColor="#B5C6BB"
               autoCapitalize="none"
               autoCorrect={false}
               editable={!isBusy}
-              className="text-[14px] font-semibold text-[#F5F7FF]"
+              className="text-[14px] font-sg-semibold text-[#F4EFE2]"
             />
           </View>
 
-          <View className="mt-3 rounded-[14px] border border-white/10 bg-[#121722] px-3 py-2.5">
-            <Text className="text-[12px] font-semibold text-[#D6DDF0]">
+          <View className="mt-3 rounded-[14px] border border-[#F4EFE2]/10 bg-[#14342A] px-3 py-2.5">
+            <Text className="text-[12px] font-sg-semibold text-[#F4EFE2]">
               Claimed tokens on this device: {claimedTokensCount}
             </Text>
           </View>
 
           {errorText ? (
-            <View className="mt-3 rounded-[14px] border border-[#FF3B30]/35 bg-[#2A1719] px-3 py-2.5">
-              <Text className="text-[12px] font-semibold text-[#FFD5D1]">
+            <View className="mt-3 rounded-[14px] border border-[#F28B76]/35 bg-[#1C4336] px-3 py-2.5">
+              <Text className="text-[12px] font-sg-semibold text-[#F28B76]">
                 {errorText}
               </Text>
             </View>
@@ -133,18 +133,18 @@ export default function ClaimRewardScreen({ navigation }) {
           {successText ? (
             <AnimatedView
               style={successStyle}
-              className="mt-3 rounded-[14px] border border-[#00FFA3]/35 bg-[#102E24] px-3 py-2.5"
+              className="mt-3 rounded-[14px] border border-[#8FD9B4]/35 bg-[#1C4336] px-3 py-2.5"
             >
               <View className="flex-row items-center">
-                <Ionicons name="checkmark-circle" size={16} color="#00FFA3" />
-                <Text className="ml-2 flex-1 text-[12px] font-semibold text-[#C6FFE6]">
+                <Ionicons name="checkmark-circle" size={16} color="#8FD9B4" />
+                <Text className="ml-2 flex-1 text-[12px] font-sg-semibold text-[#8FD9B4]">
                   {successText}
                 </Text>
               </View>
             </AnimatedView>
           ) : null}
 
-          <Text className="mt-4 text-[11px] font-medium text-sg-muted dark:text-sgd-muted">
+          <Text className="mt-4 text-[12px] font-sg-medium text-[#B5C6BB]">
             Referral rewards are verified by confirmation code (offline).
           </Text>
         </SGCard>
@@ -156,7 +156,7 @@ export default function ClaimRewardScreen({ navigation }) {
       >
         <PressableScale
           className={`overflow-hidden rounded-[999px] border p-[1px] ${
-            canSubmit ? "border-[#B026FF]/50" : "border-white/12"
+            canSubmit ? "border-[#F2B632]/50" : "border-[#F4EFE2]/12"
           }`}
           activeScale={0.96}
           disabled={!canSubmit}
@@ -164,10 +164,10 @@ export default function ClaimRewardScreen({ navigation }) {
         >
           <View
             className={`min-h-[56px] items-center justify-center rounded-[999px] ${
-              canSubmit ? "bg-[#191328]" : "bg-[#171A21] opacity-55"
+              canSubmit ? "bg-[#1C4336]" : "bg-[#14342A] opacity-55"
             }`}
           >
-            <Text className="text-[16px] font-extrabold text-[#F5F7FF]">
+            <Text className="text-[16px] font-sg-extrabold text-[#F4EFE2]">
               {isBusy ? "Checking..." : `Claim ${referralRewardCoins} Coins`}
             </Text>
           </View>

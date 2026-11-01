@@ -47,18 +47,18 @@ function RatingStar({ index, active, selectedStars, disabled, onPress }) {
       onPress={() => onPress(index)}
       activeScale={0.96}
       disabled={disabled}
-      className="mx-1 h-[56px] w-[56px] items-center justify-center rounded-full border border-white/12 bg-[#1A1C2E]"
+      className="mx-1 h-[56px] w-[56px] items-center justify-center rounded-full border border-[#F4EFE2]/12 bg-[#1C4336]"
     >
       <Animated.View
         pointerEvents="none"
         style={pulseStyle}
-        className="absolute inset-1 rounded-full border border-[#FFD76A]/45 bg-[#FFD76A]/12"
+        className="absolute inset-1 rounded-full border border-[#F2B632]/45 bg-[#F2B632]/12"
       />
       <Animated.View style={iconScaleStyle}>
         <Ionicons
           name={active ? "star" : "star-outline"}
           size={28}
-          color={active ? "#FFD76A" : "#8F98AD"}
+          color={active ? "#F2B632" : "#B5C6BB"}
         />
       </Animated.View>
     </PressableScale>
@@ -213,19 +213,19 @@ export default function ReviewPromptPopup({
         <Animated.View style={scrimStyle} className="absolute inset-0">
           <Pressable
             className="absolute inset-0"
-            style={{ backgroundColor: "rgba(10,10,10,0.78)" }}
+            style={{ backgroundColor: "rgba(15,40,31,0.78)" }}
             onPress={dismiss}
           />
         </Animated.View>
 
         <Animated.View
           style={cardStyle}
-          className="w-full max-w-[380px] rounded-[26px] border border-white/14 bg-[#151B28] px-5 pb-5 pt-5"
+          className="w-full max-w-[380px] rounded-[18px] border border-[#F4EFE2]/14 bg-[#1C4336] px-5 pb-5 pt-5"
         >
-          <Text className="text-center text-[24px] font-black text-white">
+          <Text className="text-center text-[24px] font-sg-display text-[#F4EFE2]">
             Enjoying StudyGarage?
           </Text>
-          <Text className="mt-2 text-center text-[13px] font-medium text-[#B8C0D4]">
+          <Text className="mt-2 text-center text-[13px] font-sg-medium text-[#F4EFE2]">
             Tap a star to rate your experience
           </Text>
 
@@ -247,7 +247,7 @@ export default function ReviewPromptPopup({
 
           {selectedStars > 0 ? (
             <Animated.View style={actionsStyle} className="mt-5">
-              <Text className="mb-3 text-center text-[12px] font-semibold text-[#C8D0E4]">
+              <Text className="mb-3 text-center text-[12px] font-sg-semibold text-[#F4EFE2]">
                 {helperCopy}
               </Text>
 
@@ -259,11 +259,11 @@ export default function ReviewPromptPopup({
                   containerClassName="mr-2 flex-1"
                   className={`min-h-[48px] items-center justify-center rounded-[14px] border px-3 py-3 ${
                     submitting
-                      ? "border-white/12 bg-[#1A1C2E]/70"
-                      : "border-white/10 bg-[#1A1C2E]"
+                      ? "border-[#F4EFE2]/12 bg-[#1C4336]/70"
+                      : "border-[#F4EFE2]/10 bg-[#1C4336]"
                   }`}
                 >
-                  <Text className="text-center text-[14px] font-bold text-[#F5F7FF]">
+                  <Text className="text-center text-[14px] font-sg-bold text-[#F4EFE2]">
                     {submitting
                       ? isPositiveRating
                         ? "Opening..."
@@ -276,9 +276,9 @@ export default function ReviewPromptPopup({
                   onPress={dismiss}
                   activeScale={0.96}
                   containerClassName="ml-2 flex-1"
-                  className="min-h-[48px] items-center justify-center rounded-[14px] border border-white/14 bg-transparent px-3 py-3"
+                  className="min-h-[48px] items-center justify-center rounded-[14px] border border-[#F4EFE2]/14 bg-transparent px-3 py-3"
                 >
-                  <Text className="text-center text-[14px] font-bold text-[#F5F7FF]">
+                  <Text className="text-center text-[14px] font-sg-bold text-[#F4EFE2]">
                     Not now
                   </Text>
                 </PressableScale>

@@ -2,10 +2,9 @@ import React, { useMemo } from "react";
 import { Alert, FlatList, Text, View } from "react-native";
 import { format } from "date-fns";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { LinearGradient } from "expo-linear-gradient";
 import Animated, { FadeInDown } from "react-native-reanimated";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
-import SGCard from "./src/design-system/components/SGCard";
+import ScreenHeader from "./src/design-system/components/ScreenHeader";
 import SGEmptyState from "./src/design-system/components/SGEmptyState";
 import PressableScale from "./src/components/ui/PressableScale";
 
@@ -63,38 +62,38 @@ const WithdrawalHistoryPage = ({ route }) => {
   const renderHistoryItem = ({ item }) => {
     if (item.type === "voucher") {
       return (
-        <View className="mb-3 rounded-[18px] border border-white/10 bg-[#141923] px-4 py-3">
+        <View className="mb-3 rounded-[18px] border border-sg-border bg-[#FFFCF5] px-4 py-3">
           <View className="flex-row items-center justify-between">
             <View className="mr-2 flex-1">
-              <Text className="text-[14px] font-extrabold text-white">
+              <Text className="text-[14px] font-sg-extrabold text-sg-text">
                 {item.title}
               </Text>
-              <Text className="mt-0.5 text-[11px] font-medium text-[#8590A8]">
-                {format(new Date(item.date), "MM/dd/yyyy p")}
+              <Text className="mt-0.5 text-[12px] font-sg-medium text-[#5F6A63]">
+                {format(new Date(item.date), "d MMM yyyy, p")}
               </Text>
             </View>
-            <View className="rounded-full border border-[#FFD700]/30 bg-[#2A2312] px-2 py-0.5">
-              <Text className="text-[10px] font-extrabold text-[#FFD700]">{`${item.coinCost} coins`}</Text>
+            <View className="rounded-full border border-[#9A6400]/30 bg-[#FFFCF5] px-2 py-0.5">
+              <Text className="text-[12px] font-sg-extrabold text-[#9A6400]">{`${item.coinCost} coins`}</Text>
             </View>
           </View>
 
-          <View className="mt-2 rounded-[12px] border border-white/10 bg-black/25 px-3 py-2">
-            <Text className="text-[10px] font-bold uppercase tracking-[1px] text-[#97A3BF]">
+          <View className="mt-2 rounded-[12px] border border-sg-border bg-sg-bg2 px-3 py-2">
+            <Text className="text-[12px] font-sg-bold text-[#47544D]">
               Voucher code
             </Text>
-            <Text className="mt-1 text-[14px] font-extrabold text-[#E2E8F6]">
+            <Text className="mt-1 text-[14px] font-sg-extrabold text-[#1D2A24]">
               {item.code}
             </Text>
           </View>
 
           <PressableScale
             onPress={() => handleCopyCode(item.code)}
-            className="mt-2.5 min-h-[44px] flex-row items-center justify-center rounded-full border border-white/12 bg-white/8 px-3"
+            className="mt-2.5 min-h-[44px] flex-row items-center justify-center rounded-full border border-sg-border bg-sg-bg2 px-3"
             accessibilityRole="button"
             accessibilityLabel="Copy voucher code"
           >
-            <Ionicons name="copy-outline" size={15} color="#C5CEE3" />
-            <Text className="ml-1.5 text-[12px] font-extrabold text-white">
+            <Ionicons name="copy-outline" size={15} color="#1D2A24" />
+            <Text className="ml-1.5 text-[12px] font-sg-extrabold text-sg-text">
               Copy code
             </Text>
           </PressableScale>
@@ -103,24 +102,24 @@ const WithdrawalHistoryPage = ({ route }) => {
     }
 
     return (
-      <View className="mb-3 overflow-hidden rounded-[18px] border border-white/10 bg-[#141923] px-4 py-3">
-        <View className="absolute inset-y-0 left-0 w-[3px] bg-[#00FFA3]/70" />
+      <View className="mb-3 overflow-hidden rounded-[18px] border border-sg-border bg-[#FFFCF5] px-4 py-3">
+        <View className="absolute inset-y-0 left-0 w-[3px] bg-[#1C7C55]/70" />
         <View className="flex-row items-center justify-between">
           <View className="flex-row items-center">
-            <View className="mr-2 h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#1C2431]">
-              <Ionicons name="wallet-outline" size={16} color="#C7D3EE" />
+            <View className="mr-2 h-8 w-8 items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5]">
+              <Ionicons name="wallet-outline" size={16} color="#17694F" />
             </View>
             <View>
-              <Text className="text-[12px] font-semibold text-[#AAB4CB]">
-                {format(new Date(item.date), "MM/dd/yyyy")}
+              <Text className="text-[12px] font-sg-semibold text-[#1D2A24]">
+                {format(new Date(item.date), "d MMM yyyy")}
               </Text>
-              <Text className="text-[11px] font-medium text-[#8590A8]">
+              <Text className="text-[12px] font-sg-medium text-[#5F6A63]">
                 Withdrawal credited
               </Text>
             </View>
           </View>
 
-          <Text className="text-[16px] font-extrabold text-[#00D48A]">
+          <Text className="text-[16px] font-sg-extrabold text-[#1C7C55]">
             +₹{item.amount}
           </Text>
         </View>
@@ -130,45 +129,14 @@ const WithdrawalHistoryPage = ({ route }) => {
 
   return (
     <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
-      <Animated.View entering={FadeInDown.duration(220)}>
-        <SGCard className="mb-4 overflow-hidden">
-          <LinearGradient
-            colors={[
-              "rgba(56,37,103,0.45)",
-              "rgba(17,28,43,0.9)",
-              "rgba(14,20,31,0.95)",
-            ]}
-            start={{ x: 0, y: 0 }}
-            end={{ x: 1, y: 1 }}
-            className="-m-4 mb-4 rounded-[24px] border border-white/10 px-5 py-4"
-          >
-            <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-white/70">
-              Rewards Wallet
-            </Text>
-            <Text className="mt-1 text-[28px] font-extrabold leading-[32px] text-white">
-              Wallet History
-            </Text>
-            <View className="mt-3 flex-row">
-              <View className="mr-2 self-start rounded-full border border-[#00FFA3]/35 bg-[#0F3329] px-2.5 py-1">
-                <Text className="text-[11px] font-extrabold text-[#00FFA3]">
-                  {transactionCount} transactions
-                </Text>
-              </View>
-              <View className="self-start rounded-full border border-[#8F74FF]/40 bg-[#1F1A2D] px-2.5 py-1">
-                <Text className="text-[11px] font-extrabold text-[#CFC3FF]">
-                  {voucherCount} vouchers
-                </Text>
-              </View>
-            </View>
-          </LinearGradient>
-          <Text className="mt-1 text-[12px] font-semibold text-sg-muted dark:text-sgd-muted">
-            Voucher codes and withdrawal records appear here.
-          </Text>
-        </SGCard>
-      </Animated.View>
+      <ScreenHeader
+        eyebrow="Rewards wallet"
+        title="Wallet history"
+        subtitle={`${transactionCount} transactions · ${voucherCount} vouchers`}
+      />
 
       <Animated.View entering={FadeInDown.delay(60).duration(220)}>
-        <SGCard className="mb-4">
+        <View className="mb-4">
           {normalizedHistory.length > 0 ? (
             <FlatList
               data={normalizedHistory}
@@ -186,7 +154,7 @@ const WithdrawalHistoryPage = ({ route }) => {
               compact
             />
           )}
-        </SGCard>
+        </View>
       </Animated.View>
     </ScreenLayoutContainer>
   );

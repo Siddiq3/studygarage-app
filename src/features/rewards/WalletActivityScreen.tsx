@@ -54,27 +54,27 @@ const PROVIDER_META: Record<
   google: {
     label: "Google Voucher",
     icon: "logo-google-playstore",
-    color: "#7FB6FF",
+    color: "#17694F",
   },
   amazon: {
     label: "Amazon Voucher",
     icon: "bag-handle-outline",
-    color: "#FFB86A",
+    color: "#C4551A",
   },
   flipkart: {
     label: "Flipkart Voucher",
     icon: "cart-outline",
-    color: "#8F74FF",
+    color: "#17694F",
   },
   upi: {
     label: "UPI Withdrawal",
     icon: "qr-code-outline",
-    color: "#6FE0C2",
+    color: "#1C7C55",
   },
   other: {
     label: "Voucher",
     icon: "ticket-outline",
-    color: "#B8C0D4",
+    color: "#1D2A24",
   },
 };
 
@@ -88,18 +88,18 @@ const STATUS_META: Record<
 > = {
   pending: {
     label: "Pending",
-    container: "border-white/12 bg-white/6",
-    text: "text-[#D0D7E8]",
+    container: "border-sg-border bg-sg-bg2",
+    text: "text-[#1D2A24]",
   },
   approved: {
     label: "Approved",
-    container: "border-[#44D28A]/35 bg-[#183226]",
-    text: "text-[#9EF2C4]",
+    container: "border-[#1C7C55]/35 bg-[#FFFCF5]",
+    text: "text-[#1C7C55]",
   },
   rejected: {
     label: "Rejected",
-    container: "border-[#E76F70]/35 bg-[#321B23]",
-    text: "text-[#F4B3B7]",
+    container: "border-[#BF3F2B]/35 bg-[#FFFCF5]",
+    text: "text-[#BF3F2B]",
   },
 };
 
@@ -186,7 +186,7 @@ const StatusChip = ({ status }: { status?: string }) => {
   const meta = STATUS_META[normalizeStatus(status)];
   return (
     <View className={`rounded-full border px-2.5 py-1 ${meta.container}`}>
-      <Text className={`text-[11px] font-bold ${meta.text}`}>{meta.label}</Text>
+      <Text className={`text-[12px] font-sg-bold ${meta.text}`}>{meta.label}</Text>
     </View>
   );
 };
@@ -204,7 +204,7 @@ const WalletActivityTabs = ({
   ];
 
   return (
-    <View className="mb-1 rounded-full border border-white/10 bg-[#0F1420] p-1">
+    <View className="mb-1 rounded-full border border-sg-border bg-[#FFFCF5] p-1">
       <View className="flex-row">
         {tabs.map((tab) => {
           const selected = activeTab === tab.key;
@@ -215,12 +215,12 @@ const WalletActivityTabs = ({
                 activeScale={0.98}
                 hapticType="none"
                 className={`min-h-[38px] items-center justify-center rounded-full border px-3 ${
-                  selected ? "border-white/12 bg-[#1A2130]" : "border-transparent bg-transparent"
+                  selected ? "border-sg-border bg-[#FFFCF5]" : "border-transparent bg-transparent"
                 }`}
               >
                 <Text
                   className={`text-[13px] font-bold ${
-                    selected ? "text-[#F5F7FF]" : "text-[#8D98B1]"
+                    selected ? "text-[#1D2A24]" : "text-[#47544D]"
                   }`}
                 >
                   {tab.label}
@@ -243,18 +243,18 @@ const RedemptionRow = ({ item }: { item: WalletHistoryEntry & { type: "voucher" 
       onPress={() => {}}
       activeScale={0.98}
       hapticType="none"
-      className="rounded-[18px] border border-white/10 bg-[#151C28] px-3.5 py-3.5"
+      className="rounded-[18px] border border-sg-border bg-[#FFFCF5] px-3.5 py-3.5"
     >
       <View className="flex-row items-start justify-between">
         <View className="mr-2 flex-1 flex-row items-center">
-          <View className="h-10 w-10 items-center justify-center rounded-[12px] border border-white/10 bg-[#111723]">
+          <View className="h-10 w-10 items-center justify-center rounded-[12px] border border-sg-border bg-[#FFFCF5]">
             <Ionicons name={providerMeta.icon} size={18} color={providerMeta.color} />
           </View>
           <View className="ml-3 min-w-0 flex-1">
-            <Text className="text-[15px] font-bold text-[#F5F7FF]" numberOfLines={1}>
+            <Text className="text-[15px] font-sg-bold text-[#1D2A24]" numberOfLines={1}>
               {title}
             </Text>
-            <Text className="text-[12px] font-medium text-[#AAB3C8]" numberOfLines={1}>
+            <Text className="text-[12px] font-sg-medium text-[#1D2A24]" numberOfLines={1}>
               Voucher request
             </Text>
           </View>
@@ -263,8 +263,8 @@ const RedemptionRow = ({ item }: { item: WalletHistoryEntry & { type: "voucher" 
       </View>
 
       <View className="mt-3 flex-row items-center justify-between">
-        <Text className="text-[16px] font-extrabold text-white">₹{item.amount}</Text>
-        <Text className="text-[12px] font-semibold text-[#96A2BC]">{formatDateLabel(item.date)}</Text>
+        <Text className="text-[16px] font-sg-extrabold text-sg-text">₹{item.amount}</Text>
+        <Text className="text-[12px] font-sg-semibold text-[#47544D]">{formatDateLabel(item.date)}</Text>
       </View>
     </PressableScale>
   );
@@ -282,39 +282,39 @@ const TransactionRow = ({ item }: { item: TransactionRowItem }) => {
       onPress={() => {}}
       activeScale={0.98}
       hapticType="none"
-      className="rounded-[18px] border border-white/10 bg-[#151C28] px-3.5 py-3.5"
+      className="rounded-[18px] border border-sg-border bg-[#FFFCF5] px-3.5 py-3.5"
     >
       <View className="flex-row items-start justify-between">
         <View className="mr-2 flex-1 flex-row items-center">
-          <View className="h-9 w-9 items-center justify-center rounded-[11px] border border-white/10 bg-[#111723]">
+          <View className="h-9 w-9 items-center justify-center rounded-[11px] border border-sg-border bg-[#FFFCF5]">
             <Ionicons
               name={coinLabel ? (isCredit ? "add-circle-outline" : "remove-circle-outline") : "swap-horizontal-outline"}
               size={16}
-              color={coinLabel ? (isCredit ? "#8BE6B5" : "#F2B2B6") : "#9AA7C2"}
+              color={coinLabel ? (isCredit ? "#1C7C55" : "#BF3F2B") : "#47544D"}
             />
           </View>
           <View className="ml-3 min-w-0 flex-1">
-            <Text className="text-[14px] font-bold text-[#F5F7FF]" numberOfLines={1}>
+            <Text className="text-[14px] font-sg-bold text-[#1D2A24]" numberOfLines={1}>
               {item.title}
             </Text>
-            <Text className="text-[12px] font-medium text-[#AAB3C8]" numberOfLines={1}>
+            <Text className="text-[12px] font-sg-medium text-[#1D2A24]" numberOfLines={1}>
               {item.subtitle}
             </Text>
           </View>
         </View>
         {coinLabel ? (
-          <Text className={`text-[14px] font-extrabold ${isCredit ? "text-[#8BE6B5]" : "text-[#F2B2B6]"}`}>
+          <Text className={`text-[14px] font-sg-extrabold ${isCredit ? "text-[#1C7C55]" : "text-[#BF3F2B]"}`}>
             {coinLabel}
           </Text>
         ) : item.amountLabel ? (
-          <Text className="text-[14px] font-extrabold text-[#E6ECFA]">{item.amountLabel}</Text>
+          <Text className="text-[14px] font-sg-extrabold text-[#1D2A24]">{item.amountLabel}</Text>
         ) : (
           <StatusChip status={item.status} />
         )}
       </View>
 
       <View className="mt-2 flex-row items-center justify-between">
-        <Text className="text-[11px] font-medium text-[#91A0BB]">{formatDateLabel(item.date)}</Text>
+        <Text className="text-[12px] font-sg-medium text-[#47544D]">{formatDateLabel(item.date)}</Text>
         {item.status && (coinLabel || item.amountLabel) ? (
           <StatusChip status={item.status} />
         ) : null}
@@ -325,11 +325,11 @@ const TransactionRow = ({ item }: { item: TransactionRowItem }) => {
 
 const EmptyState = ({ title, subtitle }: { title: string; subtitle: string }) => (
   <View className="mt-16 items-center px-8">
-    <View className="h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-[#141A25]">
-      <Ionicons name="time-outline" size={22} color="#9AA7C2" />
+    <View className="h-14 w-14 items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5]">
+      <Ionicons name="time-outline" size={22} color="#47544D" />
     </View>
-    <Text className="mt-4 text-[17px] font-bold text-[#F5F7FF]">{title}</Text>
-    <Text className="mt-1 text-center text-[13px] font-medium text-[#98A4BE]">{subtitle}</Text>
+    <Text className="mt-4 text-[17px] font-sg-bold text-[#1D2A24]">{title}</Text>
+    <Text className="mt-1 text-center text-[13px] font-sg-medium text-[#47544D]">{subtitle}</Text>
   </View>
 );
 
@@ -439,18 +439,18 @@ const WalletActivityScreen = ({ navigation, route }: { navigation: any; route: a
           <PressableScale
             onPress={() => navigation.goBack()}
             activeScale={0.96}
-            className="h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#151C28]"
+            className="h-10 w-10 items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5]"
           >
-            <Ionicons name="arrow-back" size={18} color="#F5F7FF" />
+            <Ionicons name="arrow-back" size={18} color="#1D2A24" />
           </PressableScale>
 
-          <Text className="mx-3 flex-1 text-center text-[21px] font-extrabold text-[#F5F7FF]">
+          <Text className="mx-3 flex-1 text-center text-[21px] font-sg-display text-[#1D2A24]">
             Wallet Activity
           </Text>
 
-          <View className="min-w-[78px] flex-row items-center justify-center rounded-full border border-[#FFD700]/30 bg-[#2A2312] px-2.5 py-1.5">
+          <View className="min-w-[78px] flex-row items-center justify-center rounded-full border border-[#9A6400]/30 bg-[#FFFCF5] px-2.5 py-1.5">
             <Coin size={12} compact />
-            <Text className="ml-1 text-[11px] font-extrabold text-[#FFD700]">{totalScore}</Text>
+            <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">{totalScore}</Text>
           </View>
         </View>
 
@@ -460,7 +460,7 @@ const WalletActivityScreen = ({ navigation, route }: { navigation: any; route: a
       <Animated.View style={[{ flex: 1 }, listAnimatedStyle]}>
         {loading ? (
           <View className="flex-1 items-center justify-center">
-            <ActivityIndicator color="#C8D1E4" />
+            <ActivityIndicator color="#1D2A24" />
           </View>
         ) : (
           <FlatList

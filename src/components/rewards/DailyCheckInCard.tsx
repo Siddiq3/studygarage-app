@@ -28,24 +28,24 @@ export default function DailyCheckInCard({
 
   return (
     <SurfaceCard
-      className="mt-4 rounded-[22px]"
+      className="mt-4 rounded-[18px]"
       style={{
-        backgroundColor: "rgba(255,255,255,0.06)",
-        borderColor: "rgba(255,255,255,0.10)",
+        backgroundColor: "rgba(29,42,36,0.06)",
+        borderColor: "rgba(29,42,36,0.10)",
       }}
     >
       <View className="flex-row items-center justify-between">
         <View className="flex-1 pr-3">
-          <Text className="text-[17px] font-extrabold text-white">
+          <Text className="text-[17px] font-sg-extrabold text-sg-text">
             Daily Check-In Reward
           </Text>
-          <Text className="mt-1 text-[12px] font-semibold text-[#A8B2CA]">
+          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
             Come back everyday to earn extra coins
           </Text>
 
-          <View className="mt-2.5 flex-row items-center self-start rounded-full border border-[#FFD700]/28 bg-[#2D2410]/70 px-2.5 py-1">
+          <View className="mt-2.5 flex-row items-center self-start rounded-full border border-[#9A6400]/28 bg-[#FFFCF5]/70 px-2.5 py-1">
             <Coin size={14} compact />
-            <Text className="ml-1.5 text-[12px] font-black text-[#F0CE7A]">
+            <Text className="ml-1.5 text-[12px] font-sg-extrabold text-[#9A6400]">
               +{coinsToGive}
             </Text>
           </View>
@@ -64,12 +64,12 @@ export default function DailyCheckInCard({
               disabled={disabled}
               loading={isClaiming}
               className={claimedToday || isLocked ? "opacity-60" : ""}
-              textClassName="text-[12px] font-extrabold tracking-[0.8px]"
+              textClassName="text-[12px] font-sg-extrabold"
               style={
                 claimedToday || isLocked
                   ? undefined
                   : {
-                      shadowColor: "#D8B66A",
+                      shadowColor: "#3B3322",
                       shadowOpacity: 0.12,
                       shadowRadius: 8,
                       shadowOffset: { width: 0, height: 3 },
@@ -80,7 +80,7 @@ export default function DailyCheckInCard({
           </View>
 
           {isLocked ? (
-            <Text className="mt-1.5 text-right text-[10px] font-semibold text-[#98A3BF]">
+            <Text className="mt-1.5 text-right text-[12px] font-sg-semibold text-[#47544D]">
               Check-in resets tomorrow
             </Text>
           ) : null}

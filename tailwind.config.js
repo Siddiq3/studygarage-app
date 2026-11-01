@@ -8,6 +8,11 @@ module.exports = {
     './src/**/*.{js,jsx,ts,tsx}',
     './components/**/*.{js,jsx,ts,tsx}',
     './*.{js,jsx,ts,tsx}',
+    './Quiz/ChapterQuizScreen.js',
+    './IIIIt/Sylabus.js',
+    './Nmms/Daytest.js',
+    './Papers/Mathtp.js',
+    './Tspoly/tspoly.js',
   ],
   theme: {
     extend: {

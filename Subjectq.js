@@ -42,10 +42,10 @@ const Subjectq = ({ route, navigation }) => {
     <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
       <Animated.View entering={FadeInDown.duration(220)}>
         <SGCard className="mb-4">
-          <Text className="text-[30px] font-extrabold leading-[34px] text-sg-text dark:text-sgd-text">
+          <Text className="text-[30px] font-sg-display leading-[34px] text-sg-text">
             {class1} Quiz Subjects
           </Text>
-          <Text className="mt-1 text-[14px] font-medium text-sg-muted dark:text-sgd-muted">
+          <Text className="mt-1 text-[14px] font-sg-medium text-sg-muted">
             Choose a subject to view chapter quizzes
           </Text>
 
@@ -69,12 +69,12 @@ const Subjectq = ({ route, navigation }) => {
                   className="mb-3"
                 >
                   <AnimatedActionCard onPress={() => handleSubjectPress(item)}>
-                    <View className="rounded-[19px] border border-sg-border bg-sg-surface/88 px-4 py-4 dark:border-sgd-border dark:bg-sgd-surface/88">
+                    <View className="rounded-[19px] border border-sg-border bg-sg-surface/88 px-4 py-4">
                       <View className="flex-row items-center justify-between">
-                        <Text className="flex-1 text-[17px] font-bold text-sg-text dark:text-sgd-text">
+                        <Text className="flex-1 text-[17px] font-sg-bold text-sg-text">
                           {item}
                         </Text>
-                        <Text className="ml-3 text-[12px] font-semibold text-sg-muted dark:text-sgd-muted">
+                        <Text className="ml-3 text-[12px] font-sg-semibold text-sg-muted">
                           Open
                         </Text>
                       </View>
@@ -83,8 +83,8 @@ const Subjectq = ({ route, navigation }) => {
                 </Animated.View>
               )}
               ListEmptyComponent={
-                <View className="rounded-[20px] border border-sg-border bg-sg-surface/86 px-4 py-5 dark:border-sgd-border dark:bg-sgd-surface/86">
-                  <Text className="text-center text-[15px] font-semibold text-sg-muted dark:text-sgd-muted">
+                <View className="rounded-[20px] border border-sg-border bg-sg-surface/86 px-4 py-5">
+                  <Text className="text-center text-[15px] font-sg-semibold text-sg-muted">
                     No subjects found
                   </Text>
                 </View>

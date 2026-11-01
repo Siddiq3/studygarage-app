@@ -14,10 +14,10 @@ export default function PremiumLoader({ label = "Loading..." }: Props) {
         width={36}
         height={36}
         borderRadius={18}
-        baseColor="rgba(255,255,255,0.16)"
-        highlightColor="rgba(255,255,255,0.34)"
+        baseColor="rgba(29,42,36,0.16)"
+        highlightColor="rgba(29,42,36,0.34)"
       />
-      <PremiumText variant="caption" className="mt-2 text-white/80">
+      <PremiumText variant="caption" className="mt-2 text-sg-text/80">
         {label}
       </PremiumText>
     </View>

@@ -1,15 +1,6 @@
-import {  Text, View} from 'react-native';
-import React, { useEffect } from "react";
+import React from 'react';
+import ComingSoonScreen from '../../src/features/chapters/ComingSoonScreen';
 
-
-const Ten = () => {
-
-    return (
-        <View>
-
-            <Text style={{ fontSize: 40 }}> UPLOADED SHORTLY...</Text>
-</View>
-    );
-}
+const Ten = () => <ComingSoonScreen title={"Mathematics (TM)"} />;
 
 export default Ten;

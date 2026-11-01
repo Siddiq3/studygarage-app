@@ -62,10 +62,10 @@ function CoinBurstParticle({ progress, config }) {
       className="absolute left-1/2 top-1/2"
     >
       <View
-        className="-ml-1.5 -mt-1.5 items-center justify-center rounded-full border border-[#FFD700]/55 bg-[#FFD700]/20"
+        className="-ml-1.5 -mt-1.5 items-center justify-center rounded-full border border-[#9A6400]/55 bg-[#E5A019]/20"
         style={{ width: config.size, height: config.size }}
       >
-        <View className="h-[3px] w-[3px] rounded-full bg-[#FFD700]" />
+        <View className="h-[3px] w-[3px] rounded-full bg-[#E5A019]" />
       </View>
     </AnimatedView>
   );
@@ -247,14 +247,14 @@ export default function ReferralScreen({ navigation }) {
 
       <Animated.View entering={FadeInDown.duration(220)} className="mt-2">
         <Text
-          className="text-[31px] font-extrabold leading-[34px] text-[#F5F7FF]"
-          style={{ fontFamily: "Inter_700Bold", letterSpacing: -0.45 }}
+          className="text-[31px] font-sg-display leading-[34px] text-[#1D2A24]"
+          style={{ fontFamily: "PlusJakartaSans_700Bold", letterSpacing: -0.45 }}
         >
           Invite. Earn. Grow.
         </Text>
         <Text
-          className="mt-2 text-[13px] leading-[20px] text-[#B8C0D4]"
-          style={{ fontFamily: "Inter_500Medium", opacity: 0.9 }}
+          className="mt-2 text-[13px] leading-[20px] text-[#1D2A24] font-sg-medium"
+          style={{ fontFamily: "PlusJakartaSans_500Medium", opacity: 0.9 }}
         >
           Earn {referralRewardCoins} coins for every friend who joins
           StudyGarage.
@@ -266,39 +266,39 @@ export default function ReferralScreen({ navigation }) {
         style={cardStyle}
         className="mt-5"
       >
-        <SGCard className="overflow-visible rounded-[24px] border-white/10 bg-white/[0.06] px-5 py-5">
+        <SGCard className="overflow-visible rounded-[18px] border-sg-border bg-sg-surface px-5 py-5">
           <View className="relative self-start">
             <AnimatedView
               pointerEvents="none"
               style={chipGlowStyle}
-              className="absolute -inset-2 rounded-full bg-[#FFD700]/10"
+              className="absolute -inset-2 rounded-full bg-[#E5A019]/10"
             />
             <AnimatedView
               style={chipStyle}
-              className="flex-row items-center rounded-full border border-[#FFD700]/45 bg-[#FFD700]/12 px-3.5 py-1.5"
+              className="flex-row items-center rounded-full border border-[#9A6400]/45 bg-[#E5A019]/12 px-3.5 py-1.5"
             >
-              <Ionicons name="logo-bitcoin" size={14} color="#FFD700" />
+              <Ionicons name="logo-bitcoin" size={14} color="#9A6400" />
               <Text
-                className="ml-1.5 text-[12px] font-extrabold text-[#FFD700]"
-                style={{ fontFamily: "Inter_500Medium" }}
+                className="ml-1.5 text-[12px] font-sg-extrabold text-[#9A6400]"
+                style={{ fontFamily: "PlusJakartaSans_500Medium" }}
               >
                 +{referralRewardCoins} Coins
               </Text>
             </AnimatedView>
           </View>
 
-          <View className="mt-4 rounded-[18px] border border-white/10 bg-white/[0.04] p-4">
-            <Text className="text-[11px] font-bold uppercase tracking-[1.2px] text-[#B8C0D4]">
+          <View className="mt-4 rounded-[18px] border border-sg-border bg-sg-surface p-4">
+            <Text className="text-[12px] font-sg-bold text-[#1D2A24]">
               My Referral Code
             </Text>
 
             <PressableScale
-              className="relative mt-2 items-center justify-center rounded-[14px] border border-white/10 bg-[#0F141D] px-3 py-3"
+              className="relative mt-2 items-center justify-center rounded-[14px] border border-sg-border bg-[#FFFCF5] px-3 py-3"
               activeScale={0.985}
               onPress={handleCopyCode}
             >
               <Text
-                className="text-[30px] font-black tracking-[2.4px] text-[#F5F7FF]"
+                className="text-[30px] font-sg-display tracking-[2.4px] text-[#1D2A24]"
                 style={{ fontFamily: "monospace" }}
                 selectable
               >
@@ -310,38 +310,38 @@ export default function ReferralScreen({ navigation }) {
                 style={sparklePrimaryStyle}
                 className="absolute right-6 top-3"
               >
-                <Ionicons name="sparkles" size={12} color="#FFD700" />
+                <Ionicons name="sparkles" size={12} color="#9A6400" />
               </AnimatedView>
               <AnimatedView
                 pointerEvents="none"
                 style={sparkleSecondaryStyle}
                 className="absolute right-10 top-5"
               >
-                <Ionicons name="ellipse" size={8} color="#FFD700" />
+                <Ionicons name="ellipse" size={8} color="#9A6400" />
               </AnimatedView>
             </PressableScale>
 
-            <Text className="mt-2 text-[11px] font-medium text-[#B8C0D4]/90">
+            <Text className="mt-2 text-[12px] font-sg-medium text-[#1D2A24]/90">
               Tap code to copy instantly and share with your friend.
             </Text>
           </View>
 
           <View className="mt-4 flex-row gap-3">
             <PressableScale
-              className="min-h-[50px] flex-1 items-center justify-center rounded-[14px] border border-white/12 bg-[#171C26]"
+              className="min-h-[50px] flex-1 items-center justify-center rounded-[14px] border border-sg-border bg-[#FFFCF5]"
               activeScale={0.96}
               onPress={handleCopyCode}
             >
               <View className="flex-row items-center">
-                <Ionicons name="copy-outline" size={16} color="#F5F7FF" />
-                <Text className="ml-2 text-[14px] font-bold text-[#F5F7FF]">
+                <Ionicons name="copy-outline" size={16} color="#1D2A24" />
+                <Text className="ml-2 text-[14px] font-sg-bold text-[#1D2A24]">
                   Copy Code
                 </Text>
               </View>
             </PressableScale>
 
             <PressableScale
-              className="min-h-[50px] flex-1 items-center justify-center rounded-[14px] border border-[#36D8A3]/55 bg-[#0F1D19]"
+              className="min-h-[50px] flex-1 items-center justify-center rounded-[14px] border border-[#1C7C55]/55 bg-[#FFFCF5]"
               activeScale={0.96}
               onPress={() => setSheetMode("invite")}
             >
@@ -349,9 +349,9 @@ export default function ReferralScreen({ navigation }) {
                 <Ionicons
                   name="share-social-outline"
                   size={16}
-                  color="#36D8A3"
+                  color="#1C7C55"
                 />
-                <Text className="ml-2 text-[14px] font-bold text-[#F5F7FF]">
+                <Text className="ml-2 text-[14px] font-sg-bold text-[#1D2A24]">
                   Invite Friends
                 </Text>
 
@@ -371,7 +371,7 @@ export default function ReferralScreen({ navigation }) {
             </PressableScale>
           </View>
 
-          <Text className="mt-4 text-[11px] font-medium text-[#B8C0D4]">
+          <Text className="mt-4 text-[12px] font-sg-medium text-[#1D2A24]">
             Referral rewards are verified by confirmation code (offline).
           </Text>
         </SGCard>
@@ -391,41 +391,41 @@ export default function ReferralScreen({ navigation }) {
         entering={FadeInDown.delay(120).duration(220)}
         className="mt-4"
       >
-        <SGCard className="rounded-[22px] border-white/10 bg-white/[0.05]">
+        <SGCard className="rounded-[18px] border-sg-border bg-sg-surface">
           <View className="mb-3 flex-row items-center justify-between">
             <ReferralStatsCounter
               value={referralsAppliedCount}
               label="Referral Activity"
             />
 
-            <View className="rounded-[14px] border border-white/10 bg-[#121722] px-3 py-3">
-              <Text className="text-[10px] font-bold uppercase tracking-[1px] text-[#AAB3C9]">
+            <View className="rounded-[14px] border border-sg-border bg-[#FFFCF5] px-3 py-3">
+              <Text className="text-[12px] font-sg-bold text-[#1D2A24]">
                 Shared
               </Text>
-              <Text className="mt-1 text-[20px] font-black text-[#F5F7FF]">
+              <Text className="mt-1 text-[20px] font-sg-display text-[#1D2A24]">
                 {invitesSharedCount}
               </Text>
             </View>
           </View>
 
-          <View className="rounded-[14px] border border-white/10 bg-[#121722] px-3 py-3">
-            <Text className="text-[10px] font-bold uppercase tracking-[1px] text-[#AAB3C9]">
+          <View className="rounded-[14px] border border-sg-border bg-[#FFFCF5] px-3 py-3">
+            <Text className="text-[12px] font-sg-bold text-[#1D2A24]">
               Claimed Rewards
             </Text>
             <Animated.Text
               style={claimedCountStyle}
-              className="mt-1 text-[22px] font-black text-[#F5F7FF]"
+              className="mt-1 text-[22px] font-sg-display text-[#1D2A24]"
             >
               {referralsAppliedCount}
             </Animated.Text>
           </View>
 
           {claimToken ? (
-            <View className="mt-3 rounded-[14px] border border-[#FFD700]/30 bg-[#2A2312] px-3 py-3">
-              <Text className="text-[10px] font-bold uppercase tracking-[1px] text-[#FFD700]">
+            <View className="mt-3 rounded-[14px] border border-[#9A6400]/30 bg-[#FFFCF5] px-3 py-3">
+              <Text className="text-[12px] font-sg-bold text-[#9A6400]">
                 Latest Claim Token
               </Text>
-              <Text className="mt-1 text-[12px] font-semibold text-[#FFE9AE]">
+              <Text className="mt-1 text-[12px] font-sg-semibold text-[#9A6400]">
                 {claimToken}
               </Text>
             </View>
@@ -456,8 +456,8 @@ export default function ReferralScreen({ navigation }) {
           style={toastStyle}
           className="absolute bottom-10 left-4 right-4 items-center"
         >
-          <View className="rounded-full border border-white/12 bg-[#151B27] px-4 py-2">
-            <Text className="text-[12px] font-semibold text-[#F5F7FF]">
+          <View className="rounded-full border border-sg-border bg-[#FFFCF5] px-4 py-2">
+            <Text className="text-[12px] font-sg-semibold text-[#1D2A24]">
               {toastText}
             </Text>
           </View>

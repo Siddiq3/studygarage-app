@@ -1,17 +1,6 @@
-import { ScrollView, Text, View} from 'react-native';
-import React, { useEffect } from "react";
+import React from 'react';
+import ComingSoonScreen from '../../src/features/chapters/ComingSoonScreen';
 
-
-const Eig = () => {
-
-    return (
-        <View>
-
-            <ScrollView>
-                <Text style={{ fontSize: 40 }}> UPLOADED SHORTLY...</Text>
-            </ScrollView>
-            </View>
-    );
-}
+const Eig = () => <ComingSoonScreen title={"Mathematics (TM)"} />;
 
 export default Eig;

@@ -104,7 +104,7 @@ const NextQuestionCountdown = React.memo(function NextQuestionCountdown({
   if (!start) return null;
 
   return (
-    <Text className="mt-4 text-center text-[14px] font-semibold text-sg-muted dark:text-sgd-muted">
+    <Text className="mt-4 text-center text-[14px] font-sg-semibold text-[#B5C6BB]">
       Next question in {remaining}...
     </Text>
   );
@@ -183,9 +183,9 @@ const AnimatedRewardChip = React.memo(function AnimatedRewardChip({
     return (
       <Animated.View
         style={chipAnimatedStyle}
-        className="mt-3 rounded-full border border-white/14 bg-white/8 px-4 py-2"
+        className="mt-3 rounded-full border border-[#F4EFE2]/14 bg-[#F4EFE2]/8 px-4 py-2"
       >
-        <Text className="text-[13px] font-bold text-[#DFE7F9]">
+        <Text className="text-[13px] font-sg-bold text-[#F4EFE2]">
           Daily quiz coin limit reached
         </Text>
       </Animated.View>
@@ -195,15 +195,15 @@ const AnimatedRewardChip = React.memo(function AnimatedRewardChip({
   return (
     <Animated.View
       style={chipAnimatedStyle}
-      className="relative mt-3 flex-row items-center overflow-hidden rounded-full border border-[#FFD700]/30 bg-[#2A2312] px-4 py-2"
+      className="relative mt-3 flex-row items-center overflow-hidden rounded-full border border-[#F2B632]/30 bg-[#1C4336] px-4 py-2"
     >
       <Animated.View
         pointerEvents="none"
         style={shimmerStyle}
-        className="absolute bottom-[-16px] top-[-16px] w-14 bg-[#FFE08A]"
+        className="absolute bottom-[-16px] top-[-16px] w-14 bg-[#F2B632]"
       />
       <Coin size={16} compact />
-      <Text className="ml-2 text-[14px] font-extrabold text-[#FFD700]">
+      <Text className="ml-2 text-[14px] font-sg-extrabold text-[#F2B632]">
         +{displayValue} coins
       </Text>
     </Animated.View>
@@ -442,31 +442,31 @@ export default function SuccessScreen({ navigation, route }: Props) {
 
   return (
     <ScreenLayoutContainer
-      variant="wallet"
+      variant="board"
       contentClassName="px-4"
       scroll={false}
     >
       <View className="flex-1 justify-center">
         <Animated.View style={cardStyle}>
-          <SGCard className="items-center py-8">
+          <SGCard board className="items-center py-8">
             <Animated.View
               style={badgeStyle}
               className="relative h-[92px] w-[92px] items-center justify-center"
             >
               <Animated.View
                 style={iconRingStyle}
-                className="absolute inset-0 rounded-full border border-[#00FFA3]/35 bg-[#0A3A2E]/72"
+                className="absolute inset-0 rounded-full border border-[#8FD9B4]/35 bg-[#1C4336]/72"
               />
-              <View className="h-[72px] w-[72px] items-center justify-center rounded-full border border-[#00FFA3]/40 bg-[#0F3329]">
-                <Ionicons name="checkmark" size={42} color="#00FFA3" />
+              <View className="h-[72px] w-[72px] items-center justify-center rounded-full border border-[#8FD9B4]/40 bg-[#1C4336]">
+                <Ionicons name="checkmark" size={42} color="#8FD9B4" />
               </View>
             </Animated.View>
 
             <Animated.View style={textStyle} className="items-center">
-              <Text className="mt-4 text-center text-[30px] font-extrabold leading-[34px] text-sg-text dark:text-sgd-text">
+              <Text className="mt-4 text-center text-[30px] font-sg-display leading-[34px] text-[#F4EFE2]">
                 {successHeadline}
               </Text>
-              <Text className="mt-1 text-center text-[13px] font-semibold text-sg-muted dark:text-sgd-muted">
+              <Text className="mt-1 text-center text-[13px] font-sg-semibold text-[#B5C6BB]">
                 {isDailyCapReached
                   ? "Daily quiz coin limit reached"
                   : "Reward unlocked"}
@@ -497,16 +497,16 @@ export default function SuccessScreen({ navigation, route }: Props) {
         <Animated.View style={buttonStyle} className="mt-4">
           <Animated.View
             style={buttonGlowStyle}
-            className="overflow-hidden rounded-full border border-[#B026FF]/28 bg-[#1A1D27]"
+            className="overflow-hidden rounded-full border border-[#F2B632]/28 bg-[#1C4336]"
           >
             <PressableScale
               onPress={handleCollectCoins}
               disabled={isCollecting || countdownStarted}
               activeScale={0.96}
               hapticType="tap"
-              className="min-h-[56px] items-center justify-center rounded-full border border-white/8 bg-[#2A2142]"
+              className="min-h-[56px] items-center justify-center rounded-full border border-[#F4EFE2]/8 bg-[#1C4336]"
             >
-              <Text className="text-[17px] font-bold text-white/95">
+              <Text className="text-[17px] font-sg-bold text-[#F4EFE2]/95">
                 {countdownStarted
                   ? "Please wait..."
                   : isCollecting

@@ -1,9 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { BackHandler, Text, View } from 'react-native';
+import { BackHandler, View } from 'react-native';
 import Animated, { FadeInDown } from 'react-native-reanimated';
 import ScreenLayoutContainer from './src/design-system/components/ScreenLayoutContainer';
-import SGCard from './src/design-system/components/SGCard';
-import AnimatedActionCard from './src/design-system/components/AnimatedActionCard';
+import ScreenHeader from './src/design-system/components/ScreenHeader';
+import ContentsList from './src/design-system/components/ContentsList';
 import MrecAdComponent from './MrecAdComponent';
 
 const decodeText = (value) => {
@@ -54,31 +54,15 @@ const Ssc = ({ navigation }) => {
 
   return (
     <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
+      <ScreenHeader eyebrow="SSC 2023" title="Subject papers" subtitle="Open subject-wise SSC paper sets" />
       <Animated.View entering={FadeInDown.duration(220)}>
-        <SGCard className="mb-4">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">SSC 2023</Text>
-          <Text className="mt-1 text-[28px] font-extrabold leading-[32px] text-sg-text dark:text-sgd-text">Subject Papers</Text>
-          <Text className="mt-1 text-[13px] font-medium text-sg-muted dark:text-sgd-muted">
-            Open subject-wise SSC paper sets
-          </Text>
-
-          <View className="mt-4">
-            {items.map((item, index) => (
-              <Animated.View key={item.key} entering={FadeInDown.delay(20 + index * 12).duration(170)} className="mb-3">
-                <AnimatedActionCard onPress={() => navigation.navigate(item.screen)}>
-                  <View className="rounded-[18px] border border-sg-border bg-sg-surface/88 px-4 py-4 dark:border-sgd-border dark:bg-sgd-surface/88">
-                    <View className="flex-row items-center justify-between">
-                      <Text className="flex-1 text-[16px] font-bold text-sg-text dark:text-sgd-text">
-                        {isLoading ? 'Loading...' : item.label}
-                      </Text>
-                      <Text className="ml-3 text-[12px] font-semibold text-sg-muted dark:text-sgd-muted">Open</Text>
-                    </View>
-                  </View>
-                </AnimatedActionCard>
-              </Animated.View>
-            ))}
-          </View>
-        </SGCard>
+        <ContentsList
+          items={items.map((item) => ({
+            label: isLoading ? 'Loading' : item.label,
+            id: item.key,
+            onPress: () => navigation.navigate(item.screen),
+          }))}
+        />
       </Animated.View>
 
       <View className="mb-4">

@@ -143,17 +143,17 @@ export default function StreakCounter({
   );
 
   const supercharged = dailyQuizCompleted || celebrate;
-  const flameGlowColor = supercharged ? "bg-[#B026FF]/35" : "bg-[#FF5A2F]/35";
+  const flameGlowColor = supercharged ? "bg-[#17694F]/35" : "bg-[#BF3F2B]/35";
   const flameBorderColor = supercharged
-    ? "border-[#B38BFF]/45"
-    : "border-[#FF7A3D]/40";
-  const flameBg = supercharged ? "bg-[#261B3D]/80" : "bg-[#2A1712]/80";
-  const flameColor = supercharged ? "#C4A6FF" : "#FF9A3D";
+    ? "border-[#17694F]/45"
+    : "border-[#C4551A]/40";
+  const flameBg = supercharged ? "bg-[#FFFCF5]/80" : "bg-[#FFFCF5]/80";
+  const flameColor = supercharged ? "#17694F" : "#C4551A";
 
   return (
-    <View className="rounded-[20px] border border-white/10 bg-[#151A24] px-3 pb-3 pt-4">
+    <View className="rounded-[20px] border border-sg-border bg-[#FFFCF5] px-3 pb-3 pt-4">
       <View className="items-center">
-        <View className="rounded-full border border-white/12 bg-[#1A1524] p-2.5">
+        <View className="rounded-full border border-sg-border bg-[#FFFCF5] p-2.5">
           <Animated.View
             style={flameGlowStyle}
             className={`absolute -inset-2 rounded-full ${flameGlowColor}`}
@@ -175,10 +175,10 @@ export default function StreakCounter({
           </Animated.View>
         </View>
 
-        <Text className="mt-3 text-[28px] font-black leading-[30px] text-white">
+        <Text className="mt-3 text-[28px] font-sg-display leading-[30px] text-sg-text">
           {streakCount} Day Streak
         </Text>
-        <Text className="mt-1 text-[12px] font-semibold text-[#A6B2CA]">
+        <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
           {dailyQuizCompleted
             ? "You're on fire, Sk!"
             : "Keep the flame alive today"}
@@ -186,8 +186,8 @@ export default function StreakCounter({
       </View>
 
       <View className="relative mt-4">
-        <View className="absolute left-4 right-4 top-[30px] h-[2px] rounded-full bg-white/12" />
-        <View className="absolute left-4 right-4 top-[30px] h-[2px] rounded-full bg-[#B026FF]/35" />
+        <View className="absolute left-4 right-4 top-[30px] h-[2px] rounded-full bg-sg-bg2" />
+        <View className="absolute left-4 right-4 top-[30px] h-[2px] rounded-full bg-[#17694F]/35" />
 
         <View className="flex-row items-start justify-between px-0.5">
           {dayItems.map((item, idx) => (

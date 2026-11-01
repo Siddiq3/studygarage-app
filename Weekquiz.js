@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
+import ScreenLayoutContainer from './src/design-system/components/ScreenLayoutContainer';
+import ScreenHeader from './src/design-system/components/ScreenHeader';
+import SGButton from './src/design-system/components/SGButton';
+import SGEmptyState from './src/design-system/components/SGEmptyState';
+import QuizLoadingSkeleton from './src/components/quiz/QuizLoadingSkeleton';
 import { useQuizContext } from "./QuizContext"; // Import the context hook
 
 const WeekQues = ({ navigation }) => {
@@ -73,123 +78,35 @@ const WeekQues = ({ navigation }) => {
     };
 
     return (
-        <View style={styles.container}>
+        <ScreenLayoutContainer variant="board" contentClassName="px-4" scroll={false}>
+            <ScreenHeader board eyebrow="Weekly test" title={questions.length ? `Question ${ques + 1}` : 'Weekly test'} subtitle={questions.length ? `of ${questions.length}` : undefined} className="mb-5" />
             {isLoading ? (
-                <View style={styles.loadingContainer}>
-                    <Text style={styles.loadingText}>LOADING...</Text>
-                </View>
+                <QuizLoadingSkeleton />
             ) : questions.length > 0 ? (
-                <View style={styles.parent}>
-                    <View style={styles.top}>
-                        <Text style={styles.question}>Q. {decodeURIComponent(questions[ques].question)}</Text>
-                    </View>
-
-                    <View style={styles.options}>
+                <View className="flex-1">
+                    <Text className="mb-5 text-[21px] leading-[29px] font-sg-semibold text-[#F4EFE2]">{decodeURIComponent(questions[ques].question)}</Text>
+                    <View className="flex-1">
                         {options.map((option, index) => (
                             <TouchableOpacity
                                 key={index}
-                                style={styles.optionButtom}
                                 onPress={() => handlSelectedOption(option)}
+                                className="mb-2.5 min-h-[56px] justify-center rounded-[14px] border border-[#F4EFE2]/16 bg-[#1C4336] px-4 py-3"
                             >
-                                <Text style={styles.option}>{decodeURIComponent(option)}</Text>
+                                <Text className="text-[16px] leading-[22px] font-sg-medium text-[#F4EFE2]">{decodeURIComponent(option)}</Text>
                             </TouchableOpacity>
                         ))}
                     </View>
-
-                    <View style={styles.bottom}>
-                        {ques !== questions.length - 1 ? (
-                            <TouchableOpacity style={styles.button} onPress={handleNextPress}>
-                                <Text style={styles.buttonText}>SKIP</Text>
-                            </TouchableOpacity>
-                        ) : (
-                            <TouchableWithoutFeedback onPress={handleShowResult}>
-                                <View style={styles.button}>
-                                    <Text style={styles.buttonText}>SHOW RESULTS</Text>
-                                </View>
-                            </TouchableWithoutFeedback>
-                        )}
-                    </View>
+                    {ques !== questions.length - 1 ? (
+                        <SGButton label="Skip" variant="boardGhost" onPress={handleNextPress} />
+                    ) : (
+                        <SGButton label="Show results" variant="board" onPress={handleShowResult} />
+                    )}
                 </View>
             ) : (
-                <View style={styles.errorContainer}>
-                    <Text style={styles.errorText}>No questions available.</Text>
-                </View>
+                <SGEmptyState board title="No questions available" subtitle="Please try again in a while." />
             )}
-        </View>
+        </ScreenLayoutContainer>
     );
 };
-
-
-
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        paddingTop: 40,
-        paddingHorizontal: 20,
-    },
-    loadingContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    loadingText: {
-        fontSize: 32,
-        fontWeight: '700',
-    },
-    errorContainer: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-    },
-    errorText: {
-        fontSize: 20,
-        fontWeight: '500',
-        color: 'red',
-    },
-    top: {
-        marginVertical: 16,
-    },
-    options: {
-        marginVertical: 16,
-        flex: 1,
-    },
-    bottom: {
-        marginBottom: 12,
-        paddingVertical: 16,
-        justifyContent: 'space-between',
-        flexDirection: 'row',
-    },
-    button: {
-        backgroundColor: '#1A759F',
-        padding: 12,
-        paddingHorizontal: 16,
-        borderRadius: 16,
-        alignItems: 'center',
-        marginBottom: 30,
-    },
-    buttonText: {
-        fontSize: 28,
-        fontWeight: 'bold',
-        color: '#ED4264',
-    },
-    question: {
-        fontSize: 28,
-    },
-    option: {
-        fontSize: 18,
-        fontWeight: '500',
-        color: 'white',
-    },
-    optionButtom: {
-        paddingVertical: 12,
-        marginVertical: 6,
-        backgroundColor: '#34A0A4',
-        paddingHorizontal: 12,
-        borderRadius: 12,
-    },
-    parent: {
-        height: '100%',
-    },
-});
 
 export default WeekQues;

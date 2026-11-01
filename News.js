@@ -36,79 +36,79 @@ const News = ({ navigation }) => {
 
 
                 <View>
-                    <Text style={{ fontSize: 30, marginTop: 10, color: '#ef233c' }}> LATEST UPDATES</Text>
+                    <Text style={{ fontSize: 30, marginTop: 10, color: '#BF3F2B' }}> LATEST UPDATES</Text>
                 </View>
 
 
                 <View >
-                    <Card style={{ marginLeft: 5, color: '#772262', borderRadius: 20, height: 150, width: 400, marginTop: 25 }}>
+                    <Card style={{ marginLeft: 5, color: '#17694F', borderRadius: 20, height: 150, width: 400, marginTop: 25 }}>
 
 
                         <TouchableOpacity activeOpacity={1} style={{ marginTop: 20 }} onPress={() =>
                             Linking.openURL(`${questions.news1}`)}>
-                            {isLoading ? <Text style={{ fontSize: 30, fontWeight: '500', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news1t)}?</Text>)}
+                            {isLoading ? <Text style={{ fontSize: 30, fontFamily: 'PlusJakartaSans_500Medium', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news1t)}?</Text>)}
                         </TouchableOpacity>
 
                     </Card>
 
-                    <Card style={{ marginLeft: 5, color: '#772262', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
+                    <Card style={{ marginLeft: 5, color: '#17694F', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
 
 
                         <TouchableOpacity activeOpacity={1} style={{ marginTop: 20 }} onPress={() =>
                             Linking.openURL(`${questions.news2}`)}>
-                            {isLoading ? <Text style={{ fontSize: 30, fontWeight: '500', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news2t)}?</Text>)}
+                            {isLoading ? <Text style={{ fontSize: 30, fontFamily: 'PlusJakartaSans_500Medium', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news2t)}?</Text>)}
                         </TouchableOpacity>
 
                     </Card>
 
 
 
-                    <Card style={{ marginLeft: 5, color: '#772262', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
+                    <Card style={{ marginLeft: 5, color: '#17694F', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
 
 
                         <TouchableOpacity activeOpacity={1} style={{ marginTop: 20 }} onPress={() =>
                             Linking.openURL(`${questions.news3}`)}>
-                            {isLoading ? <Text style={{ fontSize: 30, fontWeight: '500', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news3t)}?</Text>)}
+                            {isLoading ? <Text style={{ fontSize: 30, fontFamily: 'PlusJakartaSans_500Medium', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news3t)}?</Text>)}
                         </TouchableOpacity>
 
                     </Card>
 
-                    <Card style={{ marginLeft: 5, color: '#772262', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
+                    <Card style={{ marginLeft: 5, color: '#17694F', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
 
 
                         <TouchableOpacity activeOpacity={1} style={{ marginTop: 20 }} onPress={() =>
                             Linking.openURL(`${questions.news4}`)}>
-                            {isLoading ? <Text style={{ fontSize: 30, fontWeight: '500', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news4t)}?</Text>)}
+                            {isLoading ? <Text style={{ fontSize: 30, fontFamily: 'PlusJakartaSans_500Medium', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news4t)}?</Text>)}
                         </TouchableOpacity>
 
                     </Card>
 
-                    <Card style={{ marginLeft: 5, color: '#772262', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
+                    <Card style={{ marginLeft: 5, color: '#17694F', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
 
 
                         <TouchableOpacity activeOpacity={1} style={{ marginTop: 20 }} onPress={() =>
                             Linking.openURL(`${questions.news6}`)}>
-                            {isLoading ? <Text style={{ fontSize: 30, fontWeight: '500', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news5t)}?</Text>)}
+                            {isLoading ? <Text style={{ fontSize: 30, fontFamily: 'PlusJakartaSans_500Medium', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news5t)}?</Text>)}
                         </TouchableOpacity>
 
                     </Card>
 
-                    <Card style={{ marginLeft: 5, color: '#772262', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
+                    <Card style={{ marginLeft: 5, color: '#17694F', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
 
 
                         <TouchableOpacity activeOpacity={1} style={{ marginTop: 20 }} onPress={() =>
                             Linking.openURL(`${questions.news6}`)}>
-                            {isLoading ? <Text style={{ fontSize: 30, fontWeight: '500', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news5t)}?</Text>)}
+                            {isLoading ? <Text style={{ fontSize: 30, fontFamily: 'PlusJakartaSans_500Medium', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news5t)}?</Text>)}
                         </TouchableOpacity>
 
                     </Card>
 
-                    <Card style={{ marginLeft: 5, color: '#772262', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
+                    <Card style={{ marginLeft: 5, color: '#17694F', borderRadius: 20, height: 150, width: 400, marginTop: 30 }}>
 
 
                         <TouchableOpacity activeOpacity={1} style={{ marginTop: 20 }} onPress={() =>
                             Linking.openURL(`${questions.news6}`)}>
-                            {isLoading ? <Text style={{ fontSize: 30, fontWeight: '500', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news6t)}?</Text>)}
+                            {isLoading ? <Text style={{ fontSize: 30, fontFamily: 'PlusJakartaSans_500Medium', color: '##ffffff' }}>Loading...</Text> : questions && (<Text style={{ textAlign: 'center', fontSize: 20, textAlignVertical: 'center', color: '##ffffff' }} >Q. {decodeURIComponent(questions.news6t)}?</Text>)}
                         </TouchableOpacity>
 
                     </Card>

@@ -1,7 +1,11 @@
+import { StatusBar } from "expo-status-bar";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import React, { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { Alert, BackHandler, Text, TouchableOpacity, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Animated, {
+  Easing,
   FadeIn,
   FadeInDown,
   FadeOut,
@@ -30,8 +34,8 @@ const TARGET_CORRECT = 7;
 const CORRECT_ANSWER_REVIEW_SECONDS = 8;
 const SEEN_STORAGE_PREFIX = "sg_seen_questions";
 const SEEN_WRITE_DEBOUNCE_MS = 300;
-const BRAND_MINT = "#36D8A3";
-const BRAND_PURPLE = "#B026FF";
+const BRAND_MINT = "#8FD9B4";
+const BRAND_PURPLE = "#F2B632";
 
 const normalizeKeySegment = (value) =>
   String(value ?? "unknown")
@@ -90,7 +94,54 @@ const shuffleQuestions = (questionList) => {
   return cloned;
 };
 
+// One UI-thread timing for the whole wait, so the bar stays smooth while JS is busy.
+function NextQuestionBar({ seconds, totalSeconds }) {
+  const drain = useSharedValue(1);
+
+  useEffect(() => {
+    drain.value = withTiming(0, {
+      duration: totalSeconds * 1000,
+      easing: Easing.linear,
+    });
+  }, [drain, totalSeconds]);
+
+  const drainStyle = useAnimatedStyle(() => ({
+    transform: [{ scaleX: drain.value }],
+  }));
+
+  return (
+    <Animated.View
+      entering={FadeInDown.duration(240)}
+      className="mt-2 rounded-[18px] bg-[#1C4336] p-3"
+    >
+      <View className="flex-row items-center">
+        <View className="h-10 w-10 items-center justify-center rounded-[12px] bg-[#8FD9B4]">
+          <Ionicons name="checkmark" size={24} color="#14342A" />
+        </View>
+        <View className="ml-3 flex-1">
+          <Text className="text-[16px] font-sg-bold text-[#F4EFE2]">
+            Correct. Review your answer.
+          </Text>
+          <Text
+            className="text-[13px] font-sg-medium text-[#B5C6BB]"
+            style={{ fontVariant: ["tabular-nums"] }}
+          >
+            Moving on in {seconds}s
+          </Text>
+        </View>
+      </View>
+      <View className="mt-3 h-1.5 overflow-hidden rounded-full bg-[#F4EFE2]/16">
+        <Animated.View
+          className="h-full w-full rounded-full bg-[#F2B632]"
+          style={[drainStyle, { transformOrigin: "left" }]}
+        />
+      </View>
+    </Animated.View>
+  );
+}
+
 const Quizques = ({ navigation, route }) => {
+  const insets = useSafeAreaInsets();
   const [totalQuestions, setTotalQuestions] = useState(0);
   const [correctQuestions, setCorrectQuestions] = useState(0);
   const [incorrectQuestions, setIncorrectQuestions] = useState(0);
@@ -102,6 +153,7 @@ const Quizques = ({ navigation, route }) => {
   const [selectedOption, setSelectedOption] = useState(null);
   const [selectionLocked, setSelectionLocked] = useState(false);
   const [postCorrectCountdown, setPostCorrectCountdown] = useState(null);
+  const postCorrectDoneRef = useRef(null);
   const [showCompletionModal, setShowCompletionModal] = useState(false);
 
   const pendingAdvanceTimeoutRef = useRef(null);
@@ -343,9 +395,17 @@ const Quizques = ({ navigation, route }) => {
     markQuestionSeen,
   ]);
 
+  const finishPostCorrectReview = useCallback(() => {
+    const onDone = postCorrectDoneRef.current;
+    postCorrectDoneRef.current = null;
+    clearPostCorrectCountdownTimeout();
+    onDone?.();
+  }, [clearPostCorrectCountdownTimeout]);
+
   const startPostCorrectAnswerReview = useCallback(
     (onDone) => {
       clearPostCorrectCountdownTimeout();
+      postCorrectDoneRef.current = onDone;
       let secondsRemaining = CORRECT_ANSWER_REVIEW_SECONDS;
       setPostCorrectCountdown(secondsRemaining);
 
@@ -353,8 +413,7 @@ const Quizques = ({ navigation, route }) => {
         secondsRemaining -= 1;
 
         if (secondsRemaining <= 0) {
-          clearPostCorrectCountdownTimeout();
-          onDone?.();
+          finishPostCorrectReview();
           return;
         }
 
@@ -364,7 +423,7 @@ const Quizques = ({ navigation, route }) => {
 
       postCorrectCountdownTimeoutRef.current = setTimeout(tick, 1000);
     },
-    [clearPostCorrectCountdownTimeout]
+    [clearPostCorrectCountdownTimeout, finishPostCorrectReview]
   );
 
   const triggerWrongFeedback = useCallback(() => {
@@ -599,11 +658,12 @@ const Quizques = ({ navigation, route }) => {
   const showQuizBanner = !isLoading && Array.isArray(questions) && questions.length > 0;
 
   return (
-    <View className="flex-1 bg-[#0B0C10]">
-      <View className="flex-1 px-4 pb-5 pt-4">
+    <View className="flex-1 bg-[#14342A]">
+      <StatusBar style="light" />
+      <View className="flex-1 px-4 pb-5" style={{ paddingTop: insets.top + 10, paddingBottom: Math.max(insets.bottom, 12) + 8 }}>
         <PremiumQuizTopBar
           progressMode="goal"
-          sessionLabel={chapterLabel || "Quiz Session"}
+          sessionLabel={chapterLabel || "Quiz"}
           correctCount={correctQuestions}
           targetCorrect={TARGET_CORRECT}
           helperText={`Get ${TARGET_CORRECT} correct to finish`}
@@ -620,11 +680,11 @@ const Quizques = ({ navigation, route }) => {
             className="flex-1"
             style={wrongAnswerStyle}
           >
-            <View className="mb-4 rounded-[22px] border border-white/10 bg-white/6 px-4 py-4">
-              <Text className="text-center text-[12px] font-bold uppercase tracking-[1.1px] text-white/65">
-                Question Prompt
+            <View className="mb-4 rounded-[18px] border border-[#F4EFE2]/10 bg-[#F4EFE2]/6 px-4 py-4">
+              <Text className="text-center text-[12px] font-sg-bold text-[#F4EFE2]/65">
+                Question
               </Text>
-              <Text className="mt-2 text-center text-[22px] font-black leading-[30px] text-white">
+              <Text className="mt-2 text-center text-[22px] font-sg-display leading-[30px] text-[#F4EFE2]">
                 {decodedQuestion}
               </Text>
             </View>
@@ -642,17 +702,16 @@ const Quizques = ({ navigation, route }) => {
             </View>
 
             {postCorrectCountdown !== null ? (
-              <View className="mt-2 items-end">
-                <Text className="rounded-full border border-white/15 bg-white/8 px-3 py-1.5 text-[12px] font-bold text-[#DFE7F9]">
-                  Next question in {postCorrectCountdown}...
-                </Text>
-              </View>
+              <NextQuestionBar
+                seconds={postCorrectCountdown}
+                totalSeconds={CORRECT_ANSWER_REVIEW_SECONDS}
+              />
             ) : ques !== totalQuestions - 1 ? (
               <TouchableOpacity
                 onPress={handleNextPress}
-                className="mt-1 self-end rounded-full border border-white/15 bg-white/7 px-4 py-2"
+                className="mt-1 self-end rounded-full border border-[#F4EFE2]/15 bg-[#F4EFE2]/7 px-4 py-2"
               >
-                <Text className="text-[12px] font-bold uppercase tracking-[0.9px] text-white/90">
+                <Text className="text-[12px] font-sg-bold text-[#F4EFE2]/90">
                   Skip
                 </Text>
               </TouchableOpacity>
@@ -660,7 +719,7 @@ const Quizques = ({ navigation, route }) => {
           </Animated.View>
         ) : (
           <View className="flex-1 justify-center">
-            <SGEmptyState
+            <SGEmptyState board
               title="Quiz set is empty right now"
               subtitle="Please go back and try another chapter."
               actionLabel="Go Home"
@@ -681,18 +740,18 @@ const Quizques = ({ navigation, route }) => {
         <Animated.View
           entering={FadeIn.duration(180)}
           exiting={FadeOut.duration(160)}
-          className="absolute inset-0 z-[100] justify-center bg-black/80 px-5"
+          className="absolute inset-0 z-[100] justify-center bg-[#0F281F]/80 px-5"
           pointerEvents="auto"
         >
           <Animated.View
             entering={FadeInDown.duration(240)}
-            className="rounded-[30px] border border-white/10 bg-[#151B2A] px-5 py-6"
+            className="rounded-[18px] border border-[#F4EFE2]/10 bg-[#1C4336] px-5 py-6"
           >
             <View className="mb-4 items-center">
-              <View className="h-[82px] w-[82px] items-center justify-center rounded-full border border-white/12 bg-[#10182B]">
-                <View className="h-[58px] w-[58px] items-center justify-center rounded-full border border-white/10 bg-[#0E1320]">
+              <View className="h-[82px] w-[82px] items-center justify-center rounded-full border border-[#F4EFE2]/12 bg-[#1C4336]">
+                <View className="h-[58px] w-[58px] items-center justify-center rounded-full border border-[#F4EFE2]/10 bg-[#14342A]">
                   <Text
-                    className="text-[26px] font-black"
+                    className="text-[26px] font-sg-display"
                     style={{ color: BRAND_MINT }}
                   >
                     7
@@ -704,7 +763,7 @@ const Quizques = ({ navigation, route }) => {
                   className="h-[8px] w-[8px] rounded-full"
                   style={{ backgroundColor: BRAND_MINT }}
                 />
-                <View className="mx-2 h-[2px] w-[28px] bg-white/25" />
+                <View className="mx-2 h-[2px] w-[28px] bg-[#F4EFE2]/25" />
                 <View
                   className="h-[8px] w-[8px] rounded-full"
                   style={{ backgroundColor: BRAND_PURPLE }}
@@ -712,32 +771,32 @@ const Quizques = ({ navigation, route }) => {
               </View>
             </View>
 
-            <Text className="text-center text-[30px] font-extrabold text-white">
+            <Text className="text-center text-[30px] font-sg-display text-[#F4EFE2]">
               Quiz Completed
             </Text>
-            <Text className="mt-2 text-center text-[14px] font-medium text-[#C7D2E9]">
+            <Text className="mt-2 text-center text-[14px] font-sg-medium text-[#F4EFE2]">
               You reached {TARGET_CORRECT} correct answers.
             </Text>
-            <Text className="mt-1 text-center text-[13px] font-medium text-white/60">
+            <Text className="mt-1 text-center text-[13px] font-sg-medium text-[#F4EFE2]/60">
               Choose what you want to do next.
             </Text>
 
             <TouchableOpacity
               onPress={handleCompletionStartAgain}
-              className="mt-6 rounded-[18px] border border-white/12 bg-[#2E2152] px-4 py-4"
+              className="mt-6 rounded-[18px] border border-[#F4EFE2]/12 bg-[#1C4336] px-4 py-4"
               activeOpacity={0.88}
             >
-              <Text className="text-center text-[17px] font-extrabold text-white">
+              <Text className="text-center text-[17px] font-sg-extrabold text-[#F4EFE2]">
                 Start Again
               </Text>
             </TouchableOpacity>
 
             <TouchableOpacity
               onPress={handleCompletionGoBack}
-              className="mt-3 rounded-[18px] border border-white/12 bg-white/10 px-4 py-4"
+              className="mt-3 rounded-[18px] border border-[#F4EFE2]/12 bg-[#F4EFE2]/10 px-4 py-4"
               activeOpacity={0.88}
             >
-              <Text className="text-center text-[17px] font-bold text-white/95">
+              <Text className="text-center text-[17px] font-sg-bold text-[#F4EFE2]/95">
                 Go Back
               </Text>
             </TouchableOpacity>

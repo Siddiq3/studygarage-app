@@ -197,12 +197,12 @@ function PromoTile({
         accessibilityHint="Opens in browser"
       >
         <LinearGradient
-          colors={["rgba(139,92,246,0.38)", "rgba(59,130,246,0.2)"]}
+          colors={["rgba(23,105,79,0.38)", "rgba(23,105,79,0.2)"]}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           className="overflow-hidden rounded-[18px] p-[1px]"
         >
-          <View className="overflow-hidden rounded-[17px] border border-white/10 bg-[#111726]">
+          <View className="overflow-hidden rounded-[17px] border border-sg-border bg-[#FFFCF5]">
             {!imageFailed && item.image ? (
               <View className="relative">
                 <Image
@@ -213,11 +213,11 @@ function PromoTile({
                   style={{
                     width: "100%",
                     aspectRatio: bannerAspectRatio,
-                    backgroundColor: "#111726",
+                    backgroundColor: "#FFFCF5",
                   }}
                 />
                 <LinearGradient
-                  colors={["rgba(8,10,16,0.08)", "rgba(8,10,16,0.34)"]}
+                  colors={["rgba(15,40,31,0.08)", "rgba(15,40,31,0.34)"]}
                   start={{ x: 0.5, y: 0.1 }}
                   end={{ x: 0.5, y: 1 }}
                   className="absolute inset-0"
@@ -225,15 +225,15 @@ function PromoTile({
               </View>
             ) : (
               <View
-                className="w-full items-center justify-center bg-[#0E1320]"
+                className="w-full items-center justify-center bg-[#FFFCF5]"
                 style={{ aspectRatio: bannerAspectRatio }}
               >
-                <Ionicons name="apps-outline" size={30} color="#B8C0D4" />
+                <Ionicons name="apps-outline" size={30} color="#1D2A24" />
               </View>
             )}
 
-            <View className="absolute right-3 top-3 h-10 w-10 items-center justify-center rounded-full border border-white/12 bg-black/35">
-              <Ionicons name="open-outline" size={18} color="#F3F7FF" />
+            <View className="absolute right-3 top-3 h-10 w-10 items-center justify-center rounded-full border border-sg-border bg-sg-bg2">
+              <Ionicons name="open-outline" size={18} color="#1D2A24" />
             </View>
           </View>
         </LinearGradient>
@@ -533,8 +533,8 @@ export default function PromoCard({ stateBoard = "", classValue = "" }) {
                 }`}
                 style={{
                   backgroundColor: active
-                    ? "rgba(176,38,255,0.95)"
-                    : "rgba(255,255,255,0.22)",
+                    ? "rgba(23,105,79,0.95)"
+                    : "rgba(29,42,36,0.22)",
                 }}
               />
             );

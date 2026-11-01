@@ -1,9 +1,9 @@
 export const uiTokens = {
   radius: {
-    sm: 16,
-    md: 20,
-    lg: 24,
-    xl: 28,
+    sm: 10,
+    md: 14,
+    lg: 18,
+    xl: 22,
   },
   spacing: {
     xs: 8,
@@ -21,9 +21,9 @@ export const uiTokens = {
     caption: 12,
   },
   gradients: {
-    primary: ['#38145A', '#6A22A8', '#B026FF'],
-    secondary: ['#1D143A', '#3A2A7B', '#5B7CFF'],
-    background: ['#121212', '#161821', '#1A1C2E'],
-    coin: ['#866A2A', '#E9C667', '#F0DEAB'],
+    primary: ['#17694F', '#17694F', '#1F8263'],
+    secondary: ['#14342A', '#1C4336', '#1C4336'],
+    background: ['#F6F1E7', '#F6F1E7', '#EDE6D7'],
+    coin: ['#B97F0E', '#E5A019', '#F2C65E'],
   },
 };

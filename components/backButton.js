@@ -15,7 +15,7 @@ export default function BackButton() {
     };
 
     return (
-        <TouchableOpacity onPress={handleBack} className="bg-white rounded-full h-8 w-8">
+        <TouchableOpacity onPress={handleBack} className="bg-sg-surface rounded-full h-8 w-8">
             <ChevronLeftIcon size="30" color={colors.button} />
         </TouchableOpacity>
     )

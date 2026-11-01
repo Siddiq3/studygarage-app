@@ -93,8 +93,8 @@ export default function VoucherProviderScreen({
         Snackbar.show({
           text: `You need ${requiredCoins - totalScore} more coins.`,
           duration: Snackbar.LENGTH_SHORT,
-          backgroundColor: "#2A1720",
-          textColor: "#FFD4DF",
+          backgroundColor: "#FFFCF5",
+          textColor: "#BF3F2B",
         });
         return;
       }
@@ -119,26 +119,26 @@ export default function VoucherProviderScreen({
         <View className="flex-row items-start justify-between">
           <View className="flex-1 pr-3">
             <Text
-              className="text-[28px] font-extrabold leading-[33px] text-[#F5F7FF]"
-              style={{ fontFamily: "Sora_800ExtraBold" }}
+              className="text-[28px] font-sg-display leading-[33px] text-[#1D2A24]"
+              style={{ fontFamily: "BricolageGrotesque_700Bold" }}
               numberOfLines={1}
             >
               {config.title}
             </Text>
             <Text
-              className="mt-1 text-[13px] font-medium text-[#B8C0D4]"
-              style={{ fontFamily: "Inter_500Medium" }}
+              className="mt-1 text-[13px] font-sg-medium text-[#1D2A24]"
+              style={{ fontFamily: "PlusJakartaSans_500Medium" }}
             >
               {config.subtitle}
             </Text>
           </View>
 
-          <View className="rounded-full border border-[#FFD700]/25 bg-[#2A2414] px-3 py-1.5">
+          <View className="rounded-full border border-[#9A6400]/25 bg-[#FFFCF5] px-3 py-1.5">
             <View className="flex-row items-center">
-              <Ionicons name="flame-outline" size={13} color="#FFD700" />
+              <Ionicons name="flame-outline" size={13} color="#9A6400" />
               <Text
-                className="ml-1 text-[12px] font-extrabold text-[#FFD700]"
-                style={{ fontFamily: "Inter_600SemiBold" }}
+                className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]"
+                style={{ fontFamily: "PlusJakartaSans_600SemiBold" }}
               >
                 {totalScore}
               </Text>
@@ -148,8 +148,8 @@ export default function VoucherProviderScreen({
 
         {error ? (
           <Text
-            className="mt-1 text-[11px] text-[#9CA6BD]"
-            style={{ fontFamily: "Inter_500Medium" }}
+            className="mt-1 text-[12px] text-[#47544D] font-sg-medium"
+            style={{ fontFamily: "PlusJakartaSans_500Medium" }}
           >
             Using cached voucher catalog.
           </Text>
@@ -209,8 +209,8 @@ export default function VoucherProviderScreen({
             ListEmptyComponent={
               <View className="mt-10 items-center px-4">
                 <Text
-                  className="text-center text-[13px] text-[#B8C0D4]"
-                  style={{ fontFamily: "Inter_500Medium" }}
+                  className="text-center text-[13px] text-[#1D2A24] font-sg-medium"
+                  style={{ fontFamily: "PlusJakartaSans_500Medium" }}
                 >
                   No voucher amounts available right now.
                 </Text>
@@ -225,10 +225,10 @@ export default function VoucherProviderScreen({
                   className="self-start px-1 py-1"
                 >
                   <View className="flex-row items-center">
-                    <Ionicons name="chevron-back" size={14} color="#9EA8BE" />
+                    <Ionicons name="chevron-back" size={14} color="#47544D" />
                     <Text
-                      className="ml-1 text-[13px] font-semibold text-[#B8C0D4]"
-                      style={{ fontFamily: "Inter_500Medium" }}
+                      className="ml-1 text-[13px] font-sg-semibold text-[#1D2A24]"
+                      style={{ fontFamily: "PlusJakartaSans_500Medium" }}
                     >
                       Back
                     </Text>

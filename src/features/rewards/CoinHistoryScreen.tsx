@@ -34,15 +34,15 @@ const SOURCE_META: Record<
   WalletLedgerEntry["source"],
   { icon: React.ComponentProps<typeof Ionicons>["name"]; label: string; color: string }
 > = {
-  welcome: { icon: "gift-outline", label: "Welcome", color: "#8BE6B5" },
-  quiz: { icon: "help-circle-outline", label: "Quiz", color: "#7FB6FF" },
-  daily: { icon: "sunny-outline", label: "Daily", color: "#FFD772" },
-  streak: { icon: "flame-outline", label: "Streak", color: "#F8966A" },
-  ad: { icon: "play-circle-outline", label: "Ad Reward", color: "#C09CFF" },
-  redeem: { icon: "wallet-outline", label: "Redeem", color: "#F4A8AA" },
-  referral: { icon: "people-outline", label: "Referral", color: "#76D6FF" },
-  migration: { icon: "sync-outline", label: "Sync", color: "#96A2BC" },
-  admin: { icon: "settings-outline", label: "Admin", color: "#A9B2C9" },
+  welcome: { icon: "gift-outline", label: "Welcome", color: "#1C7C55" },
+  quiz: { icon: "help-circle-outline", label: "Quiz", color: "#17694F" },
+  daily: { icon: "sunny-outline", label: "Daily", color: "#9A6400" },
+  streak: { icon: "flame-outline", label: "Streak", color: "#C4551A" },
+  ad: { icon: "play-circle-outline", label: "Ad Reward", color: "#17694F" },
+  redeem: { icon: "wallet-outline", label: "Redeem", color: "#BF3F2B" },
+  referral: { icon: "people-outline", label: "Referral", color: "#17694F" },
+  migration: { icon: "sync-outline", label: "Sync", color: "#47544D" },
+  admin: { icon: "settings-outline", label: "Admin", color: "#1D2A24" },
 };
 
 const formatDateLabel = (createdAt: string) => {
@@ -124,14 +124,14 @@ function LoadingSkeleton() {
       {[0, 1, 2, 3].map((index) => (
         <View
           key={`coin-history-skeleton-${index}`}
-          className="mb-3 rounded-[18px] border border-white/10 bg-[#151C28] px-3.5 py-3.5"
+          className="mb-3 rounded-[18px] border border-sg-border bg-[#FFFCF5] px-3.5 py-3.5"
         >
           <View className="flex-row items-center justify-between">
-            <View className="h-9 w-9 rounded-[11px] bg-white/8" />
-            <View className="h-4 w-16 rounded-full bg-white/8" />
+            <View className="h-9 w-9 rounded-[11px] bg-sg-bg2" />
+            <View className="h-4 w-16 rounded-full bg-sg-bg2" />
           </View>
-          <View className="mt-3 h-4 w-3/5 rounded-full bg-white/8" />
-          <View className="mt-2 h-3 w-2/5 rounded-full bg-white/8" />
+          <View className="mt-3 h-4 w-3/5 rounded-full bg-sg-bg2" />
+          <View className="mt-2 h-3 w-2/5 rounded-full bg-sg-bg2" />
         </View>
       ))}
     </View>
@@ -141,19 +141,19 @@ function LoadingSkeleton() {
 function EmptyState({ onStartQuiz }: { onStartQuiz: () => void }) {
   return (
     <View className="mt-16 items-center px-8">
-      <View className="h-14 w-14 items-center justify-center rounded-full border border-white/10 bg-[#141A25]">
-        <Ionicons name="time-outline" size={22} color="#9AA7C2" />
+      <View className="h-14 w-14 items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5]">
+        <Ionicons name="time-outline" size={22} color="#47544D" />
       </View>
-      <Text className="mt-4 text-[17px] font-bold text-[#F5F7FF]">No coin activity yet</Text>
-      <Text className="mt-1 text-center text-[13px] font-medium text-[#98A4BE]">
+      <Text className="mt-4 text-[17px] font-sg-bold text-[#1D2A24]">No coin activity yet</Text>
+      <Text className="mt-1 text-center text-[13px] font-sg-medium text-[#47544D]">
         Start a quiz to begin earning coins.
       </Text>
       <PressableScale
         onPress={onStartQuiz}
         activeScale={0.98}
-        className="mt-5 min-h-[44px] min-w-[140px] items-center justify-center rounded-full border border-white/12 bg-[#1A2130] px-5"
+        className="mt-5 min-h-[44px] min-w-[140px] items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5] px-5"
       >
-        <Text className="text-[13px] font-bold text-[#F5F7FF]">Start a Quiz</Text>
+        <Text className="text-[13px] font-sg-bold text-[#1D2A24]">Start a Quiz</Text>
       </PressableScale>
     </View>
   );
@@ -165,17 +165,17 @@ function HistoryRow({ entry }: { entry: WalletLedgerEntry }) {
   const signedDelta = `${entry.delta > 0 ? "+" : ""}${entry.delta}`;
 
   return (
-    <View className="rounded-[18px] border border-white/10 bg-[#151C28] px-3.5 py-3.5">
+    <View className="rounded-[18px] border border-sg-border bg-[#FFFCF5] px-3.5 py-3.5">
       <View className="flex-row items-start justify-between">
         <View className="mr-2 flex-1 flex-row items-center">
-          <View className="h-9 w-9 items-center justify-center rounded-[11px] border border-white/10 bg-[#111723]">
+          <View className="h-9 w-9 items-center justify-center rounded-[11px] border border-sg-border bg-[#FFFCF5]">
             <Ionicons name={meta.icon} size={16} color={meta.color} />
           </View>
           <View className="ml-3 min-w-0 flex-1">
-            <Text className="text-[14px] font-bold text-[#F5F7FF]" numberOfLines={1}>
+            <Text className="text-[14px] font-sg-bold text-[#1D2A24]" numberOfLines={1}>
               {entry.title}
             </Text>
-            <Text className="text-[12px] font-medium text-[#AAB3C8]" numberOfLines={1}>
+            <Text className="text-[12px] font-sg-medium text-[#1D2A24]" numberOfLines={1}>
               {getSubtitle(entry)}
             </Text>
           </View>
@@ -184,18 +184,18 @@ function HistoryRow({ entry }: { entry: WalletLedgerEntry }) {
         <View className="items-end">
           <Text
             className={`text-[14px] font-extrabold ${
-              isEarn ? "text-[#8BE6B5]" : "text-[#F2B2B6]"
+              isEarn ? "text-[#1C7C55]" : "text-[#BF3F2B]"
             }`}
           >
             {signedDelta}
           </Text>
-          <Text className="mt-0.5 text-[10px] font-medium text-[#8B97B3]">
+          <Text className="mt-0.5 text-[12px] font-sg-medium text-[#47544D]">
             Bal {entry.balanceAfter}
           </Text>
         </View>
       </View>
 
-      <Text className="mt-2 text-[11px] font-medium text-[#91A0BB]">{formatDateLabel(entry.createdAt)}</Text>
+      <Text className="mt-2 text-[12px] font-sg-medium text-[#47544D]">{formatDateLabel(entry.createdAt)}</Text>
     </View>
   );
 }
@@ -237,18 +237,18 @@ export default function CoinHistoryScreen({ navigation }: { navigation: any }) {
           <PressableScale
             onPress={() => navigation.goBack()}
             activeScale={0.96}
-            className="h-10 w-10 items-center justify-center rounded-full border border-white/10 bg-[#151C28]"
+            className="h-10 w-10 items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5]"
           >
-            <Ionicons name="arrow-back" size={18} color="#F5F7FF" />
+            <Ionicons name="arrow-back" size={18} color="#1D2A24" />
           </PressableScale>
 
-          <Text className="mx-3 flex-1 text-center text-[21px] font-extrabold text-[#F5F7FF]">
+          <Text className="mx-3 flex-1 text-center text-[21px] font-sg-display text-[#1D2A24]">
             Coin History
           </Text>
 
-          <View className="min-w-[78px] flex-row items-center justify-center rounded-full border border-[#FFD700]/30 bg-[#2A2312] px-2.5 py-1.5">
+          <View className="min-w-[78px] flex-row items-center justify-center rounded-full border border-[#9A6400]/30 bg-[#FFFCF5] px-2.5 py-1.5">
             <Coin size={12} compact />
-            <Text className="ml-1 text-[11px] font-extrabold text-[#FFD700]">{totalScore}</Text>
+            <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">{totalScore}</Text>
           </View>
         </View>
 
@@ -266,12 +266,12 @@ export default function CoinHistoryScreen({ navigation }: { navigation: any }) {
                 activeScale={0.98}
                 hapticType="none"
                 className={`mr-2 min-h-[34px] items-center justify-center rounded-full border px-3.5 ${
-                  selected ? "border-white/18 bg-[#1A2130]" : "border-white/10 bg-[#111824]"
+                  selected ? "border-sg-border bg-[#FFFCF5]" : "border-sg-border bg-[#FFFCF5]"
                 }`}
               >
                 <Text
                   className={`text-[12px] font-bold ${
-                    selected ? "text-[#F5F7FF]" : "text-[#9EABC6]"
+                    selected ? "text-[#1D2A24]" : "text-[#47544D]"
                   }`}
                 >
                   {filter.label}

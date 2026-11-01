@@ -44,8 +44,8 @@ export default function GlowRing({
     opacity: pulse.value,
   }));
 
-  const glowColor = accent === 'mint' ? 'bg-[#00FFA3]/26' : 'bg-[#B026FF]/28';
-  const ringColors = accent === 'mint' ? ['#0B4A36', '#00FFA3'] : ['#2A1140', '#B026FF'];
+  const glowColor = accent === 'mint' ? 'bg-[#1C7C55]/26' : 'bg-[#17694F]/28';
+  const ringColors = accent === 'mint' ? ['#DDEFE3', '#1C7C55'] : ['#DDEBE2', '#17694F'];
 
   return (
     <View className={`relative ${className}`}>

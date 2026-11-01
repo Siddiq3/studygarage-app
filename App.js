@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { Platform, StyleSheet, View } from "react-native";
+import { StatusBar } from "expo-status-bar";
 import { OneSignal } from "react-native-onesignal";
 import { LevelPlay, LevelPlayInitRequest } from "unity-levelplay-mediation";
 import AppBootstrap from "./src/app/AppBootstrap";
@@ -35,6 +36,8 @@ export default function App() {
 
     // OneSignal Initialization
     OneSignal.initialize("a03d2003-281c-41cd-875c-2cb5d8cd3907");
+    // In-app messages would otherwise cover the splash animation on launch.
+    OneSignal.InAppMessages.setPaused(true);
 
     if (!LEVELPLAY_APP_KEY || LEVELPLAY_APP_KEY.includes("YOUR_")) {
       console.log("⚠️ LevelPlay app key is missing for this platform.");
@@ -62,6 +65,12 @@ export default function App() {
       console.log("❌ LevelPlay initialization error:", error);
     });
   }, []);
+
+  useEffect(() => {
+    if (!showBrandSplash) {
+      OneSignal.InAppMessages.setPaused(false);
+    }
+  }, [showBrandSplash]);
 
   useEffect(() => {
     if (showBrandSplash || !notificationPromptReady) {
@@ -108,6 +117,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
+      <StatusBar style={showBrandSplash ? "light" : "dark"} />
       {showBrandSplash ? (
         <AnimatedBrandSplash onFinish={() => setShowBrandSplash(false)} />
       ) : (
@@ -126,6 +136,6 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#121212",
+    backgroundColor: "#F6F1E7",
   },
 });

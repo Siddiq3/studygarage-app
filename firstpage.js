@@ -1,26 +1,13 @@
-import React, { useEffect, useRef, useState } from "react";
-import { Alert, Text, TextInput, View } from "react-native";
+import React, { useEffect, useState } from "react";
+import { Alert, Image, Keyboard, Pressable, Text, TextInput, View } from "react-native";
+import Ionicons from "@expo/vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Haptics from "expo-haptics";
-import Animated, {
-  Easing,
-  FadeInUp,
-  interpolateColor,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withSequence,
-  withTiming,
-} from "react-native-reanimated";
+import * as ImagePicker from "expo-image-picker";
+import SGButton from "./src/design-system/components/SGButton";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
 import { prepareWelcomeRewardFlow } from "./src/services/rewards/firstInstallRewardService";
 import { localStore } from "./src/services/storage/localStore";
-import GlassCard from "./components/ui/GlassCard";
-import AvatarPicker from "./components/onboarding/AvatarPicker";
-import ChoiceTile from "./components/onboarding/ChoiceTile";
-import ChoiceChip from "./components/onboarding/ChoiceChip";
-import PressableScale from "./components/ui/PressableScale";
-import useReducedMotionPreference from "./src/hooks/useReducedMotionPreference";
 import ShimmerSkeleton from "./src/components/ui/ShimmerSkeleton";
 // Referral feature temporarily disabled.
 // import {
@@ -43,92 +30,150 @@ const classes = [
   { label: "Inter", value: "Inter" },
 ];
 
+const ALL_SCHOOL = ["6thClass", "7thClass", "8thClass", "9thClass", "10thClass"];
+
+// Keep in step with componentLookup in secondpage.js: these combinations have modules.
+const availableClasses = {
+  "Andhra Pradesh": [...ALL_SCHOOL, "Inter"],
+  Telangana: ["10thClass"],
+  Karnataka: ALL_SCHOOL,
+};
+
+const classLabel = (value) => {
+  if (value === "Inter") return "Intermediate";
+  const match = classes.find((item) => item.value === value);
+  return match ? `${match.label} class` : "";
+};
+
+const selectionTick = () => Haptics.selectionAsync().catch(() => {});
+
 const defaultAvatarImage = require("./assets/boy.png");
 const girlAvatarImage = require("./assets/girl.png");
 
-function OnboardingActionButton({
-  label,
-  onPress,
-  disabled = false,
-  secondary = false,
-  reducedMotion = false,
-  className = "",
-}) {
-  const glowEnabled = !secondary && !disabled;
-  const glowOpacity = useSharedValue(glowEnabled ? 1 : 0);
-
-  useEffect(() => {
-    if (!glowEnabled) {
-      glowOpacity.value = withTiming(0, { duration: 120 });
-      return;
-    }
-
-    if (reducedMotion) {
-      glowOpacity.value = withTiming(0.92, { duration: 140 });
-      return;
-    }
-
-    glowOpacity.value = withTiming(1, { duration: 120 });
-    glowOpacity.value = withRepeat(
-      withSequence(
-        withTiming(0.9, { duration: 2200 }),
-        withTiming(1, { duration: 2200 })
-      ),
-      -1,
-      false
-    );
-  }, [glowEnabled, glowOpacity, reducedMotion]);
-
-  const glowStyle = useAnimatedStyle(() => ({
-    opacity: glowOpacity.value,
-  }));
-
+function OnboardingActionButton({ label, onPress, disabled = false, secondary = false, className = "" }) {
   return (
-    <PressableScale
+    <SGButton
+      label={label}
       onPress={onPress}
       disabled={disabled}
-      hapticType="none"
-      activeScale={0.96}
-      containerClassName={className}
-      className="rounded-full"
+      variant={secondary ? "ghost" : "primary"}
+      className={className}
+      style={{ flex: className.includes("flex-1") ? 1 : undefined }}
+    />
+  );
+}
+
+const isCustomPhoto = (value) =>
+  typeof value === "string" &&
+  /^(http|file:|content:|data:image)/.test(value);
+
+function PictureTile({ label, selected, onPress, children }) {
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="radio"
+      accessibilityState={{ checked: selected }}
+      accessibilityLabel={label}
+      className={`h-[108px] w-[31.8%] items-center justify-center rounded-[16px] border ${
+        selected
+          ? "border-sg-board bg-sg-board"
+          : "border-sg-border bg-sg-surface active:bg-sg-bg2"
+      }`}
     >
-      <View className="relative">
-        {glowEnabled ? (
-          <Animated.View
-            pointerEvents="none"
-            style={glowStyle}
-            className="absolute -inset-[1px] rounded-full border border-[#8F74FF]/45 bg-[#8F74FF]/8"
-          />
-        ) : null}
+      {children}
+      <Text
+        numberOfLines={1}
+        className={`mt-2 text-[14px] font-sg-semibold ${
+          selected ? "text-[#F2B632]" : "text-sg-text"
+        }`}
+      >
+        {label}
+      </Text>
+    </Pressable>
+  );
+}
+
+function StepProgress({ step }) {
+  return (
+    <View
+      className="flex-1 flex-row gap-1.5"
+      accessibilityLabel={`Step ${step} of 2`}
+    >
+      {[1, 2].map((item) => (
         <View
-          className={`min-h-[56px] items-center justify-center rounded-full border px-4 ${
-            secondary
-              ? "border-white/12 bg-[#151A24]"
-              : disabled
-              ? "border-white/16 bg-[#141A24] opacity-45"
-              : "border-[#8F74FF]/48 bg-[#141A24]"
+          key={item}
+          className={`h-1.5 flex-1 rounded-full ${
+            item <= step ? "bg-sg-primary" : "bg-sg-bg2"
           }`}
-          style={
-            glowEnabled
-              ? {
-                  shadowColor: "#8F74FF",
-                  shadowOffset: { width: 0, height: 6 },
-                  shadowOpacity: 0.16,
-                  shadowRadius: 10,
-                  elevation: 6,
-                }
-              : undefined
-          }
-        >
-          <Text className="text-[16px] font-extrabold text-white">{label}</Text>
-        </View>
+        />
+      ))}
+    </View>
+  );
+}
+
+function BoardRow({ label, selected, last, onPress }) {
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="radio"
+      accessibilityState={{ checked: selected }}
+      android_ripple={{ color: "rgba(29,42,36,0.06)" }}
+      className={`min-h-[52px] flex-row items-center px-4 ${
+        last ? "" : "border-b border-sg-border"
+      }`}
+    >
+      <Text
+        className={`flex-1 text-[15px] text-sg-text ${
+          selected ? "font-sg-bold" : "font-sg-medium"
+        }`}
+      >
+        {label}
+      </Text>
+      <Ionicons
+        name={selected ? "checkmark-circle" : "ellipse-outline"}
+        size={22}
+        color={selected ? "#17694F" : "#5F6A63"}
+      />
+    </Pressable>
+  );
+}
+
+function ClassTile({ label, selected, available, onPress }) {
+  if (!available) {
+    return (
+      <View
+        accessibilityLabel={`${label}, coming soon`}
+        className="h-[62px] w-[31.8%] items-center justify-center rounded-[14px] border border-dashed border-sg-text/20"
+      >
+        <Text className="text-[15px] font-sg-semibold text-sg-muted">{label}</Text>
+        <Text className="text-[12px] font-sg-medium text-sg-muted">Soon</Text>
       </View>
-    </PressableScale>
+    );
+  }
+
+  return (
+    <Pressable
+      onPress={onPress}
+      accessibilityRole="radio"
+      accessibilityState={{ checked: selected }}
+      className={`h-[62px] w-[31.8%] items-center justify-center rounded-[14px] border ${
+        selected
+          ? "border-sg-board bg-sg-board"
+          : "border-sg-border bg-sg-surface active:bg-sg-bg2"
+      }`}
+    >
+      <Text
+        className={`text-[20px] font-sg-display ${
+          selected ? "text-[#F2B632]" : "text-sg-text"
+        }`}
+      >
+        {label}
+      </Text>
+    </Pressable>
   );
 }
 
 const FirstPage = ({ navigation, route }) => {
-  const reducedMotionEnabled = useReducedMotionPreference();
   const isEditMode = route?.params?.editProfile === true;
 
   const [stateBoard, setStateBoard] = useState(null);
@@ -142,55 +187,24 @@ const FirstPage = ({ navigation, route }) => {
   // const [referralApplyState, setReferralApplyState] = useState(null);
   const [loading, setLoading] = useState(true);
   const [isNameFocused, setIsNameFocused] = useState(false);
+  const [isPickingPhoto, setIsPickingPhoto] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const nameFocus = useSharedValue(0);
-  const progressFill = useSharedValue(0);
-  const hasProgressAnimatedRef = useRef(false);
+  const classesForBoard = availableClasses[stateBoard] || [...ALL_SCHOOL, "Inter"];
 
-  useEffect(() => {
-    nameFocus.value = withTiming(isNameFocused ? 1 : 0, { duration: 160 });
-  }, [isNameFocused, nameFocus]);
-
-  const nameInputStyle = useAnimatedStyle(() => ({
-    borderColor: interpolateColor(
-      nameFocus.value,
-      [0, 1],
-      ["rgba(255,255,255,0.1)", "rgba(143,116,255,0.68)"]
-    ),
-    backgroundColor: interpolateColor(
-      nameFocus.value,
-      [0, 1],
-      ["#141821", "#171B28"]
-    ),
-  }));
-
-  useEffect(() => {
-    const finalProgress = currentStep === 1 ? 50 : 100;
-
-    if (reducedMotionEnabled) {
-      progressFill.value = finalProgress;
-      return;
+  const handleSelectBoard = (board) => {
+    selectionTick();
+    setStateBoard(board);
+    if (classValue && !(availableClasses[board] || []).includes(classValue)) {
+      setClassValue(null);
     }
+  };
 
-    if (!hasProgressAnimatedRef.current) {
-      progressFill.value = 0;
-      progressFill.value = withTiming(finalProgress, {
-        duration: 400,
-        easing: Easing.out(Easing.cubic),
-      });
-      hasProgressAnimatedRef.current = true;
-      return;
-    }
+  const handleSelectClass = (value) => {
+    selectionTick();
+    setClassValue(value);
+  };
 
-    progressFill.value = withTiming(finalProgress, {
-      duration: 260,
-      easing: Easing.out(Easing.cubic),
-    });
-  }, [currentStep, progressFill, reducedMotionEnabled]);
-
-  const progressFillStyle = useAnimatedStyle(() => ({
-    width: `${progressFill.value}%`,
-  }));
+  const stepTwoReady = Boolean(userName.trim() && stateBoard && classValue);
 
   // Referral feature temporarily disabled.
   // useEffect(() => {
@@ -266,7 +280,7 @@ const FirstPage = ({ navigation, route }) => {
 
   const handleContinue = async () => {
     if (!userName.trim()) {
-      Alert.alert("Name Required", "Please enter your name.");
+      Alert.alert("Name required", "Please enter your name.");
       return;
     }
 
@@ -335,13 +349,48 @@ const FirstPage = ({ navigation, route }) => {
     }
   };
 
+  const handlePickPhoto = async () => {
+    if (isPickingPhoto) return;
+    setIsPickingPhoto(true);
+    try {
+      const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
+      if (!permission.granted) {
+        Alert.alert(
+          "Permission needed",
+          "Please allow photo access to use your own picture."
+        );
+        return;
+      }
+      const result = await ImagePicker.launchImageLibraryAsync({
+        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        allowsEditing: true,
+        aspect: [1, 1],
+        quality: 0.85,
+      });
+      if (!result.canceled && result.assets?.length > 0) {
+        setAvatar(result.assets[0].uri);
+      }
+    } catch (error) {
+      console.error("Image picker error:", error);
+      Alert.alert("Upload failed", "We couldn't open your photos. Please try again.");
+    } finally {
+      setIsPickingPhoto(false);
+    }
+  };
+
+  const avatarSource = isCustomPhoto(avatar)
+    ? { uri: avatar }
+    : avatar === "girl"
+    ? girlAvatarImage
+    : defaultAvatarImage;
+
   const handleAvatarSelect = (selectedAvatar) => {
     setAvatar(selectedAvatar);
   };
 
   const handleStepOneContinue = async () => {
     if (!userName.trim()) {
-      Alert.alert("Name Required", "Please enter your name.");
+      Alert.alert("Name required", "Please enter your name.");
       return;
     }
 
@@ -351,7 +400,7 @@ const FirstPage = ({ navigation, route }) => {
       // haptics fallback
     }
 
-    await new Promise((resolve) => setTimeout(resolve, 120));
+    Keyboard.dismiss();
     setCurrentStep(2);
   };
 
@@ -364,258 +413,222 @@ const FirstPage = ({ navigation, route }) => {
       contentClassName="px-5 pb-8"
       scroll
     >
-      <Animated.View
-        entering={FadeInUp.duration(reducedMotionEnabled ? 160 : 260)
-          .easing(Easing.out(Easing.cubic))
-          .withInitialValues({ opacity: 0, transform: [{ translateY: 16 }] })}
-        className="relative pb-8 pt-2"
-      >
-        <View
-          pointerEvents="none"
-          className="absolute -top-14 left-[-8%] h-[220px] w-[116%] rounded-full"
-          style={{ backgroundColor: "rgba(184,192,212,0.06)" }}
-        />
-
-        <View className="mb-4">
-          <View className="h-[5px] w-full overflow-hidden rounded-full bg-white/10">
-            <Animated.View
-              className="h-full rounded-full bg-[#D8DFF0]"
-              style={progressFillStyle}
-            />
-          </View>
-          <Text className="mt-1.5 text-[11px] font-semibold tracking-[0.5px] text-[#B8C0D4]/90">
-            Step {currentStep} of 2
-          </Text>
-        </View>
-
-        <Text className="text-[44px] font-extrabold leading-[46px] tracking-[-0.45px] text-[#F5F7FF]">
-          Welcome
-        </Text>
-        <Text className="text-[44px] font-extrabold leading-[46px] tracking-[-0.45px] text-[#F5F7FF]">
-          StudyGarage
-        </Text>
-        <Text className="mt-2.5 text-[14px] font-medium tracking-[0.35px] text-[#B8C0D4]/90">
-          Build your study identity
-        </Text>
-      </Animated.View>
-
       {loading ? (
-        <View className="py-8">
-          <View className="mb-5">
-            <ShimmerSkeleton height={210} borderRadius={26} />
+        <View className="mt-1">
+          <ShimmerSkeleton height={6} borderRadius={3} />
+          <View className="mb-4 mt-6">
+            <ShimmerSkeleton height={84} borderRadius={14} />
           </View>
-          <View className="mb-3 flex-row gap-3">
-            <View className="flex-1">
-              <ShimmerSkeleton height={76} borderRadius={22} />
-            </View>
-            <View className="flex-1">
-              <ShimmerSkeleton height={76} borderRadius={22} />
-            </View>
+          <View className="mb-4">
+            <ShimmerSkeleton height={220} borderRadius={22} />
           </View>
-          <ShimmerSkeleton height={58} borderRadius={22} />
+          <ShimmerSkeleton height={108} borderRadius={16} />
         </View>
       ) : (
         <>
-          {currentStep === 1 ? (
-            <>
-              <Animated.View
-                entering={FadeInUp.delay(
-                  reducedMotionEnabled ? 0 : 80
-                ).duration(reducedMotionEnabled ? 180 : 280)}
+          {/* Step 1 stays mounted when hidden: removing it mid press-animation crashed Fabric. */}
+          <View style={{ display: currentStep === 1 ? "flex" : "none" }}>
+            <View className="mb-5 mt-1">
+              <StepProgress step={1} />
+            </View>
+
+            <Text className="text-[34px] font-sg-display leading-[38px] tracking-[-0.7px] text-sg-text">
+              {isEditMode ? "Your profile" : "Welcome to StudyGarage"}
+            </Text>
+            <Text className="mb-5 mt-2 text-[15px] font-sg-medium text-sg-muted">
+              First, tell us who you are.
+            </Text>
+
+            {/* The student writes their own name on the board. */}
+            <View className="mb-5 rounded-[22px] bg-sg-board p-5">
+              <Image
+                source={avatarSource}
+                accessibilityLabel="Your picture"
+                resizeMode="cover"
+                className="mb-4 h-[84px] w-[84px] rounded-[24px] bg-[#1C4336]"
+              />
+              <Text className="text-[14px] font-sg-medium text-[#B5C6BB]">
+                What should we call you?
+              </Text>
+              <TextInput
+                placeholder="Your name"
+                placeholderTextColor="rgba(244,239,226,0.35)"
+                value={userName}
+                onChangeText={setUserName}
+                onFocus={() => setIsNameFocused(true)}
+                onBlur={() => setIsNameFocused(false)}
+                onSubmitEditing={() => {
+                  if (userName.trim()) handleStepOneContinue();
+                }}
+                returnKeyType="next"
+                autoCapitalize="words"
+                autoCorrect={false}
+                maxLength={30}
+                cursorColor="#F2B632"
+                selectionColor="rgba(242,182,50,0.4)"
+                accessibilityLabel="Your name"
+                className={`mt-1 border-b-2 pb-2 pt-1 text-[30px] font-sg-display text-[#F4EFE2] ${
+                  isNameFocused ? "border-[#F2B632]" : "border-[#F4EFE2]/25"
+                }`}
+              />
+            </View>
+
+            <Text className="mb-2 text-[20px] font-sg-display text-sg-text">
+              Your picture
+            </Text>
+            <View
+              accessibilityRole="radiogroup"
+              className="mb-5 flex-row justify-between"
+            >
+              <PictureTile
+                label="Girl"
+                selected={avatar === "girl"}
+                onPress={() => {
+                  selectionTick();
+                  handleAvatarSelect("girl");
+                }}
               >
-                <GlassCard className="mb-5">
-                  <Text className="mt-1 text-[30px] font-black leading-[34px] tracking-tight text-sg-text">
-                    Create your profile
-                  </Text>
-                  <Text className="mt-2 text-[13px] font-semibold text-sg-muted">
-                    Choose your photo, gender, and display name
-                  </Text>
-
-                  <Animated.View
-                    entering={FadeInUp.delay(
-                      reducedMotionEnabled ? 0 : 140
-                    ).duration(220)}
-                    className="mt-8 items-center"
-                  >
-                    <Text className="mb-2 text-[11px] font-bold uppercase tracking-[1px] text-sg-muted">
-                      Profile Photo
-                    </Text>
-                    <AvatarPicker
-                      value={avatar}
-                      onChange={setAvatar}
-                      boySource={defaultAvatarImage}
-                      girlSource={girlAvatarImage}
-                    />
-                  </Animated.View>
-
-                  <Text className="mt-7 text-[11px] font-bold uppercase tracking-[1px] text-sg-muted">
-                    Select Gender
-                  </Text>
-                  <View className="mt-2 flex-row gap-3">
-                    <Animated.View
-                      entering={FadeInUp.delay(
-                        reducedMotionEnabled ? 0 : 200
-                      ).duration(220)}
-                      className="flex-1"
-                    >
-                      <ChoiceTile
-                        label="Girl"
-                        imageSource={girlAvatarImage}
-                        selected={avatar === "girl"}
-                        onPress={() => handleAvatarSelect("girl")}
-                      />
-                    </Animated.View>
-                    <Animated.View
-                      entering={FadeInUp.delay(
-                        reducedMotionEnabled ? 0 : 260
-                      ).duration(220)}
-                      className="flex-1"
-                    >
-                      <ChoiceTile
-                        label="Boy"
-                        imageSource={defaultAvatarImage}
-                        selected={avatar === "boy"}
-                        onPress={() => handleAvatarSelect("boy")}
-                      />
-                    </Animated.View>
-                  </View>
-
-                  <Animated.View
-                    entering={FadeInUp.delay(
-                      reducedMotionEnabled ? 0 : 260
-                    ).duration(220)}
-                  >
-                    <Animated.View
-                      style={nameInputStyle}
-                      className="mt-6 rounded-[18px] border px-4 py-3.5"
-                    >
-                      <Text className="mb-1 text-[11px] font-bold uppercase tracking-[1px] text-sg-muted">
-                        Name
-                      </Text>
-                      <TextInput
-                        placeholder="What should we call you?"
-                        placeholderTextColor="#9AA3B7"
-                        value={userName}
-                        onChangeText={setUserName}
-                        onFocus={() => setIsNameFocused(true)}
-                        onBlur={() => setIsNameFocused(false)}
-                        cursorColor="#F5F7FF"
-                        selectionColor="rgba(245,247,255,0.45)"
-                        className="text-[18px] font-black text-sg-text"
-                      />
-                    </Animated.View>
-                  </Animated.View>
-
-                  {/* Referral feature temporarily disabled. */}
-                  {/* <Animated.View
-                    entering={FadeInUp.delay(
-                      reducedMotionEnabled ? 0 : 290
-                    ).duration(220)}
-                  >
-                    <View className="mt-4 rounded-[18px] border border-white/10 bg-[#141821] px-4 py-3.5">
-                      ...
-                    </View>
-                  </Animated.View> */}
-                </GlassCard>
-              </Animated.View>
-
-              <Animated.View
-                entering={FadeInUp.delay(
-                  reducedMotionEnabled ? 0 : 320
-                ).duration(220)}
-                className="pb-2 pt-2"
-              >
-                <OnboardingActionButton
-                  label="Continue →"
-                  onPress={handleStepOneContinue}
-                  disabled={!userName.trim()}
-                  reducedMotion={reducedMotionEnabled}
-                  className="w-full"
+                <Image
+                  source={girlAvatarImage}
+                  className="h-[52px] w-[52px] rounded-[16px]"
+                  resizeMode="cover"
                 />
-              </Animated.View>
-            </>
-          ) : (
+              </PictureTile>
+              <PictureTile
+                label="Boy"
+                selected={avatar === "boy"}
+                onPress={() => {
+                  selectionTick();
+                  handleAvatarSelect("boy");
+                }}
+              >
+                <Image
+                  source={defaultAvatarImage}
+                  className="h-[52px] w-[52px] rounded-[16px]"
+                  resizeMode="cover"
+                />
+              </PictureTile>
+              <PictureTile
+                label={isPickingPhoto ? "Opening" : "Your photo"}
+                selected={isCustomPhoto(avatar)}
+                onPress={handlePickPhoto}
+              >
+                {isCustomPhoto(avatar) ? (
+                  <Image
+                    source={{ uri: avatar }}
+                    className="h-[52px] w-[52px] rounded-[16px]"
+                    resizeMode="cover"
+                  />
+                ) : (
+                  <View className="h-[52px] w-[52px] items-center justify-center rounded-[16px] bg-sg-primarySoft">
+                    <Ionicons name="camera-outline" size={24} color="#17694F" />
+                  </View>
+                )}
+              </PictureTile>
+            </View>
+
+            {userName.trim() ? (
+              <OnboardingActionButton
+                label="Continue"
+                onPress={handleStepOneContinue}
+              />
+            ) : (
+              <View className="min-h-[52px] items-center justify-center rounded-[14px] bg-sg-bg2">
+                <Text className="text-[15px] font-sg-semibold text-sg-muted">
+                  Enter your name
+                </Text>
+              </View>
+            )}
+          </View>
+          {currentStep === 2 ? (
             <>
-              <Animated.View
-                entering={FadeInUp.delay(
-                  reducedMotionEnabled ? 0 : 80
-                ).duration(reducedMotionEnabled ? 180 : 280)}
+              <View className="mb-4 mt-1 flex-row items-center gap-3">
+                <Pressable
+                  onPress={() => setCurrentStep(1)}
+                  hitSlop={8}
+                  accessibilityRole="button"
+                  accessibilityLabel="Back to your profile"
+                  className="h-11 w-11 items-center justify-center rounded-[14px] border border-sg-border bg-sg-surface active:opacity-60"
+                >
+                  <Ionicons name="arrow-back" size={20} color="#1D2A24" />
+                </Pressable>
+                <StepProgress step={2} />
+              </View>
+
+              {/* The board writes itself as the student chooses. */}
+              <View className="mb-5 min-h-[138px] justify-center rounded-[22px] bg-sg-board px-5 py-5">
+                <Text
+                  numberOfLines={1}
+                  className="text-[14px] font-sg-medium text-[#B5C6BB]"
+                >
+                  {`${userName.trim()}, you study in`}
+                </Text>
+                <Text
+                  className={`mt-1 text-[32px] leading-[38px] font-sg-display tracking-[-0.5px] ${
+                    classValue ? "text-[#F2B632]" : "text-[#F4EFE2]/35"
+                  }`}
+                >
+                  {classValue ? classLabel(classValue) : "Which class?"}
+                </Text>
+                <Text
+                  className={`mt-0.5 text-[16px] font-sg-semibold ${
+                    stateBoard ? "text-[#F4EFE2]" : "text-[#F4EFE2]/35"
+                  }`}
+                >
+                  {stateBoard ? `${stateBoard} board` : "Which board?"}
+                </Text>
+              </View>
+
+              <Text className="mb-2 text-[20px] font-sg-display text-sg-text">
+                Your board
+              </Text>
+              <View
+                accessibilityRole="radiogroup"
+                className="mb-5 overflow-hidden rounded-[16px] border border-sg-border bg-sg-surface"
               >
-                <GlassCard className="mb-5">
-                  <Text className="mt-1 text-[28px] font-black leading-[32px] tracking-tight text-sg-text">
-                    Choose Board
-                  </Text>
-                  <Text className="mt-1 text-[13px] font-semibold text-sg-muted">
-                    Select your curriculum
-                  </Text>
-
-                  <View className="mt-5 flex-row flex-wrap gap-2.5">
-                    {stateBoards.map((item) => (
-                      <ChoiceChip
-                        key={item.value}
-                        label={item.label}
-                        selected={stateBoard === item.value}
-                        onPress={() => setStateBoard(item.value)}
-                        compact
-                      />
-                    ))}
-                  </View>
-                </GlassCard>
-              </Animated.View>
-
-              <Animated.View
-                entering={FadeInUp.delay(
-                  reducedMotionEnabled ? 0 : 150
-                ).duration(260)}
-              >
-                <GlassCard className="mb-5">
-                  <Text className="text-[28px] font-black leading-[32px] tracking-tight text-sg-text">
-                    Choose Class
-                  </Text>
-                  <Text className="mt-1 text-[13px] font-semibold text-sg-muted">
-                    Used for papers, quiz, tests, and videos
-                  </Text>
-
-                  <View className="mt-5 flex-row flex-wrap justify-between gap-y-3">
-                    {classes.map((item) => (
-                      <ChoiceChip
-                        key={item.value}
-                        label={item.label}
-                        selected={classValue === item.value}
-                        onPress={() => setClassValue(item.value)}
-                        compact={false}
-                        className="w-[48.5%]"
-                      />
-                    ))}
-                  </View>
-                </GlassCard>
-              </Animated.View>
-
-              <Animated.View
-                entering={FadeInUp.delay(
-                  reducedMotionEnabled ? 0 : 230
-                ).duration(220)}
-                className="pb-2 pt-2"
-              >
-                <View className="flex-row gap-3">
-                  <OnboardingActionButton
-                    label="← Back"
-                    secondary
-                    onPress={() => setCurrentStep(1)}
-                    reducedMotion={reducedMotionEnabled}
-                    className="flex-1"
+                {stateBoards.map((item, index) => (
+                  <BoardRow
+                    key={item.value}
+                    label={item.label}
+                    selected={stateBoard === item.value}
+                    last={index === stateBoards.length - 1}
+                    onPress={() => handleSelectBoard(item.value)}
                   />
-                  <OnboardingActionButton
-                    label="Start Learning →"
-                    onPress={handleContinue}
-                    disabled={!userName.trim() || !stateBoard || !classValue}
-                    reducedMotion={reducedMotionEnabled}
-                    className="flex-1"
+                ))}
+              </View>
+
+              <Text className="mb-2 text-[20px] font-sg-display text-sg-text">
+                Your class
+              </Text>
+              <View
+                accessibilityRole="radiogroup"
+                className="mb-5 flex-row flex-wrap justify-between gap-y-2"
+              >
+                {classes.map((item) => (
+                  <ClassTile
+                    key={item.value}
+                    label={item.label}
+                    selected={classValue === item.value}
+                    available={classesForBoard.includes(item.value)}
+                    onPress={() => handleSelectClass(item.value)}
                   />
+                ))}
+              </View>
+
+              {stepTwoReady ? (
+                <OnboardingActionButton
+                  label="Start learning"
+                  onPress={handleContinue}
+                />
+              ) : (
+                <View className="min-h-[52px] items-center justify-center rounded-[14px] bg-sg-bg2">
+                  <Text className="text-[15px] font-sg-semibold text-sg-muted">
+                    {stateBoard ? "Choose your class" : "Choose your board"}
+                  </Text>
                 </View>
-              </Animated.View>
+              )}
             </>
-          )}
+          ) : null}
         </>
       )}
     </ScreenLayoutContainer>

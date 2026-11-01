@@ -4,7 +4,7 @@ export const shadows = {
   base: {
     borderColor: colors.border.subtle,
     borderWidth: 1,
-    shadowColor: '#000000',
+    shadowColor: '#3B3322',
     shadowOffset: { width: 0, height: 2 },
     shadowOpacity: 0.08,
     shadowRadius: 5,
@@ -13,7 +13,7 @@ export const shadows = {
   card: {
     borderColor: colors.border.subtle,
     borderWidth: 1,
-    shadowColor: '#000000',
+    shadowColor: '#3B3322',
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.12,
     shadowRadius: 8,
@@ -22,7 +22,7 @@ export const shadows = {
   hero: {
     borderColor: colors.border.subtle,
     borderWidth: 1,
-    shadowColor: '#000000',
+    shadowColor: '#3B3322',
     shadowOffset: { width: 0, height: 7 },
     shadowOpacity: 0.16,
     shadowRadius: 12,

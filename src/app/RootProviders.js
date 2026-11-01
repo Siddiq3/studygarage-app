@@ -1,40 +1,44 @@
 import React, { useEffect } from 'react';
 import { BackHandler } from 'react-native';
-import { DarkTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer, useNavigationContainerRef } from '@react-navigation/native';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 import * as SystemUI from 'expo-system-ui';
 import { useFonts } from 'expo-font';
+import { BricolageGrotesque_700Bold } from '@expo-google-fonts/bricolage-grotesque';
 import {
-  Inter_500Medium,
-  Inter_600SemiBold,
-  Inter_700Bold,
-  Inter_800ExtraBold,
-} from '@expo-google-fonts/inter';
+  PlusJakartaSans_400Regular,
+  PlusJakartaSans_500Medium,
+  PlusJakartaSans_600SemiBold,
+  PlusJakartaSans_700Bold,
+  PlusJakartaSans_800ExtraBold,
+} from '@expo-google-fonts/plus-jakarta-sans';
 import { QuizProvider } from '../../QuizContext';
 
-const appDarkTheme = {
-  ...DarkTheme,
+const appTheme = {
+  ...DefaultTheme,
   colors: {
-    ...DarkTheme.colors,
-    background: '#121212',
-    card: '#1A1D27',
-    border: 'rgba(255,255,255,0.10)',
-    text: '#F5F7FF',
-    primary: '#B026FF',
+    ...DefaultTheme.colors,
+    background: '#F6F1E7',
+    card: '#FFFCF5',
+    border: 'rgba(29,42,36,0.12)',
+    text: '#1D2A24',
+    primary: '#17694F',
   },
 };
 
 export default function RootProviders({ children }) {
   const navigationRef = useNavigationContainerRef();
   const [fontsLoaded] = useFonts({
-    Inter_500Medium,
-    Inter_600SemiBold,
-    Inter_700Bold,
-    Inter_800ExtraBold,
+    BricolageGrotesque_700Bold,
+    PlusJakartaSans_400Regular,
+    PlusJakartaSans_500Medium,
+    PlusJakartaSans_600SemiBold,
+    PlusJakartaSans_700Bold,
+    PlusJakartaSans_800ExtraBold,
   });
 
   useEffect(() => {
-    SystemUI.setBackgroundColorAsync('#121212').catch(() => {});
+    SystemUI.setBackgroundColorAsync('#F6F1E7').catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -69,8 +73,8 @@ export default function RootProviders({ children }) {
   }
 
   return (
-    <GestureHandlerRootView style={{ flex: 1, backgroundColor: '#121212' }}>
-      <NavigationContainer ref={navigationRef} theme={appDarkTheme}>
+    <GestureHandlerRootView style={{ flex: 1, backgroundColor: '#F6F1E7' }}>
+      <NavigationContainer ref={navigationRef} theme={appTheme}>
         <QuizProvider>{children}</QuizProvider>
       </NavigationContainer>
     </GestureHandlerRootView>

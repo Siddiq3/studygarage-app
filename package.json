@@ -10,7 +10,9 @@
     "postinstall": "patch-package"
   },
   "dependencies": {
+    "@expo-google-fonts/bricolage-grotesque": "^0.4.1",
     "@expo-google-fonts/inter": "^0.4.2",
+    "@expo-google-fonts/plus-jakarta-sans": "^0.4.2",
     "@expo/metro-config": "^0.20.17",
     "@expo/vector-icons": "^14.1.0",
     "@heroicons/react": "^2.0.18",

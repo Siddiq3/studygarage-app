@@ -17,9 +17,9 @@ const Mtres = ({ navigation, route }) => {
     <ScreenLayoutContainer variant="reward" contentClassName="px-4" scroll>
       <Animated.View entering={FadeInDown.duration(240)}>
         <SGCard className="mb-4 items-center">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">Mock Test</Text>
-          <Text className="mt-1 text-[30px] font-extrabold leading-[34px] text-sg-text dark:text-sgd-text">Results</Text>
-          <Text className="mt-1 text-[48px] font-black text-[#00D48A]">{score}</Text>
+          <Text className="text-[12px] font-sg-bold text-sg-muted">Mock Test</Text>
+          <Text className="mt-1 text-[30px] font-sg-display leading-[34px] text-sg-text">Results</Text>
+          <Text className="mt-1 text-[48px] font-sg-display text-[#1C7C55]">{score}</Text>
 
           <Image
             source={{ uri: resultBanner }}

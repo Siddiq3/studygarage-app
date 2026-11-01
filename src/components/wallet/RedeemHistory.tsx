@@ -34,39 +34,39 @@ export default function RedeemHistory({ entries, onCopyCode }: Props) {
         return (
           <View
             key={`${entry.id}-${entry.code}-${index}`}
-            className="mb-3 rounded-[18px] border border-white/10 bg-[#131A24] px-3.5 py-3"
+            className="mb-3 rounded-[18px] border border-sg-border bg-[#FFFCF5] px-3.5 py-3"
           >
             <View className="flex-row items-start justify-between">
               <View className="mr-3 flex-1">
-                <Text className="text-[14px] font-extrabold text-white">
+                <Text className="text-[14px] font-sg-extrabold text-sg-text">
                   {entry.title}
                 </Text>
-                <Text className="mt-0.5 text-[11px] font-semibold text-[#AEB8CF]">
+                <Text className="mt-0.5 text-[12px] font-sg-semibold text-[#1D2A24]">
                   {safeDate}
                 </Text>
               </View>
-              <View className="rounded-full border border-[#FFD700]/28 bg-[#2A2312] px-2.5 py-1">
-                <Text className="text-[10px] font-extrabold text-[#FFD700]">{`${entry.coinCost} coins`}</Text>
+              <View className="rounded-full border border-[#9A6400]/28 bg-[#FFFCF5] px-2.5 py-1">
+                <Text className="text-[12px] font-sg-extrabold text-[#9A6400]">{`${entry.coinCost} coins`}</Text>
               </View>
             </View>
 
-            <View className="mt-2.5 rounded-[14px] border border-white/10 bg-black/30 p-2.5">
-              <Text className="text-[10px] font-bold uppercase tracking-[1px] text-[#97A3BF]">
+            <View className="mt-2.5 rounded-[14px] border border-sg-border bg-sg-bg2 p-2.5">
+              <Text className="text-[12px] font-sg-bold text-[#47544D]">
                 Voucher code
               </Text>
-              <Text className="mt-1 text-[14px] font-extrabold text-[#D6DEEF]">
+              <Text className="mt-1 text-[14px] font-sg-extrabold text-[#1D2A24]">
                 {entry.code}
               </Text>
             </View>
 
             <PressableScale
               onPress={() => onCopyCode?.(entry.code)}
-              className="mt-2.5 min-h-[44px] flex-row items-center justify-center rounded-full border border-white/12 bg-white/8 px-3"
+              className="mt-2.5 min-h-[44px] flex-row items-center justify-center rounded-full border border-sg-border bg-sg-bg2 px-3"
               accessibilityRole="button"
               accessibilityLabel="Copy voucher code"
             >
-              <Ionicons name="copy-outline" size={15} color="#C5CEE3" />
-              <Text className="ml-1.5 text-[12px] font-extrabold text-white">
+              <Ionicons name="copy-outline" size={15} color="#1D2A24" />
+              <Text className="ml-1.5 text-[12px] font-sg-extrabold text-sg-text">
                 Copy code
               </Text>
             </PressableScale>

@@ -4,12 +4,12 @@
     "slug": "10th_class",
     "version": "3.1.0",
     "orientation": "portrait",
-    "icon": "./assets/branding/final-logo-pack/sg-mint-purple-1024-dark.png",
+    "icon": "./assets/branding/chalk/icon-1024.png",
     "userInterfaceStyle": "dark",
     "splash": {
-      "image": "./assets/sg-dark.png",
+      "image": "./assets/branding/chalk/native-splash-1024.png",
       "resizeMode": "contain",
-      "backgroundColor": "#0B0C10"
+      "backgroundColor": "#14342A"
     },
     "updates": {
       "enabled": false,
@@ -27,12 +27,12 @@
       "versionCode": 269,
       "googleServicesFile": "./google-services.json",
       "adaptiveIcon": {
-        "foregroundImage": "./assets/branding/final-logo-pack/sg-mint-purple-1024-transparent.png",
-        "backgroundColor": "#0B0C10"
+        "foregroundImage": "./assets/branding/chalk/adaptive-foreground-1024.png",
+        "backgroundColor": "#14342A"
       }
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/branding/chalk/favicon-96.png"
     },
     "extra": {
       "eas": {

@@ -74,7 +74,7 @@ const MainPage = ({ closeDrawer, onAvatarUpdated }) => {
     const handleShareApp = async () => {
         try {
             const result = await Share.share({
-                message: 'Check out this amazing 👌 app usefull to all students : https://play.google.com/store/apps/details?id=siddiqkolimidev.tenth_app',
+                message: 'Check out StudyGarage, a free study app for students : https://play.google.com/store/apps/details?id=siddiqkolimidev.tenth_app',
             });
             if (result.action === Share.sharedAction) {
                 if (result.activityType) {
@@ -93,7 +93,7 @@ const MainPage = ({ closeDrawer, onAvatarUpdated }) => {
 
     const handleAboutUs = () => {
         Linking.openURL(`${questions.aboutus}`);
-        console.log('About Us');
+        console.log('About us');
     };
 
     const handleChangeClass = () => {
@@ -145,30 +145,30 @@ const MainPage = ({ closeDrawer, onAvatarUpdated }) => {
             <View style={styles.headerRow}>
                 <Text style={styles.title}>Profile</Text>
                 <TouchableOpacity onPress={closeDrawer} hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}>
-                    <Icon name="close" size={18} color="#EAF0FF" />
+                    <Icon name="close" size={18} color="#1D2A24" />
                 </TouchableOpacity>
             </View>
             <TouchableOpacity style={styles.buttonContainer} onPress={handleRateUs}>
-                <Icon name="star" size={20} color="#EAF0FF" />
+                <View style={styles.iconWrap}><Icon name="star" size={18} color="#17694F" /></View>
                 <View style={styles.buttonTextWrap}>
-                    <Text style={styles.buttonText}>Rate Us</Text>
+                    <Text style={[styles.buttonText, styles.rowLabel]}>Rate us</Text>
                     {lastRatedStars > 0 ? (
                         <Text style={styles.buttonSubText}>{`Last rating: ${lastRatedStars}★`}</Text>
                     ) : null}
                 </View>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer} onPress={handleShareApp}>
-                <Icon name="share" size={20} color="#EAF0FF" />
-                <Text style={styles.buttonText}>Share App</Text>
+                <View style={styles.iconWrap}><Icon name="share" size={18} color="#17694F" /></View>
+                <Text style={[styles.buttonText, styles.rowLabel]}>Share app</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.buttonContainer} onPress={handleAboutUs}>
-                <Icon name="info-circle" size={20} color="#EAF0FF" />
-                <Text style={styles.buttonText}>About Us</Text>
+                <View style={styles.iconWrap}><Icon name="info-circle" size={18} color="#17694F" /></View>
+                <Text style={[styles.buttonText, styles.rowLabel]}>About us</Text>
             </TouchableOpacity>
 
             <TouchableOpacity style={styles.buttonContainer} onPress={handleChangeClass}>
-                <Icon name="graduation-cap" size={20} color="#EAF0FF" />
-                <Text style={styles.buttonText}>Change Board / Class</Text>
+                <View style={styles.iconWrap}><Icon name="graduation-cap" size={18} color="#17694F" /></View>
+                <Text style={[styles.buttonText, styles.rowLabel]}>Change board or class</Text>
             </TouchableOpacity>
 
             <TouchableOpacity
@@ -176,14 +176,14 @@ const MainPage = ({ closeDrawer, onAvatarUpdated }) => {
                 onPress={handleChangeProfilePhoto}
                 disabled={isPickingImage}
             >
-                <Icon name="camera" size={20} color="#EAF0FF" />
-                <Text style={styles.buttonText}>
-                    {isPickingImage ? 'Opening Gallery...' : 'Change Profile Photo'}
+                <View style={styles.iconWrap}><Icon name="camera" size={18} color="#17694F" /></View>
+                <Text style={[styles.buttonText, styles.rowLabel]}>
+                    {isPickingImage ? 'Opening gallery' : 'Change profile photo'}
                 </Text>
             </TouchableOpacity>
 
             <View style={styles.settingsBlock}>
-                <Text style={styles.settingsTitle}>Experience Settings</Text>
+                <Text style={styles.settingsTitle}>Settings</Text>
                 <PremiumToggle
                     label="Haptics"
                     hint="Enable touch feedback vibrations"
@@ -192,7 +192,7 @@ const MainPage = ({ closeDrawer, onAvatarUpdated }) => {
                 />
                 <View style={{ height: 8 }} />
                 <PremiumToggle
-                    label="Reduce Motion"
+                    label="Reduce motion"
                     hint="Use calmer transitions"
                     value={settings.reduceMotionOverride === 'on'}
                     onChange={(enabled) =>
@@ -208,8 +208,8 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         paddingHorizontal: 20,
-        paddingTop: 34,
-        backgroundColor: '#0B0C10',
+        paddingTop: 52,
+        backgroundColor: '#FFFCF5',
     },
     headerRow: {
         flexDirection: 'row',
@@ -218,49 +218,53 @@ const styles = StyleSheet.create({
         marginBottom: 18,
     },
     title: {
-        color: '#F5F7FF',
+        color: '#1D2A24',
         fontSize: 20,
-        fontWeight: '800',
+        fontFamily: 'BricolageGrotesque_700Bold',
     },
     buttonContainer: {
         flexDirection: 'row',
         alignItems: 'center',
-        marginBottom: 14,
+        marginBottom: 8,
         width: '100%',
         borderRadius: 16,
         borderWidth: 1,
-        borderColor: 'rgba(255,255,255,0.12)',
-        backgroundColor: '#161922',
+        borderColor: 'rgba(29,42,36,0.12)',
+        backgroundColor: '#FFFCF5',
         paddingVertical: 14,
         paddingHorizontal: 14,
     },
     buttonText: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#EAF0FF',
+        fontSize: 15,
+        fontFamily: 'PlusJakartaSans_700Bold',
+        color: '#1D2A24',
+    },
+    iconWrap: {
+        width: 24,
+        alignItems: 'center',
+    },
+    rowLabel: {
+        marginLeft: 12,
     },
     buttonTextWrap: {
-        marginLeft: 10,
         flex: 1,
     },
     buttonSubText: {
         marginTop: 2,
         fontSize: 12,
-        fontWeight: '600',
-        color: '#AEB8CF',
+        fontFamily: 'PlusJakartaSans_600SemiBold',
+        color: '#1D2A24',
     },
     settingsBlock: {
         marginTop: 6,
         borderTopWidth: 1,
-        borderTopColor: 'rgba(255,255,255,0.10)',
+        borderTopColor: 'rgba(29,42,36,0.10)',
         paddingTop: 14,
     },
     settingsTitle: {
-        color: '#B8C0D4',
+        color: '#1D2A24',
         fontSize: 12,
-        fontWeight: '700',
-        letterSpacing: 1,
-        textTransform: 'uppercase',
+        fontFamily: 'PlusJakartaSans_700Bold',
         marginBottom: 10,
     },
 });

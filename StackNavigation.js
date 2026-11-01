@@ -965,12 +965,12 @@ const MainStackNavigator1 = () => {
       <View
         style={{
           flex: 1,
-          backgroundColor: "#121212",
+          backgroundColor: "#F6F1E7",
           alignItems: "center",
           justifyContent: "center",
         }}
       >
-        <ActivityIndicator color="#B026FF" size="small" />
+        <ActivityIndicator color="#17694F" size="small" />
       </View>
     );
   }
@@ -1091,6 +1091,7 @@ const MainStackNavigator1 = () => {
       <Stack.Screen
         name="WithdrawalHistoryPage"
         component={WithdrawalHistoryPage}
+        options={{ headerShown: false }}
       />
       <Stack.Screen
         name="WithdrawalFormPage"

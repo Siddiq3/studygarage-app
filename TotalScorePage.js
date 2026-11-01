@@ -28,6 +28,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { useQuizContext } from "./QuizContext";
+import ScreenHeader from "./src/design-system/components/ScreenHeader";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
 import SGCard from "./src/design-system/components/SGCard";
 import SGButton from "./src/design-system/components/SGButton";
@@ -691,8 +692,8 @@ const TotalScorePage = ({ navigation }) => {
 
       enqueueToast({
         text: "Redeem option will be available soon.",
-        backgroundColor: "#1A2130",
-        textColor: "#D7DEEF",
+        backgroundColor: "#FFFCF5",
+        textColor: "#1D2A24",
       });
     },
     [enqueueToast, navigation]
@@ -754,8 +755,8 @@ const TotalScorePage = ({ navigation }) => {
           setLastErrorMessage("Daily limit reached. Come back tomorrow.");
           enqueueToast({
             text: "Daily ad limit reached. Come back tomorrow.",
-            backgroundColor: "#1A2130",
-            textColor: "#D7DEEF",
+            backgroundColor: "#FFFCF5",
+            textColor: "#1D2A24",
           });
           return;
         }
@@ -779,8 +780,8 @@ const TotalScorePage = ({ navigation }) => {
           rewardedAdError || "Ad not available. Try again in a moment.";
         enqueueToast({
           text: failMessage,
-          backgroundColor: "#1A2130",
-          textColor: "#D7DEEF",
+          backgroundColor: "#FFFCF5",
+          textColor: "#1D2A24",
         });
         enterCooldown(failMessage, requestId);
         return;
@@ -792,8 +793,8 @@ const TotalScorePage = ({ navigation }) => {
         await refreshDailyAdState();
         enqueueToast({
           text: "Reward not received. Please watch the full ad and try again.",
-          backgroundColor: "#2A1720",
-          textColor: "#FFD4DF",
+          backgroundColor: "#FFFCF5",
+          textColor: "#BF3F2B",
         });
         finalizeToIdleSafely(requestId);
         return;
@@ -849,8 +850,8 @@ const TotalScorePage = ({ navigation }) => {
       if (!rewardCredit.applied) {
         enqueueToast({
           text: "Reward already credited for this ad.",
-          backgroundColor: "#1A2130",
-          textColor: "#D7DEEF",
+          backgroundColor: "#FFFCF5",
+          textColor: "#1D2A24",
         });
       }
       const nextStatus = await incrementDailyAdClaim(dailyAdEarnLimit);
@@ -871,8 +872,8 @@ const TotalScorePage = ({ navigation }) => {
 
       enqueueToast({
         text: `+${dailyAdRewardCoins} coins added`,
-        backgroundColor: "#14221A",
-        textColor: "#A7F5C8",
+        backgroundColor: "#FFFCF5",
+        textColor: "#1C7C55",
       });
 
       const shouldKeepOverlay = await waitForStep(
@@ -899,8 +900,8 @@ const TotalScorePage = ({ navigation }) => {
       await loadingGate.catch(() => {});
       enqueueToast({
         text: "Ad failed. Please try again.",
-        backgroundColor: "#2A1720",
-        textColor: "#FFD4DF",
+        backgroundColor: "#FFFCF5",
+        textColor: "#BF3F2B",
       });
       enterCooldown("Ad not available. Try again in a moment.", requestId);
     } finally {
@@ -944,7 +945,7 @@ const TotalScorePage = ({ navigation }) => {
         provider: "upi",
         label: "Get on UPI",
         icon: "qr-code-outline",
-        color: "#6FE0C2",
+        color: "#1C7C55",
         sourceRef: upiTileRef,
       },
       {
@@ -952,7 +953,7 @@ const TotalScorePage = ({ navigation }) => {
         provider: "google",
         label: "Redeem Code (Google Play)",
         icon: "logo-google-playstore",
-        color: "#7FB6FF",
+        color: "#1D2A24",
         sourceRef: googleTileRef,
       },
       {
@@ -960,7 +961,7 @@ const TotalScorePage = ({ navigation }) => {
         provider: "flipkart",
         label: "Flipkart Voucher",
         icon: "cart-outline",
-        color: "#8F74FF",
+        color: "#1D2A24",
         sourceRef: flipkartTileRef,
       },
       {
@@ -968,7 +969,7 @@ const TotalScorePage = ({ navigation }) => {
         provider: "amazon",
         label: "Amazon Pay",
         icon: "bag-handle-outline",
-        color: "#FFB86A",
+        color: "#C4551A",
         sourceRef: amazonTileRef,
       },
     ],
@@ -985,7 +986,7 @@ const TotalScorePage = ({ navigation }) => {
           <PressableScale
             onPress={() => handleRedeemTilePress(item.provider)}
             activeScale={0.97}
-            className="min-h-[134px] rounded-[20px] border border-white/10 bg-[#151B27] px-3.5 py-4"
+            className="min-h-[134px] rounded-[20px] border border-sg-border bg-[#FFFCF5] px-3.5 py-4"
             style={{
               shadowColor: item.color,
               shadowOffset: { width: 0, height: 4 },
@@ -994,11 +995,11 @@ const TotalScorePage = ({ navigation }) => {
               elevation: 4,
             }}
           >
-            <View className="h-[40px] w-[40px] items-center justify-center rounded-[12px] border border-white/12 bg-[#111623]">
+            <View className="h-[40px] w-[40px] items-center justify-center rounded-[12px] border border-sg-border bg-[#FFFCF5]">
               <Ionicons name={item.icon} size={19} color={item.color} />
             </View>
             <Text
-              className="mt-3 text-[14px] font-extrabold leading-[18px] text-white"
+              className="mt-3 text-[14px] font-sg-extrabold leading-[18px] text-sg-text"
               numberOfLines={2}
             >
               {item.label}
@@ -1016,8 +1017,8 @@ const TotalScorePage = ({ navigation }) => {
       if (shortfall > 0) {
         enqueueToast({
           text: `Insufficient Balance! You need ${shortfall} more coins.`,
-          backgroundColor: "#2A1720",
-          textColor: "#FFD4DF",
+          backgroundColor: "#FFFCF5",
+          textColor: "#BF3F2B",
         });
         Haptics.notificationAsync(
           Haptics.NotificationFeedbackType.Warning
@@ -1054,8 +1055,8 @@ const TotalScorePage = ({ navigation }) => {
       console.error("Redeem flow failed:", error);
       enqueueToast({
         text: "Redeem failed. Please try again.",
-        backgroundColor: "#2A1720",
-        textColor: "#FFD4DF",
+        backgroundColor: "#FFFCF5",
+        textColor: "#BF3F2B",
       });
     } finally {
       pendingVoucherRef.current = null;
@@ -1110,28 +1111,22 @@ const TotalScorePage = ({ navigation }) => {
 
   return (
     <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
+      <ScreenHeader eyebrow="Rewards wallet" title="Your coins" />
       <Animated.View entering={FadeInDown.duration(240)}>
         <SGCard className="mb-4 overflow-hidden">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.2px] text-sg-muted dark:text-sgd-muted">
-            Rewards Wallet
-          </Text>
-          <Text className="mt-1 text-[26px] font-extrabold leading-[31px] text-sg-text dark:text-sgd-text">
-            Coin Balance
-          </Text>
-
           <View className="mt-3 flex-row items-center justify-between">
-            <Text className="text-[11px] font-bold uppercase tracking-[1px] text-white/70">
+            <Text className="text-[12px] font-sg-bold text-sg-text/70">
               Available
             </Text>
             <AnimatedView
               ref={walletPillRef}
               collapsable={false}
               style={walletPillStyle}
-              className="rounded-full border border-[#FFD700]/30 bg-[#2A2312] px-2.5 py-1"
+              className="rounded-full border border-[#9A6400]/30 bg-[#FFFCF5] px-2.5 py-1"
             >
               <View className="flex-row items-center">
                 <Coin size={12} compact />
-                <Text className="ml-1 text-[10px] font-extrabold text-[#FFD700]">
+                <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">
                   {displayScore}
                 </Text>
               </View>
@@ -1143,18 +1138,18 @@ const TotalScorePage = ({ navigation }) => {
               <Coin size={22} compact />
             </View>
             <View className="relative overflow-hidden rounded-[12px] px-1">
-              <View className="absolute -inset-x-2 -top-1 bottom-1 rounded-full bg-[#FFD700]/16" />
-              <Text className="text-[44px] font-black leading-[46px] text-white">
+              <View className="absolute -inset-x-2 -top-1 bottom-1 rounded-full bg-[#E5A019]/16" />
+              <Text className="text-[44px] font-sg-display leading-[46px] text-sg-text">
                 {displayScore}
               </Text>
               <AnimatedView
                 pointerEvents="none"
                 style={coinShineStyle}
-                className="absolute inset-y-0 left-[-30px] w-7 rounded-full bg-white/35"
+                className="absolute inset-y-0 left-[-30px] w-7 rounded-full bg-sg-text/35"
               />
             </View>
           </View>
-          <Text className="mt-1 text-[12px] font-semibold text-[#BFC7DA]">
+          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
             Current wallet coins
           </Text>
         </SGCard>
@@ -1164,13 +1159,10 @@ const TotalScorePage = ({ navigation }) => {
         <View className="mb-4">
           <View className="mb-2 flex-row items-center justify-between">
             <View className="flex-1 pr-3">
-              <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">
-                Redeem Options
+              <Text className="mt-1 text-[22px] font-sg-display text-sg-text">
+                Redeem
               </Text>
-              <Text className="mt-1 text-[22px] font-extrabold text-sg-text dark:text-sgd-text">
-                Redeem Options
-              </Text>
-              <Text className="mt-1 text-[12px] font-semibold text-[#AEB8CF]">
+              <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
                 Choose how you want to redeem your coins
               </Text>
             </View>
@@ -1190,13 +1182,10 @@ const TotalScorePage = ({ navigation }) => {
 
       <Animated.View entering={FadeInDown.delay(60).duration(220)}>
         <SGCard className="mb-4">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">
-            Earn More Coins
+          <Text className="mt-1 text-[22px] font-sg-display text-sg-text">
+            Earn more coins
           </Text>
-          <Text className="mt-1 text-[22px] font-extrabold text-sg-text dark:text-sgd-text">
-            Earn More Coins
-          </Text>
-          <Text className="mt-1 text-[12px] font-semibold text-[#AEB8CF]">
+          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
             {dailyAdEarnLimit}x per day
           </Text>
 
@@ -1207,18 +1196,18 @@ const TotalScorePage = ({ navigation }) => {
               disabled={adButtonDisabled}
               className={`min-h-[52px] flex-row items-center justify-center rounded-[16px] border px-4 ${
                 adButtonDisabled
-                  ? "border-white/10 bg-[#171C27]"
-                  : "border-[#FFD700]/25 bg-[#1A1F2B]"
+                  ? "border-sg-border bg-[#FFFCF5]"
+                  : "border-[#9A6400]/25 bg-[#FFFCF5]"
               }`}
             >
               {adUiState === "loading" ? (
-                <ActivityIndicator size="small" color="#F5F7FF" />
+                <ActivityIndicator size="small" color="#1D2A24" />
               ) : (
                 <Coin size={15} compact />
               )}
               <Text
                 className={`ml-2 text-[15px] font-extrabold ${
-                  adButtonDisabled ? "text-white/70" : "text-[#F5F7FF]"
+                  adButtonDisabled ? "text-sg-text/70" : "text-[#1D2A24]"
                 }`}
               >
                 {adButtonLabel}
@@ -1228,30 +1217,30 @@ const TotalScorePage = ({ navigation }) => {
             <Animated.View
               pointerEvents="none"
               style={adRewardChipStyle}
-              className="absolute right-2 top-[-12px] flex-row items-center rounded-full border border-[#FFD700]/34 bg-[#2A2414] px-3 py-[4px]"
+              className="absolute right-2 top-[-12px] flex-row items-center rounded-full border border-[#9A6400]/34 bg-[#FFFCF5] px-3 py-[4px]"
             >
               <Coin size={11} compact />
-              <Text className="ml-1 text-[11px] font-extrabold text-[#FFD700]">
+              <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">
                 +{dailyAdRewardCoins}
               </Text>
             </Animated.View>
           </View>
 
-          <Text className="mt-2 text-[11px] font-semibold text-[#B8C0D4]">
+          <Text className="mt-2 text-[12px] font-sg-semibold text-[#1D2A24]">
             Remaining today: {adClaimsRemaining}/{dailyAdEarnLimit}
           </Text>
           {adUiState === "cooldown" && adNextWaitMs > 0 ? (
-            <Text className="mt-1 text-[11px] font-semibold text-[#B8C0D4]">
+            <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
               Next chance in {formatAdCooldown(adNextWaitMs)}
             </Text>
           ) : null}
           {lastErrorMessage && adClaimsRemaining > 0 ? (
-            <Text className="mt-1 text-[11px] font-medium text-[#AEB8CF]">
+            <Text className="mt-1 text-[12px] font-sg-medium text-[#1D2A24]">
               {lastErrorMessage}
             </Text>
           ) : null}
           {!rewardedAdAvailable ? (
-            <Text className="mt-1 text-[11px] font-medium text-[#AEB8CF]">
+            <Text className="mt-1 text-[12px] font-sg-medium text-[#1D2A24]">
               Rewarded ad unit is not configured yet.
             </Text>
           ) : null}
@@ -1260,13 +1249,10 @@ const TotalScorePage = ({ navigation }) => {
 
       <Animated.View entering={FadeInDown.delay(120).duration(220)}>
         <SGCard className="mb-4">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">
-            History
+          <Text className="mt-1 text-[20px] font-sg-display text-sg-text">
+            Activity
           </Text>
-          <Text className="mt-1 text-[20px] font-extrabold text-sg-text dark:text-sgd-text">
-            Wallet Activity
-          </Text>
-          <Text className="mt-1 text-[12px] font-semibold text-[#AEB8CF]">
+          <Text className="mt-1 text-[12px] font-sg-semibold text-[#1D2A24]">
             Track redemption requests and coin activity
           </Text>
           <SGButton
@@ -1327,8 +1313,8 @@ const TotalScorePage = ({ navigation }) => {
             visible={adRewardOverlayVisible}
             triggerToken={adRewardPaperToken}
             seed={adRewardPaperSeed}
-            waveDelays={[120, 900, 1720]}
-            piecesPerWave={46}
+            waveDelays={[120]}
+            piecesPerWave={18}
             zIndex={76}
           />
           <Animated.View
@@ -1374,7 +1360,7 @@ const styles = StyleSheet.create({
   adRewardOverlay: {
     zIndex: 75,
     elevation: 75,
-    backgroundColor: "rgba(5, 8, 15, 0.6)",
+    backgroundColor: "rgba(15,40,31,0.6)",
     alignItems: "center",
     justifyContent: "center",
   },
@@ -1384,22 +1370,22 @@ const styles = StyleSheet.create({
     paddingVertical: 18,
     borderRadius: 20,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.14)",
-    backgroundColor: "rgba(24,30,43,0.92)",
+    borderColor: "rgba(29,42,36,0.14)",
+    backgroundColor: "rgba(255,252,245,0.92)",
     alignItems: "center",
     justifyContent: "center",
   },
   adRewardTitle: {
     marginTop: 8,
-    color: "#F5F7FF",
+    color: "#1D2A24",
     fontSize: 17,
-    fontWeight: "800",
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
   },
   adRewardSubtitle: {
     marginTop: 4,
-    color: "#AEB8CF",
+    color: "#1D2A24",
     fontSize: 12,
-    fontWeight: "600",
+    fontFamily: 'PlusJakartaSans_600SemiBold',
   },
 });
 

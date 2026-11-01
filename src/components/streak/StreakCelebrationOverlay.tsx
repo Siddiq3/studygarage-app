@@ -1,36 +1,22 @@
-import React, {
-  useCallback,
-  useEffect,
-  useMemo,
-  useRef,
-  useState,
-} from "react";
-import { Modal, Pressable, Text, UIManager, View } from "react-native";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Pressable, Text, View } from "react-native";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { LinearGradient } from "expo-linear-gradient";
+import { StatusBar } from "expo-status-bar";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
+import * as Haptics from "expo-haptics";
 import Animated, {
   Easing,
-  cancelAnimation,
-  runOnJS,
-  useAnimatedReaction,
   useAnimatedStyle,
   useSharedValue,
-  withRepeat,
+  withDelay,
   withSequence,
   withSpring,
   withTiming,
 } from "react-native-reanimated";
-import * as Haptics from "expo-haptics";
 import PressableScale from "../ui/PressableScale";
 import useRemoteConfig from "../../hooks/useRemoteConfig";
+import useReducedMotionPreference from "../../hooks/useReducedMotionPreference";
 import { defaultConfig } from "../../config/remoteConfig";
-
-type LayoutRect = {
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-};
 
 type Props = {
   visible: boolean;
@@ -40,475 +26,286 @@ type Props = {
   onMergedToIcon?: () => void;
 };
 
-export default function StreakCelebrationOverlay({
-  visible,
-  streakCount,
-  streakIconRef,
-  onClose,
-  onMergedToIcon,
-}: Props) {
-  const { config: remoteConfig } = useRemoteConfig();
-  const streakTarget = Math.max(
-    1,
-    Number(remoteConfig?.streakDays ?? defaultConfig.streakDays)
-  );
-  const cardRef = useRef<View | null>(null);
-  const isClosingRef = useRef(false);
-  const [displayCount, setDisplayCount] = useState(0);
-  const streakProgressPct = Math.min(
-    100,
-    Math.round((Math.min(streakCount, streakTarget) / streakTarget) * 100)
-  );
+const EMBER = "#C4481A";
+const BOARD = "#14342A";
+const CHALK = "#F4EFE2";
+const MARIGOLD = "#F2B632";
+const WEEK = 7;
+const CLOSE_MS = 200;
 
-  const BlurViewComponent = useMemo(() => {
-    try {
-      const blurModule = require("expo-blur");
-      const BlurView = blurModule?.BlurView;
-      const getConfig = UIManager?.getViewManagerConfig;
-      const hasNativeBlurView =
-        typeof getConfig === "function" &&
-        Boolean(
-          getConfig("ViewManagerAdapter_ExpoBlurView") ||
-            getConfig("RCTViewManagerAdapter_ExpoBlurView") ||
-            getConfig("ExpoBlurView")
-        );
+export const headlineFor = (count: number) => {
+  if (count <= 0) return "Start your streak today.";
+  if (count <= 1) return "Day one. Let's go.";
+  if (count <= 3) return "You're locked in.";
+  if (count <= 6) return "This is a habit now.";
+  if (count <= 13) return "One full week. Huge.";
+  if (count <= 29) return "Nobody's stopping you.";
+  return "Absolute legend.";
+};
 
-      if (!BlurView || !hasNativeBlurView) {
-        return null;
-      }
-
-      return BlurView;
-    } catch (_error) {
-      return null;
-    }
-  }, []);
-
-  const miniDayStates = useMemo(() => {
-    const today = Math.min(
-      streakCount >= streakTarget ? streakTarget : streakCount + 1,
-      streakTarget
-    );
-    return Array.from({ length: streakTarget }, (_, idx) => {
-      const day = idx + 1;
-      if (day <= streakCount) {
-        return { day, type: "completed" as const };
-      }
-      if (day === today) {
-        return { day, type: "today" as const };
-      }
-      return { day, type: "upcoming" as const };
-    });
-  }, [streakCount, streakTarget]);
-
-  const scrimOpacity = useSharedValue(0);
-  const blurOpacity = useSharedValue(0);
-  const cardOpacity = useSharedValue(0);
-  const cardScale = useSharedValue(0.9);
-  const cardTranslateY = useSharedValue(18);
-  const travelX = useSharedValue(0);
-  const travelY = useSharedValue(0);
-  const shrinkScale = useSharedValue(1);
-  const flameScale = useSharedValue(0.86);
-  const flameGlow = useSharedValue(0.24);
-  const flameHaloPulse = useSharedValue(0);
-  const countProgress = useSharedValue(0);
-  const progressFill = useSharedValue(0);
-
-  const triggerSuccessHaptic = useCallback(() => {
-    Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(
-      () => {}
-    );
-  }, []);
-
-  useAnimatedReaction(
-    () => countProgress.value,
-    (progress) => {
-      runOnJS(setDisplayCount)(Math.round(streakCount * progress));
-    },
-    [streakCount]
-  );
+export function DayChip({
+  day,
+  done,
+  isToday,
+  index,
+  animate,
+}: {
+  day: number;
+  done: boolean;
+  isToday: boolean;
+  index: number;
+  animate: boolean;
+}) {
+  const pop = useSharedValue(animate ? 0 : 1);
 
   useEffect(() => {
-    if (!visible) {
-      cancelAnimation(scrimOpacity);
-      cancelAnimation(blurOpacity);
-      cancelAnimation(cardOpacity);
-      cancelAnimation(cardScale);
-      cancelAnimation(cardTranslateY);
-      cancelAnimation(flameScale);
-      cancelAnimation(flameGlow);
-      cancelAnimation(flameHaloPulse);
-      cancelAnimation(countProgress);
-      cancelAnimation(progressFill);
-      return;
-    }
-
-    isClosingRef.current = false;
-    setDisplayCount(0);
-    travelX.value = 0;
-    travelY.value = 0;
-    shrinkScale.value = 1;
-    progressFill.value = 0;
-
-    scrimOpacity.value = withTiming(1, { duration: 200 });
-    blurOpacity.value = withTiming(1, { duration: 220 });
-    cardOpacity.value = withTiming(1, { duration: 200 });
-    cardTranslateY.value = withTiming(0, {
-      duration: 250,
-      easing: Easing.out(Easing.cubic),
-    });
-    cardScale.value = withSpring(1, {
-      damping: 15,
-      stiffness: 180,
-      mass: 0.9,
-    });
-    flameScale.value = withSequence(
-      withTiming(1.1, { duration: 180 }),
-      withTiming(1, { duration: 160 })
+    if (!animate) return;
+    pop.value = withDelay(
+      520 + index * 70,
+      withSpring(1, { damping: 10, stiffness: 190, mass: 0.6 })
     );
-    flameGlow.value = withRepeat(
-      withSequence(
-        withTiming(0.58, { duration: 950 }),
-        withTiming(0.24, { duration: 950 })
-      ),
-      -1,
-      false
-    );
-    flameHaloPulse.value = withRepeat(
-      withSequence(
-        withTiming(1, { duration: 1250, easing: Easing.inOut(Easing.quad) }),
-        withTiming(0, { duration: 1250, easing: Easing.inOut(Easing.quad) })
-      ),
-      -1,
-      false
-    );
-    countProgress.value = withTiming(1, {
-      duration: 420,
-      easing: Easing.out(Easing.cubic),
-    });
-    progressFill.value = withTiming(streakProgressPct, {
-      duration: 560,
-      easing: Easing.out(Easing.cubic),
-    });
-  }, [
-    blurOpacity,
-    cardOpacity,
-    cardScale,
-    cardTranslateY,
-    countProgress,
-    flameGlow,
-    flameHaloPulse,
-    flameScale,
-    progressFill,
-    scrimOpacity,
-    streakProgressPct,
-    shrinkScale,
-    travelX,
-    travelY,
-    visible,
-  ]);
+  }, [animate]);
 
-  useEffect(
-    () => () => {
-      cancelAnimation(scrimOpacity);
-      cancelAnimation(blurOpacity);
-      cancelAnimation(cardOpacity);
-      cancelAnimation(cardScale);
-      cancelAnimation(cardTranslateY);
-      cancelAnimation(travelX);
-      cancelAnimation(travelY);
-      cancelAnimation(shrinkScale);
-      cancelAnimation(flameScale);
-      cancelAnimation(flameGlow);
-      cancelAnimation(flameHaloPulse);
-      cancelAnimation(countProgress);
-      cancelAnimation(progressFill);
-    },
-    [
-      blurOpacity,
-      cardOpacity,
-      cardScale,
-      cardTranslateY,
-      countProgress,
-      flameGlow,
-      flameHaloPulse,
-      flameScale,
-      progressFill,
-      scrimOpacity,
-      shrinkScale,
-      travelX,
-      travelY,
-    ]
-  );
-
-  const scrimStyle = useAnimatedStyle(() => ({
-    opacity: scrimOpacity.value,
-  }));
-
-  const blurStyle = useAnimatedStyle(() => ({
-    opacity: blurOpacity.value * 0.95,
-  }));
-
-  const cardStyle = useAnimatedStyle(() => ({
-    opacity: cardOpacity.value,
+  const style = useAnimatedStyle(() => ({
+    opacity: Math.min(1, pop.value * 2),
     transform: [
-      { translateX: travelX.value },
-      { translateY: cardTranslateY.value + travelY.value },
-      { scale: cardScale.value * shrinkScale.value },
+      { scale: pop.value },
+      { rotate: `${index % 2 === 0 ? -5 : 5}deg` },
     ],
   }));
 
-  const flameStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: flameScale.value }],
-  }));
+  return (
+    <Animated.View
+      style={[
+        style,
+        {
+          width: 40,
+          height: 46,
+          borderRadius: 12,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: isToday ? MARIGOLD : done ? CHALK : "rgba(244,239,226,0.16)",
+        },
+      ]}
+    >
+      {isToday ? (
+        <Ionicons name="flame" size={20} color={BOARD} />
+      ) : done ? (
+        <Ionicons name="checkmark" size={20} color={EMBER} />
+      ) : (
+        <Text className="text-[15px] font-sg-bold text-[#F4EFE2]/70">{day}</Text>
+      )}
+    </Animated.View>
+  );
+}
 
-  const flameGlowStyle = useAnimatedStyle(() => ({
-    opacity: flameGlow.value,
-  }));
+// A plain full-screen view, not a Modal: it opens without a new native window.
+export default function StreakCelebrationOverlay({
+  visible,
+  streakCount,
+  onClose,
+  onMergedToIcon,
+}: Props) {
+  const { config } = useRemoteConfig();
+  const insets = useSafeAreaInsets();
+  const reducedMotion = useReducedMotionPreference();
+  const [isMounted, setIsMounted] = useState(visible);
+  const closingRef = useRef(false);
+  const closeTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const haloPulseStyle = useAnimatedStyle(() => ({
-    opacity: 0.28 + flameHaloPulse.value * 0.18,
-    transform: [{ scale: 1 + flameHaloPulse.value * 0.07 }],
-  }));
+  const screen = useSharedValue(0);
+  const stamp = useSharedValue(0);
+  const lift = useSharedValue(0);
+  const sticker = useSharedValue(0);
 
-  const progressFillStyle = useAnimatedStyle(() => ({
-    width: `${Math.max(2, progressFill.value)}%`,
-  }));
+  const weekStart = Math.floor(Math.max(0, streakCount - 1) / WEEK) * WEEK;
+  const days = useMemo(
+    () => Array.from({ length: WEEK }, (_, index) => weekStart + index + 1),
+    [weekStart]
+  );
 
-  const measureInWindowAsync = useCallback(
-    (ref: React.RefObject<View | null>) => {
-      return new Promise<LayoutRect | null>((resolve) => {
-        const node = ref?.current;
-        if (!node || typeof node.measureInWindow !== "function") {
-          resolve(null);
-          return;
-        }
+  const nextMilestone = useMemo(() => {
+    const list = config?.streakMilestones ?? defaultConfig.streakMilestones;
+    return [...list]
+      .sort((a, b) => a.days - b.days)
+      .find((item) => item.days > streakCount);
+  }, [config?.streakMilestones, streakCount]);
 
-        requestAnimationFrame(() => {
-          node.measureInWindow((x, y, width, height) => {
-            if (
-              !Number.isFinite(width) ||
-              !Number.isFinite(height) ||
-              width <= 0 ||
-              height <= 0
-            ) {
-              resolve(null);
-              return;
-            }
-            resolve({ x, y, width, height });
-          });
-        });
-      });
+  useEffect(() => {
+    if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
+    if (!visible) {
+      screen.value = withTiming(0, { duration: CLOSE_MS });
+      closeTimerRef.current = setTimeout(() => setIsMounted(false), CLOSE_MS + 40);
+      return;
+    }
+
+    closingRef.current = false;
+    setIsMounted(true);
+    if (reducedMotion) {
+      screen.value = 1;
+      stamp.value = 1;
+      lift.value = 1;
+      sticker.value = 1;
+      return;
+    }
+
+    stamp.value = 0;
+    lift.value = 0;
+    sticker.value = 0;
+    screen.value = withTiming(1, { duration: 220 });
+    stamp.value = withDelay(
+      160,
+      withSpring(1, { damping: 9, stiffness: 150, mass: 0.8 })
+    );
+    lift.value = withDelay(
+      360,
+      withTiming(1, { duration: 320, easing: Easing.out(Easing.cubic) })
+    );
+    sticker.value = withDelay(
+      1050,
+      withSequence(
+        withSpring(1.08, { damping: 8, stiffness: 200 }),
+        withTiming(1, { duration: 140 })
+      )
+    );
+    const hapticTimer = setTimeout(() => {
+      Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success).catch(
+        () => {}
+      );
+    }, 300);
+    return () => clearTimeout(hapticTimer);
+  }, [visible, reducedMotion]);
+
+  useEffect(
+    () => () => {
+      if (closeTimerRef.current) clearTimeout(closeTimerRef.current);
     },
     []
   );
 
-  const closeWithMerge = useCallback(async () => {
-    if (!visible || isClosingRef.current) {
-      return;
-    }
+  const handleClose = () => {
+    if (closingRef.current) return;
+    closingRef.current = true;
+    screen.value = withTiming(0, { duration: CLOSE_MS });
+    closeTimerRef.current = setTimeout(() => {
+      onMergedToIcon?.();
+      onClose();
+    }, CLOSE_MS);
+  };
 
-    isClosingRef.current = true;
+  const screenStyle = useAnimatedStyle(() => ({ opacity: screen.value }));
+  const stampStyle = useAnimatedStyle(() => ({
+    opacity: Math.min(1, stamp.value * 2.5),
+    transform: [
+      { scale: 1.9 - stamp.value * 0.9 },
+      { rotate: `${-10 + stamp.value * 7}deg` },
+    ],
+  }));
+  const liftStyle = useAnimatedStyle(() => ({
+    opacity: lift.value,
+    transform: [{ translateY: (1 - lift.value) * 18 }],
+  }));
+  const stickerStyle = useAnimatedStyle(() => ({
+    opacity: Math.min(1, sticker.value * 2),
+    transform: [{ scale: sticker.value }, { rotate: "-3deg" }],
+  }));
 
-    const [cardLayout, targetLayout] = await Promise.all([
-      measureInWindowAsync(cardRef),
-      streakIconRef
-        ? measureInWindowAsync(streakIconRef)
-        : Promise.resolve(null),
-    ]);
+  if (!isMounted) return null;
 
-    if (!cardLayout || !targetLayout) {
-      scrimOpacity.value = withTiming(0, { duration: 180 }, (finished) => {
-        if (finished) {
-          runOnJS(onClose)();
-        }
-      });
-      blurOpacity.value = withTiming(0, { duration: 180 });
-      cardScale.value = withTiming(0.94, { duration: 180 });
-      cardOpacity.value = withTiming(0, { duration: 180 });
-      return;
-    }
-
-    const cardCenterX = cardLayout.x + cardLayout.width * 0.5;
-    const cardCenterY = cardLayout.y + cardLayout.height * 0.5;
-    const targetCenterX = targetLayout.x + targetLayout.width * 0.5;
-    const targetCenterY = targetLayout.y + targetLayout.height * 0.5;
-
-    const deltaX = targetCenterX - cardCenterX;
-    const deltaY = targetCenterY - cardCenterY;
-
-    travelX.value = withTiming(deltaX, {
-      duration: 560,
-      easing: Easing.out(Easing.cubic),
-    });
-    travelY.value = withTiming(deltaY, {
-      duration: 560,
-      easing: Easing.out(Easing.cubic),
-    });
-    shrinkScale.value = withTiming(0.26, {
-      duration: 560,
-      easing: Easing.out(Easing.cubic),
-    });
-    cardOpacity.value = withTiming(0.45, { duration: 500 });
-    flameGlow.value = withTiming(0, { duration: 300 });
-    blurOpacity.value = withTiming(0, { duration: 240 });
-    scrimOpacity.value = withTiming(0, { duration: 240 });
-
-    cardTranslateY.value = withTiming(0, { duration: 120 }, (finished) => {
-      if (finished) {
-        runOnJS(onMergedToIcon || (() => {}))();
-        runOnJS(triggerSuccessHaptic)();
-        runOnJS(onClose)();
-      }
-    });
-  }, [
-    blurOpacity,
-    cardOpacity,
-    cardScale,
-    cardTranslateY,
-    flameGlow,
-    onClose,
-    onMergedToIcon,
-    triggerSuccessHaptic,
-    scrimOpacity,
-    shrinkScale,
-    streakIconRef,
-    travelX,
-    travelY,
-    visible,
-    measureInWindowAsync,
-  ]);
-
-  if (!visible) {
-    return null;
-  }
+  const toNext = nextMilestone ? nextMilestone.days - streakCount : 0;
 
   return (
-    <Modal
-      transparent
-      animationType="none"
-      visible={visible}
-      statusBarTranslucent
-      onRequestClose={closeWithMerge}
+    <Animated.View
+      style={[
+        screenStyle,
+        {
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          zIndex: 70,
+          backgroundColor: EMBER,
+          paddingTop: insets.top + 12,
+          paddingBottom: insets.bottom + 18,
+          paddingHorizontal: 20,
+        },
+      ]}
     >
-      <View className="flex-1 items-center justify-center px-5">
-        {BlurViewComponent ? (
-          <Animated.View style={blurStyle} className="absolute inset-0">
-            <BlurViewComponent intensity={26} tint="dark" style={{ flex: 1 }} />
+      <StatusBar style="light" />
+      <View pointerEvents="none" style={{ position: "absolute", right: -70, top: 60, opacity: 0.14 }}>
+        <Ionicons name="flame" size={440} color={BOARD} />
+      </View>
+
+      <View className="flex-row justify-end">
+        <Pressable
+          onPress={handleClose}
+          hitSlop={8}
+          accessibilityRole="button"
+          accessibilityLabel="Close"
+          className="h-11 w-11 items-center justify-center rounded-[14px] bg-[#14342A]/20 active:opacity-60"
+        >
+          <Ionicons name="close" size={20} color={CHALK} />
+        </Pressable>
+      </View>
+
+      <View className="flex-1 justify-center">
+        <Animated.View style={[stampStyle, { alignSelf: "flex-start" }]}>
+          <Text
+            className="font-sg-display text-[#F4EFE2]"
+            style={{
+              fontSize: 168,
+              lineHeight: 176,
+              letterSpacing: -6,
+              fontVariant: ["tabular-nums"],
+            }}
+          >
+            {streakCount}
+          </Text>
+        </Animated.View>
+
+        <Animated.View style={liftStyle}>
+          <Text className="-mt-2 text-[26px] leading-[30px] font-sg-display text-[#14342A]">
+            day streak
+          </Text>
+          <Text className="mt-3 text-[34px] leading-[38px] font-sg-display tracking-[-0.6px] text-[#F4EFE2]">
+            {headlineFor(streakCount)}
+          </Text>
+        </Animated.View>
+
+        <View className="mt-7 flex-row justify-between">
+          {days.map((day, index) => (
+            <DayChip
+              key={day}
+              day={day}
+              index={index}
+              done={day < streakCount}
+              isToday={day === streakCount}
+              animate={!reducedMotion}
+            />
+          ))}
+        </View>
+
+        {nextMilestone ? (
+          <Animated.View
+            style={[stickerStyle, { alignSelf: "flex-start" }]}
+            className="mt-7 flex-row items-center rounded-[12px] bg-[#F2B632] px-3.5 py-2.5"
+          >
+            <Ionicons name="gift" size={18} color={BOARD} />
+            <Text className="ml-2 text-[15px] font-sg-bold text-[#14342A]">
+              {toNext} {toNext === 1 ? "day" : "days"} to +{nextMilestone.bonusCoins} coins
+            </Text>
           </Animated.View>
         ) : null}
-
-        <Animated.View style={scrimStyle} className="absolute inset-0">
-          <Pressable
-            onPress={closeWithMerge}
-            className="absolute inset-0 bg-black/60"
-          />
-        </Animated.View>
-
-        <Animated.View
-          ref={cardRef}
-          collapsable={false}
-          style={cardStyle}
-          className="w-full max-w-[388px] overflow-hidden rounded-[28px] border border-white/8 bg-white/5 px-5 pb-6 pt-6"
-        >
-          <View className="absolute left-1/2 top-4 h-32 w-32 -translate-x-16 rounded-full bg-[#8D5AFF]/8" />
-          <PressableScale
-            onPress={closeWithMerge}
-            activeScale={0.96}
-            className="absolute right-4 top-4 z-20 rounded-full border border-white/14 bg-[#111726]/90 p-2"
-          >
-            <Ionicons name="close" size={16} color="#C8D0E2" />
-          </PressableScale>
-
-          <View className="items-center pt-1">
-            <Animated.View
-              pointerEvents="none"
-              style={haloPulseStyle}
-              className="absolute -top-2 h-[96px] w-[96px] rounded-full"
-            >
-              <LinearGradient
-                colors={[
-                  "rgba(255,122,61,0.35)",
-                  "rgba(255,122,61,0.15)",
-                  "rgba(255,122,61,0)",
-                ]}
-                start={{ x: 0.5, y: 0 }}
-                end={{ x: 0.5, y: 1 }}
-                style={{ flex: 1, borderRadius: 999 }}
-              />
-            </Animated.View>
-            <Animated.View
-              style={flameGlowStyle}
-              className="absolute -inset-2 rounded-full bg-[#FF7A3D]/24"
-            />
-            <Animated.View
-              style={flameStyle}
-              className="h-[74px] w-[74px] items-center justify-center rounded-full border border-[#FF7A3D]/45 bg-[#2A1712]/85"
-            >
-              <Ionicons name="flame" size={36} color="#FF9A3D" />
-            </Animated.View>
-          </View>
-
-          <Text className="mt-5 text-center text-[34px] font-black leading-[38px] text-white">
-            {displayCount} Day Streak
-          </Text>
-          <Text className="mt-2 text-center text-[14px] font-semibold text-[#B8C0D4]">
-            Consistency builds champions.
-          </Text>
-
-          <View className="mt-5 rounded-[18px] border border-white/10 bg-black/24 px-3 py-3">
-            <View className="flex-row items-center justify-between">
-              {miniDayStates.map((item) => {
-                const completed = item.type === "completed";
-                const today = item.type === "today";
-                return (
-                  <View key={item.day} className="items-center">
-                    <View
-                      className={`h-6 w-6 items-center justify-center rounded-full border ${
-                        completed
-                          ? "border-[#FF9A3D]/85 bg-[#FF7A3D]/35"
-                          : today
-                          ? "border-[#FFB46E] bg-[#2A1712]"
-                          : "border-white/18 bg-white/8"
-                      }`}
-                    >
-                      {completed ? (
-                        <Ionicons name="checkmark" size={12} color="#FFE0C2" />
-                      ) : (
-                        <View
-                          className={`h-1.5 w-1.5 rounded-full ${
-                            today ? "bg-[#FF9A3D]" : "bg-white/32"
-                          }`}
-                        />
-                      )}
-                    </View>
-                    <Text className="mt-1 text-[9px] font-semibold text-[#9AA4BD]">
-                      {item.day}
-                    </Text>
-                  </View>
-                );
-              })}
-            </View>
-
-            <View className="mt-3 h-[5px] overflow-hidden rounded-full bg-white/10">
-              <Animated.View
-                style={progressFillStyle}
-                className="h-[5px] rounded-full bg-[#FF9A3D]"
-              />
-            </View>
-          </View>
-
-          <PressableScale
-            onPress={closeWithMerge}
-            activeScale={0.96}
-            className="mt-6 overflow-hidden rounded-[999px] border border-white/15 bg-[#151A24] px-5 py-4"
-          >
-            <Text className="text-center text-[15px] font-black text-white">
-              Continue
-            </Text>
-          </PressableScale>
-        </Animated.View>
       </View>
-    </Modal>
+
+      <PressableScale
+        onPress={handleClose}
+        activeScale={0.98}
+        className="min-h-[56px] items-center justify-center rounded-[16px] bg-[#14342A]"
+      >
+        <Text className="text-[17px] font-sg-bold text-[#F2B632]">Keep it going</Text>
+      </PressableScale>
+    </Animated.View>
   );
 }

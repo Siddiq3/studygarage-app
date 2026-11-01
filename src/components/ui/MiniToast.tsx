@@ -80,9 +80,9 @@ export default function MiniToast({ message, visible, onHide }: Props) {
     <View pointerEvents="none" className="absolute left-4 right-4 top-12 z-[70]">
       <Animated.View
         style={toastStyle}
-        className="rounded-[14px] border border-white/12 bg-white/8 px-4 py-3"
+        className="rounded-[14px] border border-sg-border bg-sg-bg2 px-4 py-3"
       >
-        <Text className="text-center text-[13px] font-semibold text-[#F5F7FF]">
+        <Text className="text-center text-[13px] font-sg-semibold text-[#1D2A24]">
           {message}
         </Text>
       </Animated.View>

@@ -1,37 +1,14 @@
-import { Button, Linking, ScrollView, View } from 'react-native';
-import React from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
-const Sets = () => {
-    return (
-        <View>
-            <ScrollView>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button
-                        color='#5F939A'
-                        title='Sets Part-1'
-                        onPress={() => Linking.openURL(`https://youtu.be/ro0qq_VI36I`)}
-                    />
-                </Card>
+const items = [
+  { label: "Sets Part-1", url: "https://youtu.be/ro0qq_VI36I" },
+  { label: "Sets Part-2", url: "https://youtu.be/Wf9BzWLfC5U" },
+  { label: "Real Numbers Part-3", url: "https://youtu.be/8Kp8okXG5XU" },
+];
 
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button
-                        color='#5F939A'
-                        title='Sets Part-2'
-                        onPress={() => Linking.openURL(`https://youtu.be/Wf9BzWLfC5U`)}
-                    />
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button
-                        color='#5F939A'
-                        title='Real Numbers Part-3'
-                        onPress={() => Linking.openURL(`https://youtu.be/8Kp8okXG5XU`)}
-                    />
-                </Card>
-            </ScrollView>
-        </View>
-    );
-};
+const Sets = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Mathematics (EM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Sets;

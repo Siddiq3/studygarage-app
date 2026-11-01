@@ -174,8 +174,8 @@ export function useRedeem({ onDeductCoins }: UseRedeemParams): UseRedeemResult {
     Snackbar.show({
       text: nextToast.text,
       duration: Snackbar.LENGTH_SHORT,
-      backgroundColor: nextToast.backgroundColor || "#151A24",
-      textColor: nextToast.textColor || "#FFFFFF",
+      backgroundColor: nextToast.backgroundColor || "#FFFCF5",
+      textColor: nextToast.textColor || "#1D2A24",
     });
 
     if (toastTimerRef.current) {
@@ -271,8 +271,8 @@ export function useRedeem({ onDeductCoins }: UseRedeemParams): UseRedeemResult {
       if (shortfall > 0) {
         enqueueToast({
           text: `Insufficient Balance! You need ${shortfall} more coins.`,
-          backgroundColor: "#2A1720",
-          textColor: "#FFD4DF",
+          backgroundColor: "#FFFCF5",
+          textColor: "#BF3F2B",
         });
         return { ok: false, reason: "insufficient" as const, shortfall };
       }
@@ -283,8 +283,8 @@ export function useRedeem({ onDeductCoins }: UseRedeemParams): UseRedeemResult {
         if (!response.ok) {
           enqueueToast({
             text: "Redeem failed. Please try again.",
-            backgroundColor: "#2A1720",
-            textColor: "#FFD4DF",
+            backgroundColor: "#FFFCF5",
+            textColor: "#BF3F2B",
           });
           return { ok: false, reason: "server_error" as const };
         }
@@ -306,8 +306,8 @@ export function useRedeem({ onDeductCoins }: UseRedeemParams): UseRedeemResult {
 
         enqueueToast({
           text: "Redeem successful. Your code has been sent to Redeem History.",
-          backgroundColor: "#123226",
-          textColor: "#A9F5D2",
+          backgroundColor: "#FFFCF5",
+          textColor: "#1C7C55",
         });
 
         return { ok: true };
@@ -315,8 +315,8 @@ export function useRedeem({ onDeductCoins }: UseRedeemParams): UseRedeemResult {
         console.error("Voucher redeem failed:", error);
         enqueueToast({
           text: "Redeem failed. Please try again.",
-          backgroundColor: "#2A1720",
-          textColor: "#FFD4DF",
+          backgroundColor: "#FFFCF5",
+          textColor: "#BF3F2B",
         });
         return { ok: false, reason: "server_error" as const };
       } finally {

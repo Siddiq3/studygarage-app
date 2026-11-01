@@ -137,7 +137,7 @@ const Menu = ({ navigation }) => {
   return (
     <LegacyHubLayout
       title='AP 10th Class'
-      subtitle='Practice by module with daily challenge'
+      subtitle='Papers, tests and videos by module'
       buttons={buttons}
       isLoading={isLoading}
       onQuizPress={setButton}

@@ -44,18 +44,18 @@ export default function PremiumButton({
       activeScale={0.98}
       className={`overflow-hidden rounded-full border ${className} ${
         disabled
-          ? "border-white/10 bg-white/5 opacity-60"
+          ? "border-sg-border bg-sg-bg2 opacity-60"
           : isPrimary
-          ? "border-white/15"
+          ? "border-sg-border"
           : isSecondary
-          ? "border-[#FFD700]/30 bg-[#151A24]"
-          : "border-white/12 bg-white/7"
+          ? "border-[#9A6400]/30 bg-[#FFFCF5]"
+          : "border-sg-border bg-sg-bg2"
       }`}
       containerStyle={style}
     >
       {isPrimary && !disabled ? (
         <LinearGradient
-          colors={["#6D30EA", "#8F74FF", "#00D3A3"]}
+          colors={["#17694F", "#17694F", "#1C7C55"]}
           start={{ x: 0, y: 0.2 }}
           end={{ x: 1, y: 1 }}
           className="absolute inset-0"
@@ -67,12 +67,12 @@ export default function PremiumButton({
             width={20}
             height={20}
             borderRadius={10}
-            baseColor="rgba(255,255,255,0.18)"
-            highlightColor="rgba(255,255,255,0.36)"
+            baseColor="rgba(29,42,36,0.18)"
+            highlightColor="rgba(29,42,36,0.36)"
           />
         ) : (
           <Animated.View>
-            <PremiumText variant="button" className="text-white">
+            <PremiumText variant="button" className="text-sg-text">
               {label}
             </PremiumText>
           </Animated.View>

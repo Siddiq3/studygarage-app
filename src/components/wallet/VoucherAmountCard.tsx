@@ -32,22 +32,22 @@ const providerMeta: Record<
 > = {
   google: {
     iconName: "logo-google-playstore",
-    color: "#7FB6FF",
+    color: "#17694F",
     brand: "Google Play",
   },
   flipkart: {
     iconName: "cart-outline",
-    color: "#8F74FF",
+    color: "#17694F",
     brand: "Flipkart",
   },
   amazon: {
     iconName: "bag-handle-outline",
-    color: "#FFB86A",
+    color: "#C4551A",
     brand: "Amazon Pay",
   },
   upi: {
     iconName: "qr-code-outline",
-    color: "#6FE0C2",
+    color: "#1C7C55",
     brand: "UPI",
   },
 };
@@ -78,42 +78,23 @@ export default function VoucherAmountCard({
         <View
           className="relative h-full overflow-hidden rounded-[20px] border px-3.5 py-3"
           style={{
-            backgroundColor: "rgba(255,255,255,0.06)",
-            borderColor: "rgba(255,255,255,0.10)",
-            shadowColor: "#000000",
-            shadowOffset: { width: 0, height: 3 },
-            shadowOpacity: 0.14,
-            shadowRadius: 7,
-            elevation: 3,
-            opacity: showLockedState ? 0.64 : 1,
+            backgroundColor: showLockedState ? "#F1EBDD" : "#FFFCF5",
+            borderColor: "rgba(29,42,36,0.12)",
           }}
         >
-          {showLockedState ? (
-            <View
-              pointerEvents="none"
-              className="absolute right-[-24px] top-[10px] rotate-[34deg] border border-white/12 bg-white/10 px-6 py-[2px]"
-            >
-              <Text
-                className="text-[8px] font-bold uppercase text-[#D2D8E6]"
-                style={{ letterSpacing: 2 }}
-              >
-                Locked
-              </Text>
-            </View>
-          ) : null}
 
           <View className="flex-1 justify-between">
             <View className="flex-row items-start justify-between">
-              <View className="h-10 w-10 items-center justify-center rounded-[12px] border border-white/12 bg-[#171B25]">
+              <View className="h-10 w-10 items-center justify-center rounded-[12px] border border-sg-border bg-[#FFFCF5]">
                 <Ionicons name={meta.iconName} size={19} color={meta.color} />
               </View>
 
               {showLockedState ? (
-                <View className="h-6 w-6 items-center justify-center rounded-full border border-white/12 bg-[#131825]">
+                <View className="h-6 w-6 items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5]">
                   <Ionicons
                     name="lock-closed-outline"
                     size={12}
-                    color="#C4CBDA"
+                    color="#1D2A24"
                   />
                 </View>
               ) : null}
@@ -121,21 +102,21 @@ export default function VoucherAmountCard({
 
             <View className="mt-1.5">
               <Text
-                className="text-[30px] font-extrabold leading-[32px] text-[#F5F7FF]"
-                style={{ fontFamily: "Sora_800ExtraBold" }}
+                className="text-[30px] font-sg-display leading-[32px] text-[#1D2A24]"
+                style={{ fontFamily: "BricolageGrotesque_700Bold" }}
               >
                 {`₹${item.amount}`}
               </Text>
               <Text
-                className="text-[13px] font-semibold text-[#F4F7FF]"
-                style={{ fontFamily: "Inter_600SemiBold" }}
+                className="text-[13px] font-sg-semibold text-[#1D2A24]"
+                style={{ fontFamily: "PlusJakartaSans_600SemiBold" }}
                 numberOfLines={1}
               >
                 {item.label || "Redeem Code"}
               </Text>
               <Text
-                className="text-[11px] font-medium text-[#B8C0D4]"
-                style={{ fontFamily: "Inter_500Medium" }}
+                className="text-[12px] font-sg-medium text-[#1D2A24]"
+                style={{ fontFamily: "PlusJakartaSans_500Medium" }}
                 numberOfLines={1}
               >
                 {brandLabel}
@@ -143,26 +124,26 @@ export default function VoucherAmountCard({
             </View>
 
             <View className="mt-1">
-              <View className="self-start flex-row items-center rounded-full border border-[#FFD700]/30 bg-[#2A2414] px-2.5 py-[3px]">
+              <View className="self-start flex-row items-center rounded-full border border-[#9A6400]/30 bg-[#FFFCF5] px-2.5 py-[3px]">
                 <Text
-                  className="text-[11px] font-extrabold text-[#FFD700]"
-                  style={{ fontFamily: "Inter_600SemiBold" }}
+                  className="text-[12px] font-sg-extrabold text-[#9A6400]"
+                  style={{ fontFamily: "PlusJakartaSans_600SemiBold" }}
                 >
                   {item.coinCost}
                 </Text>
                 <Ionicons
                   name="flame"
                   size={11}
-                  color="#FFD700"
+                  color="#9A6400"
                   style={{ marginLeft: 4 }}
                 />
               </View>
 
               {showLockedState ? (
-                <View className="mt-1 self-start rounded-full border border-white/10 bg-black/35 px-2.5 py-[3px]">
+                <View className="mt-1 self-start rounded-full border border-sg-border bg-sg-bg2 px-2.5 py-[3px]">
                   <Text
-                    className="text-[10px] text-[#B8C0D4]"
-                    style={{ fontFamily: "Inter_500Medium" }}
+                    className="text-[12px] text-[#1D2A24] font-sg-medium"
+                    style={{ fontFamily: "PlusJakartaSans_500Medium" }}
                     numberOfLines={1}
                   >
                     {lockText}

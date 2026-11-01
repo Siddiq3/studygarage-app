@@ -76,22 +76,22 @@ export default function CoinFlyToBadge({ amount = 50 }) {
 
   return (
     <View className="relative mt-4 h-[250px] w-full items-center justify-center">
-      <View className="absolute right-1 top-1 rounded-2xl border border-white/20 bg-white/8 px-3 py-2">
+      <View className="absolute right-1 top-1 rounded-2xl border border-[#F4EFE2]/20 bg-[#F4EFE2]/8 px-3 py-2">
         <View className="flex-row items-center gap-1.5">
           <Coin size={18} compact />
-          <Text className="text-[12px] font-extrabold text-white">Wallet</Text>
+          <Text className="text-[12px] font-sg-extrabold text-[#F4EFE2]">Wallet</Text>
         </View>
       </View>
 
       <View className="items-center">
-        <Text className="text-[12px] font-semibold uppercase tracking-[1.1px] text-[#96A0B9]">Welcome Gift</Text>
+        <Text className="text-[12px] font-sg-semibold text-[#B5C6BB]">Welcome Gift</Text>
 
         <Animated.View style={numberStyle} className="mt-2 flex-row items-center gap-2">
           <Coin size={30} />
-          <Text className="text-[48px] font-black leading-[50px] text-white">{displayCoins}</Text>
+          <Text className="text-[48px] font-sg-display leading-[50px] text-[#F4EFE2]">{displayCoins}</Text>
         </Animated.View>
 
-        <Text className="mt-1 text-[13px] font-semibold text-[#AEB7CC]">coins collected</Text>
+        <Text className="mt-1 text-[13px] font-sg-semibold text-[#F4EFE2]">coins collected</Text>
       </View>
 
       <View className="absolute bottom-5 items-center justify-end">
@@ -106,7 +106,7 @@ export default function CoinFlyToBadge({ amount = 50 }) {
 
       <LinearGradient
         pointerEvents="none"
-        colors={['rgba(124,92,255,0.24)', 'rgba(61,167,255,0.04)']}
+        colors={['rgba(242,182,50,0.24)', 'rgba(242,182,50,0.04)']}
         start={{ x: 0.2, y: 0 }}
         end={{ x: 1, y: 1 }}
         className="absolute -bottom-5 h-20 w-48 rounded-full"

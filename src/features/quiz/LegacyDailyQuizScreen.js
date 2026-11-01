@@ -358,22 +358,22 @@ export default function LegacyDailyQuizScreen({
   const showSkip = totalQuestions > 0 && (!isLastQuestion || !showResultsButtonOnLast);
 
   return (
-    <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll={false}>
+    <ScreenLayoutContainer variant="board" contentClassName="px-4" scroll={false}>
       <Animated.View entering={FadeInUp.duration(240)}>
-        <SGCard className="mb-3">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.2px] text-sg-muted">Daily Challenge</Text>
-          <Text className="mt-1 text-[26px] font-black leading-[30px] tracking-tight text-sg-text">{screenTitle}</Text>
-          <Text className="mt-1 text-[12px] font-semibold uppercase tracking-[0.8px] text-sg-muted">{screenSubtitle}</Text>
+        <SGCard board className="mb-3">
+          <Text className="text-[12px] font-sg-bold text-[#B5C6BB]">Daily Challenge</Text>
+          <Text className="mt-1 text-[26px] font-sg-display leading-[30px] tracking-tight text-[#F4EFE2]">{screenTitle}</Text>
+          <Text className="mt-1 text-[12px] font-sg-semibold text-[#B5C6BB]">{screenSubtitle}</Text>
 
           <View className="mt-4 flex-row items-center justify-between">
-            <View className="rounded-full border border-sg-border bg-sg-surface px-3 py-1.5">
-              <Text className="text-[12px] font-black text-sg-text">{progressLabel}</Text>
+            <View className="rounded-full border border-[#F4EFE2]/16 bg-[#1C4336] px-3 py-1.5">
+              <Text className="text-[12px] font-sg-extrabold text-[#F4EFE2]">{progressLabel}</Text>
             </View>
 
             {showTimer ? (
-              <View className="flex-row items-center rounded-full border border-sg-border bg-sg-surface px-3 py-1.5">
-                <Icon name="clock-o" size={13} color={timeLeft <= 5 ? '#FF3B30' : '#7B859D'} />
-                <Text className={`ml-2 text-[12px] font-black ${timeLeft <= 5 ? 'text-[#FF3B30]' : 'text-sg-text'}`}>{timeLeft}s</Text>
+              <View className="flex-row items-center rounded-full border border-[#F4EFE2]/16 bg-[#1C4336] px-3 py-1.5">
+                <Icon name="clock-o" size={13} color={timeLeft <= 5 ? '#F28B76' : '#B5C6BB'} />
+                <Text className={`ml-2 text-[12px] font-sg-extrabold ${timeLeft <= 5 ? 'text-[#F28B76]' : 'text-[#F4EFE2]'}`}>{timeLeft}s</Text>
               </View>
             ) : null}
           </View>
@@ -381,22 +381,22 @@ export default function LegacyDailyQuizScreen({
       </Animated.View>
 
       <Animated.View entering={FadeInUp.delay(70).duration(240)} className="flex-1">
-        <SGCard className="mb-3 flex-1">
+        <SGCard board className="mb-3 flex-1">
           {isLoading ? (
             <View className="flex-1 items-center justify-center py-10">
-              <Text className="text-[16px] font-bold text-sg-muted">LOADING...</Text>
+              <Text className="text-[16px] font-sg-bold text-[#B5C6BB]">LOADING...</Text>
             </View>
           ) : null}
 
           {!isLoading && errorText ? (
             <View className="flex-1 items-center justify-center py-10">
-              <Text className="text-center text-[15px] font-semibold text-sg-muted">{errorText}</Text>
+              <Text className="text-center text-[15px] font-sg-semibold text-[#B5C6BB]">{errorText}</Text>
             </View>
           ) : null}
 
           {!isLoading && !errorText && questions[currentIndex] ? (
             <View className="flex-1">
-              <Text className="mb-4 text-[18px] font-black leading-[26px] tracking-tight text-sg-text">
+              <Text className="mb-4 text-[18px] font-sg-extrabold leading-[26px] tracking-tight text-[#F4EFE2]">
                 Q. {decodeText(questions[currentIndex].question)}
               </Text>
 
@@ -405,10 +405,10 @@ export default function LegacyDailyQuizScreen({
                   const isSelected = feedbackIndex === index;
                   const toneClass =
                     isSelected && feedbackCorrect
-                      ? 'border-[#00FFA3]/85 bg-[#0F3329]/78'
+                      ? 'border-[#8FD9B4]/85 bg-[#1C4336]/78'
                       : isSelected && !feedbackCorrect
-                      ? 'border-[#FF3B30]/85 bg-[#3A1618]/78'
-                      : 'border-sg-border bg-sg-surface/90';
+                      ? 'border-[#F28B76]/85 bg-[#4A2E28]/78'
+                      : 'border-[#F4EFE2]/16 bg-[#1C4336]/90';
 
                   return (
                     <AnimatedActionCard
@@ -420,7 +420,7 @@ export default function LegacyDailyQuizScreen({
                     >
                       <View className={`overflow-hidden rounded-[18px] border px-4 py-4 ${toneClass}`}>
                         {isSelected && feedbackCorrect ? <SparkleBurst enabled count={10} /> : null}
-                        <Text className="text-[15px] font-semibold leading-[21px] text-sg-text">{decodeText(option)}</Text>
+                        <Text className="text-[15px] font-sg-semibold leading-[21px] text-[#F4EFE2]">{decodeText(option)}</Text>
                       </View>
                     </AnimatedActionCard>
                   );
@@ -432,16 +432,16 @@ export default function LegacyDailyQuizScreen({
       </Animated.View>
 
       <Animated.View entering={FadeInUp.delay(130).duration(240)}>
-        <SGCard className="mb-3">
+        <SGCard board className="mb-3">
           <View className="flex-row items-center justify-between gap-3">
-            <View className="flex-1 rounded-[14px] border border-sg-border bg-sg-surface px-3 py-2">
-              <Text className="text-[12px] font-semibold text-sg-muted">
+            <View className="flex-1 rounded-[14px] border border-[#F4EFE2]/16 bg-[#1C4336] px-3 py-2">
+              <Text className="text-[12px] font-sg-semibold text-[#B5C6BB]">
                 Score: {score} | Correct: {correctCount} | Incorrect: {incorrectCount}
               </Text>
             </View>
-            {showSkip ? <SGButton label="SKIP" variant="ghost" onPress={handleNextPress} className="min-w-[96px]" /> : null}
+            {showSkip ? <SGButton label="SKIP" variant="boardGhost" onPress={handleNextPress} className="min-w-[96px]" /> : null}
             {!showSkip && showResultsButtonOnLast ? (
-              <SGButton label="SHOW RESULTS" onPress={handleShowResult} className="min-w-[146px]" />
+              <SGButton variant="board" label="SHOW RESULTS" onPress={handleShowResult} className="min-w-[146px]" />
             ) : null}
           </View>
         </SGCard>

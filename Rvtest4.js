@@ -17,7 +17,7 @@ const Rvtest4 = ({ navigation }) => {
     return (
         <View style={styles.container}>
             <ScrollView>
-                <Text style={{ fontSize: 25, textAlign: 'center', color: '#D82148' }}>
+                <Text style={{ fontSize: 25, textAlign: 'center', color: '#BF3F2B' }}>
                     RIVISION TEST-4 PAPERS
                 </Text>
 

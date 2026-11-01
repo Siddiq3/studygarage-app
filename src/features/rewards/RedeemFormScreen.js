@@ -189,8 +189,8 @@ export default function RedeemFormScreen({ navigation, route }) {
       Snackbar.show({
         text: `You need ${requiredCoins - totalScore} more coins.`,
         duration: Snackbar.LENGTH_SHORT,
-        backgroundColor: "#2A1720",
-        textColor: "#FFD4DF",
+        backgroundColor: "#FFFCF5",
+        textColor: "#BF3F2B",
       });
       return;
     }
@@ -234,8 +234,8 @@ export default function RedeemFormScreen({ navigation, route }) {
               ? `You need ${shortfall} more coins.`
               : "Unable to process coin deduction. Please retry.",
           duration: Snackbar.LENGTH_SHORT,
-          backgroundColor: "#2A1720",
-          textColor: "#FFD4DF",
+          backgroundColor: "#FFFCF5",
+          textColor: "#BF3F2B",
         });
         return;
       }
@@ -293,24 +293,24 @@ export default function RedeemFormScreen({ navigation, route }) {
         <SGCard className="mb-4 overflow-hidden">
           <View className="flex-row items-start justify-between">
             <View className="flex-1 pr-3">
-              <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">
+              <Text className="text-[12px] font-sg-bold text-sg-muted">
                 Redeem Form
               </Text>
               <Text
-                className="mt-1 text-[24px] font-extrabold leading-[30px] text-sg-text dark:text-sgd-text"
+                className="mt-1 text-[24px] font-sg-display leading-[30px] text-sg-text"
                 numberOfLines={1}
               >
                 Submit Voucher Request
               </Text>
-              <Text className="mt-1 text-[13px] font-medium text-[#AEB8CF]">
+              <Text className="mt-1 text-[13px] font-sg-medium text-[#1D2A24]">
                 Fill your details to complete this redeem request.
               </Text>
             </View>
 
-            <View className="rounded-full border border-[#FFD700]/25 bg-[#2A2414] px-3 py-1.5">
+            <View className="rounded-full border border-[#9A6400]/25 bg-[#FFFCF5] px-3 py-1.5">
               <View className="flex-row items-center">
-                <Ionicons name="flame-outline" size={12} color="#FFD700" />
-                <Text className="ml-1 text-[11px] font-extrabold text-[#FFD700]">
+                <Ionicons name="flame-outline" size={12} color="#9A6400" />
+                <Text className="ml-1 text-[12px] font-sg-extrabold text-[#9A6400]">
                   {totalScore}
                 </Text>
               </View>
@@ -385,15 +385,15 @@ export default function RedeemFormScreen({ navigation, route }) {
 
           <View className="mt-5">
             {submitting ? (
-              <View className="min-h-[52px] flex-row items-center justify-center rounded-[16px] border border-white/12 bg-[#151B27]">
+              <View className="min-h-[52px] flex-row items-center justify-center rounded-[16px] border border-sg-border bg-[#FFFCF5]">
                 <ShimmerSkeleton
                   width={18}
                   height={18}
                   borderRadius={9}
-                  baseColor="rgba(255,255,255,0.14)"
-                  highlightColor="rgba(255,255,255,0.34)"
+                  baseColor="rgba(29,42,36,0.14)"
+                  highlightColor="rgba(29,42,36,0.34)"
                 />
-                <Text className="ml-2 text-[14px] font-extrabold text-white">
+                <Text className="ml-2 text-[14px] font-sg-extrabold text-sg-text">
                   Submitting request...
                 </Text>
               </View>
@@ -435,25 +435,25 @@ function InputField({
   return (
     <View>
       <View
-        className="flex-row items-center rounded-[16px] border border-white/10 px-4 py-3"
-        style={{ backgroundColor: editable ? "#141A25" : "#111622" }}
+        className="flex-row items-center rounded-[16px] border border-sg-border px-4 py-3"
+        style={{ backgroundColor: editable ? "#FFFCF5" : "#FFFCF5" }}
       >
-        <View className="mr-2 h-8 w-8 items-center justify-center rounded-full border border-white/10 bg-[#1D2431]">
-          <Ionicons name={iconName} size={15} color="#BAC5DC" />
+        <View className="mr-2 h-8 w-8 items-center justify-center rounded-full border border-sg-border bg-[#FFFCF5]">
+          <Ionicons name={iconName} size={15} color="#1D2A24" />
         </View>
         <TextInput
           placeholder={placeholder}
-          placeholderTextColor={isDark ? "#AEB5C6" : "#7A6A66"}
+          placeholderTextColor={isDark ? "#1D2A24" : "#5F6A63"}
           value={value}
           onChangeText={onChangeText}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
           editable={editable}
-          className="flex-1 text-[16px] font-semibold text-sg-text dark:text-sgd-text"
+          className="flex-1 text-[16px] font-sg-semibold text-sg-text"
         />
       </View>
       {error ? (
-        <Text className="mt-1 pl-1 text-[11px] font-semibold text-[#FF8AA3]">
+        <Text className="mt-1 pl-1 text-[12px] font-sg-semibold text-[#BF3F2B]">
           {error}
         </Text>
       ) : null}

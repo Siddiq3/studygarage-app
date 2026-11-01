@@ -3,10 +3,11 @@ import { TextInput, View } from 'react-native';
 
 export default function SGInput({ className = '', inputClassName = '', ...props }) {
   return (
-    <View className={`min-h-12 justify-center rounded-[18px] border border-white/12 bg-white/7 px-3.5 ${className}`}>
+    <View className={`min-h-12 justify-center rounded-[14px] border border-sg-border bg-sg-surface px-3.5 ${className}`}>
       <TextInput
-        placeholderTextColor="#9AA3B7"
-        className={`text-base font-medium text-white ${inputClassName}`}
+        placeholderTextColor="#5F6A63"
+        selectionColor="rgba(23,105,79,0.3)"
+        className={`text-[16px] font-sg-medium text-sg-text ${inputClassName}`}
         {...props}
       />
     </View>

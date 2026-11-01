@@ -83,10 +83,10 @@ export default function ApplyReferralScreen({ navigation }) {
   return (
     <ScreenLayoutContainer variant="wallet" contentClassName="px-4" scroll>
       <Animated.View entering={FadeInDown.duration(220)}>
-        <Text className="text-[28px] font-extrabold leading-[32px] text-sg-text dark:text-sgd-text">
+        <Text className="text-[28px] font-sg-display leading-[32px] text-sg-text">
           Apply Referral
         </Text>
-        <Text className="mt-2 text-[13px] font-semibold text-sg-muted dark:text-sgd-muted">
+        <Text className="mt-2 text-[13px] font-sg-semibold text-sg-muted">
           Enter a friend&apos;s code and unlock {referralRewardCoins} coins.
         </Text>
       </Animated.View>
@@ -96,35 +96,35 @@ export default function ApplyReferralScreen({ navigation }) {
         className="mt-4"
       >
         <SGCard>
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">
+          <Text className="text-[12px] font-sg-bold text-sg-muted">
             Referral Code
           </Text>
 
-          <View className="mt-3 rounded-[16px] border border-white/12 bg-[#111622] px-3 py-2.5">
+          <View className="mt-3 rounded-[16px] border border-sg-border bg-[#FFFCF5] px-3 py-2.5">
             <TextInput
               value={codeInput}
               onChangeText={(text) => setCodeInput(text.toUpperCase())}
               placeholder="SG7K2P9Q"
-              placeholderTextColor="#73809A"
+              placeholderTextColor="#5F6A63"
               editable={!hasAppliedCode && !isBusy}
               autoCapitalize="characters"
               autoCorrect={false}
-              className="text-[18px] font-bold tracking-[0.9px] text-[#F5F7FF]"
+              className="text-[18px] font-sg-bold text-[#1D2A24]"
             />
           </View>
 
           {hasAppliedCode ? (
-            <View className="mt-3 flex-row items-center rounded-[14px] border border-[#00FFA3]/30 bg-[#113126] px-3 py-2.5">
-              <Ionicons name="checkmark-circle" size={16} color="#00FFA3" />
-              <Text className="ml-2 flex-1 text-[12px] font-semibold text-[#C7FFE9]">
+            <View className="mt-3 flex-row items-center rounded-[14px] border border-[#1C7C55]/30 bg-[#FFFCF5] px-3 py-2.5">
+              <Ionicons name="checkmark-circle" size={16} color="#1C7C55" />
+              <Text className="ml-2 flex-1 text-[12px] font-sg-semibold text-[#1C7C55]">
                 Referral already used on this device ({appliedCode}).
               </Text>
             </View>
           ) : null}
 
           {errorText ? (
-            <View className="mt-3 rounded-[14px] border border-[#FF3B30]/35 bg-[#2A1719] px-3 py-2.5">
-              <Text className="text-[12px] font-semibold text-[#FFD5D1]">
+            <View className="mt-3 rounded-[14px] border border-[#BF3F2B]/35 bg-[#FFFCF5] px-3 py-2.5">
+              <Text className="text-[12px] font-sg-semibold text-[#BF3F2B]">
                 {errorText}
               </Text>
             </View>
@@ -133,9 +133,9 @@ export default function ApplyReferralScreen({ navigation }) {
           {successText ? (
             <AnimatedView
               style={feedbackStyle}
-              className="mt-3 rounded-[14px] border border-[#00FFA3]/35 bg-[#102E24] px-3 py-2.5"
+              className="mt-3 rounded-[14px] border border-[#1C7C55]/35 bg-[#FFFCF5] px-3 py-2.5"
             >
-              <Text className="text-[12px] font-semibold text-[#C6FFE6]">
+              <Text className="text-[12px] font-sg-semibold text-[#1C7C55]">
                 {successText}
               </Text>
             </AnimatedView>
@@ -144,22 +144,22 @@ export default function ApplyReferralScreen({ navigation }) {
           {claimToken ? (
             <AnimatedView
               style={feedbackStyle}
-              className="mt-3 rounded-[14px] border border-[#FFD700]/30 bg-[#2A2312] px-3 py-2.5"
+              className="mt-3 rounded-[14px] border border-[#9A6400]/30 bg-[#FFFCF5] px-3 py-2.5"
             >
-              <Text className="text-[10px] font-bold uppercase tracking-[1px] text-[#FFD700]">
+              <Text className="text-[12px] font-sg-bold text-[#9A6400]">
                 Confirmation Token
               </Text>
-              <Text className="mt-1 text-[12px] font-semibold text-[#FFE7A7]">
+              <Text className="mt-1 text-[12px] font-sg-semibold text-[#9A6400]">
                 {claimToken}
               </Text>
-              <Text className="mt-1 text-[11px] font-medium text-[#E7D8A7]">
+              <Text className="mt-1 text-[12px] font-sg-medium text-[#9A6400]">
                 Send this token to your friend so they can claim{" "}
                 {referralRewardCoins} coins.
               </Text>
             </AnimatedView>
           ) : null}
 
-          <Text className="mt-4 text-[11px] font-medium text-sg-muted dark:text-sgd-muted">
+          <Text className="mt-4 text-[12px] font-sg-medium text-sg-muted">
             Referral rewards are verified by confirmation code (offline).
           </Text>
         </SGCard>
@@ -171,7 +171,7 @@ export default function ApplyReferralScreen({ navigation }) {
       >
         <PressableScale
           className={`overflow-hidden rounded-[999px] border p-[1px] ${
-            canSubmit ? "border-[#B026FF]/50" : "border-white/12"
+            canSubmit ? "border-[#17694F]/50" : "border-sg-border"
           }`}
           activeScale={0.96}
           disabled={!canSubmit}
@@ -179,10 +179,10 @@ export default function ApplyReferralScreen({ navigation }) {
         >
           <View
             className={`min-h-[56px] items-center justify-center rounded-[999px] ${
-              canSubmit ? "bg-[#191328]" : "bg-[#171A21] opacity-55"
+              canSubmit ? "bg-[#FFFCF5]" : "bg-[#FFFCF5] opacity-55"
             }`}
           >
-            <Text className="text-[16px] font-extrabold text-[#F5F7FF]">
+            <Text className="text-[16px] font-sg-extrabold text-[#1D2A24]">
               {isBusy ? "Applying..." : "Apply & Get Coins"}
             </Text>
           </View>

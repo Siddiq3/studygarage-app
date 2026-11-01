@@ -23,8 +23,8 @@ import PressableScale from '../ui/PressableScale';
 import useReducedMotionPreference from '../../hooks/useReducedMotionPreference';
 import { colors } from '../../theme/colors';
 
-const SG_BRAND_MINT = '#34D7AD';
-const SG_BRAND_PURPLE = '#A92EFF';
+const SG_BRAND_MINT = '#8FD9B4';
+const SG_BRAND_PURPLE = '#F2B632';
 
 type AppUpdateModalProps = {
   visible: boolean;
@@ -210,8 +210,8 @@ export default function AppUpdateModal({
 
   const accentTone = SG_BRAND_PURPLE;
   const iconTint = SG_BRAND_MINT;
-  const badgeBorder = 'rgba(169,46,255,0.48)';
-  const badgeBg = 'rgba(34,24,52,0.88)';
+  const badgeBorder = 'rgba(242,182,50,0.48)';
+  const badgeBg = 'rgba(20,52,42,0.88)';
 
   return (
     <Modal
@@ -298,8 +298,8 @@ export default function AppUpdateModal({
                       styles.primaryButton,
                       styles.singlePrimaryButton,
                       {
-                        borderColor: 'rgba(169,46,255,0.44)',
-                        backgroundColor: 'rgba(44,24,72,0.94)',
+                        borderColor: 'rgba(242,182,50,0.44)',
+                        backgroundColor: 'rgba(242,182,50,0.94)',
                       },
                     ]}
                   >
@@ -358,7 +358,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingTop: 18,
     paddingBottom: 20,
-    shadowColor: '#000',
+    shadowColor: '#0F281F',
     shadowOffset: { width: 0, height: 14 },
     shadowOpacity: 0.28,
     shadowRadius: 24,
@@ -396,13 +396,13 @@ const styles = StyleSheet.create({
   },
   requiredPillText: {
     fontSize: 10,
-    fontWeight: '800',
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
     letterSpacing: 1.1,
   },
   overline: {
     color: colors.text.secondary,
     fontSize: 11,
-    fontWeight: '700',
+    fontFamily: 'PlusJakartaSans_700Bold',
     letterSpacing: 1.5,
     marginBottom: 6,
   },
@@ -410,21 +410,21 @@ const styles = StyleSheet.create({
     color: colors.text.primary,
     fontSize: 28,
     lineHeight: 32,
-    fontWeight: '900',
+    fontFamily: 'BricolageGrotesque_700Bold',
   },
   subtitle: {
     marginTop: 8,
     color: colors.text.secondary,
     fontSize: 14,
     lineHeight: 20,
-    fontWeight: '500',
+    fontFamily: 'PlusJakartaSans_500Medium',
   },
   versionRow: {
     marginTop: 16,
     borderWidth: 1,
     borderColor: colors.border.subtle,
     borderRadius: 14,
-    backgroundColor: 'rgba(10,10,10,0.22)',
+    backgroundColor: 'rgba(15,40,31,0.22)',
     flexDirection: 'row',
     alignItems: 'stretch',
     overflow: 'hidden',
@@ -436,12 +436,12 @@ const styles = StyleSheet.create({
   },
   versionDivider: {
     width: 1,
-    backgroundColor: 'rgba(255,255,255,0.08)',
+    backgroundColor: 'rgba(244,239,226,0.08)',
   },
   versionLabel: {
     color: colors.text.secondary,
     fontSize: 11,
-    fontWeight: '600',
+    fontFamily: 'PlusJakartaSans_600SemiBold',
     marginBottom: 2,
   },
   versionLabelRight: {
@@ -450,7 +450,7 @@ const styles = StyleSheet.create({
   versionValue: {
     color: colors.text.primary,
     fontSize: 13,
-    fontWeight: '800',
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
   },
   versionValueRight: {
     textAlign: 'right',
@@ -466,8 +466,8 @@ const styles = StyleSheet.create({
     flex: 1,
     borderRadius: 14,
     borderWidth: 1,
-    borderColor: 'rgba(176,38,255,0.44)',
-    backgroundColor: 'rgba(38,26,61,0.95)',
+    borderColor: 'rgba(242,182,50,0.44)',
+    backgroundColor: 'rgba(20,52,42,0.95)',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 14,
@@ -475,7 +475,7 @@ const styles = StyleSheet.create({
   primaryButtonText: {
     color: colors.text.primary,
     fontSize: 14,
-    fontWeight: '800',
+    fontFamily: 'PlusJakartaSans_800ExtraBold',
   },
   secondaryButton: {
     minHeight: 52,
@@ -483,7 +483,7 @@ const styles = StyleSheet.create({
     borderRadius: 14,
     borderWidth: 1,
     borderColor: colors.border.subtle,
-    backgroundColor: 'rgba(255,255,255,0.04)',
+    backgroundColor: 'rgba(244,239,226,0.04)',
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 14,
@@ -491,7 +491,7 @@ const styles = StyleSheet.create({
   secondaryButtonText: {
     color: colors.text.primary,
     fontSize: 14,
-    fontWeight: '700',
+    fontFamily: 'PlusJakartaSans_700Bold',
   },
   singlePrimaryButton: {
     marginTop: 18,

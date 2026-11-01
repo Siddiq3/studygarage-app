@@ -1,39 +1,15 @@
-import { Button, Linking, ScrollView, View} from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
+const items = [
+  { label: "Electric Current -1", url: "https://youtu.be/5pYJsiTA0xc" },
+  { label: "Electric Current -1", url: "https://youtu.be/sp7HKJnPCOc" },
+  { label: "Electric Current -1", url: "https://youtu.be/8J-VXT8z_Ic" },
+  { label: "Electric Current -1", url: "https://youtu.be/MjEePoBxjMM" },
+];
 
-const Curent = () => {
-
-    return (
-        <View>
-
-            <ScrollView>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' Electric Current -1 ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/5pYJsiTA0xc`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' Electric Current -1 ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/sp7HKJnPCOc`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' Electric Current -1 ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/8J-VXT8z_Ic`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' Electric Current -1 ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/MjEePoBxjMM`)}>
-                    </Button>
-                </Card>
-
-            </ScrollView>
-            </View>
-    );
-}
+const Curent = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Physics (EM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Curent;

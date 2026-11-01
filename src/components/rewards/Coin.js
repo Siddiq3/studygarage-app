@@ -25,25 +25,25 @@ export default function Coin({ size = 26, label = 'C', compact = false }) {
     <View className="items-center justify-center">
       <Animated.View
         style={[glowStyle, { width: size + 12, height: size + 12 }]}
-        className="pointer-events-none absolute rounded-full bg-[#FFD700]/35"
+        className="pointer-events-none absolute rounded-full bg-[#F2B632]/35"
       />
       <View
-        className="items-center justify-center overflow-hidden rounded-full border border-[#E8B51F]"
+        className="items-center justify-center overflow-hidden rounded-full border border-[#F2B632]"
         style={{ width: size, height: size }}
       >
         <LinearGradient
-          colors={['#7D5600', '#D79E00', '#FFD700', '#FDE68A']}
+          colors={['#33421F', '#F2B632', '#F2B632', '#F2B632']}
           start={{ x: 0, y: 0 }}
           end={{ x: 1, y: 1 }}
           className="absolute inset-0"
         />
-        <View className="absolute rounded-full border border-white/30" style={{ width: size * 0.72, height: size * 0.72 }} />
+        <View className="absolute rounded-full border border-[#F4EFE2]/30" style={{ width: size * 0.72, height: size * 0.72 }} />
         <Animated.View
           pointerEvents="none"
           style={[shineStyle, { position: 'absolute', width: Math.max(6, size * 0.28), height: size * 1.2 }]}
           className="rounded-full bg-white"
         />
-        <Text className={`${compact ? 'text-[9px]' : 'text-[11px]'} font-black text-[#5A4300]`}>{label}</Text>
+        <Text className={`${compact ? 'text-[9px]' : 'text-[12px]'} font-sg-extrabold text-[#F2B632]`}>{label}</Text>
       </View>
     </View>
   );

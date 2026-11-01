@@ -82,15 +82,15 @@ export default function CoinAnimatedValue({ value = 0 }) {
   return (
     <AnimatedView
       style={wrapperStyle}
-      className="relative flex-row items-center rounded-full border border-[#FFD700]/30 bg-[#2A2312] px-3 py-1.5"
+      className="relative flex-row items-center rounded-full border border-[#9A6400]/30 bg-[#FFFCF5] px-3 py-1.5"
     >
-      <Ionicons name="logo-bitcoin" size={14} color="#FFD700" />
-      <Text className="ml-1.5 text-[12px] font-extrabold text-[#FFD700]">
+      <Ionicons name="logo-bitcoin" size={14} color="#9A6400" />
+      <Text className="ml-1.5 text-[12px] font-sg-extrabold text-[#9A6400]">
         {displayValue}
       </Text>
 
       <AnimatedView pointerEvents="none" style={shimmerStyle} className="absolute right-2">
-        <Ionicons name="sparkles" size={10} color="#FFD700" />
+        <Ionicons name="sparkles" size={10} color="#9A6400" />
       </AnimatedView>
     </AnimatedView>
   );

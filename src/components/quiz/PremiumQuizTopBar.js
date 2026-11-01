@@ -75,18 +75,18 @@ export default function PremiumQuizTopBar({
   }));
 
   return (
-    <View className="mb-3 rounded-[20px] border border-white/10 bg-white/6 px-4 py-2.5">
+    <View className="mb-3 rounded-[20px] border border-[#F4EFE2]/10 bg-[#F4EFE2]/6 px-4 py-2.5">
       <View className="flex-row items-center justify-between">
         <Pressable
           onPress={onBackPress}
-          className="h-9 w-9 items-center justify-center rounded-full border border-white/10 bg-white/6"
+          className="h-9 w-9 items-center justify-center rounded-full border border-[#F4EFE2]/10 bg-[#F4EFE2]/6"
         >
-          <Ionicons name="arrow-back" size={18} color="#F4F7FF" />
+          <Ionicons name="arrow-back" size={18} color="#F4EFE2" />
         </Pressable>
 
         <Text
           numberOfLines={1}
-          className="mx-3 flex-1 text-center text-[12px] font-bold uppercase tracking-[1px] text-[#C7D2E9]"
+          className="mx-3 flex-1 text-center text-[12px] font-sg-bold text-[#F4EFE2]"
         >
           {progressMode === "goal"
             ? sessionLabel
@@ -99,13 +99,13 @@ export default function PremiumQuizTopBar({
               style={timerStyle}
               className={`rounded-full border px-3 py-1 ${
                 danger
-                  ? "border-[#FF3B30]/70 bg-[#3B1918]"
-                  : "border-white/10 bg-white/7"
+                  ? "border-[#F28B76]/70 bg-[#1C4336]"
+                  : "border-[#F4EFE2]/10 bg-[#F4EFE2]/7"
               }`}
             >
               <Text
                 className={`text-[12px] font-extrabold ${
-                  danger ? "text-[#FF8A84]" : "text-[#C7D2E9]"
+                  danger ? "text-[#F28B76]" : "text-[#F4EFE2]"
                 }`}
               >
                 {resolvedTimeLeft}s
@@ -114,12 +114,12 @@ export default function PremiumQuizTopBar({
           ) : null}
           {coinBalance !== null ? (
             <View
-              className={`flex-row items-center rounded-full border border-[#FFD700]/30 bg-[#2A2312] px-2 py-1 ${
+              className={`flex-row items-center rounded-full border border-[#F2B632]/30 bg-[#1C4336] px-2 py-1 ${
                 showTimer ? "ml-2" : ""
               }`}
             >
               <Coin size={12} compact />
-              <Text className="ml-1 text-[11px] font-extrabold text-[#FFD700]">
+              <Text className="ml-1 text-[12px] font-sg-extrabold text-[#F2B632]">
                 {coinBalance}
               </Text>
             </View>
@@ -127,20 +127,20 @@ export default function PremiumQuizTopBar({
         </View>
       </View>
 
-      <View className="mt-2.5 h-[7px] overflow-hidden rounded-full bg-white/8">
+      <View className="mt-2.5 h-[7px] overflow-hidden rounded-full bg-[#F4EFE2]/8">
         <View
-          className={`h-full ${danger ? "bg-[#FF3B30]" : "bg-[#00FFA3]"}`}
+          className={`h-full ${danger ? "bg-[#F28B76]" : "bg-[#8FD9B4]"}`}
           style={{ width: `${progressPct}%` }}
         />
       </View>
 
       {progressMode === "goal" ? (
         <View className="mt-2 flex-row items-center justify-between">
-          <Text className="text-[12px] font-semibold text-[#DFE7F9]">
+          <Text className="text-[12px] font-sg-semibold text-[#F4EFE2]">
             Correct: {Math.min(correctCount, clampedTarget)} / {clampedTarget}
           </Text>
           {helperText ? (
-            <Text className="ml-3 flex-1 text-right text-[11px] font-medium text-[#AEB8CF]">
+            <Text className="ml-3 flex-1 text-right text-[12px] font-sg-medium text-[#F4EFE2]">
               {helperText}
             </Text>
           ) : null}

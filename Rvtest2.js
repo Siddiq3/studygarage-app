@@ -15,7 +15,7 @@ const Rvtest2 = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView>
-        <Text style={{ fontSize: 25, textAlign: "center", color: "#D82148", marginVertical: 20 }}>
+        <Text style={{ fontSize: 25, textAlign: "center", color: "#BF3F2B", marginVertical: 20 }}>
           RIVISION TEST-2 PAPERS
         </Text>
 
@@ -82,7 +82,7 @@ const Rvtest2 = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff"
+    backgroundColor: "#FFFCF5"
   },
 });
 

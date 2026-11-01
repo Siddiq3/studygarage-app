@@ -1,14 +1,6 @@
-import { Text, View} from 'react-native';
-import React, { useEffect } from "react";
+import React from 'react';
+import ComingSoonScreen from '../../src/features/chapters/ComingSoonScreen';
 
-const Mana = () => {
-
-    return (
-        <View>
-
-            <Text style={{ fontSize: 40, textAlign: 'center' }}> UPLOADED SHORTLY...</Text>
-        </View>
-    );
-}
+const Mana = () => <ComingSoonScreen title={"Biology (TM)"} />;
 
 export default Mana;

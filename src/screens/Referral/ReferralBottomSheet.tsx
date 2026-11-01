@@ -126,69 +126,69 @@ export default function ReferralBottomSheet({
       <GestureDetector gesture={panGesture}>
         <AnimatedView
           style={sheetStyle}
-          className="absolute bottom-0 left-0 right-0 rounded-t-[28px] border border-white/10 bg-[#121722] px-4 pb-6 pt-3"
+          className="absolute bottom-0 left-0 right-0 rounded-t-[28px] border border-[#F4EFE2]/10 bg-[#14342A] px-4 pb-6 pt-3"
         >
           <View className="mb-3 items-center">
-            <View className="h-1.5 w-12 rounded-full bg-white/20" />
+            <View className="h-1.5 w-12 rounded-full bg-[#F4EFE2]/20" />
           </View>
 
           <View className="mb-3 flex-row items-center justify-between">
-            <Text className="text-[18px] font-extrabold text-[#F5F7FF]">
+            <Text className="text-[18px] font-sg-extrabold text-[#F4EFE2]">
               {mode === "invite" ? "Invite Friends" : "Referral Milestones"}
             </Text>
 
             <PressableScale
               activeScale={0.96}
-              className="rounded-full border border-white/12 bg-[#191F2D] p-2"
+              className="rounded-full border border-[#F4EFE2]/12 bg-[#1C4336] p-2"
               onPress={closeWithAnimation}
             >
-              <Ionicons name="close" size={16} color="#F5F7FF" />
+              <Ionicons name="close" size={16} color="#F4EFE2" />
             </PressableScale>
           </View>
 
           {mode === "invite" ? (
             <View>
-              <View className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
-                <Text className="text-[12px] font-semibold text-[#B8C0D4]">
+              <View className="rounded-[16px] border border-[#F4EFE2]/10 bg-sg-surface p-4">
+                <Text className="text-[12px] font-sg-semibold text-[#F4EFE2]">
                   1. Share your referral code
                 </Text>
-                <Text className="mt-2 text-[12px] font-semibold text-[#B8C0D4]">
+                <Text className="mt-2 text-[12px] font-sg-semibold text-[#F4EFE2]">
                   2. Friend applies your code and gets {rewardCoins} coins
                 </Text>
-                <Text className="mt-2 text-[12px] font-semibold text-[#B8C0D4]">
+                <Text className="mt-2 text-[12px] font-sg-semibold text-[#F4EFE2]">
                   3. Friend shares confirmation token for your reward
                 </Text>
               </View>
 
               <PressableScale
                 activeScale={0.96}
-                className="mt-4 min-h-[52px] items-center justify-center rounded-[14px] border border-[#FFD700]/45 bg-[#17130B]"
+                className="mt-4 min-h-[52px] items-center justify-center rounded-[14px] border border-[#F2B632]/45 bg-[#14342A]"
                 onPress={onShareNow}
               >
-                <Text className="text-[15px] font-extrabold text-[#F5F7FF]">
+                <Text className="text-[15px] font-sg-extrabold text-[#F4EFE2]">
                   Share Invite Now
                 </Text>
               </PressableScale>
             </View>
           ) : (
             <View>
-              <View className="rounded-[16px] border border-white/10 bg-white/[0.04] p-4">
-                <Text className="text-[12px] font-semibold text-[#B8C0D4]">
+              <View className="rounded-[16px] border border-[#F4EFE2]/10 bg-sg-surface p-4">
+                <Text className="text-[12px] font-sg-semibold text-[#F4EFE2]">
                   1 referral = {rewardCoins} coins
                 </Text>
-                <Text className="mt-2 text-[12px] font-semibold text-[#B8C0D4]">
+                <Text className="mt-2 text-[12px] font-sg-semibold text-[#F4EFE2]">
                   5 referrals = +300 bonus coins
                 </Text>
-                <Text className="mt-2 text-[12px] font-semibold text-[#B8C0D4]">
+                <Text className="mt-2 text-[12px] font-sg-semibold text-[#F4EFE2]">
                   10 referrals = +1000 bonus coins
                 </Text>
               </View>
 
-              <View className="mt-4 rounded-[16px] border border-white/10 bg-[#121826] px-4 py-3">
-                <Text className="text-[11px] font-bold uppercase tracking-[1px] text-[#AAB3C9]">
+              <View className="mt-4 rounded-[16px] border border-[#F4EFE2]/10 bg-[#14342A] px-4 py-3">
+                <Text className="text-[12px] font-sg-bold text-[#F4EFE2]">
                   Current referrals
                 </Text>
-                <Text className="mt-1 text-[26px] font-black text-[#F5F7FF]">
+                <Text className="mt-1 text-[26px] font-sg-display text-[#F4EFE2]">
                   {referralsCount}
                 </Text>
               </View>

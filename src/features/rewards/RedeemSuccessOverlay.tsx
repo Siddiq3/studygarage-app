@@ -108,7 +108,7 @@ function buildParticleMeta(seed: number): ParticleMeta[] {
     const kind: "coin" | "dot" = rand() > 0.38 ? "coin" : "dot";
     const size = kind === "coin" ? 13 + rand() * 11 : 4 + rand() * 7;
     const rotateDeg = -25 + rand() * 50;
-    const dotPalette = ["#FFD86B", "#9D78FF", "#36D8A3", "#E9EEFF"];
+    const dotPalette = ["#F4EFE2", "#F2B632", "#8FD9B4", "#F2B632"];
     const color =
       kind === "dot" ? dotPalette[index % dotPalette.length] : "transparent";
 
@@ -130,7 +130,7 @@ function buildParticleMeta(seed: number): ParticleMeta[] {
 
 function buildCutMeta(seed: number): CutMeta[] {
   const rand = createSeededRandom(seed * 17 + 91);
-  const colors = ["#FFD86B", "#9D78FF", "#36D8A3", "#DCE3F8", "#7C5CFF"];
+  const colors = ["#F4EFE2", "#F2B632", "#8FD9B4", "#F2B632", "#F2B632"];
   const result: CutMeta[] = [];
 
   for (let index = 0; index < CUT_COUNT; index += 1) {
@@ -340,8 +340,8 @@ function PaperCut({ meta, fallToken }: { meta: CutMeta; fallToken: number }) {
 
 function Chip({ label }: { label: string }) {
   return (
-    <View className="mb-2 mr-2 rounded-full border border-white/12 bg-[#1A2233] px-3 py-1.5">
-      <Text className="text-[11px] font-bold text-[#D9E0F0]">{label}</Text>
+    <View className="mb-2 mr-2 rounded-full border border-[#F4EFE2]/12 bg-[#1C4336] px-3 py-1.5">
+      <Text className="text-[12px] font-sg-bold text-[#F4EFE2]">{label}</Text>
     </View>
   );
 }
@@ -657,7 +657,7 @@ export default function RedeemSuccessOverlay({
               right: 0,
               bottom: 0,
               left: 0,
-              backgroundColor: "rgba(10,10,10,0.78)",
+              backgroundColor: "rgba(15,40,31,0.78)",
             },
           ]}
         />
@@ -671,25 +671,25 @@ export default function RedeemSuccessOverlay({
               right: 0,
               bottom: 0,
               left: 0,
-              backgroundColor: "#7C5CFF",
+              backgroundColor: "#F2B632",
             },
           ]}
         />
 
         <Animated.View
           style={cardStyle}
-          className="w-full max-w-[390px] rounded-[26px] border border-white/14 bg-[#151B28] px-5 pb-5 pt-6"
+          className="w-full max-w-[390px] rounded-[18px] border border-[#F4EFE2]/14 bg-[#1C4336] px-5 pb-5 pt-6"
         >
           <View className="items-center">
-            <View className="h-[86px] w-[86px] items-center justify-center rounded-full border border-[#47E4B8]/35 bg-[#164E45]/55">
+            <View className="h-[86px] w-[86px] items-center justify-center rounded-full border border-[#8FD9B4]/35 bg-[#1C4336]/55">
               <Animated.View style={checkStyle}>
-                <Ionicons name="checkmark" size={40} color="#56FFD0" />
+                <Ionicons name="checkmark" size={40} color="#8FD9B4" />
               </Animated.View>
             </View>
-            <Text className="mt-3 text-center text-[28px] font-black text-[#F5F7FF]">
+            <Text className="mt-3 text-center text-[28px] font-sg-display text-[#F4EFE2]">
               Request Submitted
             </Text>
-            <Text className="mt-2 text-center text-[13px] font-medium leading-[18px] text-[#B8C0D4]">
+            <Text className="mt-2 text-center text-[13px] font-sg-medium leading-[18px] text-[#F4EFE2]">
               We’ll update your wallet after verification.
             </Text>
           </View>
@@ -709,9 +709,9 @@ export default function RedeemSuccessOverlay({
             <PressableScale
               onPress={() => requestAction("close")}
               activeScale={0.96}
-              className="rounded-[15px] border border-white/12 bg-[#1A1C2E] py-3"
+              className="rounded-[14px] bg-[#F2B632] py-3.5"
             >
-              <Text className="text-center text-[15px] font-extrabold text-[#F5F7FF]">
+              <Text className="text-center text-[15px] font-sg-bold text-[#14342A]">
                 Done
               </Text>
             </PressableScale>
@@ -721,7 +721,7 @@ export default function RedeemSuccessOverlay({
               activeScale={0.96}
               className="pb-1 pt-3"
             >
-              <Text className="text-center text-[13px] font-bold text-[#CFD7EA]">
+              <Text className="text-center text-[13px] font-sg-bold text-[#F4EFE2]">
                 View History
               </Text>
             </PressableScale>
@@ -754,8 +754,8 @@ export default function RedeemSuccessOverlay({
                 height: 220,
                 borderRadius: 110,
                 borderWidth: 2,
-                borderColor: "rgba(124,92,255,0.32)",
-                backgroundColor: "rgba(124,92,255,0.08)",
+                borderColor: "rgba(242,182,50,0.32)",
+                backgroundColor: "rgba(242,182,50,0.08)",
               },
             ]}
           />
@@ -772,8 +772,8 @@ export default function RedeemSuccessOverlay({
                 height: 280,
                 borderRadius: 140,
                 borderWidth: 1.5,
-                borderColor: "rgba(157,120,255,0.26)",
-                backgroundColor: "rgba(157,120,255,0.06)",
+                borderColor: "rgba(242,182,50,0.26)",
+                backgroundColor: "rgba(242,182,50,0.06)",
               },
             ]}
           />

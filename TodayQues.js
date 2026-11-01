@@ -1,3 +1,5 @@
+import { StatusBar } from 'expo-status-bar';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import React, { useState, useEffect } from 'react';
 import { Alert, BackHandler, Text, TouchableOpacity, View } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -10,6 +12,7 @@ import SGEmptyState from './src/design-system/components/SGEmptyState';
 import { toLocalDateKey } from './src/utils/dateKey';
 
 const TodayQues = ({ navigation }) => {
+  const insets = useSafeAreaInsets();
   const [totalQuestions, setTotalQuestions] = useState();
   const [questions, setQuestions] = useState();
   const [ques, setQues] = useState(0);
@@ -207,7 +210,8 @@ const TodayQues = ({ navigation }) => {
   const decodedQuestion = questions?.[ques]?.question ? decodeURIComponent(questions[ques].question) : '';
 
   return (
-    <View className="flex-1 bg-[#0B0C10] px-4 pb-5 pt-4">
+    <View className="flex-1 bg-[#14342A] px-4 pb-5" style={{ paddingTop: insets.top + 10, paddingBottom: Math.max(insets.bottom, 12) + 8 }}>
+      <StatusBar style="light" />
       <PremiumQuizTopBar
         currentIndex={ques + 1}
         totalQuestions={totalQuestions || 1}
@@ -220,9 +224,9 @@ const TodayQues = ({ navigation }) => {
       ) : (
         questions && questions.length > 0 && ques < totalQuestions ? (
           <Animated.View entering={FadeInDown.duration(220)} className="flex-1">
-            <View className="mb-4 rounded-[22px] border border-white/10 bg-white/6 px-4 py-4">
-              <Text className="text-center text-[12px] font-bold uppercase tracking-[1.1px] text-white/65">Daily Question</Text>
-              <Text className="mt-2 text-center text-[22px] font-black leading-[30px] text-white">{decodedQuestion}</Text>
+            <View className="mb-4 rounded-[18px] border border-[#F4EFE2]/10 bg-[#F4EFE2]/6 px-4 py-4">
+              <Text className="text-center text-[12px] font-sg-bold text-[#F4EFE2]/65">Daily Question</Text>
+              <Text className="mt-2 text-center text-[22px] font-sg-display leading-[30px] text-[#F4EFE2]">{decodedQuestion}</Text>
             </View>
 
             <View className="flex-1">
@@ -240,18 +244,18 @@ const TodayQues = ({ navigation }) => {
             {ques !== totalQuestions - 1 ? (
               <TouchableOpacity
                 onPress={handleNextPress}
-                className="mt-1 self-end rounded-full border border-white/15 bg-white/7 px-4 py-2"
+                className="mt-1 self-end rounded-full border border-[#F4EFE2]/15 bg-[#F4EFE2]/7 px-4 py-2"
               >
-                <Text className="text-[12px] font-bold uppercase tracking-[0.9px] text-white/90">Skip</Text>
+                <Text className="text-[12px] font-sg-bold text-[#F4EFE2]/90">Skip</Text>
               </TouchableOpacity>
             ) : null}
           </Animated.View>
         ) : (
           <View className="flex-1 justify-center">
-            <SGEmptyState
+            <SGEmptyState board
               title="Daily quiz is not available"
               subtitle="Come back in a while, we refresh daily questions regularly."
-              actionLabel="Go Home"
+              actionLabel="Go home"
               onActionPress={handleContinue}
               badgeLabel="DAILY QUIZ"
             />

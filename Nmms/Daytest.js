@@ -19,8 +19,8 @@ const Dtest = ({ navigation }) => {
     <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
       <Animated.View entering={FadeInDown.duration(220)}>
         <SGCard className="mb-4">
-          <Text className="text-[30px] font-extrabold leading-[34px] text-sg-text dark:text-sgd-text">NMMS Daily Test</Text>
-          <Text className="mt-3 text-[16px] font-medium leading-[24px] text-sg-muted dark:text-sgd-muted">
+          <Text className="text-[30px] font-sg-display leading-[34px] text-sg-text">NMMS Daily Test</Text>
+          <Text className="mt-3 text-[16px] font-sg-medium leading-[24px] text-sg-muted">
             Every day we upload 6 NMMS practice questions. Complete this set regularly for better final-exam confidence.
           </Text>
 

@@ -12,12 +12,7 @@ type Props = {
   style?: StyleProp<ViewStyle>;
   variant?: Variant;
   noPadding?: boolean;
-};
-
-const variantClassMap: Record<Variant, string> = {
-  base: 'bg-ds-surface-base',
-  strong: 'bg-ds-surface-strong',
-  hero: 'bg-ds-surface-strong',
+  board?: boolean;
 };
 
 const variantShadowMap: Record<Variant, ViewStyle> = {
@@ -33,15 +28,12 @@ export default function SurfaceCard({
   style,
   variant = 'strong',
   noPadding = false,
+  board = false,
 }: Props) {
   return (
     <View
-      className={cn(
-        'overflow-hidden rounded-[20px] border border-ds-border-subtle',
-        variantClassMap[variant],
-        className
-      )}
-      style={[variantShadowMap[variant], style]}
+      className={cn('overflow-hidden rounded-[18px]', board ? 'bg-[#1C4336]' : 'bg-ds-surface-base', className)}
+      style={[board ? null : variantShadowMap[variant], style]}
     >
       <View className={cn(noPadding ? '' : 'p-4', contentClassName)}>{children}</View>
     </View>

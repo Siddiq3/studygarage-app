@@ -22,9 +22,9 @@ export default function QuizLoadingSkeleton() {
 
   return (
     <View className="flex-1">
-      <Animated.View style={style} className="mb-4 h-[88px] rounded-[20px] border border-white/10 bg-white/8" />
+      <Animated.View style={style} className="mb-4 h-[88px] rounded-[20px] border border-[#F4EFE2]/10 bg-[#F4EFE2]/8" />
       {[0, 1, 2, 3].map((idx) => (
-        <Animated.View key={`q-skeleton-${idx}`} style={style} className="mb-3 h-[62px] rounded-[18px] border border-white/10 bg-white/8" />
+        <Animated.View key={`q-skeleton-${idx}`} style={style} className="mb-3 h-[62px] rounded-[18px] border border-[#F4EFE2]/10 bg-[#F4EFE2]/8" />
       ))}
     </View>
   );

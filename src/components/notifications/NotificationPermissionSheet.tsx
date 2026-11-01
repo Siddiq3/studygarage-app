@@ -1,3 +1,4 @@
+import { initialWindowMetrics } from "react-native-safe-area-context";
 import React, {
   useCallback,
   useEffect,
@@ -32,8 +33,8 @@ type NotificationPermissionSheetProps = {
   onNotNow: () => void;
 };
 
-const SHEET_BG = "#101116";
-const SCRIM_COLOR = "rgba(10,10,10,0.78)";
+const SHEET_BG = "#14342A";
+const SCRIM_COLOR = "rgba(20,52,42,0.78)";
 
 export default function NotificationPermissionSheet({
   visible,
@@ -263,7 +264,7 @@ export default function NotificationPermissionSheet({
         <Animated.View
           style={[
             styles.sheet,
-            { maxHeight: Math.round(height * 0.55) },
+            { maxHeight: Math.round(height * 0.8), marginBottom: BOTTOM_INSET + 12 },
             sheetStyle,
           ]}
           pointerEvents="auto"
@@ -275,7 +276,7 @@ export default function NotificationPermissionSheet({
               <Ionicons
                 name="notifications-outline"
                 size={22}
-                color="#F5F7FF"
+                color="#F4EFE2"
               />
             </View>
 
@@ -310,13 +311,13 @@ export default function NotificationPermissionSheet({
             >
               <Animated.View style={primaryButtonStyle}>
                 <LinearGradient
-                  colors={["#2A1D49", "#21304D", "#1F463F"]}
+                  colors={["#F2B632", "#F2B632"]}
                   start={{ x: 0, y: 0.2 }}
                   end={{ x: 1, y: 1 }}
                   style={styles.primaryButton}
                 >
                   <Text style={styles.primaryButtonText}>
-                    Allow Notifications
+                    Allow notifications
                   </Text>
                 </LinearGradient>
               </Animated.View>
@@ -353,12 +354,14 @@ function FeatureRow({ icon, text }: { icon: string; text: string }) {
   return (
     <View style={styles.featureRow}>
       <View style={styles.featureIconWrap}>
-        <Ionicons name={icon as any} size={14} color="#36D8A3" />
+        <Ionicons name={icon as any} size={14} color="#8FD9B4" />
       </View>
       <Text style={styles.featureText}>{text}</Text>
     </View>
   );
 }
+
+const BOTTOM_INSET = initialWindowMetrics?.insets.bottom ?? 24;
 
 const styles = StyleSheet.create({
   scrim: {
@@ -375,7 +378,7 @@ const styles = StyleSheet.create({
     borderRadius: 28,
     backgroundColor: SHEET_BG,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
+    borderColor: "rgba(244,239,226,0.10)",
     paddingHorizontal: 16,
     paddingTop: 10,
     paddingBottom: 14,
@@ -388,7 +391,7 @@ const styles = StyleSheet.create({
     height: 5,
     borderRadius: 999,
     alignSelf: "center",
-    backgroundColor: "rgba(245,247,255,0.40)",
+    backgroundColor: "rgba(244,239,226,0.40)",
     marginBottom: 12,
   },
   iconChip: {
@@ -398,21 +401,21 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(255,255,255,0.06)",
+    borderColor: "rgba(244,239,226,0.10)",
+    backgroundColor: "rgba(244,239,226,0.06)",
   },
   title: {
     marginTop: 12,
-    color: "#F5F7FF",
+    color: "#F4EFE2",
     fontSize: 20,
-    fontFamily: "Inter_800ExtraBold",
+    fontFamily: "BricolageGrotesque_700Bold",
   },
   subtitle: {
     marginTop: 6,
-    color: "#B8C0D4",
+    color: "#F4EFE2",
     fontSize: 14,
     lineHeight: 20,
-    fontFamily: "Inter_500Medium",
+    fontFamily: "PlusJakartaSans_500Medium",
     maxWidth: "94%",
   },
   featureRow: {
@@ -426,49 +429,49 @@ const styles = StyleSheet.create({
     borderRadius: 11,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "rgba(255,255,255,0.06)",
+    backgroundColor: "rgba(244,239,226,0.06)",
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
+    borderColor: "rgba(244,239,226,0.10)",
   },
   featureText: {
     marginLeft: 10,
-    color: "#F5F7FF",
+    color: "#F4EFE2",
     fontSize: 13,
-    fontFamily: "Inter_600SemiBold",
+    fontFamily: "PlusJakartaSans_600SemiBold",
   },
   note: {
     marginTop: 12,
-    color: "#B8C0D4",
+    color: "#F4EFE2",
     fontSize: 12,
     lineHeight: 16,
-    fontFamily: "Inter_500Medium",
+    fontFamily: "PlusJakartaSans_500Medium",
     opacity: 0.9,
   },
   primaryButton: {
     minHeight: 50,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
+    borderColor: "rgba(244,239,226,0.10)",
     alignItems: "center",
     justifyContent: "center",
   },
   primaryButtonText: {
-    color: "#F5F7FF",
+    color: "#14342A",
     fontSize: 15,
-    fontFamily: "Inter_700Bold",
+    fontFamily: "PlusJakartaSans_700Bold",
   },
   secondaryButton: {
     minHeight: 48,
     borderRadius: 16,
     borderWidth: 1,
-    borderColor: "rgba(255,255,255,0.10)",
-    backgroundColor: "rgba(255,255,255,0.03)",
+    borderColor: "rgba(244,239,226,0.10)",
+    backgroundColor: "rgba(244,239,226,0.03)",
     alignItems: "center",
     justifyContent: "center",
   },
   secondaryButtonText: {
-    color: "#F5F7FF",
+    color: "#F4EFE2",
     fontSize: 14,
-    fontFamily: "Inter_600SemiBold",
+    fontFamily: "PlusJakartaSans_600SemiBold",
   },
 });

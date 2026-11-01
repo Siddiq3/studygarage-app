@@ -1,57 +1,19 @@
-import { Button, Linking, ScrollView, View} from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
+const items = [
+  { label: "LEAST DISTANCE OF DISTINCT VISION", url: "https://youtu.be/3YqtlNgYGZI" },
+  { label: "STRUCTURE OF HUMAN EYE", url: "https://youtu.be/PjmFFEBuP6Y" },
+  { label: "MYOPIA - EYE DEFECT", url: "https://youtu.be/C1Kv2eXEVZI" },
+  { label: "HYPERMETROPIA - PRESBYOPIA", url: "https://youtu.be/Srtj5n4ykO4" },
+  { label: "REFRACTIVE INDEX OF A PRISM", url: "https://youtu.be/ZrsmNiLBcyE" },
+  { label: "DISPERSION OF LIGHT THROUGH A PRISM", url: "https://youtu.be/5ROQXdAvv_I" },
+  { label: "RAINBOW FORMATION", url: "https://youtu.be/NHY6HvUh120" },
+  { label: "SCATTERING OF LIGHT", url: "https://youtu.be/wvxqh0imjuA" },
+];
 
-const Eye = () => {
-
-    return (
-        <View>
-            <ScrollView>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='LEAST DISTANCE OF DISTINCT VISION ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/3YqtlNgYGZI`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' STRUCTURE OF HUMAN EYE' onPress={() =>
-                        Linking.openURL(`https://youtu.be/PjmFFEBuP6Y`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' MYOPIA - EYE DEFECT ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/C1Kv2eXEVZI`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' HYPERMETROPIA - PRESBYOPIA' onPress={() =>
-                        Linking.openURL(`https://youtu.be/Srtj5n4ykO4`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTIVE INDEX OF A PRISM ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/ZrsmNiLBcyE`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='DISPERSION OF LIGHT THROUGH A PRISM ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/5ROQXdAvv_I`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='RAINBOW FORMATION ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/NHY6HvUh120`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title=' SCATTERING OF LIGHT' onPress={() =>
-                        Linking.openURL(`https://youtu.be/wvxqh0imjuA`)}>
-                    </Button>
-                </Card>
-            </ScrollView>
-            </View>
-    );
-}
+const Eye = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Physics (EM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Eye;

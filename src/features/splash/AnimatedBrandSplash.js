@@ -1,459 +1,255 @@
-import React, { useEffect, useRef } from "react";
-import { AccessibilityInfo, Image, Text, View } from "react-native";
-import { LinearGradient } from "expo-linear-gradient";
-import * as Haptics from "expo-haptics";
+import React, { useEffect, useRef, useState } from "react";
+import { Image, Text, View } from "react-native";
+import { useFonts } from "expo-font";
+import { BricolageGrotesque_700Bold } from "@expo-google-fonts/bricolage-grotesque";
+import { PlusJakartaSans_500Medium } from "@expo-google-fonts/plus-jakarta-sans";
 import Animated, {
   Easing,
-  cancelAnimation,
   runOnJS,
   useAnimatedStyle,
   useSharedValue,
   withDelay,
-  withSequence,
   withSpring,
   withTiming,
 } from "react-native-reanimated";
+import useReducedMotionPreference from "../../hooks/useReducedMotionPreference";
 
-const LOGO = require("../../../assets/branding/final-logo-pack/sg-mint-purple-512-transparent.png");
+const LETTER_S = require("../../../assets/branding/chalk/splash-s.png");
+const LETTER_G = require("../../../assets/branding/chalk/splash-g.png");
 
-const BG_BASE = "#0B0C10";
-const BRAND_MINT = "#34D7AD";
-const BRAND_PURPLE = "#A92EFF";
-const SUB_COLOR = "rgba(184,192,212,0.75)";
-const TAGLINE_TEXT = "LEARN & EARN";
-const MIN_SPLASH_MS = 2600;
-const SPLASH_TIMING = {
-  overlayIn: 230,
-  glowIn: 260,
-  iconOpacityIn: 260,
-  iconScaleSpringDelay: 24,
-  glossDelay: 410,
-  glossSweep: 520,
-  studyDelay: 360,
-  studyIn: 270,
-  garageStagger: 90,
-  garageIn: 270,
-  tagDelay: 720,
-  tagIn: 250,
-  exitFade: 320,
-};
+const BOARD = "#14342A";
+const CHALK = "#F4EFE2";
+const MARIGOLD = "#F2B632";
+const MARK_SIZE = 176;
+const WORD = "StudyGarage";
+const WIPE_EASE = Easing.bezier(0.45, 0, 0.2, 1);
 
-export default function AnimatedBrandSplash({ onFinish }) {
-  const overlayOpacity = useSharedValue(1);
-  const glowOpacity = useSharedValue(0.65);
-  const logoOpacity = useSharedValue(1);
-  const logoScale = useSharedValue(1);
-  const logoY = useSharedValue(0);
-  const studyOpacity = useSharedValue(1);
-  const studyY = useSharedValue(10);
-  const garageOpacity = useSharedValue(1);
-  const garageY = useSharedValue(10);
-  const tagOpacity = useSharedValue(0.75);
-  const tagY = useSharedValue(6);
-  const iconGlossX = useSharedValue(-1.2);
-  const iconGlossOpacity = useSharedValue(0);
-  const logoSettledRef = useRef(false);
-  const finishedRef = useRef(false);
-  const entryDoneRef = useRef(false);
-  const exitStartedRef = useRef(false);
-  const mountTimeRef = useRef(0);
-  const startFallbackTimerRef = useRef(null);
-  const minHoldTimerRef = useRef(null);
+const WRITE_S_MS = 620;
+const WRITE_G_DELAY_MS = 500;
+const WRITE_G_MS = 620;
+const WORD_DELAY_MS = 950;
+const LETTER_STAGGER_MS = 42;
+const UNDERLINE_DELAY_MS = 1500;
+const TAG_DELAY_MS = 1800;
+const EXIT_AT_MS = 2900;
+const EXIT_MS = 260;
+const FONT_WAIT_MS = 1800;
+const FAILSAFE_MS = 6000;
 
-  useEffect(() => {
-    let mounted = true;
-    mountTimeRef.current = Date.now();
-
-    const finish = () => {
-      if (!mounted || finishedRef.current) return;
-      finishedRef.current = true;
-      if (onFinish) {
-        onFinish();
-      }
-    };
-
-    const triggerSettleHaptic = () => {
-      if (logoSettledRef.current) return;
-      logoSettledRef.current = true;
-      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light).catch(() => {});
-    };
-
-    const startExit = () => {
-      if (!mounted || exitStartedRef.current || finishedRef.current) return;
-      exitStartedRef.current = true;
-      overlayOpacity.value = withTiming(
-        0,
-        {
-          duration: SPLASH_TIMING.exitFade,
-          easing: Easing.out(Easing.cubic),
-        },
-        (finished) => {
-          if (finished) {
-            runOnJS(finish)();
-          }
-        }
-      );
-    };
-
-    const onEntryDone = () => {
-      if (!mounted || entryDoneRef.current) return;
-      entryDoneRef.current = true;
-      const elapsed = Date.now() - mountTimeRef.current;
-      const remaining = Math.max(0, MIN_SPLASH_MS - elapsed);
-      if (minHoldTimerRef.current) {
-        clearTimeout(minHoldTimerRef.current);
-      }
-      minHoldTimerRef.current = setTimeout(() => {
-        if (mounted) {
-          startExit();
-        }
-      }, remaining);
-    };
-
-    const runAnimation = (reducedMotionEnabled) => {
-      const garageDelay =
-        SPLASH_TIMING.studyDelay + SPLASH_TIMING.garageStagger;
-
-      overlayOpacity.value = 0.88;
-      glowOpacity.value = 0.28;
-      logoOpacity.value = 0.24;
-      logoScale.value = 0.93;
-      logoY.value = 8;
-      studyOpacity.value = 0.18;
-      studyY.value = 10;
-      garageOpacity.value = 0.18;
-      garageY.value = 10;
-      tagOpacity.value = 0;
-      tagY.value = 6;
-      overlayOpacity.value = withTiming(1, {
-        duration: SPLASH_TIMING.overlayIn,
-        easing: Easing.out(Easing.cubic),
-      });
-      glowOpacity.value = withTiming(1, { duration: SPLASH_TIMING.glowIn });
-      logoOpacity.value = withTiming(1, {
-        duration: SPLASH_TIMING.iconOpacityIn,
-      });
-      iconGlossX.value = -1.2;
-      iconGlossOpacity.value = 0;
-
-      if (reducedMotionEnabled) {
-        logoScale.value = withTiming(1, { duration: 260 });
-        logoY.value = withTiming(0, { duration: 240 });
-        studyOpacity.value = withDelay(
-          SPLASH_TIMING.studyDelay,
-          withTiming(1, { duration: SPLASH_TIMING.studyIn })
-        );
-        studyY.value = withDelay(
-          SPLASH_TIMING.studyDelay,
-          withTiming(0, { duration: SPLASH_TIMING.studyIn })
-        );
-        garageOpacity.value = withDelay(
-          garageDelay,
-          withTiming(1, { duration: SPLASH_TIMING.garageIn })
-        );
-        garageY.value = withDelay(
-          garageDelay,
-          withTiming(0, { duration: SPLASH_TIMING.garageIn })
-        );
-        tagOpacity.value = withDelay(
-          SPLASH_TIMING.tagDelay,
-          withTiming(1, { duration: SPLASH_TIMING.tagIn }, (finished) => {
-            if (finished) {
-              runOnJS(onEntryDone)();
-            }
-          })
-        );
-        tagY.value = withDelay(
-          SPLASH_TIMING.tagDelay,
-          withTiming(0, { duration: SPLASH_TIMING.tagIn })
-        );
-        return;
-      }
-
-      logoScale.value = withDelay(
-        SPLASH_TIMING.iconScaleSpringDelay,
-        withSpring(
-          1,
-          {
-            damping: 16,
-            stiffness: 210,
-            mass: 0.9,
-          },
-          (finished) => {
-            if (finished) {
-              runOnJS(triggerSettleHaptic)();
-            }
-          }
-        )
-      );
-      logoY.value = withTiming(0, {
-        duration: 360,
-        easing: Easing.out(Easing.cubic),
-      });
-
-      iconGlossOpacity.value = withDelay(
-        SPLASH_TIMING.glossDelay,
-        withSequence(
-          withTiming(0.12, { duration: 120, easing: Easing.out(Easing.cubic) }),
-          withTiming(0, {
-            duration: SPLASH_TIMING.glossSweep - 120,
-            easing: Easing.in(Easing.cubic),
-          })
-        )
-      );
-      iconGlossX.value = withDelay(
-        SPLASH_TIMING.glossDelay,
-        withTiming(1.2, {
-          duration: SPLASH_TIMING.glossSweep,
-          easing: Easing.out(Easing.cubic),
-        })
-      );
-
-      studyOpacity.value = withDelay(
-        SPLASH_TIMING.studyDelay,
-        withTiming(1, { duration: SPLASH_TIMING.studyIn })
-      );
-      studyY.value = withDelay(
-        SPLASH_TIMING.studyDelay,
-        withTiming(0, {
-          duration: SPLASH_TIMING.studyIn,
-          easing: Easing.out(Easing.cubic),
-        })
-      );
-
-      garageOpacity.value = withDelay(
-        garageDelay,
-        withTiming(1, { duration: SPLASH_TIMING.garageIn })
-      );
-      garageY.value = withDelay(
-        garageDelay,
-        withTiming(0, {
-          duration: SPLASH_TIMING.garageIn,
-          easing: Easing.out(Easing.cubic),
-        })
-      );
-
-      tagOpacity.value = withDelay(
-        SPLASH_TIMING.tagDelay,
-        withTiming(1, { duration: SPLASH_TIMING.tagIn }, (finished) => {
-          if (finished) {
-            runOnJS(onEntryDone)();
-          }
-        })
-      );
-      tagY.value = withDelay(
-        SPLASH_TIMING.tagDelay,
-        withTiming(0, {
-          duration: SPLASH_TIMING.tagIn,
-          easing: Easing.out(Easing.cubic),
-        })
-      );
-    };
-
-    let hasStarted = false;
-    const safeStart = (reducedMotionEnabled) => {
-      if (!mounted || hasStarted) return;
-      hasStarted = true;
-      runAnimation(Boolean(reducedMotionEnabled));
-    };
-
-    startFallbackTimerRef.current = setTimeout(() => {
-      safeStart(false);
-    }, 140);
-
-    AccessibilityInfo.isReduceMotionEnabled()
-      .then((reduced) => {
-        if (mounted && startFallbackTimerRef.current) {
-          clearTimeout(startFallbackTimerRef.current);
-        }
-        safeStart(Boolean(reduced));
-      })
-      .catch(() => {
-        if (mounted && startFallbackTimerRef.current) {
-          clearTimeout(startFallbackTimerRef.current);
-        }
-        safeStart(false);
-      });
-
-    return () => {
-      mounted = false;
-      if (startFallbackTimerRef.current) {
-        clearTimeout(startFallbackTimerRef.current);
-      }
-      if (minHoldTimerRef.current) {
-        clearTimeout(minHoldTimerRef.current);
-      }
-      cancelAnimation(overlayOpacity);
-      cancelAnimation(glowOpacity);
-      cancelAnimation(logoOpacity);
-      cancelAnimation(logoScale);
-      cancelAnimation(logoY);
-      cancelAnimation(studyOpacity);
-      cancelAnimation(studyY);
-      cancelAnimation(garageOpacity);
-      cancelAnimation(garageY);
-      cancelAnimation(tagOpacity);
-      cancelAnimation(tagY);
-      cancelAnimation(iconGlossX);
-      cancelAnimation(iconGlossOpacity);
-    };
-  }, [
-    garageOpacity,
-    garageY,
-    glowOpacity,
-    iconGlossOpacity,
-    iconGlossX,
-    logoOpacity,
-    logoScale,
-    logoY,
-    onFinish,
-    overlayOpacity,
-    tagOpacity,
-    tagY,
-    studyOpacity,
-    studyY,
-  ]);
-
-  const overlayStyle = useAnimatedStyle(() => ({
-    opacity: overlayOpacity.value,
+// Writes a letter with a brush: the clip moves one way, the art the opposite way.
+function BrushLetter({ source, progress }) {
+  const clipStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: (progress.value - 1) * MARK_SIZE }],
   }));
-
-  const glowStyle = useAnimatedStyle(() => ({
-    opacity: glowOpacity.value,
-  }));
-
-  const logoStyle = useAnimatedStyle(() => ({
-    opacity: logoOpacity.value,
-    transform: [{ scale: logoScale.value }, { translateY: logoY.value }],
-  }));
-
-  const studyStyle = useAnimatedStyle(() => ({
-    opacity: studyOpacity.value,
-    transform: [{ translateY: studyY.value }],
-  }));
-
-  const garageStyle = useAnimatedStyle(() => ({
-    opacity: garageOpacity.value,
-    transform: [{ translateY: garageY.value }],
-  }));
-
-  const tagStyle = useAnimatedStyle(() => ({
-    opacity: tagOpacity.value,
-    transform: [{ translateY: tagY.value }],
-  }));
-
-  const glossStyle = useAnimatedStyle(() => ({
-    opacity: iconGlossOpacity.value,
-    transform: [{ translateX: iconGlossX.value * 124 }, { rotateZ: "-18deg" }],
+  const artStyle = useAnimatedStyle(() => ({
+    transform: [{ translateX: (1 - progress.value) * MARK_SIZE }],
   }));
 
   return (
     <Animated.View
-      style={overlayStyle}
-      className="absolute inset-0 z-50 items-center justify-center"
-      pointerEvents="none"
+      style={[
+        clipStyle,
+        {
+          position: "absolute",
+          width: MARK_SIZE,
+          height: MARK_SIZE,
+          overflow: "hidden",
+        },
+      ]}
     >
-      <View className="absolute inset-0" style={{ backgroundColor: BG_BASE }} />
+      <Animated.View style={artStyle}>
+        <Image
+          source={source}
+          fadeDuration={0}
+          resizeMode="contain"
+          style={{ width: MARK_SIZE, height: MARK_SIZE }}
+        />
+      </Animated.View>
+    </Animated.View>
+  );
+}
 
-      <LinearGradient
-        colors={["#111729", "#0B0C10", "#07090F"]}
-        start={{ x: 0.5, y: 0 }}
-        end={{ x: 0.5, y: 1 }}
-        className="absolute inset-0"
+function WordLetter({ char, index, start, reducedMotion, fontFamily }) {
+  const progress = useSharedValue(reducedMotion ? 1 : 0);
+
+  useEffect(() => {
+    if (!start || reducedMotion) return;
+    progress.value = withDelay(
+      WORD_DELAY_MS + index * LETTER_STAGGER_MS,
+      withSpring(1, { damping: 11, stiffness: 170, mass: 0.7 })
+    );
+  }, [start, reducedMotion]);
+
+  const style = useAnimatedStyle(() => ({
+    opacity: Math.min(1, progress.value * 1.6),
+    transform: [{ translateY: (1 - progress.value) * 26 }],
+  }));
+
+  return (
+    <Animated.Text
+      style={[
+        style,
+        {
+          color: CHALK,
+          fontFamily,
+          fontSize: 36,
+          lineHeight: 44,
+          letterSpacing: -0.6,
+        },
+      ]}
+    >
+      {char}
+    </Animated.Text>
+  );
+}
+
+export default function AnimatedBrandSplash({ onFinish }) {
+  const reducedMotion = useReducedMotionPreference();
+  const [fontsLoaded] = useFonts({
+    BricolageGrotesque_700Bold,
+    PlusJakartaSans_500Medium,
+  });
+  const [laidOut, setLaidOut] = useState(false);
+  const [started, setStarted] = useState(false);
+
+  const screen = useSharedValue(1);
+  const writeS = useSharedValue(0);
+  const writeG = useSharedValue(0);
+  const underline = useSharedValue(0);
+  const tag = useSharedValue(0);
+  const finishedRef = useRef(false);
+  const exitTimerRef = useRef(null);
+
+  const finish = () => {
+    if (finishedRef.current) return;
+    finishedRef.current = true;
+    onFinish?.();
+  };
+
+  useEffect(() => {
+    // Never trap the student on the splash if an animation or font stalls.
+    const failsafe = setTimeout(finish, FAILSAFE_MS);
+    return () => {
+      clearTimeout(failsafe);
+      clearTimeout(exitTimerRef.current);
+    };
+  }, []);
+
+  // A cold start blocks the UI while JS loads, so timing must begin after the first
+  // painted frame; started at mount, the animation finishes before anyone sees it.
+  useEffect(() => {
+    if (!laidOut) return undefined;
+    const beginWhenPainted = () =>
+      requestAnimationFrame(() =>
+        requestAnimationFrame(() => setStarted(true))
+      );
+    if (fontsLoaded) {
+      beginWhenPainted();
+      return undefined;
+    }
+    const fontTimer = setTimeout(beginWhenPainted, FONT_WAIT_MS);
+    return () => clearTimeout(fontTimer);
+  }, [fontsLoaded, laidOut]);
+
+  useEffect(() => {
+    if (!started) return;
+
+    if (reducedMotion) {
+      writeS.value = 1;
+      writeG.value = 1;
+      underline.value = 1;
+      tag.value = 1;
+    } else {
+      writeS.value = withTiming(1, { duration: WRITE_S_MS, easing: WIPE_EASE });
+      writeG.value = withDelay(
+        WRITE_G_DELAY_MS,
+        withTiming(1, { duration: WRITE_G_MS, easing: WIPE_EASE })
+      );
+      underline.value = withDelay(
+        UNDERLINE_DELAY_MS,
+        withTiming(1, { duration: 360, easing: Easing.out(Easing.cubic) })
+      );
+      tag.value = withDelay(TAG_DELAY_MS, withTiming(1, { duration: 320 }));
+    }
+
+    exitTimerRef.current = setTimeout(() => {
+      screen.value = withTiming(0, { duration: EXIT_MS }, (done) => {
+        if (done) runOnJS(finish)();
+      });
+    }, reducedMotion ? 900 : EXIT_AT_MS);
+  }, [started]);
+
+  const screenStyle = useAnimatedStyle(() => ({ opacity: screen.value }));
+  const underlineStyle = useAnimatedStyle(() => ({
+    opacity: underline.value > 0 ? 1 : 0,
+    transform: [{ scaleX: underline.value }],
+  }));
+  const tagStyle = useAnimatedStyle(() => ({
+    opacity: tag.value,
+    transform: [{ translateY: (1 - tag.value) * 6 }],
+  }));
+
+  return (
+    <Animated.View
+      pointerEvents="none"
+      onLayout={() => setLaidOut(true)}
+      style={[
+        screenStyle,
+        {
+          position: "absolute",
+          top: 0,
+          right: 0,
+          bottom: 0,
+          left: 0,
+          zIndex: 50,
+          alignItems: "center",
+          justifyContent: "center",
+          backgroundColor: BOARD,
+        },
+      ]}
+    >
+      <View style={{ width: MARK_SIZE, height: MARK_SIZE }}>
+        <BrushLetter source={LETTER_S} progress={writeS} />
+        <BrushLetter source={LETTER_G} progress={writeG} />
+      </View>
+
+      <View style={{ flexDirection: "row", marginTop: 4 }}>
+        {WORD.split("").map((char, index) => (
+          <WordLetter
+            key={`${char}-${index}`}
+            char={char}
+            index={index}
+            start={started}
+            reducedMotion={reducedMotion}
+            fontFamily={fontsLoaded ? "BricolageGrotesque_700Bold" : undefined}
+          />
+        ))}
+      </View>
+
+      <Animated.View
+        style={[
+          underlineStyle,
+          {
+            width: 150,
+            height: 4,
+            borderRadius: 2,
+            marginTop: 2,
+            backgroundColor: MARIGOLD,
+          },
+        ]}
       />
 
-      <Animated.View
-        style={glowStyle}
-        className="absolute -top-16 left-1/2 h-[340px] w-[340px] -translate-x-[170px] rounded-full"
-        pointerEvents="none"
-      >
-        <View
-          className="h-full w-full rounded-full"
-          style={{ backgroundColor: "rgba(169,46,255,0.12)" }}
-        />
+      <Animated.View style={[tagStyle, { marginTop: 12 }]}>
+        <Text
+          style={{
+            color: "#B5C6BB",
+            fontFamily: fontsLoaded ? "PlusJakartaSans_500Medium" : undefined,
+            fontSize: 15,
+          }}
+        >
+          Learn and earn
+        </Text>
       </Animated.View>
-      <Animated.View
-        style={glowStyle}
-        className="absolute bottom-[-120px] left-1/2 h-[360px] w-[360px] -translate-x-[180px] rounded-full"
-        pointerEvents="none"
-      >
-        <View
-          className="h-full w-full rounded-full"
-          style={{ backgroundColor: "rgba(52,215,173,0.10)" }}
-        />
-      </Animated.View>
-
-      <View className="absolute inset-0 items-center justify-center px-8">
-        <Animated.View style={logoStyle} className="items-center">
-          <View className="h-[112px] w-[112px] items-center justify-center overflow-hidden rounded-[28px] border border-white/12 bg-[#111727]">
-            <Image
-              source={LOGO}
-              resizeMode="contain"
-              style={{ width: 90, height: 90 }}
-            />
-            <Animated.View
-              pointerEvents="none"
-              style={glossStyle}
-              className="absolute left-[-30px] top-[-18px] h-[148px] w-[40px]"
-            >
-              <LinearGradient
-                colors={[
-                  "rgba(255,255,255,0)",
-                  "rgba(255,255,255,0.22)",
-                  "rgba(255,255,255,0)",
-                ]}
-                start={{ x: 0.5, y: 0 }}
-                end={{ x: 0.5, y: 1 }}
-                className="h-full w-full"
-              />
-            </Animated.View>
-          </View>
-        </Animated.View>
-
-        <View className="mt-5 flex-row items-end">
-          <Animated.View style={studyStyle}>
-            <Text
-              style={{
-                color: BRAND_MINT,
-                fontSize: 37,
-                fontWeight: "900",
-                letterSpacing: -0.92,
-                lineHeight: 40,
-                fontFamily: "Inter_800ExtraBold",
-              }}
-            >
-              Study
-            </Text>
-          </Animated.View>
-          <Animated.View style={garageStyle}>
-            <Text
-              style={{
-                color: BRAND_PURPLE,
-                fontSize: 37,
-                fontWeight: "900",
-                letterSpacing: -0.92,
-                lineHeight: 40,
-                fontFamily: "Inter_800ExtraBold",
-              }}
-            >
-              Garage
-            </Text>
-          </Animated.View>
-        </View>
-
-        <Animated.View style={tagStyle} className="mt-2.5">
-          <Text
-            style={{
-              color: SUB_COLOR,
-              fontSize: 12,
-              letterSpacing: 2.5,
-              fontFamily: "Inter_500Medium",
-            }}
-          >
-            {TAGLINE_TEXT}
-          </Text>
-        </Animated.View>
-      </View>
     </Animated.View>
   );
 }

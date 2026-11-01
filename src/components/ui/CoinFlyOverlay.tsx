@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from "react";
+import React, { useEffect, useMemo, useRef, useCallback } from "react";
 import { Image, StyleSheet, View } from "react-native";
 import Animated, {
   Easing,
@@ -98,16 +98,23 @@ export default function CoinFlyOverlay({
     ]
   );
 
+  // Parents re-render on every frame while the wallet counts up, so the latest
+  // callback lives in a ref: it must never restart a flight or fire twice.
+  const onCompleteRef = useRef(onComplete);
+  onCompleteRef.current = onComplete;
+  const totalRef = useRef(particles.length);
+  totalRef.current = particles.length;
+
   useEffect(() => {
     completedRef.current = 0;
   }, [particles]);
 
-  const onParticleComplete = () => {
+  const onParticleComplete = useCallback(() => {
     completedRef.current += 1;
-    if (completedRef.current >= particles.length) {
-      onComplete?.();
+    if (completedRef.current === totalRef.current) {
+      onCompleteRef.current?.();
     }
-  };
+  }, []);
 
   if (!startLayout || !endLayout) return null;
 
@@ -223,6 +230,6 @@ const styles = StyleSheet.create({
   },
   glow: {
     position: "absolute",
-    backgroundColor: "rgba(255, 215, 0, 0.22)",
+    backgroundColor: "rgba(229,160,25,0.22)",
   },
 });

@@ -1,29 +1,13 @@
-import { Button, Linking, ScrollView, View } from 'react-native';
-import React from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
-const Prob = () => {
-    return (
-        <View>
-            <ScrollView>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button
-                        color='#5F939A'
-                        title='Probability Part-1'
-                        onPress={() => Linking.openURL(`https://youtu.be/R-kOgTUxRVk`)}
-                    />
-                </Card>
+const items = [
+  { label: "Probability Part-1", url: "https://youtu.be/R-kOgTUxRVk" },
+  { label: "Probability Part-2", url: "https://youtu.be/ltNnEherDks" },
+];
 
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button
-                        color='#5F939A'
-                        title='Probability Part-2'
-                        onPress={() => Linking.openURL(`https://youtu.be/ltNnEherDks`)}
-                    />
-                </Card>
-            </ScrollView>
-        </View>
-    );
-};
+const Prob = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Mathematics (EM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Prob;

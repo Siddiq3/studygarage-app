@@ -5,7 +5,7 @@ import Animated, { FadeInDown } from 'react-native-reanimated';
 import useInterstitialAd from '../../../InterstitialAdComponent';
 import MrecAdComponent from '../../../MrecAdComponent';
 import ScreenLayoutContainer from '../../design-system/components/ScreenLayoutContainer';
-import SGCard from '../../design-system/components/SGCard';
+import ScreenHeader from '../../design-system/components/ScreenHeader';
 import SGButton from '../../design-system/components/SGButton';
 
 export default function DetailedQuizResultScreen({
@@ -13,7 +13,7 @@ export default function DetailedQuizResultScreen({
   navigation,
   title = 'Quiz Results',
   retryTarget,
-  retryLabel = 'Play More And Earn More',
+  retryLabel = 'Play more and earn more',
   showRetry = true,
   showScoreButton = true,
   scoreBoardRoute = 'TotalScorePage',
@@ -99,40 +99,35 @@ export default function DetailedQuizResultScreen({
     return () => subscription.remove();
   }, [handleBackPress]);
 
-  return (
-    <ScreenLayoutContainer variant="home" contentClassName="px-4 pb-6" scroll>
-      <Animated.View entering={FadeInDown.duration(220)}>
-        <SGCard className="mb-4">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">Performance</Text>
-          <Text className="mt-1 text-[28px] font-extrabold leading-[32px] text-sg-text dark:text-sgd-text">{title}</Text>
+  const accuracy = totalQuestions > 0 ? Math.round((correctQuestions / totalQuestions) * 100) : 0;
 
-          <View className="mt-4 rounded-[18px] border border-sg-border bg-sg-surface/88 p-4 dark:border-sgd-border dark:bg-sgd-surface/88">
-            <View className="mb-3 flex-row items-center justify-between">
-              <Text className="text-[14px] font-semibold text-sg-muted dark:text-sgd-muted">Total Questions</Text>
-              <Text className="text-[15px] font-extrabold text-sg-text dark:text-sgd-text">{totalQuestions}</Text>
-            </View>
-            <View className="mb-3 flex-row items-center justify-between">
-              <Text className="text-[14px] font-semibold text-[#00D48A]">Correct Questions</Text>
-              <Text className="text-[15px] font-extrabold text-[#00D48A]">{correctQuestions}</Text>
-            </View>
-            <View className="mb-3 flex-row items-center justify-between">
-              <Text className="text-[14px] font-semibold text-[#FF654F]">Incorrect Questions</Text>
-              <Text className="text-[15px] font-extrabold text-[#FF654F]">{incorrectQuestions}</Text>
-            </View>
-            <View className="flex-row items-center justify-between">
-              <Text className="text-[14px] font-semibold text-sg-text dark:text-sgd-text">Score</Text>
-              <Text className="text-[18px] font-black text-sg-text dark:text-sgd-text">{score}</Text>
-            </View>
-          </View>
-        </SGCard>
+  return (
+    <ScreenLayoutContainer variant="board" contentClassName="px-4 pb-6" scroll>
+      <ScreenHeader board onBack={handleBackPress} eyebrow="Performance" title={title} className="mb-6" />
+
+      <Animated.View entering={FadeInDown.duration(240)} className="mb-6">
+        <Text className="text-[13px] font-sg-semibold text-[#B5C6BB]">Score</Text>
+        <Text className="text-[72px] leading-[78px] font-sg-display tracking-[-2px] text-[#F2B632]" style={{ fontVariant: ['tabular-nums'] }}>
+          {score}
+        </Text>
+        <Text className="text-[14px] font-sg-medium text-[#B5C6BB]">{accuracy}% accuracy over {totalQuestions} questions</Text>
       </Animated.View>
 
-      <Animated.View entering={FadeInDown.delay(70).duration(220)}>
-        <SGCard className="mb-4 gap-3">
-          {showRetry && retryTarget ? <SGButton label={retryLabel} onPress={handleRetry} /> : null}
-          {showScoreButton ? <SGButton label="Score Board" variant="ghost" onPress={handleScore} /> : null}
-          <SGButton label="Home" variant="ghost" onPress={handleHome} />
-        </SGCard>
+      <Animated.View entering={FadeInDown.delay(70).duration(240)} className="mb-6 flex-row border-y border-[#F4EFE2]/16 py-4">
+        <View className="flex-1">
+          <Text className="text-[26px] font-sg-display text-[#8FD9B4]">{correctQuestions}</Text>
+          <Text className="text-[13px] font-sg-medium text-[#B5C6BB]">Correct</Text>
+        </View>
+        <View className="flex-1">
+          <Text className="text-[26px] font-sg-display text-[#F28B76]">{incorrectQuestions}</Text>
+          <Text className="text-[13px] font-sg-medium text-[#B5C6BB]">Incorrect</Text>
+        </View>
+      </Animated.View>
+
+      <Animated.View entering={FadeInDown.delay(120).duration(240)} className="mb-5 gap-2.5">
+        {showRetry && retryTarget ? <SGButton label={retryLabel} variant="board" onPress={handleRetry} /> : null}
+        {showScoreButton ? <SGButton label="Score board" variant="boardGhost" onPress={handleScore} /> : null}
+        <SGButton label="Home" variant="boardGhost" onPress={handleHome} />
       </Animated.View>
 
       <View className="mb-4">

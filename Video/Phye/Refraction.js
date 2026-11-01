@@ -1,70 +1,21 @@
-import { Button, Linking, ScrollView, View} from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
+const items = [
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-1", url: "https://youtu.be/dvOhSlKUOD8" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-2", url: "https://youtu.be/q4c5Ll118no" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-3", url: "https://youtu.be/s-i1TKd9vQE" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-4", url: "https://youtu.be/s-i1TKd9vQE" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-5", url: "https://youtu.be/I3hFJqFmV2Q" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-6", url: "https://youtu.be/IhFYqR-zttY" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-7", url: "https://youtu.be/36S5Laul7RI" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-8", url: "https://youtu.be/MhDtm93utfk" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-9", url: "https://youtu.be/PxLD15N7A08" },
+  { label: "REFRACTION OF LIGHT AT CURVED SURFACES PART-10", url: "https://youtu.be/Oo6smi4LyF4" },
+];
 
-const Refraction = () => {
-
-    return (
-        <View>
-
-            <ScrollView>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-1' onPress={() =>
-                        Linking.openURL(`https://youtu.be/dvOhSlKUOD8`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-2' onPress={() =>
-                        Linking.openURL(`https://youtu.be/q4c5Ll118no`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-3' onPress={() =>
-                        Linking.openURL(`https://youtu.be/s-i1TKd9vQE`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-4' onPress={() =>
-                        Linking.openURL(`https://youtu.be/s-i1TKd9vQE`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-5' onPress={() =>
-                        Linking.openURL(`https://youtu.be/I3hFJqFmV2Q`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-6' onPress={() =>
-                        Linking.openURL(`https://youtu.be/IhFYqR-zttY`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-7' onPress={() =>
-                        Linking.openURL(`https://youtu.be/36S5Laul7RI`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-8' onPress={() =>
-                        Linking.openURL(`https://youtu.be/MhDtm93utfk`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-9' onPress={() =>
-                        Linking.openURL(`https://youtu.be/PxLD15N7A08`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='REFRACTION OF LIGHT AT CURVED SURFACES PART-10' onPress={() =>
-                        Linking.openURL(`https://youtu.be/Oo6smi4LyF4`)}>
-                    </Button>
-                </Card>
-            </ScrollView>
-            </View>
-    );
-}
+const Refraction = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Physics (EM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Refraction;

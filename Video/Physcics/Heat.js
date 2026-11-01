@@ -1,81 +1,23 @@
-import { Button, Linking, ScrollView, View} from 'react-native';
-import React, { useEffect } from "react";
-import { Card } from "react-native-shadow-cards";
+import React from 'react';
+import ChapterActionListScreen from '../../src/features/chapters/ChapterActionListScreen';
 
+const items = [
+  { label: "ఉష్ణం - ఉష్ణోగ్రత -1", url: "https://youtu.be/Bte-lkclZWk" },
+  { label: "ఉష్ణం -ఉష్ణోగ్రత -2", url: " https://youtu.be/RwCr2vkUwh8" },
+  { label: "ఉష్ణం 3 ఉష్ణ బదిలీ, ఉష్ణ సమతాస్ధితి", url: "https://youtu.be/D7tXPd11rEM " },
+  { label: "విశిష్టోష్ణం", url: "https://youtu.be/tiHQBk_0Nqg" },
+  { label: "ఘన పదార్థాల విశిష్టోష్ణం", url: " https://youtu.be/4xYXCw6UIfE" },
+  { label: "విశిష్టోష్ణం అనువర్తనాలు", url: " https://youtu.be/VgTYAUIOxuY" },
+  { label: "మిశ్రమాల పద్దతి  సూత్రం", url: "https://youtu.be/1wp1ZcIQxPc" },
+  { label: "భాష్పీభవనము", url: "https://youtu.be/5ZUfi74MsXM" },
+  { label: "భాష్పీభవనం పై గాలి ప్రభావం –కృత్యం", url: "https://youtu.be/PkCFR4U4stc" },
+  { label: "సాంద్రీకరణము", url: "https://youtu.be/Ej0o_JEv27Y" },
+  { label: "మరగడం", url: "https://youtu.be/ikrg_pCVAHY" },
+  { label: "ద్రవీభవనం ఘనీభవనం", url: "https://youtu.be/gRdPXolCai0" },
+];
 
-const Heat = () => {
-
-    return (
-        <View>
-
-            <ScrollView>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='ఉష్ణం - ఉష్ణోగ్రత -1' onPress={() =>
-                        Linking.openURL(`https://youtu.be/Bte-lkclZWk`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='ఉష్ణం -ఉష్ణోగ్రత -2' onPress={() =>
-                        Linking.openURL(` https://youtu.be/RwCr2vkUwh8`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='ఉష్ణం 3 ఉష్ణ బదిలీ, ఉష్ణ సమతాస్ధితి' onPress={() =>
-                        Linking.openURL(`https://youtu.be/D7tXPd11rEM `)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='విశిష్టోష్ణం' onPress={() =>
-                        Linking.openURL(`https://youtu.be/tiHQBk_0Nqg`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='ఘన పదార్థాల విశిష్టోష్ణం' onPress={() =>
-                        Linking.openURL(` https://youtu.be/4xYXCw6UIfE`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='విశిష్టోష్ణం అనువర్తనాలు' onPress={() =>
-                        Linking.openURL(` https://youtu.be/VgTYAUIOxuY`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='మిశ్రమాల పద్దతి  సూత్రం' onPress={() =>
-                        Linking.openURL(`https://youtu.be/1wp1ZcIQxPc`)}>
-                    </Button>
-                </Card>
-
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='భాష్పీభవనము ' onPress={() =>
-                        Linking.openURL(`https://youtu.be/5ZUfi74MsXM`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='భాష్పీభవనం పై గాలి ప్రభావం –కృత్యం' onPress={() =>
-                        Linking.openURL(`https://youtu.be/PkCFR4U4stc`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='సాంద్రీకరణము' onPress={() =>
-                        Linking.openURL(`https://youtu.be/Ej0o_JEv27Y`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='మరగడం' onPress={() =>
-                        Linking.openURL(`https://youtu.be/ikrg_pCVAHY`)}>
-                    </Button>
-                </Card>
-                <Card style={{ padding: 30, margin: 20 }}>
-                    <Button color='#5F939A' title='ద్రవీభవనం ఘనీభవనం' onPress={() =>
-                        Linking.openURL(`https://youtu.be/gRdPXolCai0`)}>
-                    </Button>
-                </Card>
-
-            </ScrollView>
-            </View>
-    );
-}
+const Heat = ({ navigation }) => (
+  <ChapterActionListScreen navigation={navigation} title={"Physics (TM)"} subtitle="Tap a lesson to watch it on YouTube" items={items} />
+);
 
 export default Heat;

@@ -71,13 +71,13 @@ const Mocktest = ({ navigation }) => {
   };
 
   return (
-    <ScreenLayoutContainer variant="home" contentClassName="px-4" scroll>
+    <ScreenLayoutContainer variant="board" contentClassName="px-4" scroll>
       <Animated.View entering={FadeInDown.duration(220)}>
-        <SGCard className="mb-4">
-          <Text className="text-[11px] font-bold uppercase tracking-[1.1px] text-sg-muted dark:text-sgd-muted">
+        <SGCard board className="mb-4">
+          <Text className="text-[12px] font-sg-bold text-[#B5C6BB]">
             Mock Test
           </Text>
-          <Text className="mt-1 text-[28px] font-extrabold leading-[32px] text-sg-text dark:text-sgd-text">
+          <Text className="mt-1 text-[28px] font-sg-display leading-[32px] text-[#F4EFE2]">
             Practice Mode
           </Text>
 
@@ -94,11 +94,11 @@ const Mocktest = ({ navigation }) => {
             </View>
           ) : questions ? (
             <>
-              <View className="mt-4 rounded-[20px] border border-sg-border bg-sg-surface/86 px-4 py-4 dark:border-sgd-border dark:bg-sgd-surface/86">
-                <Text className="text-[15px] font-bold text-sg-text dark:text-sgd-text">
+              <View className="mt-4 rounded-[20px] border border-[#F4EFE2]/16 bg-[#1C4336]/86 px-4 py-4">
+                <Text className="text-[15px] font-sg-bold text-[#F4EFE2]">
                   Q{ques + 1}/{questions.length}
                 </Text>
-                <Text className="mt-2 text-[19px] font-bold leading-[26px] text-sg-text dark:text-sgd-text">
+                <Text className="mt-2 text-[19px] font-sg-bold leading-[26px] text-[#F4EFE2]">
                   {decodeURIComponent(questions[ques].question)}
                 </Text>
               </View>
@@ -110,8 +110,8 @@ const Mocktest = ({ navigation }) => {
                     onPress={() => handlSelectedOption(opt)}
                     className="mb-3"
                   >
-                    <View className="rounded-[18px] border border-sg-border bg-sg-surface/84 px-4 py-4 dark:border-sgd-border dark:bg-sgd-surface/84">
-                      <Text className="text-[15px] font-semibold text-sg-text dark:text-sgd-text">
+                    <View className="rounded-[18px] border border-[#F4EFE2]/16 bg-[#1C4336]/84 px-4 py-4">
+                      <Text className="text-[15px] font-sg-semibold text-[#F4EFE2]">
                         {decodeURIComponent(opt)}
                       </Text>
                     </View>
@@ -119,7 +119,7 @@ const Mocktest = ({ navigation }) => {
                 ))}
               </View>
 
-              <SGButton
+              <SGButton variant="board"
                 label={ques < questions.length - 1 ? "Skip" : "Show Results"}
                 onPress={
                   ques < questions.length - 1

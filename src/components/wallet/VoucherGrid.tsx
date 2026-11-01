@@ -70,7 +70,7 @@ export default function VoucherGrid({
       <View className="mt-3 flex-row flex-wrap">
         {[0, 1, 2, 3].map((item) => (
           <View key={`voucher-skeleton-${item}`} className="w-1/2 p-1.5">
-            <View className="h-[156px] rounded-[22px] border border-white/10 bg-white/6" />
+            <View className="h-[156px] rounded-[18px] border border-sg-border bg-sg-bg2" />
           </View>
         ))}
       </View>
@@ -88,9 +88,9 @@ export default function VoucherGrid({
         />
         <PressableScale
           onPress={onEarnCoinsPress}
-          className="mt-3 min-h-[44px] items-center justify-center rounded-full border border-white/12 bg-white/8 px-4 py-2.5"
+          className="mt-3 min-h-[44px] items-center justify-center rounded-full border border-sg-border bg-sg-bg2 px-4 py-2.5"
         >
-          <Text className="text-[13px] font-extrabold text-white">
+          <Text className="text-[13px] font-sg-extrabold text-sg-text">
             Earn Coins
           </Text>
         </PressableScale>
