@@ -7,7 +7,7 @@
   publish QUIZDATA_CLONE           write approved questions into a QuizData clone
   test-fixture EMPTY_DIR           build a local-only copy to test the app. Never publish this.
 """
-import csv, json, re, shutil, sys
+import ast, csv, json, operator, re, shutil, sys
 from datetime import date
 from pathlib import Path
 
@@ -24,6 +24,33 @@ PUBLIC_FIELDS = ["id", "name", "subject", "chapter", "question", "correct_answer
 
 def slug(text):
     return re.sub(r"-+", "-", re.sub(r"\s+", "-", re.sub(r"[^\w\s-]", "", text.lower().replace("&", " and ").strip())))
+
+
+BIN_OPS = {ast.Add: operator.add, ast.Sub: operator.sub, ast.Mult: operator.mul, ast.Div: operator.truediv, ast.Pow: operator.pow}
+COMPARE_OPS = {ast.Eq: operator.eq}
+CALC_FUNCS = {"max": max, "ord": ord}
+
+
+def safe_calc(expression):
+    """Answer checks are arithmetic only. Anything else in a bank file is rejected, never run."""
+    def walk(node):
+        if isinstance(node, ast.Constant) and type(node.value) in (int, float, str):
+            return node.value
+        if isinstance(node, ast.BinOp) and type(node.op) in BIN_OPS:
+            left, right = walk(node.left), walk(node.right)
+            if isinstance(node.op, ast.Pow) and abs(right) > 10:
+                raise ValueError("exponent too large")
+            return BIN_OPS[type(node.op)](left, right)
+        if isinstance(node, ast.UnaryOp) and isinstance(node.op, ast.USub):
+            return -walk(node.operand)
+        if isinstance(node, ast.BoolOp) and isinstance(node.op, ast.And):
+            return all(walk(value) for value in node.values)
+        if isinstance(node, ast.Compare) and len(node.ops) == 1 and type(node.ops[0]) in COMPARE_OPS:
+            return COMPARE_OPS[type(node.ops[0])](walk(node.left), walk(node.comparators[0]))
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Name) and node.func.id in CALC_FUNCS and not node.keywords:
+            return CALC_FUNCS[node.func.id](*[walk(arg) for arg in node.args])
+        raise ValueError(f"not allowed in an answer check: {expression}")
+    return walk(ast.parse(expression, mode="eval").body)
 
 
 def bank_files():
@@ -87,8 +114,11 @@ def validate():
                 errors.append(f"{where}: must not claim to come from a real paper")
             check = q.get("machine_check")
             if check is not None:
-                # Our own data, with builtins limited to these helpers.
-                got = eval(check["calc"], {"__builtins__": {}}, {"max": max, "ord": ord})
+                try:
+                    got = safe_calc(check["calc"])
+                except (ValueError, SyntaxError, TypeError, ZeroDivisionError) as error:
+                    errors.append(f"{where}: bad answer check: {error}")
+                    continue
                 expected = check["expected"]
                 same = got == expected if isinstance(expected, bool) else abs(got - expected) < 1e-9
                 if not same:
