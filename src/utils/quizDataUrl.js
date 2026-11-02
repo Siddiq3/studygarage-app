@@ -65,6 +65,8 @@ export const buildQuizSubjectsUrl = ({ stateBoard, classValue }) =>
 export const buildQuizChaptersUrl = ({ stateBoard, classValue, subject }) =>
   `${QUIZ_DATA_BASE_URL}/${toStateBoardSlug(stateBoard)}/${toClassSlug(classValue)}/${toSlug(subject)}/chapters.json`;
 
+export const buildJobsIndexUrl = (examId) => `${QUIZ_DATA_BASE_URL}/jobs/${examId}/index.json`;
+
 export const buildQuizQuestionsUrl = ({
   stateBoard,
   classValue,
@@ -72,8 +74,11 @@ export const buildQuizQuestionsUrl = ({
   chapter,
   chapterSlug,
   chapterFile,
+  jobExamId,
 }) =>
-  `${QUIZ_DATA_BASE_URL}/${toStateBoardSlug(stateBoard)}/${toClassSlug(classValue)}/${toSlug(subject)}/${toChapterFileName({
+  jobExamId
+    ? `${QUIZ_DATA_BASE_URL}/jobs/${jobExamId}/${toSlug(subject)}/${toChapterFileName({ chapter, chapterSlug, chapterFile })}`
+    : `${QUIZ_DATA_BASE_URL}/${toStateBoardSlug(stateBoard)}/${toClassSlug(classValue)}/${toSlug(subject)}/${toChapterFileName({
     chapter,
     chapterSlug,
     chapterFile,

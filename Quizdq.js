@@ -13,6 +13,7 @@ import Animated, {
   withTiming,
 } from "react-native-reanimated";
 import { useQuizContext } from "./QuizContext";
+import { recordJobQuiz } from "./src/features/jobs/useJobStore";
 import useInterstitialAd from "./InterstitialAdComponent";
 import PremiumQuizTopBar from "./src/components/quiz/PremiumQuizTopBar";
 import PremiumAnswerCard from "./src/components/quiz/PremiumAnswerCard";
@@ -40,6 +41,15 @@ const normalizeKeySegment = (value) =>
     .toLowerCase()
     .replace(/\s+/g, "-")
     .replace(/[^a-z0-9_-]/g, "");
+
+// Older quiz files are URL-encoded, but a plain "35%" makes decodeURIComponent throw.
+const safeDecode = (value) => {
+  try {
+    return decodeURIComponent(value);
+  } catch (_error) {
+    return value;
+  }
+};
 
 const buildSeenStorageKey = (subjectId, chapterId) =>
   `${SEEN_STORAGE_PREFIX}:${normalizeKeySegment(subjectId)}:${normalizeKeySegment(chapterId)}`;
@@ -166,15 +176,15 @@ const Quizques = ({ navigation, route }) => {
   const wrongShakeX = useSharedValue(0);
   const wrongPulse = useSharedValue(1);
 
-  const { stateBoard, classValue, subject, chapter, chapterSlug, chapterFile } =
+  const { stateBoard, classValue, subject, chapter, chapterSlug, chapterFile, jobExamId } =
     route.params;
   const chapterLabel = chapter || chapterSlug || chapterFile || "";
   const { totalScore, addCoins } = useQuizContext();
   const { showAdAndWaitForClose } = useInterstitialAd();
   const { config: remoteConfig } = useRemoteConfig();
   const seenStorageKey = useMemo(
-    () => buildSeenStorageKey(subject, chapterLabel),
-    [chapterLabel, subject]
+    () => buildSeenStorageKey(jobExamId ? `${jobExamId}-${subject}` : subject, chapterLabel),
+    [chapterLabel, jobExamId, subject]
   );
   const quizSessionIdRef = useRef(
     String(
@@ -330,6 +340,14 @@ const Quizques = ({ navigation, route }) => {
     clearPendingAdvanceTimeout();
     clearPostCorrectCountdownTimeout();
     clearSeenPersistTimeout();
+    if (jobExamId) {
+      recordJobQuiz(jobExamId, {
+        subject,
+        chapter: chapterLabel,
+        correct: correctQuestionsRef.current,
+        incorrect: incorrectQuestionsRef.current,
+      });
+    }
 
     flushSeenIds()
       .catch(() => {})
@@ -341,6 +359,9 @@ const Quizques = ({ navigation, route }) => {
     clearPostCorrectCountdownTimeout,
     clearSeenPersistTimeout,
     flushSeenIds,
+    chapterLabel,
+    jobExamId,
+    subject,
   ]);
 
   const handleCompletionStartAgain = useCallback(() => {
@@ -446,6 +467,7 @@ const Quizques = ({ navigation, route }) => {
       chapter,
       chapterSlug,
       chapterFile,
+      jobExamId,
     });
 
     try {
@@ -518,6 +540,7 @@ const Quizques = ({ navigation, route }) => {
     chapterSlug,
     clearPostCorrectCountdownTimeout,
     classValue,
+    jobExamId,
     generateOptionsAndShuffle,
     markQuestionSeen,
     stateBoard,
@@ -649,7 +672,7 @@ const Quizques = ({ navigation, route }) => {
   };
 
   const decodedQuestion = questions?.[ques]?.question
-    ? decodeURIComponent(questions[ques].question)
+    ? safeDecode(questions[ques].question)
     : "";
   const showQuizBanner = !isLoading && Array.isArray(questions) && questions.length > 0;
 
@@ -688,7 +711,7 @@ const Quizques = ({ navigation, route }) => {
               {options.map((option, index) => (
                 <PremiumAnswerCard
                   key={`${option}-${index}`}
-                  label={decodeURIComponent(option)}
+                  label={safeDecode(option)}
                   onPress={() => handlSelectedOption(option)}
                   disabled={selectionLocked}
                   state={resolveOptionState(option)}

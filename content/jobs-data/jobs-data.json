@@ -1,0 +1,367 @@
+{
+ "schema": 1,
+ "updatedOn": "2026-11-02",
+ "dates": {
+  "upsc-cse": [
+   {
+    "type": "Notification opens",
+    "date": "2027-01-13"
+   },
+   {
+    "type": "Last date to apply",
+    "date": "2027-02-02"
+   },
+   {
+    "type": "Preliminary exam",
+    "date": "2027-05-23"
+   },
+   {
+    "type": "Main exam",
+    "date": "2027-08-20"
+   }
+  ],
+  "upsc-ifos": [
+   {
+    "type": "Notification opens",
+    "date": "2027-01-13"
+   },
+   {
+    "type": "Last date to apply",
+    "date": "2027-02-02"
+   },
+   {
+    "type": "Preliminary exam",
+    "date": "2027-05-23"
+   },
+   {
+    "type": "Main exam",
+    "date": "2027-11-21"
+   }
+  ],
+  "upsc-nda": [
+   {
+    "type": "Notification opens",
+    "date": "2026-12-02"
+   },
+   {
+    "type": "Last date to apply",
+    "date": "2026-12-22"
+   },
+   {
+    "type": "Exam",
+    "date": "2027-04-11"
+   },
+   {
+    "type": "Notification opens",
+    "date": "2027-05-12"
+   },
+   {
+    "type": "Last date to apply",
+    "date": "2027-06-01"
+   },
+   {
+    "type": "Exam",
+    "date": "2027-09-19"
+   }
+  ],
+  "upsc-cds": [
+   {
+    "type": "Notification opens",
+    "date": "2026-12-02"
+   },
+   {
+    "type": "Last date to apply",
+    "date": "2026-12-22"
+   },
+   {
+    "type": "Exam",
+    "date": "2027-04-11"
+   },
+   {
+    "type": "Notification opens",
+    "date": "2027-05-12"
+   },
+   {
+    "type": "Last date to apply",
+    "date": "2027-06-01"
+   },
+   {
+    "type": "Exam",
+    "date": "2027-09-19"
+   }
+  ],
+  "upsc-ese": [
+   {
+    "type": "Preliminary exam",
+    "date": "2027-01-31"
+   },
+   {
+    "type": "Main exam",
+    "date": "2027-06-18"
+   }
+  ],
+  "upsc-capf-ac": [
+   {
+    "type": "Notification opens",
+    "date": "2027-02-17"
+   },
+   {
+    "type": "Last date to apply",
+    "date": "2027-03-09"
+   },
+   {
+    "type": "Exam",
+    "date": "2027-07-04"
+   }
+  ],
+  "medical-officer": [
+   {
+    "type": "Notification opens",
+    "date": "2027-03-03"
+   },
+   {
+    "type": "Last date to apply",
+    "date": "2027-03-23"
+   },
+   {
+    "type": "Exam",
+    "date": "2027-07-18"
+   }
+  ],
+  "ibps-rrb-officer": [
+   {
+    "type": "Preliminary exam",
+    "date": "2026-11-21"
+   },
+   {
+    "type": "Main exam",
+    "date": "2026-12-20"
+   }
+  ],
+  "ibps-rrb-assistant": [
+   {
+    "type": "Preliminary exam",
+    "date": "2026-12-06"
+   },
+   {
+    "type": "Main exam",
+    "date": "2027-01-30"
+   }
+  ],
+  "ssc-je": [
+   {
+    "type": "Exam",
+    "date": "2026-11-30"
+   }
+  ],
+  "ssc-je-diploma": [
+   {
+    "type": "Exam",
+    "date": "2026-11-30"
+   }
+  ],
+  "ssc-capf": [
+   {
+    "type": "Exam",
+    "date": "2026-11-23"
+   }
+  ],
+  "tg-police-si": [
+   {
+    "type": "Preliminary exam",
+    "date": "2026-11-29"
+   }
+  ],
+  "tg-police-pc": [
+   {
+    "type": "Preliminary exam",
+    "date": "2026-12-20"
+   }
+  ]
+ },
+ "stats": {
+  "ssc-cgl": {
+   "posts": "12,256",
+   "cycle": "2026",
+   "frequency": "Every year",
+   "planned": "March 2026",
+   "released": "May 2026"
+  },
+  "ssc-chsl": {
+   "posts": "2,536",
+   "cycle": "2026",
+   "frequency": "Every year",
+   "planned": "April 2026",
+   "released": "September 2026"
+  },
+  "ssc-steno": {
+   "posts": "731",
+   "cycle": "2026",
+   "frequency": "Every year",
+   "planned": "April 2026",
+   "released": "April 2026"
+  },
+  "ssc-je": {
+   "posts": "1,748",
+   "cycle": "2026",
+   "frequency": "Every year",
+   "planned": "March 2026",
+   "released": "September 2026"
+  },
+  "ssc-je-diploma": {
+   "posts": "1,748",
+   "cycle": "2026, all JE posts",
+   "frequency": "Every year",
+   "planned": "March 2026",
+   "released": "September 2026"
+  },
+  "ssc-capf": {
+   "frequency": "Every year",
+   "planned": "May 2026",
+   "released": "September 2026"
+  },
+  "ssc-mts": {
+   "frequency": "Every year",
+   "planned": "June 2026"
+  },
+  "ssc-gd": {
+   "frequency": "Every year",
+   "planned": "September 2026"
+  },
+  "ssc-selection": {
+   "frequency": "Every year",
+   "planned": "March 2026"
+  },
+  "upsc-cse": {
+   "posts": "933",
+   "cycle": "2026",
+   "applied": "9,92,599",
+   "appliedCycle": "2024",
+   "appeared": "5,83,213",
+   "selected": "1,009",
+   "frequency": "Every year",
+   "released": "February 2026"
+  },
+  "upsc-ifos": {
+   "posts": "80",
+   "cycle": "2026",
+   "frequency": "Every year",
+   "released": "February 2026"
+  },
+  "upsc-capf-ac": {
+   "posts": "349",
+   "cycle": "2026",
+   "frequency": "Every year",
+   "released": "February 2026"
+  },
+  "upsc-ese": {
+   "posts": "474",
+   "cycle": "2026",
+   "frequency": "Every year",
+   "released": "16 September 2026"
+  },
+  "upsc-nda": {
+   "posts": "394",
+   "cycle": "NDA II 2026",
+   "frequency": "Twice a year",
+   "released": "May 2026"
+  },
+  "upsc-cds": {
+   "frequency": "Twice a year",
+   "released": "May 2026"
+  },
+  "medical-officer": {
+   "frequency": "Every year"
+  },
+  "ibps-po": {
+   "posts": "6,715",
+   "cycle": "CRP XVI, when notified",
+   "frequency": "Every year",
+   "released": "July 2026"
+  },
+  "ibps-clerk": {
+   "frequency": "Every year",
+   "released": "August 2026"
+  },
+  "ibps-so-it": {
+   "frequency": "Every year",
+   "released": "July 2026"
+  },
+  "ibps-so-other": {
+   "frequency": "Every year",
+   "released": "July 2026"
+  },
+  "ibps-rrb-assistant": {
+   "frequency": "Every year",
+   "released": "September 2026"
+  },
+  "ibps-rrb-officer": {
+   "frequency": "Every year",
+   "released": "September 2026"
+  },
+  "sbi-po": {
+   "posts": "1,500",
+   "cycle": "2026",
+   "released": "June 2026"
+  },
+  "sbi-clerk": {
+   "posts": "7,680",
+   "cycle": "2026, regular posts",
+   "released": "August 2026"
+  },
+  "lic-aao": {
+   "posts": "350",
+   "cycle": "2025",
+   "released": "August 2025"
+  },
+  "afcat": {
+   "frequency": "Twice a year",
+   "pattern": "June and December"
+  },
+  "gate": {
+   "frequency": "Every year"
+  },
+  "rrb-ntpc-graduate": {
+   "posts": "5,810",
+   "cycle": "CEN 06/2025",
+   "frequency": "Every year",
+   "released": "October 2025"
+  },
+  "rrb-alp-tech": {
+   "posts": "6,238",
+   "cycle": "Technician CEN 02/2025",
+   "frequency": "Every year"
+  },
+  "rrb-je": {
+   "posts": "7,951",
+   "cycle": "CEN 03/2024",
+   "frequency": "Every year"
+  },
+  "rrb-ntpc-ug": {
+   "posts": "3,445",
+   "cycle": "CEN 06/2024",
+   "frequency": "Every year"
+  },
+  "rrb-group-d": {
+   "frequency": "Every year"
+  },
+  "tg-police-pc": {
+   "posts": "7,112",
+   "cycle": "2026",
+   "frequency": "No fixed calendar found",
+   "released": "July 2026"
+  },
+  "tg-police-si": {
+   "posts": "275",
+   "cycle": "2026",
+   "frequency": "No fixed calendar found",
+   "released": "July 2026"
+  },
+  "ap-power-aee": {
+   "frequency": "No fixed calendar found",
+   "released": "June 2026"
+  }
+ },
+ "jobs": [],
+ "removeJobs": []
+}

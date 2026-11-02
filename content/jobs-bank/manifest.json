@@ -1,0 +1,40 @@
+{
+  "ssc-cgl": {
+    "name": "SSC CGL",
+    "source": "SSC CGL 2026 notice",
+    "subjects": {
+      "Quantitative Aptitude": { "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3", "topics": ["Percentage", "Ratio and proportion", "Number system", "Averages", "Interest", "Profit, loss and discount", "Time and distance", "Time and work", "Algebra", "Geometry", "Mensuration", "Trigonometry", "Data interpretation"] },
+      "General Intelligence and Reasoning": { "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1", "topics": ["Series", "Analogies", "Classification", "Coding and decoding", "Venn diagrams", "Space orientation", "Drawing inferences", "Critical thinking"] },
+      "General Awareness": { "syllabus_ref": "SSC CGL 2026 notice, para 13.10.2", "topics": ["History and culture", "Geography", "Economic scene", "General policy", "Scientific research"] },
+      "English Comprehension": { "syllabus_ref": "SSC CGL 2026 notice, para 13.10.4", "topics": ["Correct English", "Comprehension"] }
+    }
+  },
+  "ibps-po": {
+    "name": "IBPS PO",
+    "source": "IBPS CRP PO/MT-XVI notification, section D. IBPS lists sections only, so these are section names, not official topics.",
+    "subjects": {
+      "English Language": { "syllabus_ref": "CRP PO/MT-XVI, section D", "topics": ["English Language"] },
+      "Quantitative Aptitude": { "syllabus_ref": "CRP PO/MT-XVI, section D", "topics": ["Quantitative Aptitude"] },
+      "Reasoning Ability": { "syllabus_ref": "CRP PO/MT-XVI, section D", "topics": ["Reasoning Ability"] },
+      "Data Analysis and Interpretation": { "syllabus_ref": "CRP PO/MT-XVI, section D", "topics": ["Data Analysis and Interpretation"] },
+      "General, Economy and Banking Awareness": { "syllabus_ref": "CRP PO/MT-XVI, section D", "topics": ["General, Economy and Banking Awareness"] }
+    }
+  },
+  "rrb-ntpc-graduate": {
+    "name": "RRB NTPC Graduate",
+    "source": "Official notice not read yet. No questions may be added until it is.",
+    "syllabus_unverified": true,
+    "subjects": {}
+  },
+  "ssc-je": {
+    "name": "SSC JE",
+    "source": "SSC JE 2026 notice",
+    "subjects": {
+      "General Intelligence and Reasoning": { "syllabus_ref": "SSC JE 2026 notice, para 14.2.1", "topics": ["Analogies", "Classification", "Number and figural series", "Coding and decoding", "Problem solving"] },
+      "General Awareness": { "syllabus_ref": "SSC JE 2026 notice, para 14.2.2", "topics": ["History and culture", "Geography", "Economic scene", "General polity", "Scientific research"] },
+      "Civil Engineering": { "syllabus_ref": "SSC JE 2026 notice, para 14.2.3", "topics": ["Engineering Mechanics", "Solid Mechanics", "Structural Analysis", "Surveying", "Soil Mechanics"] },
+      "Electrical Engineering": { "syllabus_ref": "SSC JE 2026 notice, para 14.2.3.1", "topics": ["Fundamentals of Electrical Engineering", "Magnetic Circuits", "A.C. Fundamentals", "Electrical Machines"] },
+      "Mechanical Engineering": { "syllabus_ref": "SSC JE 2026 notice, para 14.2.3.2", "topics": ["Engineering Mechanics", "Strength of Materials", "Theory of Machines", "Thermal Engineering"] }
+    }
+  }
+}

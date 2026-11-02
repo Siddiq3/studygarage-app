@@ -4,6 +4,7 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import * as Haptics from "expo-haptics";
 import * as ImagePicker from "expo-image-picker";
+import SGSelect from "./src/design-system/components/SGSelect";
 import SGButton from "./src/design-system/components/SGButton";
 import ScreenLayoutContainer from "./src/design-system/components/ScreenLayoutContainer";
 import { prepareWelcomeRewardFlow } from "./src/services/rewards/firstInstallRewardService";
@@ -28,19 +29,23 @@ const classes = [
   { label: "9th", value: "9thClass" },
   { label: "10th", value: "10thClass" },
   { label: "Inter", value: "Inter" },
+  { label: "Degree", value: "Degree" },
+  { label: "B.Tech", value: "BTech" },
 ];
 
 const ALL_SCHOOL = ["6thClass", "7thClass", "8thClass", "9thClass", "10thClass"];
 
 // Keep in step with componentLookup in secondpage.js: these combinations have modules.
+const COLLEGE = ["Degree", "BTech"];
 const availableClasses = {
-  "Andhra Pradesh": [...ALL_SCHOOL, "Inter"],
-  Telangana: ["10thClass"],
-  Karnataka: ALL_SCHOOL,
+  "Andhra Pradesh": [...ALL_SCHOOL, "Inter", ...COLLEGE],
+  Telangana: ["10thClass", ...COLLEGE],
+  Karnataka: [...ALL_SCHOOL, ...COLLEGE],
 };
 
 const classLabel = (value) => {
   if (value === "Inter") return "Intermediate";
+  if (COLLEGE.includes(value)) return classes.find((item) => item.value === value).label;
   const match = classes.find((item) => item.value === value);
   return match ? `${match.label} class` : "";
 };
@@ -111,68 +116,6 @@ function StepProgress({ step }) {
   );
 }
 
-function BoardRow({ label, selected, last, onPress }) {
-  return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="radio"
-      accessibilityState={{ checked: selected }}
-      android_ripple={{ color: "rgba(29,42,36,0.06)" }}
-      className={`min-h-[52px] flex-row items-center px-4 ${
-        last ? "" : "border-b border-sg-border"
-      }`}
-    >
-      <Text
-        className={`flex-1 text-[15px] text-sg-text ${
-          selected ? "font-sg-bold" : "font-sg-medium"
-        }`}
-      >
-        {label}
-      </Text>
-      <Ionicons
-        name={selected ? "checkmark-circle" : "ellipse-outline"}
-        size={22}
-        color={selected ? "#17694F" : "#5F6A63"}
-      />
-    </Pressable>
-  );
-}
-
-function ClassTile({ label, selected, available, onPress }) {
-  if (!available) {
-    return (
-      <View
-        accessibilityLabel={`${label}, coming soon`}
-        className="h-[62px] w-[31.8%] items-center justify-center rounded-[14px] border border-dashed border-sg-text/20"
-      >
-        <Text className="text-[15px] font-sg-semibold text-sg-muted">{label}</Text>
-        <Text className="text-[12px] font-sg-medium text-sg-muted">Soon</Text>
-      </View>
-    );
-  }
-
-  return (
-    <Pressable
-      onPress={onPress}
-      accessibilityRole="radio"
-      accessibilityState={{ checked: selected }}
-      className={`h-[62px] w-[31.8%] items-center justify-center rounded-[14px] border ${
-        selected
-          ? "border-sg-board bg-sg-board"
-          : "border-sg-border bg-sg-surface active:bg-sg-bg2"
-      }`}
-    >
-      <Text
-        className={`text-[20px] font-sg-display ${
-          selected ? "text-[#F2B632]" : "text-sg-text"
-        }`}
-      >
-        {label}
-      </Text>
-    </Pressable>
-  );
-}
-
 const FirstPage = ({ navigation, route }) => {
   const isEditMode = route?.params?.editProfile === true;
 
@@ -189,7 +132,7 @@ const FirstPage = ({ navigation, route }) => {
   const [isNameFocused, setIsNameFocused] = useState(false);
   const [isPickingPhoto, setIsPickingPhoto] = useState(false);
   const [currentStep, setCurrentStep] = useState(1);
-  const classesForBoard = availableClasses[stateBoard] || [...ALL_SCHOOL, "Inter"];
+  const classesForBoard = availableClasses[stateBoard] || [...ALL_SCHOOL, "Inter", ...COLLEGE];
 
   const handleSelectBoard = (board) => {
     selectionTick();
@@ -568,52 +511,40 @@ const FirstPage = ({ navigation, route }) => {
                     classValue ? "text-[#F2B632]" : "text-[#F4EFE2]/35"
                   }`}
                 >
-                  {classValue ? classLabel(classValue) : "Which class?"}
+                  {classValue ? classLabel(classValue) : "Which class or course?"}
                 </Text>
                 <Text
                   className={`mt-0.5 text-[16px] font-sg-semibold ${
                     stateBoard ? "text-[#F4EFE2]" : "text-[#F4EFE2]/35"
                   }`}
                 >
-                  {stateBoard ? `${stateBoard} board` : "Which board?"}
+                  {stateBoard || "Which state?"}
                 </Text>
               </View>
 
-              <Text className="mb-2 text-[20px] font-sg-display text-sg-text">
-                Your board
-              </Text>
-              <View
-                accessibilityRole="radiogroup"
-                className="mb-5 overflow-hidden rounded-[16px] border border-sg-border bg-sg-surface"
-              >
-                {stateBoards.map((item, index) => (
-                  <BoardRow
-                    key={item.value}
-                    label={item.label}
-                    selected={stateBoard === item.value}
-                    last={index === stateBoards.length - 1}
-                    onPress={() => handleSelectBoard(item.value)}
-                  />
-                ))}
-              </View>
-
-              <Text className="mb-2 text-[20px] font-sg-display text-sg-text">
-                Your class
-              </Text>
-              <View
-                accessibilityRole="radiogroup"
-                className="mb-5 flex-row flex-wrap justify-between gap-y-2"
-              >
-                {classes.map((item) => (
-                  <ClassTile
-                    key={item.value}
-                    label={item.label}
-                    selected={classValue === item.value}
-                    available={classesForBoard.includes(item.value)}
-                    onPress={() => handleSelectClass(item.value)}
-                  />
-                ))}
-              </View>
+              <SGSelect
+                label="Your state"
+                placeholder="Choose your state"
+                value={stateBoard}
+                options={stateBoards}
+                onChange={handleSelectBoard}
+              />
+              <SGSelect
+                label="What do you study?"
+                placeholder="Choose your class or course"
+                value={classValue}
+                options={classes.map((item) => {
+                  const available = classesForBoard.includes(item.value);
+                  return {
+                    value: item.value,
+                    label: classLabel(item.value),
+                    section: COLLEGE.includes(item.value) ? "After Inter" : "School and Inter",
+                    disabled: !available,
+                    hint: available ? undefined : "Soon",
+                  };
+                })}
+                onChange={handleSelectClass}
+              />
 
               {stepTwoReady ? (
                 <OnboardingActionButton
@@ -623,7 +554,7 @@ const FirstPage = ({ navigation, route }) => {
               ) : (
                 <View className="min-h-[52px] items-center justify-center rounded-[14px] bg-sg-bg2">
                   <Text className="text-[15px] font-sg-semibold text-sg-muted">
-                    {stateBoard ? "Choose your class" : "Choose your board"}
+                    {stateBoard ? "Choose what you study" : "Choose your state"}
                   </Text>
                 </View>
               )}

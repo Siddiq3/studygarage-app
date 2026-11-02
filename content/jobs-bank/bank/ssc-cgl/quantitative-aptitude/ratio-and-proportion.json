@@ -1,0 +1,522 @@
+[
+ {
+  "id": "SSCCGL-QA-RAT-001",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "Rs 840 is divided in the ratio 3 : 4. What is the larger share?",
+  "correct_answer": "Rs 480",
+  "incorrect_answers": [
+   "Rs 360",
+   "Rs 420",
+   "Rs 500"
+  ],
+  "explanation": "The larger share is 4/7 of 840 = 480.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "840*4/7",
+   "expected": 480
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-002",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "What is the fourth proportional to 4, 6 and 10?",
+  "correct_answer": "15",
+  "incorrect_answers": [
+   "12",
+   "16",
+   "20"
+  ],
+  "explanation": "4 : 6 = 10 : x, so x = 6 x 10 / 4 = 15.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "6*10/4",
+   "expected": 15
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-003",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "What is the mean proportional between 9 and 16?",
+  "correct_answer": "12",
+  "incorrect_answers": [
+   "10",
+   "14",
+   "12.5"
+  ],
+  "explanation": "The mean proportional is the square root of 9 x 16 = 12.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "(9*16)**0.5",
+   "expected": 12
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-004",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "If a : b = 2 : 3 and b : c = 4 : 5, what is a : c?",
+  "correct_answer": "8 : 15",
+  "incorrect_answers": [
+   "2 : 5",
+   "6 : 5",
+   "5 : 8"
+  ],
+  "explanation": "a/c = (2/3) x (4/5) = 8/15.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "2/3*4/5",
+   "expected": 0.5333333333333333
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-005",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "Two numbers are in the ratio 5 : 7 and add up to 96. What is their difference?",
+  "correct_answer": "16",
+  "incorrect_answers": [
+   "12",
+   "20",
+   "24"
+  ],
+  "explanation": "One part = 96 / 12 = 8. The difference is 2 parts = 16.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "96/12*2",
+   "expected": 16
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-006",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "Boys and girls in a school are in the ratio 3 : 2. There are 40 girls. How many students are there in all?",
+  "correct_answer": "100",
+  "incorrect_answers": [
+   "60",
+   "80",
+   "120"
+  ],
+  "explanation": "One part = 20, and there are 5 parts in all, so 100.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "40/2*5",
+   "expected": 100
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-007",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "The incomes of A and B are in the ratio 4 : 5. A earns Rs 24,000. What does B earn?",
+  "correct_answer": "Rs 30,000",
+  "incorrect_answers": [
+   "Rs 28,000",
+   "Rs 32,000",
+   "Rs 36,000"
+  ],
+  "explanation": "One part = 6,000, so B earns 5 x 6,000 = 30,000.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "24000/4*5",
+   "expected": 30000
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-008",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "What number added to both 12 and 20 makes their ratio 3 : 4?",
+  "correct_answer": "12",
+  "incorrect_answers": [
+   "8",
+   "10",
+   "16"
+  ],
+  "explanation": "(12 + x) / (20 + x) = 3/4 gives x = 12.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "(12+12)/(20+12)",
+   "expected": 0.75
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-009",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "A bag holds Re 1, Rs 2 and Rs 5 coins in the ratio 3 : 2 : 1, worth Rs 120 in total. How many Rs 5 coins are there?",
+  "correct_answer": "10",
+  "incorrect_answers": [
+   "20",
+   "15",
+   "12"
+  ],
+  "explanation": "Value per set = 3 + 4 + 5 = 12, so there are 10 sets and 10 Rs 5 coins.",
+  "difficulty": "hard",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "120/12",
+   "expected": 10
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-010",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "What is the third proportional to 4 and 8?",
+  "correct_answer": "16",
+  "incorrect_answers": [
+   "12",
+   "14",
+   "20"
+  ],
+  "explanation": "4 : 8 = 8 : x, so x = 64 / 4 = 16.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "8*8/4",
+   "expected": 16
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-011",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "A 50-litre mixture has milk and water in the ratio 7 : 3. How much water does it contain?",
+  "correct_answer": "15 litres",
+  "incorrect_answers": [
+   "10 litres",
+   "20 litres",
+   "12 litres"
+  ],
+  "explanation": "Water is 3/10 of 50 = 15.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "50*3/10",
+   "expected": 15
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-012",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "A 40-litre mixture has milk and water in the ratio 3 : 1. How much water must be added to make it 3 : 2?",
+  "correct_answer": "10 litres",
+  "incorrect_answers": [
+   "5 litres",
+   "8 litres",
+   "15 litres"
+  ],
+  "explanation": "Milk is 30 and water is 10. For 3 : 2 water must be 20, so add 10.",
+  "difficulty": "hard",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "30/3*2-10",
+   "expected": 10
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-013",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "Which of these fractions is the largest?",
+  "correct_answer": "2/3",
+  "incorrect_answers": [
+   "3/5",
+   "4/7",
+   "5/9"
+  ],
+  "explanation": "As decimals: 0.667, 0.6, 0.571 and 0.556.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "max(3/5,4/7,5/9,2/3)",
+   "expected": 0.6666666666666666
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-014",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "Rs 1,500 is shared among A, B and C in the ratio 2 : 3 : 5. How much does C get?",
+  "correct_answer": "Rs 750",
+  "incorrect_answers": [
+   "Rs 300",
+   "Rs 450",
+   "Rs 600"
+  ],
+  "explanation": "C gets 5/10 of 1,500 = 750.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "1500*5/10",
+   "expected": 750
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-015",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "The ages of two friends are in the ratio 5 : 6. After 5 years the ratio will be 6 : 7. What is the younger friend's present age?",
+  "correct_answer": "25 years",
+  "incorrect_answers": [
+   "20 years",
+   "30 years",
+   "24 years"
+  ],
+  "explanation": "(5x + 5) / (6x + 5) = 6/7 gives x = 5, so the younger is 25.",
+  "difficulty": "hard",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "(25+5)/(30+5)",
+   "expected": 0.8571428571428571
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-016",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "6 pens cost Rs 90. What do 10 pens cost?",
+  "correct_answer": "Rs 150",
+  "incorrect_answers": [
+   "Rs 120",
+   "Rs 140",
+   "Rs 180"
+  ],
+  "explanation": "One pen costs Rs 15, so 10 pens cost Rs 150.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "90/6*10",
+   "expected": 150
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-017",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "If x : y = 3 : 4, what is (2x + y) : (x + 2y)?",
+  "correct_answer": "10 : 11",
+  "incorrect_answers": [
+   "11 : 10",
+   "5 : 6",
+   "7 : 8"
+  ],
+  "explanation": "With x = 3 and y = 4: (6 + 4) : (3 + 8) = 10 : 11.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "(2*3+4)/(3+2*4)",
+   "expected": 0.9090909090909091
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-018",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "A invests Rs 6,000 and B invests Rs 8,000 for the same time. The profit is Rs 2,800. What is A's share?",
+  "correct_answer": "Rs 1,200",
+  "incorrect_answers": [
+   "Rs 1,400",
+   "Rs 1,600",
+   "Rs 1,000"
+  ],
+  "explanation": "Their shares are in the ratio 3 : 4, so A gets 3/7 of 2,800 = 1,200.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "2800*6/14",
+   "expected": 1200
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-019",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "Two salaries are in the ratio 3 : 5. Each rises by Rs 2,000 and the ratio becomes 2 : 3. What was the smaller salary at first?",
+  "correct_answer": "Rs 6,000",
+  "incorrect_answers": [
+   "Rs 4,000",
+   "Rs 8,000",
+   "Rs 10,000"
+  ],
+  "explanation": "(3x + 2,000) / (5x + 2,000) = 2/3 gives x = 2,000, so the smaller was 6,000.",
+  "difficulty": "hard",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "(6000+2000)/(10000+2000)",
+   "expected": 0.6666666666666666
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-QA-RAT-020",
+  "name": "Quantitative Aptitude",
+  "subject": "Quantitative Aptitude",
+  "chapter": "Ratio and proportion",
+  "question": "On a map, 1 cm stands for 5 km. What distance does 7.5 cm stand for?",
+  "correct_answer": "37.5 km",
+  "incorrect_answers": [
+   "35 km",
+   "40 km",
+   "32.5 km"
+  ],
+  "explanation": "7.5 x 5 = 37.5 km.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.3",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "7.5*5",
+   "expected": 37.5
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ }
+]

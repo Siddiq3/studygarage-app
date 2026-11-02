@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Pressable, ScrollView, Text, View } from "react-native";
+import { Pressable, Text, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import ScreenHeader from "../../design-system/components/ScreenHeader";
 import SGSectionHeader from "../../design-system/components/SGSectionHeader";
 import { CAREER_OPTIONS, optionName } from "./careerData";
-import useCareerLanguage, { CAREER_LANGUAGES } from "./careerI18n";
+import useCareerLanguage from "./careerI18n";
 import { BEST_BY_GROUP, CAREER_GOALS, GOAL_FIELDS, goalColor, INTER_GROUPS } from "./careerGoals";
-import { CareerPage, useCareerInterstitial } from "./careerUi";
+import { CareerPage, LanguageBar, useCareerInterstitial } from "./careerUi";
 
 const GROUP_KEY = "career_inter_group";
 
@@ -19,39 +19,6 @@ const JOURNEY = [
 ];
 
 const optionById = (id) => CAREER_OPTIONS.find((item) => item.id === id);
-
-// Lives in the header: it is set once, so it should not push the content down.
-function LanguageBar({ lang, onChange }) {
-  return (
-    <ScrollView
-      horizontal
-      showsHorizontalScrollIndicator={false}
-      accessibilityRole="radiogroup"
-      className="mt-4"
-      style={{ marginHorizontal: -20 }}
-      contentContainerStyle={{ paddingHorizontal: 20 }}
-    >
-      {CAREER_LANGUAGES.map((item) => {
-        const active = lang === item.key;
-        return (
-          <Pressable
-            key={item.key}
-            onPress={() => onChange(item.key)}
-            accessibilityRole="radio"
-            accessibilityState={{ checked: active }}
-            className={`mr-2 min-h-[44px] justify-center rounded-[14px] px-3.5 ${
-              active ? "bg-[#F4EFE2]" : "bg-[#14342A]/25"
-            }`}
-          >
-            <Text className={`text-[15px] font-sg-bold ${active ? "text-[#0F6E78]" : "text-[#F4EFE2]"}`}>
-              {item.label}
-            </Text>
-          </Pressable>
-        );
-      })}
-    </ScrollView>
-  );
-}
 
 // The most common student does not know yet, so this comes before everything else.
 function HelpMeChoose({ onPress, t }) {
@@ -181,9 +148,8 @@ function AfterTenth({ stateBoard, t, languageBar, go }) {
         eyebrow={t("After 10th")}
         title={t("Not sure what's next? That's normal.")}
         subtitle={t("Most students don't know yet. We'll make it simple.")}
-      >
-        {languageBar}
-      </ScreenHeader>
+        right={languageBar}
+      />
 
       <HelpMeChoose t={t} onPress={() => go("CareerQuizScreen", { stateBoard })} />
       <Journey t={t} />
@@ -242,9 +208,8 @@ function AfterInter({ stateBoard, t, languageBar, go }) {
         eyebrow={t("After Inter")}
         title={t("Your group opens these doors.")}
         subtitle={t("Pick your Inter group to see only what's open to you.")}
-      >
-        {languageBar}
-      </ScreenHeader>
+        right={languageBar}
+      />
 
       <Text className="mb-2.5 text-[20px] leading-[28px] font-sg-display text-sg-text">{t("Which group are you in?")}</Text>
       <View accessibilityRole="radiogroup" className="mb-6 flex-row flex-wrap">
@@ -292,7 +257,19 @@ function AfterInter({ stateBoard, t, languageBar, go }) {
           <SGSectionHeader title={t("Also open to you")} subtitle={t("These accept students from any group")} className="mb-3" />
           <GoalGrid goals={open} onOpen={openGoal} t={t} />
 
-          <View className="mt-3">
+          <Pressable
+            onPress={() => go("JobsHomeScreen", { stateBoard, classValue: "Inter" })}
+            accessibilityRole="button"
+            className="mb-2 mt-3 flex-row items-center rounded-[18px] bg-[#F2B632] p-4 active:opacity-90"
+          >
+            <Ionicons name="briefcase" size={28} color="#14342A" />
+            <View className="mx-3 flex-1">
+              <Text className="text-[18px] leading-[25px] font-sg-display text-[#14342A]">{t("Jobs you can apply for")}</Text>
+              <Text className="mt-0.5 text-[14px] leading-[20px] font-sg-medium text-[#14342A]">{t("All courses, jobs and who can apply")}</Text>
+            </View>
+            <Ionicons name="chevron-forward" size={22} color="#14342A" />
+          </Pressable>
+          <View className="mt-1">
             <GovtJobsCard t={t} onPress={() => go("CareerGovtJobsScreen", { stateBoard, classValue: "Inter" })} />
             <OptionRow
               t={t}

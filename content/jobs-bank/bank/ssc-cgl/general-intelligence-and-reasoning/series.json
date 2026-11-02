@@ -1,0 +1,522 @@
+[
+ {
+  "id": "SSCCGL-GIR-SER-001",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 3, 6, 12, 24, ?",
+  "correct_answer": "48",
+  "incorrect_answers": [
+   "36",
+   "42",
+   "54"
+  ],
+  "explanation": "Each term doubles.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "24*2",
+   "expected": 48
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-002",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 5, 8, 13, 20, 29, ?",
+  "correct_answer": "40",
+  "incorrect_answers": [
+   "38",
+   "41",
+   "42"
+  ],
+  "explanation": "The differences are 3, 5, 7, 9, 11.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "29+11",
+   "expected": 40
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-003",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 2, 6, 12, 20, 30, ?",
+  "correct_answer": "42",
+  "incorrect_answers": [
+   "36",
+   "40",
+   "48"
+  ],
+  "explanation": "The terms are 1x2, 2x3, 3x4, 4x5, 5x6, then 6x7.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "6*7",
+   "expected": 42
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-004",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 1, 4, 9, 16, 25, ?",
+  "correct_answer": "36",
+  "incorrect_answers": [
+   "30",
+   "35",
+   "49"
+  ],
+  "explanation": "These are square numbers.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "6*6",
+   "expected": 36
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-005",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 1, 8, 27, 64, ?",
+  "correct_answer": "125",
+  "incorrect_answers": [
+   "100",
+   "81",
+   "216"
+  ],
+  "explanation": "These are cube numbers.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "5**3",
+   "expected": 125
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-006",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 100, 91, 82, 73, ?",
+  "correct_answer": "64",
+  "incorrect_answers": [
+   "63",
+   "65",
+   "62"
+  ],
+  "explanation": "Each term falls by 9.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "73-9",
+   "expected": 64
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-007",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 2, 3, 5, 7, 11, 13, ?",
+  "correct_answer": "17",
+  "incorrect_answers": [
+   "15",
+   "16",
+   "19"
+  ],
+  "explanation": "These are prime numbers.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "17",
+   "expected": 17
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-008",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 1, 1, 2, 3, 5, 8, ?",
+  "correct_answer": "13",
+  "incorrect_answers": [
+   "11",
+   "12",
+   "15"
+  ],
+  "explanation": "Each term is the sum of the two before it.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "5+8",
+   "expected": 13
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-009",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 4, 7, 13, 25, 49, ?",
+  "correct_answer": "97",
+  "incorrect_answers": [
+   "96",
+   "98",
+   "73"
+  ],
+  "explanation": "The differences double: 3, 6, 12, 24, 48.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "49+48",
+   "expected": 97
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-010",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 3, 5, 9, 17, 33, ?",
+  "correct_answer": "65",
+  "incorrect_answers": [
+   "64",
+   "66",
+   "49"
+  ],
+  "explanation": "The differences double: 2, 4, 8, 16, 32.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "33+32",
+   "expected": 65
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-011",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 81, 27, 9, 3, ?",
+  "correct_answer": "1",
+  "incorrect_answers": [
+   "0",
+   "2",
+   "1/3"
+  ],
+  "explanation": "Each term is divided by 3.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "3/3",
+   "expected": 1
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-012",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 2, 5, 11, 23, 47, ?",
+  "correct_answer": "95",
+  "incorrect_answers": [
+   "94",
+   "96",
+   "93"
+  ],
+  "explanation": "Each term is doubled, then 1 is added.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "47*2+1",
+   "expected": 95
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-013",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 7, 14, 21, 28, ?",
+  "correct_answer": "35",
+  "incorrect_answers": [
+   "32",
+   "36",
+   "42"
+  ],
+  "explanation": "These are multiples of 7.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "28+7",
+   "expected": 35
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-014",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 1, 2, 6, 24, 120, ?",
+  "correct_answer": "720",
+  "incorrect_answers": [
+   "600",
+   "360",
+   "840"
+  ],
+  "explanation": "Multiply by 2, 3, 4, 5, then 6.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "120*6",
+   "expected": 720
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-015",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 6, 11, 21, 41, ?",
+  "correct_answer": "81",
+  "incorrect_answers": [
+   "61",
+   "71",
+   "82"
+  ],
+  "explanation": "Each term is doubled, then 1 is taken away.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "41*2-1",
+   "expected": 81
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-016",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 2, 10, 4, 20, 6, 30, 8, ?",
+  "correct_answer": "40",
+  "incorrect_answers": [
+   "32",
+   "36",
+   "48"
+  ],
+  "explanation": "The alternate terms 10, 20, 30 rise by 10.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "30+10",
+   "expected": 40
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-017",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next term: 120, 60, 20, 5, ?",
+  "correct_answer": "1",
+  "incorrect_answers": [
+   "2",
+   "3",
+   "4"
+  ],
+  "explanation": "Divide by 2, 3, 4, then 5.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "5/5",
+   "expected": 1
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-018",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next letter: A, C, E, G, ?",
+  "correct_answer": "I",
+  "incorrect_answers": [
+   "H",
+   "J",
+   "K"
+  ],
+  "explanation": "Each step skips one letter.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "ord('G')+2==ord('I')",
+   "expected": true
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-019",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next letter: B, E, H, K, ?",
+  "correct_answer": "N",
+  "incorrect_answers": [
+   "M",
+   "O",
+   "L"
+  ],
+  "explanation": "Each step moves forward 3 letters.",
+  "difficulty": "easy",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "ord('K')+3==ord('N')",
+   "expected": true
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ },
+ {
+  "id": "SSCCGL-GIR-SER-020",
+  "name": "General Intelligence and Reasoning",
+  "subject": "General Intelligence and Reasoning",
+  "chapter": "Series",
+  "question": "Find the next pair: AZ, BY, CX, ?",
+  "correct_answer": "DW",
+  "incorrect_answers": [
+   "DV",
+   "EW",
+   "CW"
+  ],
+  "explanation": "The first letter moves forward and the second moves back.",
+  "difficulty": "medium",
+  "syllabus_ref": "SSC CGL 2026 notice, para 13.10.1",
+  "origin": "original, AI-drafted practice question",
+  "machine_check": {
+   "calc": "ord('C')+1==ord('D') and ord('X')-1==ord('W')",
+   "expected": true
+  },
+  "verification": {
+   "status": "draft",
+   "reviewed_by": null,
+   "reviewed_on": null
+  }
+ }
+]

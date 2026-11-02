@@ -5,6 +5,8 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import BannerAdComponent from "../../../BannerAd";
 import useInterstitialAd from "../../../InterstitialAdComponent";
 import ScreenLayoutContainer from "../../design-system/components/ScreenLayoutContainer";
+import SGSelect from "../../design-system/components/SGSelect";
+import { CAREER_LANGUAGES } from "./careerI18n";
 
 const AD_GAP_MS = 60000;
 let lastAdAt = 0;
@@ -53,4 +55,10 @@ export function GoodToKnow({ title, text }) {
       </View>
     </View>
   );
+}
+
+// Set once, so it stays a small dropdown in the header instead of pushing the content down.
+export function LanguageBar({ lang, onChange }) {
+  const options = CAREER_LANGUAGES.map((item) => ({ value: item.key, label: item.label }));
+  return <SGSelect compact icon="language" sheetTitle="Language / భాష / ಭಾಷೆ / மொழி / भाषा" value={lang} options={options} onChange={onChange} />;
 }

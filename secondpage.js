@@ -53,6 +53,8 @@ import ScreenLayoutContainer, {
 import SGSectionHeader from "./src/design-system/components/SGSectionHeader";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import SGEmptyState from "./src/design-system/components/SGEmptyState";
+import { CollegeBody, CollegeHero } from "./src/features/jobs/CollegeHome";
+import { FollowedCountdowns } from "./src/features/jobs/ExamCountdown";
 import PressableScale from "./src/components/ui/PressableScale";
 import { useStreak } from "./src/services/streak/useStreak";
 import useActiveStudyTimer from "./src/hooks/useActiveStudyTimer";
@@ -84,6 +86,13 @@ const dockItems = [
   { key: "learn", label: "Learn", icon: "book-outline" },
   { key: "quiz", label: "Quiz", icon: "help-circle-outline" },
   { key: "library", label: "Library", icon: "library-outline" },
+  { key: "profile", label: "Profile", icon: "person-outline" },
+];
+// College students only get what they use: no textbooks, modules or school quizzes.
+const collegeDockItems = [
+  { key: "home", label: "Home", icon: "home-outline" },
+  { key: "jobs", label: "Jobs", icon: "briefcase-outline" },
+  { key: "rewards", label: "Rewards", icon: "wallet-outline" },
   { key: "profile", label: "Profile", icon: "person-outline" },
 ];
 const PROFILE_DRAWER_WIDTH = 280;
@@ -205,6 +214,7 @@ const SecondPage = ({ route, navigation }) => {
   const userName = routeParams?.userName || "Student";
   const stateBoard = routeParams?.stateBoard || "Andhra Pradesh";
   const classValue = routeParams?.classValue || "10thClass";
+  const isCollege = classValue === "Degree" || classValue === "BTech";
   const avatar = routeParams?.avatar || "boy";
   const walletPulseOnce = routeParams?.walletPulseOnce === true;
   const { playSound } = useAppSound();
@@ -782,11 +792,12 @@ const SecondPage = ({ route, navigation }) => {
   const openTelegram = () => Linking.openURL("https://t.me/studygarageapp");
 
   const openTodayMission = useCallback(() => {
-    navigation.navigate("QuizZoneScreen", {
+    // College students have no school quiz data; job quizzes live under their job goals.
+    navigation.navigate(isCollege ? "JobsHomeScreen" : "QuizZoneScreen", {
       stateBoard,
       classValue,
     });
-  }, [classValue, navigation, stateBoard]);
+  }, [classValue, isCollege, navigation, stateBoard]);
 
   const animateWalletCount = useCallback((fromValue, toValue) => {
     if (scoreRafRef.current) {
@@ -1051,6 +1062,10 @@ const SecondPage = ({ route, navigation }) => {
   const openQuizZoneScreen = openTodayMission;
 
   const handleLibraryOpen = () => {
+    if (isCollege) {
+      openTodayMission();
+      return;
+    }
     const routeName = libraryRouteMap[lookupKey];
     if (!routeName) return;
     navigation.navigate(routeName);
@@ -1159,6 +1174,15 @@ const SecondPage = ({ route, navigation }) => {
 
     if (drawerOpen) {
       closeProfileDrawer(false);
+    }
+
+    if (key === "jobs") {
+      navigation.navigate("JobsHomeScreen", { stateBoard, classValue });
+      return;
+    }
+    if (key === "rewards") {
+      navigation.navigate("TotalScorePage");
+      return;
     }
 
     setActiveDock(key);
@@ -1279,7 +1303,7 @@ const SecondPage = ({ route, navigation }) => {
                   numberOfLines={1}
                   className="text-[13px] font-sg-medium text-[#B5C6BB]"
                 >
-                  {stateBoard} · {classValue.replace("Class", " class")}
+                  {stateBoard} · {classValue === "BTech" ? "B.Tech" : classValue.replace("Class", " class")}
                 </Text>
               </View>
 
@@ -1342,6 +1366,9 @@ const SecondPage = ({ route, navigation }) => {
               </Animated.View>
             </Animated.View>
 
+            {isCollege ? (
+              <CollegeHero navigation={navigation} stateBoard={stateBoard} classValue={classValue} />
+            ) : (
             <Animated.View
               className="mt-1"
             >
@@ -1395,9 +1422,27 @@ const SecondPage = ({ route, navigation }) => {
                 {tomorrowTeaser.rewardHint}
               </Text>
             </Animated.View>
+            )}
 
             </View>
 
+            {isCollege ? (
+              <CollegeBody
+                navigation={navigation}
+                stateBoard={stateBoard}
+                classValue={classValue}
+                onCommunity={openWhatsApp}
+                promo={
+                  <PromoCard
+                    sectionTitle="Featured Tools"
+                    sectionSubtitle="Partner picks from outside StudyGarage"
+                    stateBoard={stateBoard}
+                    classValue={classValue}
+                  />
+                }
+              />
+            ) : (
+              <>
             <Animated.View
               className="mb-5 flex-row gap-2.5"
             >
@@ -1424,6 +1469,8 @@ const SecondPage = ({ route, navigation }) => {
                 onPress={() => navigation.navigate("TotalScorePage")}
               />
             </Animated.View>
+
+            <FollowedCountdowns navigation={navigation} stateBoard={stateBoard} />
 
             {classValue === "10thClass" || classValue === "Inter" ? (
               <PressableScale
@@ -1525,11 +1572,13 @@ const SecondPage = ({ route, navigation }) => {
                 </View>
               </View>
             </Animated.View>
+              </>
+            )}
           </ScreenLayoutContainer>
 
           <View className="pointer-events-box-none absolute bottom-0 left-0 right-0 border-t border-sg-border bg-sg-surface px-2 pb-3 pt-2" style={{ paddingBottom: Math.max(insets.bottom, 10) }}>
             <View className="flex-row items-center justify-between">
-              {dockItems.map((item) => {
+              {(isCollege ? collegeDockItems : dockItems).map((item) => {
                 const active = activeDock === item.key;
                 return (
                   <Pressable
