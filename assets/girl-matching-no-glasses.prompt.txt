@@ -1,0 +1,3 @@
+Edit the supplied girl illustration: remove the spectacles completely, including both round frames, lenses, bridge, and temple arms. Naturally reconstruct the skin around her eyes and nose in exactly the same cartoon style. Preserve her existing big friendly brown eyes, eye size and placement, eyebrows, face shape, warm smile, bindi, earrings, hair and braid, red hoodie, green t-shirt, pose, square framing, white background, colors, shading, and lighting. Change only the removal of the glasses. No eyewear, no residual frame lines. High-resolution square output.
+
+Generated using the built-in image generation tool, editing assets/girl-matching.png.

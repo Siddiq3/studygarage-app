@@ -78,7 +78,7 @@ import { useIsFocused } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 
 const defaultAvatarImage = require("./assets/boy.png");
-const girlAvatarImage = require("./assets/girl.png");
+const girlAvatarImage = require("./assets/girl-matching-no-glasses.png");
 const dockItems = [
   { key: "home", label: "Home", icon: "home-outline" },
   { key: "learn", label: "Learn", icon: "book-outline" },

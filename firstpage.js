@@ -48,7 +48,7 @@ const classLabel = (value) => {
 const selectionTick = () => Haptics.selectionAsync().catch(() => {});
 
 const defaultAvatarImage = require("./assets/boy.png");
-const girlAvatarImage = require("./assets/girl.png");
+const girlAvatarImage = require("./assets/girl-matching-no-glasses.png");
 
 function OnboardingActionButton({ label, onPress, disabled = false, secondary = false, className = "" }) {
   return (
